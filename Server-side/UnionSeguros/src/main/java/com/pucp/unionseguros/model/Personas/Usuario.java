@@ -1,3 +1,9 @@
+/*
+Nombre del archivo:    Usuario
+Autor:                Tadeo Gallegos
+Descripcion:        Archivo model de la clase Usuario
+*/
+
 package com.pucp.unionseguros.model.Personas;
 
 import jakarta.persistence.*;
@@ -14,28 +20,20 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Usuario {
-
-
-    @Id
-    @Column(name = "id_usuario", nullable = false)
-    private Integer idUsuario;
-
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_usuario", nullable = false)
-    private Persona persona;
+@PrimaryKeyJoinColumn(name = "id_persona")
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Usuario extends Persona{
 
     @Column(name = "email", length = 100)
     private String email;
 
-    @Column(name = "`contraseña`", length = 30)
-    private String contraseña;
+    @Column(name = "contrasena", length = 30)
+    private String contrasena;
 
     @Column(name = "fecha_creacion")
     private LocalDate fechaCreacion;
 
     @Column(name = "activo")
-    private boolean activo;
+    private boolean activoUsuario;
 
 }

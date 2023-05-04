@@ -1,3 +1,9 @@
+/*
+Nombre del archivo:    BoletaDeVenta
+Autor:                Andrea Mejia
+Descripcion:        Archivo model de la clase BoletaDeVenta
+*/
+
 package com.pucp.unionseguros.model.SOAT;
 
 import com.pucp.unionseguros.model.Distritos.Distrito;
@@ -18,10 +24,11 @@ import java.util.Date;
 public class BoletaDeVenta{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_boleta", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fid_soat")
     private SOAT fidSoat;
 

@@ -1,3 +1,9 @@
+/*
+Nombre del archivo:    Modelo
+Autor:                Jarumy Novoa
+Descripcion:        Archivo model de la clase Modelo
+*/
+
 package com.pucp.unionseguros.model.Vehiculo;
 
 import jakarta.persistence.*;
@@ -14,14 +20,15 @@ import lombok.Setter;
 @Getter
 public class Modelo {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_modelo", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fid_marca_vehiculo")
     private MarcaVehiculo fidMarcaVehiculo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fid_tipo_vehiculo")
     private TipoVehiculo fidTipoVehiculo;
 

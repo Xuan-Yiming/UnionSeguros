@@ -1,3 +1,9 @@
+/*
+Nombre del archivo:    Provincia
+Autor:                Andrea Mejia
+Descripcion:        Archivo model de la clase Provincia
+*/
+
 package com.pucp.unionseguros.model.Distritos;
 
 import jakarta.persistence.*;
@@ -14,6 +20,7 @@ import lombok.Setter;
 @Setter
 public class Provincia {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_provincia", nullable = false)
     private Integer id;
 
@@ -23,7 +30,7 @@ public class Provincia {
     @Column(name = "activo")
     private boolean activo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fid_departamento")
     private Departamento fidDepartamento;
 

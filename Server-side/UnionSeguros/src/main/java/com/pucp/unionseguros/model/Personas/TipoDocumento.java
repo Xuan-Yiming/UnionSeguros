@@ -1,3 +1,9 @@
+/*
+Nombre del archivo:    TipoDocumento
+Autor:                Sergio Dadic
+Descripcion:        Archivo model de la clase TipoDocumento
+*/
+
 package com.pucp.unionseguros.model.Personas;
 
 import com.pucp.unionseguros.model.SOAT.BoletaDeVenta;
@@ -15,6 +21,7 @@ import lombok.Setter;
 @Setter
 public class TipoDocumento {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_tipo_documento", nullable = false)
     private Integer id;
 

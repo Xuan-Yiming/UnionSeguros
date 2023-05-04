@@ -1,3 +1,9 @@
+/*
+Nombre del archivo:    Cotizacion
+Autor:                Sergio Dadic
+Descripcion:        Archivo model de la clase Cotizacion
+*/
+
 package com.pucp.unionseguros.model.Cotizacion;
 
 import com.pucp.unionseguros.model.Distritos.Distrito;
@@ -25,6 +31,10 @@ public class Cotizacion {
     @Column(name = "id_cotizacion", nullable = false)
     private Integer id;
 
+    @ManyToOne
+    @JoinColumn(name = "fid_moneda")
+    private Moneda fidMoneda;
+
     @Column(name = "fecha_cotizacion")
     private LocalDate fechaCotizacion;
 
@@ -34,7 +44,7 @@ public class Cotizacion {
     @Column(name = "activo")
     private boolean activo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fid_distrito")
     private Distrito fidDistrito;
 

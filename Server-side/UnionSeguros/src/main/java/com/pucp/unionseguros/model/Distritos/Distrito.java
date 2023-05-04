@@ -1,3 +1,9 @@
+/*
+Nombre del archivo:    Distrito
+Autor:                Tadeo Gallegos
+Descripcion:        Archivo model de la clase Distrito
+*/
+
 package com.pucp.unionseguros.model.Distritos;
 
 import jakarta.persistence.*;
@@ -24,7 +30,7 @@ public class Distrito {
     @Column(name = "activo")
     private boolean activo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fid_provincia")
     private Provincia fidProvincia;
 

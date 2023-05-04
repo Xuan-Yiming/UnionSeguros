@@ -1,3 +1,9 @@
+/*
+Nombre del archivo:    Vehiculo
+Autor:                Sergio Dadic
+Descripcion:        Archivo model de la clase Vehiculo
+*/
+
 package com.pucp.unionseguros.model.Vehiculo;
 
 import com.pucp.unionseguros.model.Personas.Persona;
@@ -17,18 +23,19 @@ import java.time.LocalDate;
 @Setter
 public class Vehiculo {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_vehiculo", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fid_tipo_uso")
     private TipoUso fidTipoUso;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fid_modelo")
     private Modelo fidModelo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fid_persona")
     private Persona fidPersona;
 
@@ -40,6 +47,9 @@ public class Vehiculo {
 
     @Column(name = "placa", length = 15)
     private String placa;
+
+    @Column(name = "serie", length = 15)
+    private String serie;
 
     @Column(name = "activo")
     private boolean activo;

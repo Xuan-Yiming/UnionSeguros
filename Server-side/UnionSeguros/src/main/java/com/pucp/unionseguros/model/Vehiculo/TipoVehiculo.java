@@ -1,3 +1,9 @@
+/*
+Nombre del archivo:    TipoVehiculo
+Autor:                Tadeo Gallegos
+Descripcion:        Archivo model de la clase TipoVehiculo
+*/
+
 package com.pucp.unionseguros.model.Vehiculo;
 
 import jakarta.persistence.*;
@@ -14,6 +20,7 @@ import lombok.Setter;
 @Setter
 public class TipoVehiculo {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_tipo_vehiculo", nullable = false)
     private Integer idTipoVehiculo;
 

@@ -1,3 +1,9 @@
+/*
+Nombre del archivo:    TipoUso
+Autor:                Sergio Dadic
+Descripcion:        Archivo model de la clase TipoUso
+*/
+
 package com.pucp.unionseguros.model.Vehiculo;
 
 import jakarta.persistence.*;
@@ -14,6 +20,7 @@ import lombok.Setter;
 @Setter
 public class TipoUso {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_tipo_uso", nullable = false)
     private Integer idTipoUso;
 

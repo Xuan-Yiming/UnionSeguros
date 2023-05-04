@@ -1,5 +1,12 @@
+/*
+Nombre del archivo:    Poliza
+Autor:                Tadeo Gallegos
+Descripcion:        Archivo model de la clase Poliza
+*/
+
 package com.pucp.unionseguros.model.SOAT;
 
+import com.pucp.unionseguros.model.Cotizacion.Moneda;
 import com.pucp.unionseguros.model.Distritos.Distrito;
 import com.pucp.unionseguros.model.Personas.Cliente;
 import com.pucp.unionseguros.model.Vehiculo.Vehiculo;
@@ -20,18 +27,23 @@ import java.util.Date;
 @Setter
 public class Poliza {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_poliza", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "fid_moneda")
+    private Moneda fidMoneda;
+
+    @ManyToOne
     @JoinColumn(name = "fid_metodo")
     private MetodoDePago fidMetodo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fid_vehiculo")
     private Vehiculo fidVehiculo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fid_cliente")
     private Cliente fidCliente;
 

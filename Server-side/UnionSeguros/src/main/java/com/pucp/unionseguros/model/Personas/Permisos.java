@@ -1,9 +1,11 @@
+/*
+Nombre del archivo:    Permisos
+Autor:                Sergio Dadic
+Descripcion:        Archivo model de la clase Permisos
+*/
 package com.pucp.unionseguros.model.Personas;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +19,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Permisos {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_permiso", nullable = false)
     private Integer id;
 

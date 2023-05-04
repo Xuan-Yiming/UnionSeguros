@@ -1,3 +1,9 @@
+/*
+Nombre del archivo:    Administrador
+Autor:                Jarumy Novoa
+Descripcion:        Archivo model de la clase Administrador
+*/
+
 package com.pucp.unionseguros.model.Personas;
 
 import jakarta.persistence.*;
@@ -16,18 +22,19 @@ import java.util.Date;
 @NoArgsConstructor
 public class Administrador {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario", nullable = false)
-    private Integer id;
+    private Integer idUsuario;
 
     @MapsId
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
     @Column(name = "activo")
     private boolean activo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fid_roles")
     private Roles fidRoles;
 }
