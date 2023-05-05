@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.pucp.unionseguros.UnionSegurosApplicationTests
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.245 s - in com.pucp.unionseguros.UnionSegurosApplicationTests
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.99 s - in com.pucp.unionseguros.UnionSegurosApplicationTests
+>>>>>>> 9414ed6f0c2b7a672da300273dac0d67e1d736a7
