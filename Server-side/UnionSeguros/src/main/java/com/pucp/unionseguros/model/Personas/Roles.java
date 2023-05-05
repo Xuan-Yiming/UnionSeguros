@@ -1,3 +1,8 @@
+/*
+Nombre del archivo:    Roles
+Autor:                Sergio Dadic
+Descripcion:        Archivo model de la clase Roles
+*/
 package com.pucp.unionseguros.model.Personas;
 
 import jakarta.persistence.*;
@@ -16,6 +21,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 public class Roles {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_roles", nullable = false)
     private Integer idRole;
 
@@ -25,7 +31,7 @@ public class Roles {
     @Column(name = "activo")
     private boolean activo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fid_permisos")
     private Permisos fidPermisos;
 }

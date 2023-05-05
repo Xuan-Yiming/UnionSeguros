@@ -1,3 +1,9 @@
+/*
+Nombre del archivo:    TipoVehiculoController
+Autor:                Andrea Mejia
+Descripcion:        Archivo controller de la clase Tipo Vehiculo
+*/
+
 package com.pucp.unionseguros.controller.VehiculoController;
 
 import com.pucp.unionseguros.model.Vehiculo.TipoUso;
@@ -21,12 +27,12 @@ public class TipoVehiculoController {
         this.tipoVehiculoService = tipoVehiculoService;
     }
 
-    @GetMapping()
+    @GetMapping("/listarTodos")
     public List<TipoVehiculo> getTipoVehiculos(){
         return tipoVehiculoService.listarTipoVehiculos();
     }
 
-    @PostMapping()
+    @PostMapping("/insertar")
     public void registrarNuevoTipoVehiculo(@RequestBody TipoVehiculo tipoVehiculo){
         tipoVehiculoService.insertarTipoVehiculo(tipoVehiculo);
     }

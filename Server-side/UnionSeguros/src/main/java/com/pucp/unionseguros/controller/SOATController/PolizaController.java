@@ -1,3 +1,9 @@
+/*
+Nombre del archivo:    PolizaController
+Autor:                Sergio Dadic
+Descripcion:        Archivo controller de la clase Poliza
+*/
+
 package com.pucp.unionseguros.controller.SOATController;
 
 import com.pucp.unionseguros.model.SOAT.Poliza;
@@ -19,12 +25,12 @@ public class PolizaController {
         this.polizaService = polizaService;
     }
 
-    @GetMapping()
+    @GetMapping("/listarTodas")
     public List<Poliza> listarPolizas(){
         return polizaService.listarPoliza();
     }
 
-    @PostMapping
+    @PostMapping("/insertar")
     public void registrarNuevaPoliza(@RequestBody Poliza poliza){
         polizaService.insertarPoliza(poliza);
     }

@@ -1,3 +1,9 @@
+/*
+Nombre del archivo:    SOAT
+Autor:                Sergio Dadic
+Descripcion:        Archivo model de la clase SOAT
+*/
+
 package com.pucp.unionseguros.model.SOAT;
 
 import com.pucp.unionseguros.model.Distritos.Distrito;
@@ -25,11 +31,11 @@ public class SOAT {
     @Column(name = "id_soat", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fid_plan_soat")
     private PlanSOAT fidPlanSoat;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fid_poliza")
     private Poliza fidPoliza;
 

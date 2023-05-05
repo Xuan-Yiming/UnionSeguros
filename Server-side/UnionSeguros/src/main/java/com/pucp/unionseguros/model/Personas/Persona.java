@@ -1,5 +1,11 @@
+/*
+Nombre del archivo:    Persona
+Autor:                Sergio Dadic
+Descripcion:        Archivo model de la clase Persona
+*/
 package com.pucp.unionseguros.model.Personas;
 
+import com.pucp.unionseguros.service.PersonasService.UsuarioService;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,6 +23,7 @@ import java.util.Date;
 @Setter
 public class Persona {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_persona", nullable = false)
     private Integer id;
 
@@ -42,9 +49,9 @@ public class Persona {
     private String numeroDocumento;
 
     @Column(name = "activo")
-    private boolean activo;
+    private boolean activoPersona;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fid_tipo_documento")
     private TipoDocumento fidTipoDocumento;
 

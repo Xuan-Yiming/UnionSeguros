@@ -1,3 +1,9 @@
+/*
+Nombre del archivo:    Modelo
+Autor:                Jarumy Novoa
+Descripcion:        Archivo model de la clase Modelo
+*/
+
 package com.pucp.unionseguros.model.Vehiculo;
 
 import jakarta.persistence.*;
@@ -18,11 +24,11 @@ public class Modelo {
     @Column(name = "id_modelo", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fid_marca_vehiculo")
     private MarcaVehiculo fidMarcaVehiculo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "fid_tipo_vehiculo")
     private TipoVehiculo fidTipoVehiculo;
 

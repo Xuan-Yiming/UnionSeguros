@@ -1,3 +1,9 @@
+/*
+Nombre del archivo:    MetodoDePagoController
+Autor:                Sergio Dadic
+Descripcion:        Archivo controller de la clase Metodo De Pago
+*/
+
 package com.pucp.unionseguros.controller.SOATController;
 
 import com.pucp.unionseguros.model.SOAT.MetodoDePago;
@@ -20,12 +26,12 @@ public class MetodoDePagoController {
         this.metodoDePagoService = metodoDePagoService;
     }
 
-    @GetMapping()
+    @GetMapping("/listarTodos")
     public List<MetodoDePago> listarMetodoDePagos(){
         return metodoDePagoService.listarMetododePagos();
     }
 
-    @PostMapping()
+    @PostMapping("/insertar")
     public void insertarNuevoMetodoDePago(@RequestBody MetodoDePago metodoDePago){
         metodoDePagoService.insertarMetodoDePago(metodoDePago);
     }

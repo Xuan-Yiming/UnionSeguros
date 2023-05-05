@@ -1,3 +1,8 @@
+/*
+Nombre del archivo:    PlanSOAT
+Autor:                Sergio Dadic
+Descripcion:        Archivo model de la clase PlanSOAT
+*/
 package com.pucp.unionseguros.model.SOAT;
 
 import jakarta.persistence.*;
@@ -21,13 +26,15 @@ public class PlanSOAT {
     private Integer id;
 
     @Column(name = "cobertura", precision = 10, scale = 2)
-    private BigDecimal cobertura;
+    private double cobertura;
 
     @Column(name = "precio", precision = 10, scale = 2)
-    private BigDecimal precio;
+    private double precio;
+
+    @Column(name = "nombre_plan")
+    private String nombrePlan;
 
     @Column(name = "activo")
     private boolean activo;
-
 
 }
