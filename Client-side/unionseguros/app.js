@@ -1,5 +1,5 @@
 var createError = require('http-errors');
-var express = require('express');
+const express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -11,7 +11,13 @@ var SOATRouter = require('./routes/SOAT');
 var adminPlanSOATRouter = require('./routes/adminPlanSOAT');
 var adminDetallePlanSOATRouter = require('./routes/adminDetallePlanSOAT');
 
-var app = express();
+const app = express();
+
+// Start the server
+const PORT = 3000
+app.listen(PORT, function () {
+  console.log(`Server listening on port ${PORT}`)
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
