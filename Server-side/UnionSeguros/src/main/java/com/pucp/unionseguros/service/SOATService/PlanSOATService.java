@@ -22,8 +22,9 @@ public class PlanSOATService {
         return planSOATRepository.findAll();
     }
 
-    public void insertarPlanSOAT(PlanSOAT planSOAT){
-        planSOATRepository.save(planSOAT);
+    public int insertarPlanSOAT(PlanSOAT planSOAT){
+        PlanSOAT savedPlanSOAT = planSOATRepository.saveAndFlush(planSOAT);
+        return savedPlanSOAT.getId();
     }
 
     public List<PlanSOAT> listarPlanSoatActivos(){

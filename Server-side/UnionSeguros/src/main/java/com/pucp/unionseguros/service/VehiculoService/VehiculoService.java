@@ -19,9 +19,9 @@ public class VehiculoService {
         return vehiculoRepository.findAll();
     }
 
-    public void insertarVehiculo(Vehiculo vehiculo) {
-        vehiculoRepository.save(vehiculo);
-
+    public int insertarVehiculo(Vehiculo vehiculo) {
+        Vehiculo savedVehiculo = vehiculoRepository.saveAndFlush(vehiculo);
+        return  savedVehiculo.getId();
     }
     public Vehiculo buscarVehiculoConPlaca(String placaIngrese){
         Vehiculo founVehiculo = null;

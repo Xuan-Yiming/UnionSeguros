@@ -20,8 +20,9 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
-    public Cliente ingresarCliente(Cliente cliente) {
-        return clienteRepository.save(cliente);
+    public int ingresarCliente(Cliente cliente) {
+        Cliente savedCliente = clienteRepository.saveAndFlush(cliente);
+        return savedCliente.getId();
     }
 
     public Cliente buscarClientePorDocumento(String numeroDocumentoIngresado){

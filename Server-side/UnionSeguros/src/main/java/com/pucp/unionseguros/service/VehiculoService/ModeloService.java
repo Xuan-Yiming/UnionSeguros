@@ -33,8 +33,9 @@ public class ModeloService {
         return modeloRepository.findModelosByFidMarcaVehiculo(marcaVehiculo);
     }
 
-    public void insertarModelo(Modelo modelo){
-        modeloRepository.save(modelo);
+    public int insertarModelo(Modelo modelo){
+        Modelo savedModelo = modeloRepository.saveAndFlush(modelo);
+        return  savedModelo.getId();
     }
 
 }

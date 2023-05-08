@@ -35,8 +35,8 @@ public class BoletaDeVentaController {
         return  boletaDeVentaService.listarBoletasDeVentaActivas();
     }
     @PostMapping("/insertar")
-    public void insertarNuevaBoletaDeVenta(@RequestBody BoletaDeVenta boletaDeVenta){
-        boletaDeVentaService.insertarBoletaDeVenta(boletaDeVenta);
+    public int  insertarNuevaBoletaDeVenta(@RequestBody BoletaDeVenta boletaDeVenta){
+        return boletaDeVentaService.insertarBoletaDeVenta(boletaDeVenta);
     }
 
 }

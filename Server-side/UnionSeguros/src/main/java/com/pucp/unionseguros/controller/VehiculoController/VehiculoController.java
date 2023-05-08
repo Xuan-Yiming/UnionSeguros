@@ -38,8 +38,8 @@ public class VehiculoController {
         return vehiculoService.buscarVehiculoConPlaca(placaIngresada);
     }
     @PostMapping("/insertar")
-    public void registrarNuevoVehiculo(@RequestBody Vehiculo vehiculo){
-        vehiculoService.insertarVehiculo(vehiculo);
+    public int registrarNuevoVehiculo(@RequestBody Vehiculo vehiculo){
+        return vehiculoService.insertarVehiculo(vehiculo);
     }
 
 

@@ -22,8 +22,9 @@ public class BoletaDeVentaService {
         return boletaDeVentaRepository.findAll();
     }
 
-    public  void insertarBoletaDeVenta(BoletaDeVenta boletaDeVenta){
-        boletaDeVentaRepository.save(boletaDeVenta);
+    public  int insertarBoletaDeVenta(BoletaDeVenta boletaDeVenta){
+        BoletaDeVenta savedBoletaDeVenta = boletaDeVentaRepository.saveAndFlush(boletaDeVenta);
+        return savedBoletaDeVenta.getId();
     }
 
     public List<BoletaDeVenta> listarBoletasDeVentaActivas(){

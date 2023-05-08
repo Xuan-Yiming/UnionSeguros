@@ -21,7 +21,8 @@ public class TipoVehiculoService {
         return tipoVehiculoRepository.findAll();
     }
 
-    public void insertarTipoVehiculo(TipoVehiculo tipoVehiculo){
-        tipoVehiculoRepository.save(tipoVehiculo);
+    public int insertarTipoVehiculo(TipoVehiculo tipoVehiculo){
+        TipoVehiculo savedTipoVehiculo = tipoVehiculoRepository.saveAndFlush(tipoVehiculo);
+        return  savedTipoVehiculo.getIdTipoVehiculo();
     }
 }

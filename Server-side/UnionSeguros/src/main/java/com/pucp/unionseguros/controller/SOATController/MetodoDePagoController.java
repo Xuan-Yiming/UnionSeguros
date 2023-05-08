@@ -32,8 +32,8 @@ public class MetodoDePagoController {
     }
 
     @PostMapping("/insertar")
-    public void insertarNuevoMetodoDePago(@RequestBody MetodoDePago metodoDePago){
-        metodoDePagoService.insertarMetodoDePago(metodoDePago);
+    public int insertarNuevoMetodoDePago(@RequestBody MetodoDePago metodoDePago){
+        return metodoDePagoService.insertarMetodoDePago(metodoDePago);
     }
 
 }

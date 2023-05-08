@@ -18,7 +18,8 @@ public class SOATService {
 
     public List<SOAT> listarSOAT(){return  soatRepository.findAll();}
 
-    public void insertarSOAT(SOAT soat) {
-        soatRepository.save(soat);
+    public int insertarSOAT(SOAT soat) {
+        SOAT savedSOAT = soatRepository.saveAndFlush(soat);
+        return savedSOAT.getId();
     }
 }

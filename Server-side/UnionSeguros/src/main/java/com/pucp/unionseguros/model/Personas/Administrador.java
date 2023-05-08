@@ -17,19 +17,11 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "usuario")
+@Table(name = "administrador")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Administrador {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_usuario", nullable = false)
-    private Integer idUsuario;
-
-    @MapsId
-    @OneToOne
-    @JoinColumn(name = "id_usuario", nullable = false)
-    private Usuario usuario;
+@PrimaryKeyJoinColumn(name = "id_persona")
+public class Administrador extends Usuario{
 
     @Column(name = "activo")
     private boolean activo;

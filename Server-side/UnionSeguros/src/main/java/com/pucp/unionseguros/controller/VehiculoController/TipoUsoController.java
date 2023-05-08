@@ -36,8 +36,8 @@ public class TipoUsoController {
         return tipoUsoService.listarTipoUsoActivo();
     }
     @PostMapping("/insertar")
-    public void registrarNuevoTipoUsoVehiculo(@RequestBody TipoUso tipoUso){
-        tipoUsoService.insertarTipoUso(tipoUso);
+    public int registrarNuevoTipoUsoVehiculo(@RequestBody TipoUso tipoUso){
+        return tipoUsoService.insertarTipoUso(tipoUso);
     }
 
     @PutMapping("/modificar")

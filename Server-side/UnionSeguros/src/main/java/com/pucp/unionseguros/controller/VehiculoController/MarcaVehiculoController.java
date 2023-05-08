@@ -33,8 +33,8 @@ public class MarcaVehiculoController {
     }
 
     @PostMapping("/insertar")
-    public void insertarNuevoMarcaVehiculo(@RequestBody MarcaVehiculo marcaVehiculo){
-        marcaVehiculoService.insertarMarcaVehiculo(marcaVehiculo);
+    public int insertarNuevoMarcaVehiculo(@RequestBody MarcaVehiculo marcaVehiculo){
+       return marcaVehiculoService.insertarMarcaVehiculo(marcaVehiculo);
     }
 
     @GetMapping(params = "idMarca",path = "/buscarPorId")

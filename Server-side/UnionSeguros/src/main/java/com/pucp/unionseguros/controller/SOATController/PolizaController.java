@@ -31,7 +31,8 @@ public class PolizaController {
     }
 
     @PostMapping("/insertar")
-    public void registrarNuevaPoliza(@RequestBody Poliza poliza){
-        polizaService.insertarPoliza(poliza);
+    public int registrarNuevaPoliza(@RequestBody Poliza poliza){
+
+        return polizaService.insertarPoliza(poliza);
     }
 }

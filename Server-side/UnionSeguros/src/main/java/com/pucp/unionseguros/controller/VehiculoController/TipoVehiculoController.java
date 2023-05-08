@@ -33,8 +33,8 @@ public class TipoVehiculoController {
     }
 
     @PostMapping("/insertar")
-    public void registrarNuevoTipoVehiculo(@RequestBody TipoVehiculo tipoVehiculo){
-        tipoVehiculoService.insertarTipoVehiculo(tipoVehiculo);
+    public int registrarNuevoTipoVehiculo(@RequestBody TipoVehiculo tipoVehiculo){
+        return tipoVehiculoService.insertarTipoVehiculo(tipoVehiculo);
     }
 
 }

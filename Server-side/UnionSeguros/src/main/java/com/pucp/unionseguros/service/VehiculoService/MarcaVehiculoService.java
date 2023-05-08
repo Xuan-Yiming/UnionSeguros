@@ -20,8 +20,9 @@ public class MarcaVehiculoService {
         return marcaVehiculoRepository.findAll();
     }
 
-    public void insertarMarcaVehiculo(MarcaVehiculo marcaVehiculo){
-        marcaVehiculoRepository.save(marcaVehiculo);
+    public int insertarMarcaVehiculo(MarcaVehiculo marcaVehiculo){
+        MarcaVehiculo savedMarcaVehiculo = marcaVehiculoRepository.saveAndFlush(marcaVehiculo);
+        return savedMarcaVehiculo.getId();
     }
 
     public MarcaVehiculo buscarMarcaConElId(Integer idMarca){

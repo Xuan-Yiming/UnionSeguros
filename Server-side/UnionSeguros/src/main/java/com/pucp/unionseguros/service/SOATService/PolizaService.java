@@ -20,7 +20,8 @@ public class PolizaService {
         return polizaRepository.findAll();
     }
 
-    public void insertarPoliza(Poliza poliza){
-        polizaRepository.save(poliza);
+    public int insertarPoliza(Poliza poliza){
+        Poliza savedPoliza =  polizaRepository.saveAndFlush(poliza);
+        return savedPoliza.getId();
     }
 }

@@ -32,7 +32,7 @@ public class SOATController {
     }
 
     @PostMapping("/insertar")
-    public void insertarNuevoSOAT(@RequestBody SOAT soat){
-        soatService.insertarSOAT(soat);
+    public int insertarNuevoSOAT(@RequestBody SOAT soat){
+        return soatService.insertarSOAT(soat);
     }
 }

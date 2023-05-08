@@ -20,7 +20,8 @@ public class MetodoDePagoService {
         return metodoDePagoRepository.findAll();
     }
 
-    public void insertarMetodoDePago(MetodoDePago metodoDePago){
-        metodoDePagoRepository.save(metodoDePago);
+    public int insertarMetodoDePago(MetodoDePago metodoDePago){
+        MetodoDePago savedMetodoDePago = metodoDePagoRepository.saveAndFlush(metodoDePago);
+        return  savedMetodoDePago.getId();
     }
 }

@@ -36,8 +36,9 @@ public class PlanSOATController {
         return planSOATService.listarPlanSoatActivos();
     }
     @PostMapping("/insertar")
-    public void insetarNuevoPlanSOAT(@RequestBody PlanSOAT planSOAT){
-        planSOATService.insertarPlanSOAT(planSOAT);
+    public int insetarNuevoPlanSOAT(@RequestBody PlanSOAT planSOAT){
+
+        return planSOATService.insertarPlanSOAT(planSOAT);
     }
 
     @PutMapping("/modificar")

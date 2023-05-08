@@ -42,7 +42,7 @@ public class ModeloController {
     }
 
     @PostMapping("/insertar")
-    public  void registrarNuevoModelo(@RequestBody Modelo modelo){
-        modeloService.insertarModelo(modelo);
+    public  int registrarNuevoModelo(@RequestBody Modelo modelo){
+        return modeloService.insertarModelo(modelo);
     }
 }

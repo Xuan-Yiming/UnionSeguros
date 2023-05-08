@@ -23,8 +23,9 @@ public class TipoUsoService {
         return tipoUsoRepository.findAll();
     }
 
-    public void insertarTipoUso(TipoUso tipoUso){
-        tipoUsoRepository.save(tipoUso);
+    public int insertarTipoUso(TipoUso tipoUso){
+        TipoUso savedTipoUso = tipoUsoRepository.saveAndFlush(tipoUso);
+        return savedTipoUso.getIdTipoUso();
     }
 
     public List<TipoUso> listarTipoUsoActivo(){

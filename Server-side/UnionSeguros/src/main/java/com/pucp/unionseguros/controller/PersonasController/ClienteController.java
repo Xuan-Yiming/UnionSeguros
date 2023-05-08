@@ -29,12 +29,13 @@ public class ClienteController {
         return clienteService.listarClientes();
     }
 
+    //Retorna la info del cliente
     @GetMapping(params = "numDocumentoIngresado",path = "/buscarClientePorNumDocumento")
     public Cliente buscarClientePorDocumento(@RequestParam(name = "numDocumentoIngresado") String numDocumento){
         return clienteService.buscarClientePorDocumento(numDocumento);
     }
     @PostMapping("/ingresar")
-    public Cliente registrarNuevoCliente(@RequestBody Cliente cliente){
+    public int registrarNuevoCliente(@RequestBody Cliente cliente){
         return clienteService.ingresarCliente(cliente);
     }
 }
