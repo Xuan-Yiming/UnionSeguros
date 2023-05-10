@@ -4,7 +4,7 @@ const GLOBAL_URL = 'http://localhost:8080/api/v1';
 
 var planes;
 window.onload = function () {
-    fetch(GLOBAL_URL + '/planSOAT/ListarTodos')
+    fetch(GLOBAL_URL + '/planSOAT/ListarAcitvos')
         .then(response => response.json())
         .then(data => {
             

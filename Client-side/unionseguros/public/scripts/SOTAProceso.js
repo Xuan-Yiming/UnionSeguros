@@ -501,7 +501,6 @@ function guardar() {
                     "id": 1
                 }
             }
-
         };
 
         fetch(GLOBAL_URL + '/cliente/ingresar', {
@@ -658,3 +657,4 @@ function guardar() {
     alert("Se ha guardado correctamente");
     localStorage.clear();
 }
+
