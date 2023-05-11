@@ -28,13 +28,13 @@ public class Persona {
     private Integer id;
 
     @Column(name = "nombre", length = 50)
-    private String nombre;
+    protected String nombre;  //protected
 
     @Column(name = "apellido_paterno", length = 30)
-    private String apellidoPaterno;
+    protected String apellidoPaterno;
 
     @Column(name = "apellido_materno", length = 30)
-    private String apellidoMaterno;
+    protected String apellidoMaterno;
 
     @Column(name = "fecha_nacimiento")
     private LocalDate fechaNacimiento;

@@ -2,6 +2,7 @@ com\pucp\unionseguros\controller\DistritosController\DepartamentoController.clas
 com\pucp\unionseguros\controller\VehiculoController\MarcaVehiculoController.class
 com\pucp\unionseguros\controller\SOATController\PlanSOATController.class
 com\pucp\unionseguros\controller\CotizacionController\CotizacionController.class
+com\pucp\unionseguros\service\PersonasService\AdministradorService.class
 com\pucp\unionseguros\controller\VehiculoController\VehiculoController.class
 com\pucp\unionseguros\service\PersonasService\ClienteService.class
 com\pucp\unionseguros\service\PersonasService\UsuarioService.class
@@ -9,6 +10,7 @@ com\pucp\unionseguros\service\PersonasService\RolesService.class
 com\pucp\unionseguros\repository\CotizacionRepository\CotizacionRepository.class
 com\pucp\unionseguros\model\Cotizacion\CotizacionXDetalleCotizacion.class
 com\pucp\unionseguros\controller\PersonasController\TipoDocumentoController.class
+com\pucp\unionseguros\controller\PersonasController\AdministradorController.class
 com\pucp\unionseguros\repository\VehiculoRepository\TipoVehiculoRepository.class
 com\pucp\unionseguros\service\CotizacionService\CotizacionService.class
 com\pucp\unionseguros\service\VehiculoService\TipoVehiculoService.class
@@ -53,6 +55,7 @@ com\pucp\unionseguros\model\Personas\Usuario.class
 com\pucp\unionseguros\repository\SOATRepository\MetodoDePagoRepository.class
 com\pucp\unionseguros\model\SOAT\BoletaDeVenta.class
 com\pucp\unionseguros\model\Personas\Administrador.class
+com\pucp\unionseguros\repository\PersonasRepository\AdministradorRepository.class
 com\pucp\unionseguros\repository\PersonasRepository\TipoDocumentoRepository.class
 com\pucp\unionseguros\repository\PersonasRepository\PermisosRepository.class
 com\pucp\unionseguros\service\SOATService\BoletaDeVentaService.class

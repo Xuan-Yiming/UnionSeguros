@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -28,8 +29,13 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @GetMapping()
+    @GetMapping("/ListarTodos")
     public List<Usuario> listarUsuarios(){
         return usuarioService.listarUsuarios();
+    }
+
+    @GetMapping(params = "busqueda",path ="/buscarUsuario")
+    public List<Usuario> buscarUsuario(@RequestParam(name = "busqueda") String busqueda){
+        return usuarioService.buscarUsuario(busqueda);
     }
 }

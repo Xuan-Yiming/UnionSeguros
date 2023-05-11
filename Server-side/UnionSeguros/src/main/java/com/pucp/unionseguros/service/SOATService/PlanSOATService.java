@@ -49,4 +49,10 @@ public class PlanSOATService {
         foundPlanSoat.setActivo(false);
         return planSOATRepository.save(foundPlanSoat);
     }
+
+    public List<PlanSOAT> buscarPlanSoat(String busqueda){
+        List<PlanSOAT> lista = new ArrayList<>();
+        lista = planSOATRepository.findPlanSOAT(busqueda);
+        return  lista;
+    }
 }

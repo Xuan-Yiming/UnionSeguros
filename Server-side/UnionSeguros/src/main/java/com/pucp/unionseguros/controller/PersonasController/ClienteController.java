@@ -37,4 +37,6 @@ public class ClienteController {
     public Cliente registrarNuevoCliente(@RequestBody Cliente cliente){
         return clienteService.ingresarCliente(cliente);
     }
+
+
 }
