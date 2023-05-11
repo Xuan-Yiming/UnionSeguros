@@ -51,4 +51,8 @@ public class PlanSOATController {
         return planSOATService.deletePlanSoat(planSOAT);
     }
 
+    @GetMapping(params = "busqueda",path="/buscarPlanesSOAT")
+    public List<PlanSOAT> buscarPlanSoat(@RequestParam(name = "busqueda") String busqueda){
+        return planSOATService.buscarPlanSoat(busqueda);
+    }
 }
