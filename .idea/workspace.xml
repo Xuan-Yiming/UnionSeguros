@@ -5,26 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6fa78c07-b115-4a69-b73b-58c95ea1b005" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/resources/icons/ahorro.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/resources/icons/personal-escucha.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/resources/icons/personal-profesional.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/resources/images/fondoEjecutivo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/resources/images/seguroVehicularBox.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/resources/images/soatBox.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/indexHeader.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/layouts/indexHeader.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/partials/index.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/bin/www" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/bin/www" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/resources/logos/Instagram_Glyph_White.png" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/resources/logos/ig_logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/resources/logos/Twitter social icons - circle - white.png" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/resources/logos/twitter_logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/resources/logos/f_logo_RGB-White_58.png" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/resources/logos/fb_logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/layouts/SOATFooter.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/layouts/SOATFooter.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/SOAT.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/SOAT.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/partials/SOAT.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/partials/SOAT.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/index.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,20 +25,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "client-side",
-    "last_opened_file_path": "C:/Users/omar/Documents/GitHub/UnionSeguros/Client-side/unionseguros/public/resources/icons",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;client-side&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/omar/Documents/GitHub/UnionSeguros/Client-side/unionseguros/public/resources/icons&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\resources\icons" />
@@ -78,7 +60,7 @@
       <option name="presentableId" value="Default" />
       <updated>1683656502738</updated>
       <workItem from="1683656504183" duration="2749000" />
-      <workItem from="1683783559997" duration="3646000" />
+      <workItem from="1683783559997" duration="4284000" />
     </task>
     <servers />
   </component>
