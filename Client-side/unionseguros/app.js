@@ -4,24 +4,16 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-<<<<<<< Updated upstream
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var SOATProcesoRouter = require('./routes/SOATProceso');
-var SOATRouter = require('./routes/SOAT');
-var adminPlanSOATRouter = require('./routes/adminPlanSOAT');
-var adminDetallePlanSOATRouter = require('./routes/adminDetallePlanSOAT');
 
 const app = express();
 
 // Start the server
-const PORT = 3000
+const PORT = 8080;
 app.listen(PORT, function () {
   console.log(`Server listening on port ${PORT}`)
 })
-=======
-var app = express();
->>>>>>> Stashed changes
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -61,29 +53,37 @@ app.use('/login', loginRouter);
 //pagina de administrador
 var adminLoginRouter = require('./routes/admin/adminLogin');
 app.use('/admin/login', adminLoginRouter);
+
 var adminPlanSOATRouter = require('./routes/admin/adminPlanSOAT');
 app.use('/admin/planSOAT', adminPlanSOATRouter);
+
 var adminDetallePlanSOATRouter = require('./routes/admin/adminDetallePlanSOAT');
 app.use('/admin/detallePlanSOAT', adminDetallePlanSOATRouter);
+
 var adminSeguroVehicularRouter = require('./routes/admin/adminSeguroVehicular');
 app.use('/admin/seguroVehicular', adminSeguroVehicularRouter);
+
 var adminBeneficioSeguroVehicularRouter = require('./routes/admin/adminBeneficioSeguroVehicular');
 app.use('/admin/beneficioSeguroVehicular', adminBeneficioSeguroVehicularRouter);
 
 var adminUsuariosRouter = require('./routes/admin/adminUsuarios');
 app.use('/admin/usuarios', adminUsuariosRouter);
+
 var adminDetalleUsuarioRouter = require('./routes/admin/adminDetalleUsuario');
 app.use('/admin/detalleUsuario', adminDetalleUsuarioRouter);
+
 var adminAuditoriaRouter = require('./routes/admin/adminAuditoria');
 app.use('/admin/auditoria', adminAuditoriaRouter);
 
 var adminClientesRouter = require('./routes/admin/adminClientes');
 app.use('/admin/clientes', adminClientesRouter);
+
 var adminDetalleClienteRouter = require('./routes/admin/adminDetalleCliente');
 app.use('/admin/detalleCliente', adminDetalleClienteRouter);
 
 var adminVehiculosRouter = require('./routes/admin/adminVehiculos');
 app.use('/admin/vehiculos', adminVehiculosRouter);
+
 var adminDetalleVehiculoRouter = require('./routes/admin/adminDetalleVehiculo');
 app.use('/admin/detalleVehiculo', adminDetalleVehiculoRouter);
 
