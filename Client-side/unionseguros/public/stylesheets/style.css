@@ -163,3 +163,36 @@ footer p, footer h3 {
   margin: 20px;
 }
 
+/*HEADER INICIO*/
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
+  color: white;
+}
+
+header .logo {
+  float: left;
+}
+
+header .logo img {
+  width: 100px;
+  height: auto;
+}
+
+header .telefono {
+  float: right;
+  display: flex;
+  align-items: center;
+  color: #C8102E;
+  text-decoration: none;
+}
+
+header .telefono img {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+}
