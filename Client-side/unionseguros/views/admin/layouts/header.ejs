@@ -6,35 +6,44 @@
             <a class="navbar-logo">
                 <img src="../public/resources/logos/logo-blue-back.png" alt="Logo">
             </a>
-    
-            <div class="hover-trigger" id="b-ventas">
-                <a class="button" href="/admin/ventas">Ventas</a>
-            </div>
-    
-            <div class="hover-trigger" id="b-clientes">
-                <a class="button" href="#">Clientes</a>
-            </div>
-    
-            <div class="hover-trigger" id="b-seguros">
-                <a class="button" href="/admin/seguros">Seguros</a>
-            </div>
-    
-            <div class="hover-trigger" id="b-usuarios">
-                <a class="button" href="#">Usuarios</a>
-            </div>
-    
-            <div class="hover-trigger" id="b-vehiculos">
-                <a class="button" href="#">Vehiculos</a>
-            </div>
-    
-            <div class="navbar-button-list" >
-                <button class="button button-icon" id="search-button">
-                    <img src="../public/resources/icons/Magnify.png" alt="Buscar">
-                  </button>
-                  <button class="button button-icon" id="user-button">
-                    <img src="../public/resources/icons/Human.png" alt="Usuario">
-                  </button>
-            </div>
+            <% if ( iflogin ) { %>
+                
+
+                <%} else { %>
+                    <div class="hover-trigger" id="b-ventas">
+                        <a class="button" href="/admin/ventas">Ventas</a>
+                    </div>
+            
+                    <div class="hover-trigger" id="b-clientes">
+                        <a class="button" href="#">Clientes</a>
+                    </div>
+            
+                    <div class="hover-trigger" id="b-seguros">
+                        <a class="button" href="/admin/seguros">Seguros</a>
+                    </div>
+            
+                    <div class="hover-trigger" id="b-usuarios">
+                        <a class="button" href="#">Usuarios</a>
+                    </div>
+            
+                    <div class="hover-trigger" id="b-vehiculos">
+                        <a class="button" href="#">Vehiculos</a>
+                    </div>
+            
+                    <div class="navbar-button-list" >
+                        <button class="button button-icon" id="search-button">
+                            <img src="../public/resources/icons/Magnify.png" alt="Buscar">
+                          </button>
+                          <button class="button button-icon" id="user-button">
+                            <img src="../public/resources/icons/Human.png" alt="Usuario">
+                          </button>
+                    </div>
+
+                <% } %>
+
+
+
+            
     
         </div>
         <div></div>
@@ -57,8 +66,8 @@
                 </div>
             </div>
             <div id = "user-container">
-                <p id = "username">Usuario</p>
-                <a id="user-button" href="/login">
+                <p id = "username"><%= username %></p>
+                <a id="user-button" href="/admin">
                     Salir
                 </a>
             </div>

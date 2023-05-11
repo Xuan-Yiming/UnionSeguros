@@ -50,6 +50,7 @@ app.use('/login', loginRouter);
 //pagina de administrador
 var adminLoginRouter = require('./routes/admin/adminLogin');
 app.use('/admin/login', adminLoginRouter);
+app.use('/admin', adminLoginRouter);
 
 var adminPlanSOATRouter = require('./routes/admin/adminPlanSOAT');
 app.use('/admin/planSOAT', adminPlanSOATRouter);
