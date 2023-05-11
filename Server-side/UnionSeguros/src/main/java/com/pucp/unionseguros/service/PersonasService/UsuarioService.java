@@ -5,6 +5,7 @@ import com.pucp.unionseguros.repository.PersonasRepository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -18,5 +19,11 @@ public class UsuarioService {
 
     public List<Usuario> listarUsuarios(){
         return usuarioRepository.findAll();
+    }
+
+    public List<Usuario> buscarUsuario(String busqueda){
+        List<Usuario> lista = new ArrayList<>();
+        lista = usuarioRepository.findUsuario(busqueda);
+        return  lista;
     }
 }

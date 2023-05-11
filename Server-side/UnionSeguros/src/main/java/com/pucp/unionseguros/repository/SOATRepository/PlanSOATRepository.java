@@ -13,5 +13,9 @@ import java.util.List;
 public interface PlanSOATRepository extends JpaRepository<PlanSOAT, Integer> {
     public PlanSOAT findPlanSOATByIdAndActivoIsTrue(Integer id);
     public List<PlanSOAT> findPlanSOATByActivoIsTrue();
-
+    @Query(nativeQuery = true, value = "SELECT id_plan_soat,nombre_plan,cobertura,precio,activo FROM plan_soat \n" +
+            "    WHERE CONCAT(CAST(id_plan_soat AS CHAR), nombre_plan, CAST(cobertura AS CHAR)," +
+            " CAST(precio AS CHAR), CAST(activo AS CHAR)) \n" +
+            "    LIKE CONCAT('%', ?1, '%') ORDER BY nombre_plan ASC")
+    public List<PlanSOAT> findPlanSOAT(String busqueda);
 }
