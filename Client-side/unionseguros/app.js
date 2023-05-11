@@ -23,68 +23,71 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/public', express.static('public'));
-var usersRouter = require('./routes/users');
-app.use('/users', usersRouter);
+
+
+//CLient
 //pagina de inicio
-var indexRouter = require('./routes/index');
+var indexRouter = require('./routes/client/index');
 app.use('/', indexRouter);
 
 //pagina de SOAT
-var SOATProcesoRouter = require('./routes/SOATProceso');
+var SOATProcesoRouter = require('./routes/client/SOATProceso');
 app.use('/SOATProceso', SOATProcesoRouter);
 var SOATRouter = require('./routes/SOAT');
 app.use('/SOAT', SOATRouter)
 
 //pagina de seguro vehicular
-var seguroVehicularRouter = require('./routes/seguroVehicular');
+var seguroVehicularRouter = require('./routes/client/seguroVehicular');
 app.use('/seguroVehicular', seguroVehicularRouter);
-var seguroVehicularProcesoRouter = require('./routes/seguroVehicularProceso');
+var seguroVehicularProcesoRouter = require('./routes/client/seguroVehicularProceso');
 app.use('/seguroVehicularProceso', seguroVehicularProcesoRouter);
 
 //pagina de usuario
-var usuarioRouter = require('./routes/usuario');
+var usuarioRouter = require('./routes/client/usuario');
 app.use('/usuario', usuarioRouter);
-var loginRouter = require('./routes/login');
+var loginRouter = require('./routes/client/login');
 app.use('/login', loginRouter);
 
+
+//Admin
 //pagina de administrador
 var adminLoginRouter = require('./routes/admin/adminLogin');
 app.use('/admin/login', adminLoginRouter);
 app.use('/admin', adminLoginRouter);
 
+//pagina de SOAT
 var adminPlanSOATRouter = require('./routes/admin/adminPlanSOAT');
 app.use('/admin/planSOAT', adminPlanSOATRouter);
-
 var adminDetallePlanSOATRouter = require('./routes/admin/adminDetallePlanSOAT');
 app.use('/admin/detallePlanSOAT', adminDetallePlanSOATRouter);
 
+//pagina de seguro vehicular
 var adminSeguroVehicularRouter = require('./routes/admin/adminSeguroVehicular');
 app.use('/admin/seguroVehicular', adminSeguroVehicularRouter);
-
 var adminBeneficioSeguroVehicularRouter = require('./routes/admin/adminBeneficioSeguroVehicular');
 app.use('/admin/beneficioSeguroVehicular', adminBeneficioSeguroVehicularRouter);
 
+//pagina de usuario
 var adminUsuariosRouter = require('./routes/admin/adminUsuarios');
 app.use('/admin/usuarios', adminUsuariosRouter);
-
 var adminDetalleUsuarioRouter = require('./routes/admin/adminDetalleUsuario');
 app.use('/admin/detalleUsuario', adminDetalleUsuarioRouter);
-
 var adminAuditoriaRouter = require('./routes/admin/adminAuditoria');
 app.use('/admin/auditoria', adminAuditoriaRouter);
 
+//pagina de cliente
 var adminClientesRouter = require('./routes/admin/adminClientes');
 app.use('/admin/clientes', adminClientesRouter);
-
 var adminDetalleClienteRouter = require('./routes/admin/adminDetalleCliente');
 app.use('/admin/detalleCliente', adminDetalleClienteRouter);
 
+//pagina de vehiculo
 var adminVehiculosRouter = require('./routes/admin/adminVehiculos');
 app.use('/admin/vehiculos', adminVehiculosRouter);
-
 var adminDetalleVehiculoRouter = require('./routes/admin/adminDetalleVehiculo');
 app.use('/admin/detalleVehiculo', adminDetalleVehiculoRouter);
 
+//pagina de ventas
 var adminVentasRouter = require('./routes/admin/adminVentas');
 app.use('/admin/ventas', adminVentasRouter);
 
