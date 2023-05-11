@@ -1,4 +1,4 @@
-header{
+.indexHeader{
     position: fixed;
     top:0; left:0; right:0;
     background: white;
@@ -6,7 +6,6 @@ header{
     padding: 0 300px;
     display: flex;
     align-items: center;
-
     z-index: 1000;
 }
 
@@ -142,7 +141,7 @@ header{
 }
  */
 
-header .telefono {
+.indexHeader .telefono {
     float: right;
     display: flex;
     align-items: center;
@@ -151,7 +150,7 @@ header .telefono {
     float: right;
 }
 
-header .telefono img {
+.indexHeader .telefono img {
     width: 30px;
     height: 30px;
     margin-right: 5px;

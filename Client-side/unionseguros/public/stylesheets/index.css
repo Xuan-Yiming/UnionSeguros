@@ -3,7 +3,6 @@
   height: auto;
   width: 100%;
 
-  background-color: blueviolet;
   background: rgb(255,255,255);
   background: linear-gradient(3deg, rgba(200,240,255,1) 0%, rgba(255,255,255,1) 55%, rgba(200,240,255,1) 100%);
   flex-direction: column;

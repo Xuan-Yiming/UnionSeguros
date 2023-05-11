@@ -22,7 +22,7 @@ main {
   }
   
   .main-cotiza-container{
-    display: block;
+    display: flex;
     height: auto;
     width: 300px;
     position: relative;

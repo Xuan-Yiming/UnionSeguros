@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6fa78c07-b115-4a69-b73b-58c95ea1b005" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_05_2023_01_29__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_05_2023_01_29__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/index.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/SOAT.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/SOAT.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/indexHeader.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/indexHeader.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/layouts/indexHeader.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/layouts/indexHeader.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +65,7 @@
       <updated>1683656502738</updated>
       <workItem from="1683656504183" duration="2749000" />
       <workItem from="1683783559997" duration="5960000" />
+      <workItem from="1683841228257" duration="2210000" />
     </task>
     <servers />
   </component>
