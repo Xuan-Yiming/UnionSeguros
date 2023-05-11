@@ -4,11 +4,9 @@ const GLOBAL_URL = 'http://localhost:8080/api/v1';
 
 var planes;
 window.onload = function () {
-    fetch(GLOBAL_URL + '/planSOAT/ListarAcitvos')
+    fetch(GLOBAL_URL + '/planSOAT/ListarTodos')
         .then(response => response.json())
         .then(data => {
-            
-            
             planes = data;
             crearLaTabla(data);
         })
@@ -23,17 +21,17 @@ window.onload = function () {
                 const query = document.querySelector('#txt-buscar').value.toLowerCase();
                 searchResult.innerHTML = '';
                 var planesSotada=[];
-                planes.forEach(option => {
-                    if (
-                        option.id.toString().toLowerCase().includes(query) ||
-                        option.cobertura.toString().toLowerCase().includes(query) ||
-                        option.precio.toString().toLowerCase().includes(query) ||
-                        option.nombrePlan.toString().toLowerCase().includes(query) 
-                    ) {
-                        planesSotada.push(option);
-                    }
+                fetch(GLOBAL_URL + '/planSOAT/buscarPlanesSOAT?busqueda='+query)
+                .then(response => response.json())
+                .then(data => {
+
+                    planes = data;
+                    crearLaTabla(data);
+                })
+                .catch(error => {
+                    // Handle the error
+                    console.error(error);
                 });
-                crearLaTabla(planesSotada)
             }, 500);
         });
         
@@ -41,7 +39,6 @@ window.onload = function () {
             localStorage.clear();
             window.location.href = '/admin/detallePlanSOAT';
         });
-        
 
         document.querySelector('#sort').addEventListener('change', function () {
             if (this.value == 'id') {

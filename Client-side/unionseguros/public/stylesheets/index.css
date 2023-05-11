@@ -92,7 +92,7 @@
 .main-info {
   width: 100wv;
   height: 100hv;
-  background-image: url('fondoEjecutivo.png');
+  background-image: url('/public/resources/images/fondoEjecutivo.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 100% 5%;
