@@ -7,12 +7,11 @@
     <link rel="icon" type="image/x-icon" href="../public/resources/icons/page-icon.png">
 
     <link rel="stylesheet" href="../public/stylesheets/header.css">
-    <link rel="stylesheet" href="../public/stylesheets/admin/adminPlanSOAT.css">
-
-    <script type="text/javascript" src="../public/scripts/admin/adminPlanSOAT.js"></script>
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
 </head>
 
 <body class="container">
-    <%- include('../layouts/header'); %>
+    <%- include('../layouts/header', {iflogin:'true', username:'Admin'}); %>
+
     <%- include('../partials/login'); %>
 </html>
