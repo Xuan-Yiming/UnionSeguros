@@ -10,7 +10,7 @@ var usersRouter = require('./routes/users');
 const app = express();
 
 // Start the server
-const PORT = 3000;
+const PORT = 8080;
 app.listen(PORT, function () {
   console.log(`Server listening on port ${PORT}`)
 })
