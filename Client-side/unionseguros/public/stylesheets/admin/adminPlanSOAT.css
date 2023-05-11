@@ -8,8 +8,18 @@ tr{
     align-items: center;
     vertical-align: middle;
 }
+#control-bar-button{
+    display: flex;
+    justify-content: center;
+}
 
-.btn-edit{
+#control-bar-button img{
+    height: 1em;
+    width: 1em;
+    margin-right: 5px;
+}
+
+button:active{
     border: 5px;
     border-color: #041E42;
     border-radius: 5px;
@@ -19,9 +29,10 @@ tr{
     width: fit-content;
     padding: 5px;
     margin: 5px;
+    align-items: center;
 }
 
-.btn-edit:active{
+button{
     border: none;
     border-radius: 5px;
     background-color: #041E42;
@@ -30,6 +41,7 @@ tr{
     width: fit-content;
     padding: 5px;
     margin: 5px;
+    align-items: center;
 }
 
 table, th, td{
@@ -47,16 +59,7 @@ table{
     margin-top: 20px;
 }
 
-#btn-nuevo{
-    border: none;
-    border-radius: 5px;
-    background-color: #041E42;
-    color: white;
-    height: fit-content;
-    width: fit-content;
-    padding: 5px;
-    margin: 5px;
-}
+
 
 #control-bar{
     display: flex;
@@ -69,7 +72,7 @@ table{
     justify-content: flex-end;
 }
 
-#control-bar-sort{
+#control-bar-button{
     display: flex;
     flex-direction: row;
 }
