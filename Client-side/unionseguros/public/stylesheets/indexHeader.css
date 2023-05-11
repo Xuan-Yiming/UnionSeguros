@@ -16,7 +16,7 @@
     float: left;
 }
 .logoPrincipal img{
-    width: 160px;
+    width: 110px;
     height: auto;
 }
 
@@ -27,6 +27,7 @@
     box-sizing: border-box;
     font-family: Calibri;
     text-decoration: none;
+    display: block;
 }
 .navbar {
     overflow: hidden;

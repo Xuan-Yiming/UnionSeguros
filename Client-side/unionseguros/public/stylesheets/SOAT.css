@@ -3,11 +3,23 @@ main {
   height: 100%;
 }
 
+.textoInicial{
+  align-self: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.textoInicial h1{
+  font-size: 48px;
+  text-align: center;
+}
+
 .main-cotiza{
     height: 50vh;
     background: rgb(255,255,255);
     background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,211,211,1) 53%, rgba(255,255,255,1) 100%);
-
+    margin-top: 100px;
+    margin-bottom: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,10 +35,12 @@ main {
   
   .main-cotiza-container{
     display: flex;
-    height: auto;
-    width: 300px;
+    flex-direction: column;
+    align-items: center;
+    height: 900px;
+    width: auto;
     position: relative;
-    padding: 10px 15px 50px 15px;
+    padding: 20px 25px 50px 25px;
     margin: 0 15px 50px 15px;
     background-color: white;
     border-radius: 10px;
