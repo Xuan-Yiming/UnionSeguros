@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Union Seguros</title>
+  <link rel="icon" type="image/x-icon" href="public/resources/icons/page-icon.png">
+  <link rel="stylesheet" href="public/stylesheets/style.css">
+  <link rel="stylesheet" href="public/stylesheets/indexHeader.css">
+  <link rel="stylesheet" href="public/stylesheets/index.css">
+</head>
+
+<body class="container">
+  <%- include('client/layouts/indexHeader'); %>
+
+    <main>
+      <%- include('client/partials/index'); %>
+    </main>
+
+    <%- include('client/layouts/SOATFooter'); %>
+</body>
+
 </html>

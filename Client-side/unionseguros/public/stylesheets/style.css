@@ -83,6 +83,29 @@ h4{
   height: fit-content;
 }
 
+.button-red-transparente-red-border{
+  font-size: 16px;
+  background-color: white;
+  color: #C8102E;
+  border: 1px solid #C8102E;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+
+}
+
+.button-red-transparente-red-border:active {
+  font-size: 16px;
+  background-color: #C8102E;
+  color: white;
+  border: 1px solid #C8102E;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
 
 /*FOOTER INICIO*/
 

@@ -1,0 +1,158 @@
+header{
+    position: fixed;
+    top:0; left:0; right:0;
+    background: white;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    padding: 0 300px;
+    display: flex;
+    align-items: center;
+
+    z-index: 1000;
+}
+
+/************logo*********************/
+.logoPrincipal {
+    position: relative;
+    height: 100%;
+    float: left;
+}
+.logoPrincipal img{
+    width: 160px;
+    height: auto;
+}
+
+/************opciones*********************/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Calibri;
+    text-decoration: none;
+}
+.navbar {
+    overflow: hidden;
+    justify-items: center;
+    margin-right: 25%;
+    margin-left: 10%;
+}
+
+.navbar a {
+    float: left;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.d{
+    float: left;
+    overflow: hidden;
+}
+.d .d-btn {
+    font-size: 18px;
+    border: none;
+    outline: none;
+    color: black; /*la letra de "MORE"*/
+    padding: 25px 40px;
+    background: inherit;
+}
+.navbar  .d:hover .d-btn { /*colores cuando se pasa el mouse en la barra*/
+    background: #C8102E;
+    color: #fff;
+}
+.d-content {
+    padding: 25px;
+    background: white;
+    border-top: 5px solid #C8102E;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    display: none;
+    position: absolute;
+
+    width: 100%;
+    left: 0;
+    z-index: 10;
+}
+.d:hover .d-content {
+    display: block;
+}
+.row-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 250px;
+    width: 50%;
+    height: 70px;
+    background: white;
+}
+
+.row-item a {
+    display: block;
+    margin-bottom: 10px;
+    color: #041E42; /*letra del título de la opción*/
+    font-weight: bold;
+    text-align: left;
+    padding: 0;
+    font-size: 18px;
+}
+.row-item p {
+    display: block;
+    color: #041E42;
+    font-size: 14px;
+
+}
+.row-item a:hover {
+    color: #C8102E;
+    background: none;
+}
+.row:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+@media(max-width: 650px){
+    .column {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/**************telefono******************/
+
+/*
+.button-red-transparente-red-border{
+    font-size: 16px;
+    background-color: white;
+    color: #C8102E;
+    border: 1px solid #C8102E;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+
+}
+
+.button-red-transparente-red-border:active {
+    font-size: 16px;
+    background-color: #C8102E;
+    color: white;
+    border: 1px solid #C8102E;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+ */
+
+header .telefono {
+    float: right;
+    display: flex;
+    align-items: center;
+    color: #C8102E;
+    text-decoration: none;
+    float: right;
+}
+
+header .telefono img {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
