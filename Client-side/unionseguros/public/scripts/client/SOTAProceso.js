@@ -4,6 +4,11 @@ const GLOBAL_URL = 'http://localhost:8080/api/v1';
 var stage = 0;
 
 window.onload = function () {
+
+    var placa = '<%- data.placa %>'
+    var tipoDocumento = '<%- data.tipoDocumento %>'
+    var numeroDocumento = '<%- data.numeroDocumento %>'
+
     localStorage.setItem("idCliente", 0);
     localStorage.setItem("idVehiculo", 0);
 

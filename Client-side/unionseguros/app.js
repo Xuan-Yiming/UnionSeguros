@@ -33,7 +33,7 @@ app.use('/', indexRouter);
 //pagina de SOAT
 var SOATProcesoRouter = require('./routes/client/SOATProceso');
 app.use('/SOATProceso', SOATProcesoRouter);
-var SOATRouter = require('./routes/SOAT');
+var SOATRouter = require('./routes/client/SOAT');
 app.use('/SOAT', SOATRouter)
 
 //pagina de seguro vehicular
