@@ -13,8 +13,7 @@
 </head>
 
 <body class="container">
-    <%- include('../layouts/header'); %>
-
+    <%- include('../layouts/header', {iflogin:'false', username:'Admin'}); %>
         <%- include('../partials/planSOAT'); %>
 
 </html>
