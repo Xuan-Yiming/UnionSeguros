@@ -37,6 +37,10 @@ document.querySelector("#cotizar").addEventListener("click", function () {
     window.location.href = "/SOATPRoceso";
 });
 
+function validateNumericInput(input) {
+    input.value = input.value.replace(/\D/g, ''); // Eliminar caracteres que no sean números
+}
+
 function verificacion() {
     var placa = document.querySelector("#txt-placa").value;
     var documento = document.querySelector("#txt-documento").value;

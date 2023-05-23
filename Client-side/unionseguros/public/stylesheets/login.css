@@ -7,7 +7,7 @@
 .ProgressBar {
     margin: 0px;
     padding: 0em 0 0em;
-    width: 500px;
+    width: 600px;
     list-style: none;
     position: relative;
     display: flex;
@@ -97,6 +97,7 @@
     background-color: white;
     height: fit-content;
     width: fit-content;
+    max-width: 500px;
     border-radius: 10px;
     margin: 0% auto;
     box-shadow: rgba(0,0,0,0.2) 10px 10px 20px 5px;
@@ -197,4 +198,9 @@ input[type="radio"]:checked:before {
     flex-direction: column;
     margin: 10px;
     margin-bottom: 30px;
+    text-align: center;
+}
+
+.contect-result p{
+    font-size: 18px;
 }

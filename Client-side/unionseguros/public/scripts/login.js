@@ -184,31 +184,33 @@ function verificacion() {
                 alert("Falta completar campos");
                 return true;
             }
-            if (email.indexOf("@") === -1) {
+            if (!(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email))) {
                 alert("El correo electrónico no es válido");
                 return true;
             }
+            return false;
             break;
         case 2:
-
             const pin = document.querySelector("#txt-PIN").value;
 
             if (  pin === "" ) {
-                alert("Falta completar campos");
-                return false;
+                alert("Falta completar el campo");
+                return true;
             }
+
 
             if (pin.length !== 6) {
                 alert("El número de tarjeta debe tener 6 dígitos");
-                return false;
+                return true;
             }
 
             if (!/^[0-9]+$/.test(pin)) {
                 alert("El PIN debe ser numérico");
-                return false;
+                return true;
             }
-
+            return false;
             break;
+
         case 3:
             break;
     }

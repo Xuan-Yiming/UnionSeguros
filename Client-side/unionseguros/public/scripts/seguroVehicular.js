@@ -23,6 +23,9 @@ document.getElementById("select-documento").addEventListener("change", function 
     }
 });
 
+function validateNumericInput(input) {
+    input.value = input.value.replace(/\D/g, ''); // Eliminar caracteres que no sean números
+}
 
 document.querySelector("#cotizar").addEventListener("click", function () {
 
@@ -42,26 +45,23 @@ function verificacion() {
     var documento = document.querySelector("#txt-documento").value;
     var tipoDocumento = document.querySelector("#select-documento").value;
 
-
-    if (documento == "") {
+    if(tipoDocumento === "0"){
         alert("Por favor ingrese el documento correcto.");
         return true;
-    } else {
-        if (tipoDocumento == "DNI") {
-            if (documento.length !== 8 || !/^[0-9]+$/.test(documento)){
-                alert("Por favor ingrese el documento correcto.");
-                return true;
-            }
-        } else if (tipoDocumento == "CE") {
-            if (documento.length !== 9 || !/^[0-9]+$/.test(documento)){
-                alert("Por favor ingrese el documento correcto.");
-                return true;
-            }
-        } else if (tipoDocumento == "RUC") {
-            if((documento.length !== 11 || !/^[0-9]+$/.test(documento)) || (documento.substring(0, 2) !== "10" && documento.substring(0, 2) !== "20")){
-                alert("Por favor ingrese el documento correcto.");
-                return true;
-            }
+    }else if (tipoDocumento === "3") {
+        if((documento.length !== 11 || !/^[0-9]+$/.test(documento)) || (documento.substring(0, 2) !== "10" && documento.substring(0, 2) !== "20")){
+            alert("Por favor ingrese el documento correcto.");
+            return true;
+        }
+    }else if (tipoDocumento === "1") {
+        if (documento.length !== 8 || !/^[0-9]+$/.test(documento)) {
+            alert("Por favor ingrese el documento correcto.");
+            return true;
+        }
+    }else if (tipoDocumento === "2") {
+        if (documento.length !== 9 || !/^[0-9]+$/.test(documento)){
+            alert("Por favor ingrese el documento correcto.");
+            return true;
         }
     }
 

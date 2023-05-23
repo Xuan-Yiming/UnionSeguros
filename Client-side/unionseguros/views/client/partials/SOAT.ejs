@@ -19,11 +19,11 @@
                 </div>
                 <div class="content-item">
                     <h3>Número de documento</h3>
-                    <input placeholder="Ingresar número" id = "txt-documento" oninput="validateNumericInput(this)" disabled></input>
+                    <input placeholder="Ingresar número" id = "txt-documento" oninput="validateNumericInput(this)" oninput="validateNumericInput(this)" disabled></input>
                 </div>
                 <div class="content-item">
                     <h3>Placa</h3>
-                    <input placeholder="Ingrese la placa"  id = "txt-placa"></input>
+                    <input placeholder="Ingrese la placa"  id = "txt-placa" maxlength="6"></input>
                 </div>
             </div>
             <button class ="button-red" id = "cotizar"> Cotizar </button>

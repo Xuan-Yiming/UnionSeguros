@@ -20,7 +20,7 @@ main {
   width: 100%;
   margin-top: 50px;
   padding: 30px;
-  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,211,211,1) 53%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,222,222,1) 53%, rgba(255,255,255,1) 100%);
   flex-direction: column;
   /*
     height: 50vh;
@@ -168,6 +168,7 @@ main {
   
   /*FAQ INICIO*/
   .main-faq {
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,235,235,1) 53%, rgba(255,255,255,1) 100%);
     display: flex;
     justify-content: center;
     align-items: center;
