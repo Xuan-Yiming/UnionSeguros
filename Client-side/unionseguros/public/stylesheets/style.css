@@ -30,6 +30,17 @@ h4{
 }
 
 
+.button-previous{
+  border: none;
+  background-color: white;
+  text-decoration: underline;
+  color: #C8102E;
+  height: fit-content;
+  width: fit-content;
+  font-size: 18px;
+  margin: 15px 0 0 15px
+}
+
 .button-red{
   border: none;
   border-radius: 5px;
@@ -135,11 +146,11 @@ footer p, footer h3 {
 
 .footer-logo {
   text-align: center;
-  margin: 15px auto;
+  margin: 12px auto;
 }
 
 .footer-logo img {
-  width: 150px;
+  width: 120px;
   height: auto;
 }
 
@@ -156,11 +167,15 @@ footer p, footer h3 {
   width: 200px;
 }
 
+.footer-redes{
+  display: flex;
+  flex-direction: row;
+}
 
 .footer-redes img {
-  width: 32px;
-  height: 32px;
-  margin: 20px;
+  width: 24px;
+  height: 24px;
+  margin: 20px 10px 10px 5px;
 }
 
 /*HEADER INICIO*/

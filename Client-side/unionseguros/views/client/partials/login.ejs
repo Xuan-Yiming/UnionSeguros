@@ -31,7 +31,7 @@
     </div>
     <div class="content-container">
         <div class="content-cantainer-item">
-            <button id="previous" class="button-red">Regresar</button>
+            <button id="previous" class="button-previous">Regresar</button>
         </div>
 
         <div class="div-registro-datos content-cantainer-item">
@@ -43,7 +43,7 @@
                         <div class="info-vehi-form-item">
                             <h3>Tipo de Documento</h3>
                             <select id = "select-documento">
-                                <option value="" disabled selected>Seleccione</option>
+                                <option value="0" disabled selected>Seleccione</option>
                                 <option value="1">DNI</option>
                                 <option value="2">CE</option>
                                 <option value="3">RUC</option>
@@ -54,14 +54,11 @@
                     <div class="info-vehi-form-line">
                         <div class="info-vehi-form-item">
                             <h3>Número de Documento</h3>
-                            <input placeholder="Ingrese número" id = "txt-docNum" maxlength="20"></input>
+                            <input placeholder="Ingrese número" id = "txt-documento" oninput="validateNumericInput(this)" disabled></input>
                         </div>
-
                     </div>
-
                 </div>
             </div>
-
         </div>
 
 
@@ -73,7 +70,7 @@
                     <div class="info-vehi-form-line">
                         <div class="info-vehi-form-item">
                             <h3>Correo electrónico</h3>
-                            <input placeholder="Ingrese correo" id = "txt-correo" maxlength="20"></input>
+                            <input placeholder="Ingrese correo" id = "txt-correo" maxlength="25"></input>
                         </div>
 
                     </div>

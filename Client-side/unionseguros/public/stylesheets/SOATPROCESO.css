@@ -1,12 +1,23 @@
 .main-container{
+    /*
     height: 80vh;
     background: rgb(255,255,255);
     background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,211,211,1) 53%, rgba(255,255,255,1) 100%);
+     */
+    display: flex;
+    height: auto;
+    width: 100%;
+    margin-bottom: 35px;
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,211,211,1) 53%, rgba(255,255,255,1) 100%);
+    flex-direction: column;
 }
+
+
+
 
 .ProgressBar {
     margin: 0px;
-    padding: 0em 0 0em;
+    padding-bottom: 10px;
     width: 500px;
     list-style: none;
     position: relative;
@@ -79,7 +90,7 @@
   
   .progress-bar {
     max-width: 1000px;
-    margin: 4em auto;
+    margin: 0 auto 4em auto;
     font-size: 16px;
   }
 
@@ -98,7 +109,7 @@
     height: fit-content;
     width: fit-content;
     border-radius: 10px;
-    margin: 0% auto;
+    margin: 0 auto 60px auto;
     box-shadow: rgba(0,0,0,0.2) 10px 10px 20px 5px;
   }
 
@@ -131,7 +142,11 @@
     display: flex;
     grid-template-columns: 1fr 1fr 1fr;
 }
-/* elejir---------------------------------------------------------------------------------- */
+
+.div-informacion-vehiculo{
+    padding-bottom: 30px;
+}
+/* elegir---------------------------------------------------------------------------------- */
 .div-plans{
     display: none;
     width: fit-content;
@@ -205,7 +220,6 @@
 
   .content-cantainer-item{
     margin: 10px;
-    padding: 10px;
   }
 
 

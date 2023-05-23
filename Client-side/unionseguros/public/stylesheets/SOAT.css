@@ -15,6 +15,14 @@ main {
 }
 
 .main-cotiza{
+  display: flex;
+  heigh|: auto;
+  width: 100%;
+  margin-top: 50px;
+  padding: 30px;
+  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,211,211,1) 53%, rgba(255,255,255,1) 100%);
+  flex-direction: column;
+  /*
     height: 50vh;
     background: rgb(255,255,255);
     background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,211,211,1) 53%, rgba(255,255,255,1) 100%);
@@ -24,6 +32,9 @@ main {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    */
+
+
   }
   
   .main-cotiza p{
@@ -34,6 +45,7 @@ main {
   }
   
   .main-cotiza-container{
+    /*
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,17 +57,32 @@ main {
     background-color: white;
     border-radius: 10px;
     box-shadow: rgba(0,0,0,0.2) 10px 10px 20px 5px;
+     */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 100px;
+    margin: 50px 50px 50px 200px;
+    position: relative;
+    height: 100%;
+    width: 80%;
   }
   .main-cotiza-content{
     display: flex;
     flex-direction: column;
+    align-items: center;
     position: relative;
+    height: auto;
+    width: 300px;
+    justify-content: center;
     background-color: white;
-    height: fit-content;
-    width: fit-content;
-    margin: 0% auto;
+    border-radius: 25px;
+    box-shadow: rgba(0,0,0,0.2) 10px 10px 20px 5px;
+    padding: 20px;
   }
-  
+  .content-cuerpo{
+    margin-bottom: 70px;
+  }
   
   .content-item select, .content-item input{
     font-size: 16px;
