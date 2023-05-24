@@ -16,7 +16,7 @@ main {
 
 .main-cotiza{
   display: flex;
-  heigh|: auto;
+  height: auto;
   width: 100%;
   margin-top: 50px;
   padding: 30px;
@@ -116,7 +116,7 @@ main {
     display: block;
     height: auto;
     width: 500px;
-    
+    margin: 30px auto;
     padding: 10px;
     background-color: white;
     border-radius: 10px;
@@ -181,10 +181,11 @@ main {
   .main-faq h1{
     color: #041E42;
     font-size: 32px;
-    margin: 30px;
+    margin: 40px;
   }
   
   .faq-container {
+    margin: 20px auto 40px;
     display: block;
     height: auto;
     width: 550px;

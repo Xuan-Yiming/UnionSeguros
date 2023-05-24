@@ -34,7 +34,7 @@ document.querySelector("#cotizar").addEventListener("click", function () {
     localStorage.setItem("documento", document.querySelector("#txt-documento").value);
     localStorage.setItem("tipoDocumento", document.querySelector("#select-documento").value);
 
-    window.location.href = "/SOATPRoceso";
+    window.location.href = "/SOATProceso";
 });
 
 function validateNumericInput(input) {

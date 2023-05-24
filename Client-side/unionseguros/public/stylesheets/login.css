@@ -1,7 +1,7 @@
 .main-container{
     height: 80vh;
     background: rgb(255,255,255);
-    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,211,211,1) 53%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(3deg, rgba(220,240,255,1) 0%, rgba(255,255,255,1) 50%, rgba(220,240,255,1) 100%);
 }
 
 .ProgressBar {
@@ -117,6 +117,10 @@
     width: fit-content;
 }
 
+.info-vehi-form{
+    margin-bottom: 30px;
+}
+
 .info-vehi-form-item{
     margin: 10px;
     margin-right: 30px;
@@ -172,7 +176,7 @@ input[type="radio"]:checked:before {
     margin: 10px;
 }
 
-.content-cantainer-item{
+.content-container-item{
     margin: 10px;
     padding: 10px;
 }

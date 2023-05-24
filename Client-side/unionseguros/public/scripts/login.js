@@ -71,7 +71,7 @@ document.querySelector("#previous").addEventListener("click", function () {
 
     if (stage == 0) {
         if (confirm("Deseas cancelar el proceso de registro?")) {
-            window.location.href = "/SOAT";
+            window.location.href = "/iniciarSesion";
             return;
         } else {
             return;
