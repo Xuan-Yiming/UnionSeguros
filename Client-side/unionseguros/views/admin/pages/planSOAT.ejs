@@ -15,6 +15,34 @@
 <body class="container">
     <%- include('../layouts/header'); %>
 
-        <%- include('../partials/planSOAT'); %>
+    <main id="tabla-plan-soat">
+        <h2>Plan SOAT </h2>
+        <div id="control-bar">
+    
+            <div id="control-bar-button">
+                <button id="btn-nuevo"><img src="../public/resources/icons/Gaming.png" alt="Nuevo"><span>Nuevo</span></button>
+            </div>
+            <div id="control-bar-search">
+                <img src="../public/resources/icons/Accessibility.png" alt="Buscar">
+                <input id="txt-buscar" type="text" placeholder="buscar">
+            </div>
+        </div>
+        <table id="tableID" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre Plan</th>
+                    <th>Precio</th>
+                    <th>Cobertura</th>
+                    <th>Estado</th>
+                    <th>Herramientas</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                
+            </tbody>
+        </table>
+    
+    </main>
 
 </html>

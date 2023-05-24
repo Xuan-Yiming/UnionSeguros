@@ -36,11 +36,11 @@ app.use('/SOATProceso', SOATProcesoRouter);
 var SOATRouter = require('./routes/client/SOAT');
 app.use('/SOAT', SOATRouter)
 
-//pagina de seguro vehicular
-var seguroVehicularRouter = require('./routes/client/seguroVehicular');
-app.use('/seguroVehicular', seguroVehicularRouter);
-var seguroVehicularProcesoRouter = require('./routes/client/seguroVehicularProceso');
-app.use('/seguroVehicularProceso', seguroVehicularProcesoRouter);
+// //pagina de seguro vehicular
+// var seguroVehicularRouter = require('./routes/client/seguroVehicular');
+// app.use('/seguroVehicular', seguroVehicularRouter);
+// var seguroVehicularProcesoRouter = require('./routes/client/seguroVehicularProceso');
+// app.use('/seguroVehicularProceso', seguroVehicularProcesoRouter);
 
 //pagina de usuario
 var usuarioRouter = require('./routes/client/usuario');
@@ -61,35 +61,35 @@ app.use('/admin/planSOAT', adminPlanSOATRouter);
 var adminDetallePlanSOATRouter = require('./routes/admin/adminDetallePlanSOAT');
 app.use('/admin/detallePlanSOAT', adminDetallePlanSOATRouter);
 
-//pagina de seguro vehicular
-var adminSeguroVehicularRouter = require('./routes/admin/adminSeguroVehicular');
-app.use('/admin/seguroVehicular', adminSeguroVehicularRouter);
-var adminBeneficioSeguroVehicularRouter = require('./routes/admin/adminBeneficioSeguroVehicular');
-app.use('/admin/beneficioSeguroVehicular', adminBeneficioSeguroVehicularRouter);
+// //pagina de seguro vehicular
+// var adminSeguroVehicularRouter = require('./routes/admin/adminSeguroVehicular');
+// app.use('/admin/seguroVehicular', adminSeguroVehicularRouter);
+// var adminBeneficioSeguroVehicularRouter = require('./routes/admin/adminBeneficioSeguroVehicular');
+// app.use('/admin/beneficioSeguroVehicular', adminBeneficioSeguroVehicularRouter);
 
-//pagina de usuario
-var adminUsuariosRouter = require('./routes/admin/adminUsuarios');
-app.use('/admin/usuarios', adminUsuariosRouter);
-var adminDetalleUsuarioRouter = require('./routes/admin/adminDetalleUsuario');
-app.use('/admin/detalleUsuario', adminDetalleUsuarioRouter);
-var adminAuditoriaRouter = require('./routes/admin/adminAuditoria');
-app.use('/admin/auditoria', adminAuditoriaRouter);
+// //pagina de usuario
+// var adminUsuariosRouter = require('./routes/admin/adminUsuarios');
+// app.use('/admin/usuarios', adminUsuariosRouter);
+// var adminDetalleUsuarioRouter = require('./routes/admin/adminDetalleUsuario');
+// app.use('/admin/detalleUsuario', adminDetalleUsuarioRouter);
+// var adminAuditoriaRouter = require('./routes/admin/adminAuditoria');
+// app.use('/admin/auditoria', adminAuditoriaRouter);
 
-//pagina de cliente
-var adminClientesRouter = require('./routes/admin/adminClientes');
-app.use('/admin/clientes', adminClientesRouter);
-var adminDetalleClienteRouter = require('./routes/admin/adminDetalleCliente');
-app.use('/admin/detalleCliente', adminDetalleClienteRouter);
+// //pagina de cliente
+// var adminClientesRouter = require('./routes/admin/adminClientes');
+// app.use('/admin/clientes', adminClientesRouter);
+// var adminDetalleClienteRouter = require('./routes/admin/adminDetalleCliente');
+// app.use('/admin/detalleCliente', adminDetalleClienteRouter);
 
-//pagina de vehiculo
-var adminVehiculosRouter = require('./routes/admin/adminVehiculos');
-app.use('/admin/vehiculos', adminVehiculosRouter);
-var adminDetalleVehiculoRouter = require('./routes/admin/adminDetalleVehiculo');
-app.use('/admin/detalleVehiculo', adminDetalleVehiculoRouter);
+// //pagina de vehiculo
+// var adminVehiculosRouter = require('./routes/admin/adminVehiculos');
+// app.use('/admin/vehiculos', adminVehiculosRouter);
+// var adminDetalleVehiculoRouter = require('./routes/admin/adminDetalleVehiculo');
+// app.use('/admin/detalleVehiculo', adminDetalleVehiculoRouter);
 
-//pagina de ventas
-var adminVentasRouter = require('./routes/admin/adminVentas');
-app.use('/admin/ventas', adminVentasRouter);
+// //pagina de ventas
+// var adminVentasRouter = require('./routes/admin/adminVentas');
+// app.use('/admin/ventas', adminVentasRouter);
 
 
 // catch 404 and forward to error handler
