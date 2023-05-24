@@ -30,7 +30,19 @@ h4{
 }
 
 
+.button-previous{
+  border: none;
+  background-color: white;
+  text-decoration: underline;
+  color: #C8102E;
+  height: fit-content;
+  width: fit-content;
+  font-size: 18px;
+  margin: 15px 0 0 15px
+}
+
 .button-red{
+  font-size: 14px;
   border: none;
   border-radius: 5px;
   background-color: #C8102E;
@@ -42,6 +54,7 @@ h4{
 }
 
 .button-red:active {
+  font-size: 14px;
   border: 5px;
   border-color: #C8102E;
   border-radius: 5px;
@@ -54,7 +67,8 @@ h4{
 }
 
 .button-red-whie-back{
-  border: none;
+  border: 5px;
+  border-color: #C8102E;
   border-radius: 5px;
   background-color: #fff;
   color: #C8102E;
@@ -84,19 +98,19 @@ h4{
 }
 
 .button-red-transparente-red-border{
-  font-size: 16px;
+  font-size: 14px;
   background-color: white;
   color: #C8102E;
   border: 1px solid #C8102E;
-  padding: 10px 20px;
-  border-radius: 10px;
-  margin-right: 10px;
-  margin-left: 10px;
-
+  padding: 9.5px 19.5px;
+  border-radius: 5px;
+  margin: 10px;
+  width: fit-content;
+  height: fit-content;
 }
 
 .button-red-transparente-red-border:active {
-  font-size: 16px;
+  font-size: 14px;
   background-color: #C8102E;
   color: white;
   border: 1px solid #C8102E;
@@ -135,11 +149,11 @@ footer p, footer h3 {
 
 .footer-logo {
   text-align: center;
-  margin: 15px auto;
+  margin: 12px auto;
 }
 
 .footer-logo img {
-  width: 150px;
+  width: 120px;
   height: auto;
 }
 
@@ -156,11 +170,15 @@ footer p, footer h3 {
   width: 200px;
 }
 
+.footer-redes{
+  display: flex;
+  flex-direction: row;
+}
 
 .footer-redes img {
-  width: 32px;
-  height: 32px;
-  margin: 20px;
+  width: 24px;
+  height: 24px;
+  margin: 20px 10px 10px 5px;
 }
 
 /*HEADER INICIO*/
@@ -168,10 +186,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding: 10px 100px;
   color: white;
+
 }
 
 header .logo {
@@ -179,7 +196,7 @@ header .logo {
 }
 
 header .logo img {
-  width: 100px;
+  width: 125px;
   height: auto;
 }
 
@@ -195,4 +212,17 @@ header .telefono img {
   width: 30px;
   height: 30px;
   margin-right: 5px;
+}
+
+.mensajeError{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 612px;
+}
+
+.mensajeError h2{
+  margin-bottom: 70px;
 }

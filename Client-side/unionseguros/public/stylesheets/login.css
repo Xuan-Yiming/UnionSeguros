@@ -1,13 +1,13 @@
 .main-container{
     height: 80vh;
     background: rgb(255,255,255);
-    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,211,211,1) 53%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(3deg, rgba(220,240,255,1) 0%, rgba(255,255,255,1) 50%, rgba(220,240,255,1) 100%);
 }
 
 .ProgressBar {
     margin: 0px;
     padding: 0em 0 0em;
-    width: 500px;
+    width: 600px;
     list-style: none;
     position: relative;
     display: flex;
@@ -97,6 +97,7 @@
     background-color: white;
     height: fit-content;
     width: fit-content;
+    max-width: 500px;
     border-radius: 10px;
     margin: 0% auto;
     box-shadow: rgba(0,0,0,0.2) 10px 10px 20px 5px;
@@ -114,6 +115,10 @@
     margin-right: 10px;
     height: fit-content;
     width: fit-content;
+}
+
+.info-vehi-form{
+    margin-bottom: 30px;
 }
 
 .info-vehi-form-item{
@@ -171,7 +176,7 @@ input[type="radio"]:checked:before {
     margin: 10px;
 }
 
-.content-cantainer-item{
+.content-container-item{
     margin: 10px;
     padding: 10px;
 }
@@ -197,4 +202,9 @@ input[type="radio"]:checked:before {
     flex-direction: column;
     margin: 10px;
     margin-bottom: 30px;
+    text-align: center;
+}
+
+.contect-result p{
+    font-size: 18px;
 }

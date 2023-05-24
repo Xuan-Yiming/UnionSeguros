@@ -23,6 +23,9 @@ document.getElementById("select-documento").addEventListener("change", function 
     }
 });
 
+function validateNumericInput(input) {
+    input.value = input.value.replace(/\D/g, ''); // Eliminar caracteres que no sean números
+}
 
 document.querySelector("#cotizar").addEventListener("click", function () {
 
@@ -34,12 +37,8 @@ document.querySelector("#cotizar").addEventListener("click", function () {
     localStorage.setItem("documento", document.querySelector("#txt-documento").value);
     localStorage.setItem("tipoDocumento", document.querySelector("#select-documento").value);
 
-    window.location.href = "/SOATProceso";
+    window.location.href = "/seguroVehicularPRoceso";
 });
-
-function validateNumericInput(input) {
-    input.value = input.value.replace(/\D/g, ''); // Eliminar caracteres que no sean números
-}
 
 function verificacion() {
     var placa = document.querySelector("#txt-placa").value;
@@ -70,7 +69,5 @@ function verificacion() {
         alert("Por favor ingrese la placa correcta.");
         return true;
     }
-
     return false
 }
-

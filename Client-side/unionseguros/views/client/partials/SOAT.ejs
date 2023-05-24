@@ -11,7 +11,7 @@
                 <div class="content-item">
                     <h3>Tipo de documento</h3>
                     <select id = "select-documento">
-                        <option value="" disabled selected>Seleccione</option>
+                        <option value="0" disabled selected>Seleccione</option>
                         <option value="1">DNI</option>
                         <option value="2">CE</option>
                         <option value="3">RUC</option>
@@ -19,15 +19,15 @@
                 </div>
                 <div class="content-item">
                     <h3>Número de documento</h3>
-                    <input placeholder="Ingresar número" id = "txt-documento" disabled></input>
+                    <input placeholder="Ingresar número" id = "txt-documento" oninput="validateNumericInput(this)" oninput="validateNumericInput(this)" disabled></input>
                 </div>
                 <div class="content-item">
                     <h3>Placa</h3>
-                    <input placeholder="Ingrese la placa"  id = "txt-placa"></input>
+                    <input placeholder="Ingrese la placa"  id = "txt-placa" maxlength="6"></input>
                 </div>
             </div>
+            <button class ="button-red" id = "cotizar"> Cotizar </button>
         </div>
-        <button class ="button-red" id = "cotizar"> Cotizar </button>
     </div>
 </section>
 

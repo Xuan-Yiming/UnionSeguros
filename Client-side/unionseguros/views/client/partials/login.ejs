@@ -6,7 +6,7 @@
                     <svg class="ProgressBar-icon">
                         <use xlink:href="public/resources/icons/checkmark.circle.svg" />
                     </svg>
-                    <span class="ProgressBar-stepLabel">Registrarme</span>
+                    <span class="ProgressBar-stepLabel">Registrarse</span>
                 </li>
                 <li class="ProgressBar-step">
                     <svg class="ProgressBar-icon">
@@ -30,20 +30,19 @@
         </div>
     </div>
     <div class="content-container">
-        <div class="content-cantainer-item">
-            <button id="previous" class="button-red">Regresar</button>
+        <div class="content-container-item">
+            <button id="previous" class="button-previous">Regresar</button>
         </div>
 
-        <div class="div-registro-datos content-cantainer-item">
+        <div class="div-registro-datos content-container-item">
             <div class="content">
-                <h1>Registrarme</h1>
+                <h1>Registrarse</h1>
                 <div class="info-vehi-form">
-
                     <div class="info-vehi-form-line">
                         <div class="info-vehi-form-item">
                             <h3>Tipo de Documento</h3>
                             <select id = "select-documento">
-                                <option value="" disabled selected>Seleccione</option>
+                                <option value="0" disabled selected>Seleccione</option>
                                 <option value="1">DNI</option>
                                 <option value="2">CE</option>
                                 <option value="3">RUC</option>
@@ -54,18 +53,15 @@
                     <div class="info-vehi-form-line">
                         <div class="info-vehi-form-item">
                             <h3>Número de Documento</h3>
-                            <input placeholder="Ingrese número" id = "txt-docNum" maxlength="20"></input>
+                            <input placeholder="Ingrese número" id = "txt-documento" oninput="validateNumericInput(this)" disabled></input>
                         </div>
-
                     </div>
-
                 </div>
             </div>
-
         </div>
 
 
-        <div class="div-ingreso-correo content-cantainer-item">
+        <div class="div-ingreso-correo content-container-item">
             <div class="content">
                 <h1>Ingresar correo electrónico</h1>
                 <div class="info-vehi-form">
@@ -73,7 +69,7 @@
                     <div class="info-vehi-form-line">
                         <div class="info-vehi-form-item">
                             <h3>Correo electrónico</h3>
-                            <input placeholder="Ingrese correo" id = "txt-correo" maxlength="20"></input>
+                            <input placeholder="Ingrese correo" id = "txt-correo" maxlength="25"></input>
                         </div>
 
                     </div>
@@ -83,7 +79,7 @@
 
         </div>
 
-        <div class="div-validacion-correo content-cantainer-item">
+        <div class="div-validacion-correo content-container-item">
             <div class="content">
                 <h1>Validar correo</h1>
                 <div class="info-vehi-form">
@@ -91,7 +87,7 @@
                     <div class="info-vehi-form-line">
                         <div class="info-vehi-form-item">
                             <h3>Ingresar PIN</h3>
-                            <input placeholder="Ingrese PIN" id = "txt-PIN" maxlength="20"></input>
+                            <input placeholder="Ingrese PIN" id = "txt-PIN" oninput="validateNumericInput(this)" maxlength="6"></input>
                             <p>Ingrese el PIN de 6 dígitos que enviamos a tu correo.</p>
                         </div>
 
@@ -105,15 +101,15 @@
 
 
 
-        <div class="div-result content-cantainer-item">
+        <div class="div-result content-container-item">
             <div class="contect-result">
                 <h1>¡Tu cuenta fue creada con exito!</h1>
-                <p>Se ha sido enviado a su correo electrónico la contraseña para ingresar a su cuenta. Podrás cambiarla más adelante</p>
+                <p>Se ha sido enviado a su correo electrónico la contraseña para ingresar a su cuenta. Podrás cambiarla más adelante.</p>
 
             </div>
         </div>
 
-        <div class="content-cantainer-item">
+        <div class="content-container-item">
             <button id="advance" class="button-red">Continuar</button>
         </div>
 

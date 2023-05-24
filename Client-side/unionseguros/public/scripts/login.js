@@ -26,7 +26,12 @@ document.getElementById("select-documento").addEventListener("change", function 
     } else if (document.querySelector("#select-documento").value == "3") {
         document.getElementById("txt-documento").maxLength = "11";
     }
+
 });
+
+function validateNumericInput(input) {
+    input.value = input.value.replace(/\D/g, ''); // Eliminar caracteres que no sean números
+}
 
 
 document.querySelector("#advance").addEventListener("click", function () {
@@ -34,7 +39,7 @@ document.querySelector("#advance").addEventListener("click", function () {
         window.location.href = "/SOAT";
     }
 
-    if (!verificacion()) {
+    if (verificacion()) {
         return;
     }
 
@@ -66,7 +71,7 @@ document.querySelector("#previous").addEventListener("click", function () {
 
     if (stage == 0) {
         if (confirm("Deseas cancelar el proceso de registro?")) {
-            window.location.href = "/SOAT";
+            window.location.href = "/iniciarSesion";
             return;
         } else {
             return;
@@ -149,75 +154,63 @@ function verificacion() {
 
     switch (stage) {
         case 0:
-
-
-            var documento = document.querySelector("#txt-docNum").value;
+            var documento = document.querySelector("#txt-documento").value;
             var tipoDocumento = document.querySelector("#select-documento").value;
 
-
-            if (documento == "") {
+            if(tipoDocumento === "0"){
                 alert("Por favor ingrese el documento correcto.");
                 return true;
-            } else {
-                if (tipoDocumento == "DNI") {
-                    if (documento.length !== 8 || !/^[0-9]+$/.test(documento)){
-                        alert("Por favor ingrese el documento correcto.");
-                        return true;
-                    }
-                } else if (tipoDocumento == "CE") {
-                    if (documento.length !== 9 || !/^[0-9]+$/.test(documento)){
-                        alert("Por favor ingrese el documento correcto.");
-                        return true;
-                    }
-                } else if (tipoDocumento == "RUC") {
-                    if((documento.length !== 11 || !/^[0-9]+$/.test(documento)) || (documento.substring(0, 2) !== "10" && documento.substring(0, 2) !== "20")){
-                        alert("Por favor ingrese el documento correcto.");
-                        return true;
-                    }
+            }else if (tipoDocumento === "3") {
+                if((documento.length !== 11 || !/^[0-9]+$/.test(documento)) || (documento.substring(0, 2) !== "10" && documento.substring(0, 2) !== "20")){
+                    alert("Por favor ingrese el documento correcto.");
+                    return true;
+                }
+            }else if (tipoDocumento === "1") {
+                if (documento.length !== 8 || !/^[0-9]+$/.test(documento)) {
+                    alert("Por favor ingrese el documento correcto.");
+                    return true;
+                }
+            }else if (tipoDocumento === "2") {
+                if (documento.length !== 9 || !/^[0-9]+$/.test(documento)){
+                    alert("Por favor ingrese el documento correcto.");
+                    return true;
                 }
             }
-
-
+            return false;
             break;
         case 1:
-
-
             const email = document.querySelector("#txt-correo").value;
-            if (  email =="" ) {
+            if (  email === "" ) {
                 alert("Falta completar campos");
-                return false;
+                return true;
             }
-
-            if (email.indexOf("@") == -1) {
+            if (!(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email))) {
                 alert("El correo electrónico no es válido");
-                return false;
+                return true;
             }
-
-
+            return false;
             break;
         case 2:
-
             const pin = document.querySelector("#txt-PIN").value;
 
-
-
-            if (  pin == "" ) {
-                alert("Falta completar campos");
-                return false;
+            if (  pin === "" ) {
+                alert("Falta completar el campo");
+                return true;
             }
 
 
-            if (pin.length != 6) {
+            if (pin.length !== 6) {
                 alert("El número de tarjeta debe tener 6 dígitos");
-                return false;
+                return true;
             }
 
             if (!/^[0-9]+$/.test(pin)) {
                 alert("El PIN debe ser numérico");
-                return false;
+                return true;
             }
-
+            return false;
             break;
+
         case 3:
             break;
     }
@@ -237,7 +230,7 @@ function guardar() {
 
     const pin = document.querySelector("#txt-PIN").value;
     const email = document.querySelector("#txt-correo").value;
-    const documento = document.querySelector("#txt-docNum").value;
+    const documento = document.querySelector("#txt-documento").value;
 
 
     const moneda = document.querySelector("#select-moneda").value;
