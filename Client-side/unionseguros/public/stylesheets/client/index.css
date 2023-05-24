@@ -1,29 +1,33 @@
-.main-seguros{
+main {
+  height: 100%;
+}
+
+.client-index-section-seguros {
   display: flex;
   height: auto;
   width: 100%;
-
-  background: rgb(255,255,255);
-  background: linear-gradient(3deg, rgba(200,240,255,1) 0%, rgba(255,255,255,1) 55%, rgba(200,240,255,1) 100%);
+  background: rgb(255, 255, 255);
+  background: linear-gradient(3deg, rgba(200, 240, 255, 1) 0%, rgba(255, 255, 255, 1) 55%, rgba(200, 240, 255, 1) 100%);
   flex-direction: column;
 }
 
-.textoInicial{
+.client-index-texto-inicial {
   align-self: center;
   justify-content: center;
   display: flex;
   flex-direction: column;
 }
-.textoInicial h1{
+
+.client-index-texto-inicial h1 {
   font-size: 48px;
   text-align: center;
 }
 
-.textoInicial p{
+.client-index-texto-inicial p {
   font-size: 30px;
 }
 
-.main-seguros-container{
+.client-index-section-seguros-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -34,31 +38,30 @@
   width: 80%;
 
 }
-.cuadro-seguro{
+
+.client-index-div-seguro {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   height: auto;
   width: 300px;
   justify-content: center;
   background-color: white;
   border-radius: 25px;
-  box-shadow: rgba(0,0,0,0.2) 10px 10px 20px 5px;
+  box-shadow: rgba(0, 0, 0, 0.2) 10px 10px 20px 5px;
 }
 
-.cuadro-seguro img{
+.client-index-div-seguro img {
   width: 100%;
   height: auto;
   border-radius: 25px 25px 0 0;
 }
 
-.cuadro-seguro-content{
+.client-index-div-seguro-text {
   padding: 20px;
-
 }
 
-.cuadroTextoNombreSeguro *{
+.client-index-div-seguro-nombre {
   display: flex;
   align-content: center;
   height: 100%;
@@ -67,7 +70,8 @@
   font-weight: bold;
   margin-bottom: 5px;
 }
-.cuadroTextoTitulo *{
+
+.client-index-div-seguro-titulo {
   display: flex;
   align-content: center;
   align-items: center;
@@ -77,7 +81,8 @@
   font-weight: bold;
   margin: 5px 0 5px 0;
 }
-.cuadroTextoDescriptivo *{
+
+.client-index-div-seguro-descripcion {
   display: block;
   align-content: center;
   height: 100px;
@@ -88,7 +93,7 @@
 
 /*-----------------------------------------------------------------------------*/
 
-.main-info {
+.client-index-section-info {
   width: 100wv;
   height: 100hv;
   background-image: url('/public/resources/images/fondoEjecutivo.png');
@@ -100,7 +105,7 @@
   padding: 20px;
 }
 
-.main-info-container {
+.client-index-section-info-container {
   display: block;
   height: auto;
   width: 500px;
@@ -108,10 +113,10 @@
   padding: 15px;
   background-color: white;
   border-radius: 10px;
-  box-shadow: rgba(0,0,0,0.2) 10px 10px 20px 5px;
+  box-shadow: rgba(0, 0, 0, 0.2) 10px 10px 20px 5px;
 }
 
-.main-info-container h2 {
+.client-index-section-info-container h2 {
   font-size: 32px;
   margin-bottom: 30px;
   margin-top: 40px;
@@ -119,7 +124,7 @@
   margin-right: 30px;
 }
 
-.diferencia {
+.client-index-info-item {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -127,12 +132,9 @@
   flex-direction: row;
 }
 
-.textoDiferencia{
-  margin: 0 30px 10px 30px;
-  color: #041E42;
-}
 
-.diferencia img {
+
+.client-index-info-item img {
   align-self: center;
   width: 60px;
   height: 60PX;
@@ -141,13 +143,18 @@
   object-fit: cover;
 }
 
-.diferencia h3 {
+.client-index-info-item h3 {
   font-size: 20px;
   font-weight: bold;
   margin: 0;
 }
 
-.diferencia p {
+.client-index-info-item p {
   font-size: 16px;
   margin: 10px 0 0 0;
+}
+
+.client-index-info-item-text {
+  margin: 0 30px 10px 30px;
+  color: #041E42;
 }
