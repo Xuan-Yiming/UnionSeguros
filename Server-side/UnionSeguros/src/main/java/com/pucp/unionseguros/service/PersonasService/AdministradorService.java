@@ -1,6 +1,7 @@
 package com.pucp.unionseguros.service.PersonasService;
 
 import com.pucp.unionseguros.model.Personas.Administrador;
+import com.pucp.unionseguros.model.Personas.Roles;
 import com.pucp.unionseguros.repository.PersonasRepository.AdministradorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -36,5 +37,14 @@ public class AdministradorService {
         foundAdministrador.setActivo(false);
         return administradorRepository.save(foundAdministrador);
 
+    }
+
+    public Integer getRol(int id){
+        Roles rol;
+        Integer fidRol;
+        rol=administradorRepository.getRol(id);
+        fidRol=rol.getIdRole();
+        if (rol == null) fidRol=0;
+        return  fidRol;
     }
 }
