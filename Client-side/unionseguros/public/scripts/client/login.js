@@ -1,4 +1,4 @@
-import {GLOBAL_URL} from './conection.js';
+const GLOBAL_URL = 'http://localhost:3000/api/'
 
 var stage = 0;
 
