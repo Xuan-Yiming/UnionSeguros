@@ -41,4 +41,8 @@ public class AdministradorController {
     public Administrador eliminarAdministrador(@RequestBody Administrador administrador){
         return administradorService.deleteAdministrador(administrador);
     }
+    @GetMapping(path ="/getRol")
+    public Integer getRol(@RequestParam(name = "id") int id){
+        return administradorService.getRol(id);
+    }
 }

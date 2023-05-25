@@ -15,7 +15,11 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
             "    WHERE CONCAT(CAST(id_persona AS CHAR), email,contrasena, CAST(fecha_creacion AS CHAR),CAST(activo AS CHAR)) \n" +
             "    LIKE CONCAT('%', ?1, '%')")*/
     @Query("SELECT p FROM Usuario p "+
-            "    WHERE CONCAT( p.email,p.contrasena,CAST(p.fechaCreacion AS string ),CAST(p.activoUsuario AS string)) \n" +
+            "    WHERE CONCAT( p.email,p.contrasena,CAST(p.fechaCreacion AS string ),CAST(p.activoUsuario AS string),p.nombre,p.apellidoMaterno,p.apellidoPaterno,p.id) \n" +
             "    LIKE CONCAT('%', ?1, '%') ORDER BY p.nombre ASC, p.apellidoPaterno ASC,p.apellidoMaterno ASC")
     public List<Usuario> findUsuario(String busqueda);
+
+    @Query("SELECT p.id FROM Usuario p "+
+            "    WHERE p.email=:email and p.contrasena=:contrasena")
+    public Integer inicioSesion(String email,String contrasena);
 }

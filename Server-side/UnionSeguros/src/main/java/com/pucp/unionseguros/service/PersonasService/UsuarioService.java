@@ -26,4 +26,10 @@ public class UsuarioService {
         lista = usuarioRepository.findUsuario(busqueda);
         return  lista;
     }
+    public int login(String email,String contrasena){
+        Integer id;
+        id = usuarioRepository.inicioSesion(email,contrasena);
+        if (id == null) id=0;
+        return  id;
+    }
 }
