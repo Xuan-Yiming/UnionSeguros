@@ -30,6 +30,12 @@ public class RolesService {
         return  rolesRepository.save(roles);
     }
 
+    public Roles updateRoles(Roles roles){
+        return rolesRepository.save(roles);
+    }
 
-
+    public Roles deleteRoles(Roles roles){
+        roles.setActivo(false);
+        return rolesRepository.save(roles);
+    }
 }

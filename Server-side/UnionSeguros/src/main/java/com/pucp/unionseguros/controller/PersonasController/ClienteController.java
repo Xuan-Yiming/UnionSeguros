@@ -6,6 +6,7 @@ Descripcion:        Archivo controller de la clase cliente
 
 package com.pucp.unionseguros.controller.PersonasController;
 
+import com.pucp.unionseguros.model.Personas.Administrador;
 import com.pucp.unionseguros.model.Personas.Cliente;
 import com.pucp.unionseguros.service.PersonasService.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,15 @@ public class ClienteController {
     @PostMapping("/ingresar")
     public int registrarNuevoCliente(@RequestBody Cliente cliente){
         return clienteService.ingresarCliente(cliente);
+    }
+
+    @PutMapping("/modificar")
+    public Cliente modificarCliente(@RequestBody Cliente cliente){
+        return clienteService.updateCliente(cliente);
+    }
+
+    @PutMapping("/eliminar")
+    public Cliente eliminarCliente(@RequestBody Cliente cliente){
+        return clienteService.deleteCliente(cliente);
     }
 }
