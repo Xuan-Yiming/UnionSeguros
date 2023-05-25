@@ -1,6 +1,4 @@
-//const GLOBAL_URL = 'https://apimocha.com/unionseguros';
-const GLOBAL_URL = 'http://localhost:8080/api/v1';   
-
+import {GLOBAL_URL} from './conection.js';
 
 var planes;
 window.onload = function () {
