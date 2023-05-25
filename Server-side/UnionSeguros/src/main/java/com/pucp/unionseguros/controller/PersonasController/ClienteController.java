@@ -48,4 +48,9 @@ public class ClienteController {
     public Cliente eliminarCliente(@RequestBody Cliente cliente){
         return clienteService.deleteCliente(cliente);
     }
+
+    @GetMapping(path ="/getRol")
+    public Integer getRol(@RequestParam(name = "id") int id){
+        return clienteService.getRol(id);
+    }
 }
