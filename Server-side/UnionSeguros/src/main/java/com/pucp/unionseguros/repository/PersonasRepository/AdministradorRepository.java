@@ -9,4 +9,7 @@ import java.util.List;
 @Repository
 public interface AdministradorRepository extends JpaRepository<Administrador, Integer> {
     public List<Administrador> findAdministradorsByActivoIsTrue();
+
+    public Administrador findAdministradorByIdAndActivoIsTrue(Integer id);
+
 }

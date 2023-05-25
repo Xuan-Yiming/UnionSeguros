@@ -24,4 +24,17 @@ public class AdministradorService {
     public List<Administrador> listarAdministradoresActivos(){
         return administradorRepository.findAdministradorsByActivoIsTrue();
     }
+    public Administrador updateAdministrador(Administrador administrador){
+        Administrador foundAdministrador = administradorRepository.findAdministradorByIdAndActivoIsTrue(administrador.getId());
+        foundAdministrador = administrador;
+        return administradorRepository.save(foundAdministrador);
+
+    }
+
+    public Administrador deleteAdministrador(Administrador administrador){
+        Administrador foundAdministrador = administradorRepository.findAdministradorByIdAndActivoIsTrue(administrador.getId());
+        foundAdministrador.setActivo(false);
+        return administradorRepository.save(foundAdministrador);
+
+    }
 }

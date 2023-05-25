@@ -30,4 +30,15 @@ public class ClienteService {
         cliente = clienteRepository.findClienteByNumeroDocumentoAndActivoIsTrue(numeroDocumentoIngresado);
         return cliente;
     }
+    public Cliente updateCliente(Cliente cliente){
+        Cliente foundCliente = clienteRepository.findClienteByIdAndActivoIsTrue(cliente.getId());
+        foundCliente = cliente;
+        return clienteRepository.save(foundCliente);
+    }
+
+    public Cliente deleteCliente(Cliente cliente){
+        Cliente foundCliente = clienteRepository.findClienteByIdAndActivoIsTrue(cliente.getId());
+        foundCliente.setActivo(false);
+        return clienteRepository.save(foundCliente);
+    }
 }

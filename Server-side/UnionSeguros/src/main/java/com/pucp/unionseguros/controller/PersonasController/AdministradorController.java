@@ -4,10 +4,7 @@ import com.pucp.unionseguros.model.Personas.Administrador;
 import com.pucp.unionseguros.service.PersonasService.AdministradorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,5 +30,15 @@ public class AdministradorController {
     @PostMapping("/ingresar")
     public int registrarNuevoAdministrador(Administrador administrador){
         return  administradorService.ingresarAdministrador(administrador);
+    }
+
+    @PutMapping("/modificar")
+    public Administrador modificarAdministrador(@RequestBody Administrador administrador){
+        return administradorService.updateAdministrador(administrador);
+    }
+
+    @PutMapping("/eliminar")
+    public Administrador eliminarAdministrador(@RequestBody Administrador administrador){
+        return administradorService.deleteAdministrador(administrador);
     }
 }
