@@ -5,12 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6fa78c07-b115-4a69-b73b-58c95ea1b005" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_05_2023_01_29__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_05_2023_01_29__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/iniciarSesion.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/routes/iniciarSesion.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/iniciarSesion.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/partials/iniciarSesion.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/SOAT.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/SOAT.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/SOTAProceso.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/SOATProceso.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/SOAT.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/SOAT.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/indexHeader.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/indexHeader.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/SOATPROCESO.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/SOATProceso.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/admin/adminDetallePlanSOAT.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/admin/adminDetallePlanSOAT.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/detallePlanSOAT.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/detallePlanSOAT.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/partials/detallePlanSOAT.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/partials/detallePlanSOAT.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/layouts/SOATHeader.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/layouts/SOATHeader.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/layouts/indexHeader.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/layouts/indexHeader.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/SOAT.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/SOAT.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/SOATProceso.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/SOATProceso.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/login.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/seguroVehicular.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/seguroVehicular.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/partials/SOATProceso.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/partials/SOATProceso.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/partials/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/partials/login.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/error.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/error.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,29 +48,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;client-side&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/omar/Documents/GitHub/UnionSeguros/Client-side/unionseguros/public/resources/icons&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "client-side",
+    "last_opened_file_path": "C:/Users/omar/Documents/GitHub/UnionSeguros/Client-side/unionseguros/public/stylesheets",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\resources\icons" />
+      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\stylesheets" />
+      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\routes" />
       <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\views\client\partials" />
       <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\views\client\pages" />
-      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\views\client\layouts" />
-      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\stylesheets" />
+      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\scripts\admin" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\scripts" />
       <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\resources\images" />
     </key>
   </component>
@@ -65,7 +85,10 @@
       <updated>1683656502738</updated>
       <workItem from="1683656504183" duration="2749000" />
       <workItem from="1683783559997" duration="5960000" />
-      <workItem from="1683841228257" duration="2210000" />
+      <workItem from="1683841228257" duration="8209000" />
+      <workItem from="1684814296951" duration="2059000" />
+      <workItem from="1684856313228" duration="4564000" />
+      <workItem from="1684868421089" duration="13157000" />
     </task>
     <servers />
   </component>

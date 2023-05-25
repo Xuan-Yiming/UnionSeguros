@@ -22,6 +22,7 @@
     height: 100%;
     float: left;
 }
+<<<<<<< HEAD:Client-side/unionseguros/public/stylesheets/client/header.css
 
 .client-header-logo img{
     width: 100px;
@@ -29,6 +30,23 @@
 }
 
 .client-header-navbar {
+=======
+.logoPrincipal img{
+    width: 110px;
+    height: auto;
+}
+
+/************opciones*********************/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Calibri;
+    text-decoration: none;
+    display: block;
+}
+.navbar {
+>>>>>>> main:Client-side/unionseguros/public/stylesheets/indexHeader.css
     overflow: hidden;
     justify-items: center;
     margin-right: 25%;

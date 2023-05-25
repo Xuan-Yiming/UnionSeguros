@@ -6,8 +6,14 @@ main {
   display: flex;
   height: auto;
   width: 100%;
+<<<<<<< HEAD:Client-side/unionseguros/public/stylesheets/client/index.css
   background: rgb(255, 255, 255);
   background: linear-gradient(3deg, rgba(200, 240, 255, 1) 0%, rgba(255, 255, 255, 1) 55%, rgba(200, 240, 255, 1) 100%);
+=======
+  margin-top: 50px;
+  padding: 30px;
+  background: linear-gradient(3deg, rgba(200,240,255,1) 0%, rgba(255,255,255,1) 55%, rgba(200,240,255,1) 100%);
+>>>>>>> main:Client-side/unionseguros/public/stylesheets/index.css
   flex-direction: column;
 }
 
@@ -36,7 +42,6 @@ main {
 
   height: 100%;
   width: 80%;
-
 }
 
 .client-index-div-seguro {

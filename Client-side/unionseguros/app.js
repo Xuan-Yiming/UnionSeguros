@@ -47,6 +47,8 @@ var usuarioRouter = require('./routes/client/usuario');
 app.use('/usuario', usuarioRouter);
 var loginRouter = require('./routes/client/login');
 app.use('/login', loginRouter);
+var iniciarSesionRouter = require('./routes/iniciarSesion');
+app.use('/iniciarSesion', iniciarSesionRouter);
 
 
 //Admin
