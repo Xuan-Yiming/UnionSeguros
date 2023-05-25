@@ -13,11 +13,11 @@ window.onload = function () {
     localStorage.setItem("idVehiculo", 0);
 
 
-    document.querySelector("#dpFecha").value = new Date().toISOString().split("T")[0];
+    document.querySelector("#date-picker").value = new Date().toISOString().split("T")[0];
 
     const today = new Date();
 
-    document.querySelector("#dpFecha").min = today.toISOString().split("T")[0];
+    document.querySelector("#date-picker").min = today.toISOString().split("T")[0];
 
     //vehiculo
     fetch(GLOBAL_URL + '/marcaVehiculo/listarTodas')
@@ -109,8 +109,6 @@ window.onload = function () {
 
 
             // modelos
-
-
 
             // numero de asientos
             document.querySelector("#txt-asientos").value = data.numeroAsientos;
@@ -330,7 +328,7 @@ function loadResumen() {
     document.querySelector("#txt-res-plan").innerText = document.querySelector('input[name="select-plan"]:checked').parentElement.querySelector('h2').innerText;
     document.querySelector("#txt-res-precio").innerText = document.querySelector('input[name="select-plan"]:checked').parentElement.querySelector('h1').innerText;
     // the date of dpFecha to teh date plus a year
-    document.querySelector("#txt-res-fecha").innerText = document.querySelector("#dpFecha").value + " - " + document.querySelector("#dpFecha").value.addYears(1);
+    document.querySelector("#txt-res-fecha").innerText = document.querySelector("#date-picker").value + " - " + document.querySelector("#date-picker").value.addYears(1);
 }
 
 function loadTarjeta() {
@@ -351,7 +349,7 @@ function verificacion() {
     const uso = document.querySelector("#select-uso").value;
     const numAsiento = document.querySelector("#txt-asientos").value;
     const numSerie = document.querySelector("#txt-serie").value;
-    const fecha = document.querySelector("#dpFecha").value;
+    const fecha = document.querySelector("#date-picker").value;
 
     switch (stage) {
         case 0:
@@ -466,7 +464,7 @@ function guardar() {
     const uso = document.querySelector("#select-uso").value;
     const numAsiento = document.querySelector("#txt-asientos").value;
     const numSerie = document.querySelector("#txt-serie").value;
-    const fecha = document.querySelector("#dpFecha").value;
+    const fecha = document.querySelector("#date-picker").value;
     const plan = document.querySelector('input[name="select-plan"]:checked').value;
     const numTarjeta = document.querySelector("#txt-num-tarjeta").value;
     const cvv = document.querySelector("#txt-CVV").value;
