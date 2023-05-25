@@ -153,8 +153,8 @@ window.onload = function () {
         });
 };
 
-document.querySelector("#advance").addEventListener("click", function () {
-    if (stage == 3) {
+document.querySelector("#btn-advance").addEventListener("click", function () {
+    if (stage === 3) {
         window.location.href = "/SOAT";
     }
 
@@ -186,7 +186,7 @@ document.querySelector("#advance").addEventListener("click", function () {
     changeStage();
 });
 
-document.querySelector("#previous").addEventListener("click", function () {
+document.querySelector("#btn-previous").addEventListener("click", function () {
 
     if (stage == 0) {
         if (confirm("Deseas cancelar el proceso?")) {
@@ -228,7 +228,7 @@ function changeStage() {
             document.querySelector(".form-payment").style.display = "none";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#descargarConstancia").style.display = "none";
-            document.querySelector("#previous").style.display = "block";
+            document.querySelector("#btn-previous").style.display = "block";
             break;
         case 1:
             document.querySelector(".form-vehiculo ").style.display = "none";
@@ -236,7 +236,7 @@ function changeStage() {
             document.querySelector(".form-payment").style.display = "none";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#descargarConstancia").style.display = "none";
-            document.querySelector("#previous").style.display = "block";
+            document.querySelector("#btn-previous").style.display = "block";
             loadPlans();
             break;
         case 2:
@@ -245,7 +245,7 @@ function changeStage() {
             document.querySelector(".form-payment").style.display = "block";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#descargarConstancia").style.display = "none";
-            document.querySelector("#previous").style.display = "block";
+            document.querySelector("#btn-previous").style.display = "block";
             loadTarjeta();
             break;
         case 3:
@@ -254,7 +254,7 @@ function changeStage() {
             document.querySelector(".form-payment").style.display = "none";
             document.querySelector(".form-result").style.display = "block";
             document.querySelector("#descargarConstancia").style.display = "block";
-            document.querySelector("#previous").style.display = "none";
+            document.querySelector("#btn-previous").style.display = "none";
             guardar();
             loadResumen();
             break;
@@ -299,7 +299,7 @@ function loadPlans() {
                 const selectButton = document.createElement('input');
                 selectButton.type = 'radio';
                 selectButton.name = 'select-plan';
-                selectButton.classList.add('button-red-whie-back');
+                selectButton.classList.add('button-red-white-back');
                 selectButton.value = plan.id;
                 planDiv.appendChild(selectButton);
 
@@ -334,11 +334,13 @@ function verificacion() {
     const nombres = document.querySelector("#txt-nombres").value;
     const marca = document.querySelector("#select-marca").value;
     const modelo = document.querySelector("#select-modelo").value;
+    const anio = document.querySelector("#txt-anio").value;
+    const numAsiento = document.querySelector("#txt-asientos").value;
     const uso = document.querySelector("#select-uso").value;
     const numSerie = document.querySelector("#txt-serie").value;
     const fecha = document.querySelector("#date-picker").value;
-    const numAsiento = document.querySelector("#txt-asientos").value;
-    const anio = document.querySelector("#txt-anio").value;
+
+
 
 
     switch (stage) {

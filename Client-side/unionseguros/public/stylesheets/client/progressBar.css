@@ -1,11 +1,12 @@
 .ProgressBar {
-    margin: 0px;
-    padding: 0em 0 0em;
+    margin: 0px auto;
+    padding-bottom: 10px;
     width: 500px;
     list-style: none;
     position: relative;
     display: flex;
     justify-content: space-between;
+
   }
   .ProgressBar-step {
     text-align: center;
@@ -29,14 +30,12 @@
   .ProgressBar-step:first-child:after {
     display: none;
   }
-  /* .ProgressBar-step:after {
-      background-color: #C8102E;
-      width: 0%;
-    } */
+
   .ProgressBar-step.is-complete+.ProgressBar-step.is-current:after,
   .ProgressBar-step.is-complete+.ProgressBar-step.is-complete:after {
     width: 100%;
   }
+
   .ProgressBar-icon {
     width: 1.5em;
     height: 1.5em;
@@ -71,7 +70,7 @@
   }
   .progress-bar {
     max-width: 1000px;
-    margin: 4em auto;
+    margin: 0 auto 4em auto;
     font-size: 16px;
   }
   

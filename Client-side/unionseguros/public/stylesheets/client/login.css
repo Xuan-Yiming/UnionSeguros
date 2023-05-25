@@ -10,7 +10,7 @@
     display:none;
 }
 
-.form-result-contect{
+.form-result-content{
     display: flex;
     flex-direction: column;
     margin: 10px;

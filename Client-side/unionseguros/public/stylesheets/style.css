@@ -1,13 +1,13 @@
 /* General Styles */
 * { 
 	font-family: Calibri,sans-serif;
-  font-size: 12px;
-  color: #041E42;
-  padding: 0px;
-  margin: 0px;
+    font-size: 12px;
+    color: #041E42;
+    padding: 0px;
+    margin: 0px;
 }
 
-/* headers */
+/* titles */
 h1{
   font-size: 36px;
   color: #041E42;
@@ -31,7 +31,11 @@ h4{
   color: #041E42;
 }
 
+
+
 /* buttons */
+
+
 
 .button-previous{
   border: none;
@@ -69,7 +73,7 @@ h4{
   margin: 10px;
 }
 
-.button-red-whie-back{
+.button-red-white-back{
   border: 5px;
   border-color: #C8102E;
   border-radius: 5px;
@@ -99,7 +103,7 @@ h4{
   background-color: white;
   color: #C8102E;
   border: 1px solid #C8102E;
-  padding: 9.5px 19.5px;
+  padding: 10px 20px;
   border-radius: 5px;
   margin: 10px;
   width: fit-content;
@@ -140,7 +144,7 @@ h4{
   margin: 10px;
 }
 
-.button-blue-whie-back{
+.button-blue-white-back{
   border: none;
   border-radius: 5px;
   background-color: #fff;

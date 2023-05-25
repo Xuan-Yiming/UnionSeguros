@@ -1,33 +1,29 @@
-main {
-  height: 100%;
-}
-
-.client-index-section-seguros {
+.client-index-section-seguros{
   display: flex;
   height: auto;
   width: 100%;
-  background: rgb(255, 255, 255);
-  background: linear-gradient(3deg, rgba(200, 240, 255, 1) 0%, rgba(255, 255, 255, 1) 55%, rgba(200, 240, 255, 1) 100%);
+  margin-top: 50px;
+  padding: 30px;
+  background: linear-gradient(3deg, rgba(200,240,255,1) 0%, rgba(255,255,255,1) 55%, rgba(200,240,255,1) 100%);
   flex-direction: column;
 }
 
-.client-index-texto-inicial {
+.client-index-texto-inicial{
   align-self: center;
   justify-content: center;
   display: flex;
   flex-direction: column;
 }
-
-.client-index-texto-inicial h1 {
+.client-index-texto-inicial h1{
   font-size: 48px;
   text-align: center;
 }
 
-.client-index-texto-inicial p {
+.client-index-texto-inicial p{
   font-size: 30px;
 }
 
-.client-index-section-seguros-container {
+.client-index-section-seguros-container{
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -37,30 +33,31 @@ main {
   height: 100%;
   width: 80%;
 }
-
-.client-index-div-seguro {
+.client-index-div-seguro{
   display: flex;
   flex-direction: column;
   align-items: center;
+
   height: auto;
   width: 300px;
   justify-content: center;
   background-color: white;
   border-radius: 25px;
-  box-shadow: rgba(0, 0, 0, 0.2) 10px 10px 20px 5px;
+  box-shadow: rgba(0,0,0,0.2) 10px 10px 20px 5px;
 }
 
-.client-index-div-seguro img {
+.client-index-div-seguro img{
   width: 100%;
   height: auto;
   border-radius: 25px 25px 0 0;
 }
 
-.client-index-div-seguro-text {
+.client-index-div-seguro-text{
   padding: 20px;
+
 }
 
-.client-index-div-seguro-nombre {
+.client-index-div-seguro-nombre *{
   display: flex;
   align-content: center;
   height: 100%;
@@ -69,8 +66,7 @@ main {
   font-weight: bold;
   margin-bottom: 5px;
 }
-
-.client-index-div-seguro-titulo {
+.client-index-div-seguro-titulo *{
   display: flex;
   align-content: center;
   align-items: center;
@@ -80,8 +76,7 @@ main {
   font-weight: bold;
   margin: 5px 0 5px 0;
 }
-
-.client-index-div-seguro-descripcion {
+.client-index-div-seguro-descripcion *{
   display: block;
   align-content: center;
   height: 100px;
@@ -109,18 +104,15 @@ main {
   height: auto;
   width: 500px;
   margin: 50px 50px 50px 300px;
-  padding: 15px;
+  padding: 15px 15px 25px 15px;
   background-color: white;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.2) 10px 10px 20px 5px;
+  box-shadow: rgba(0,0,0,0.2) 10px 10px 20px 5px;
 }
 
 .client-index-section-info-container h2 {
   font-size: 32px;
-  margin-bottom: 30px;
-  margin-top: 40px;
-  margin-left: 35px;
-  margin-right: 30px;
+  margin: 40px 30px 30px 35px;
 }
 
 .client-index-info-item {
@@ -131,7 +123,10 @@ main {
   flex-direction: row;
 }
 
-
+.client-index-info-item-text{
+  margin: 0 30px 10px 30px;
+  color: #041E42;
+}
 
 .client-index-info-item img {
   align-self: center;
@@ -151,9 +146,4 @@ main {
 .client-index-info-item p {
   font-size: 16px;
   margin: 10px 0 0 0;
-}
-
-.client-index-info-item-text {
-  margin: 0 30px 10px 30px;
-  color: #041E42;
 }
