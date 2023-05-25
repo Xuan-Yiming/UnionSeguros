@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="public/resources/icons/page-icon.png">
+    <link rel="stylesheet" href="public/stylesheets/style.css">
+
+    <title>Union Seguros</title>
+
+    <link rel="stylesheet" href="public/stylesheets/style.css">
+    <link rel="stylesheet" href="public/stylesheets/client/index.css">
+
+</head>
+
+<body class="container">
+    <%- include('../layouts/header'); %>
+
+        <main>
+            <section class="client-index-section-seguros">
+                <div class="client-index-texto-inicial">
+                    <h1>Unidos protegemos lo que más quieres</h1>
+                    <p>Conoce nuestros seguros:</p>
+                </div>
+                <div class="client-index-section-seguros-container">
+                    <div class="client-index-div-seguro">
+                        <img src="public/resources/images/seguroVehicularBox.png"
+                            alt="Imagen del cuadro de Seguro Vehicular">
+                        <div class="client-index-div-seguro-text">
+                            <div class="client-index-div-seguro-nombre">
+                                <p>SEGURO VEHÍCULAR</p>
+                            </div>
+                            <div class="client-index-div-seguro-titulo">
+                                <p>Protege tu auto y ahorra pagando desde 25$ mensuales.</p>
+                            </div>
+                            <div class="client-index-div-seguro-descripcion">
+                                <p>Aseguramos tu tranquilidad ante cualquier accidente o robo que sufra tu vehículo.
+                                    Además, podras aprovechar múltiples descuentos y beneficios.</p>
+                            </div>
+                        </div>
+                        <button class="button-red" id="cotizar"> Cotizar </button>
+                    </div>
+                    <div class="client-index-div-seguro">
+                        <img src="public/resources/images/soatBox.png" alt="Imagen del cuadro de SOAT">
+                        <div class="client-index-div-seguro-text">
+                            <p class="client-index-div-seguro-nombre">SOAT ELECTRÓNICO</p>
+                            <p class="client-index-div-seguro-titulo">Consigue fácil y en minutos tu SOAT electrónico
+                                desde S/. 50 al año.</p>
+                            <p class="client-index-div-seguro-descripcion">Además de protegerte obtendrás descuentos en
+                                más de 70 establecimientos afiliados y los mejores planes de renovación.</p>
+                        </div>
+                        <a href="/soat">
+                            <button class="button-red" id="cotizar"> Comprar </button>
+                        </a>
+                    </div>
+
+                </div>
+            </section>
+            <section class="client-index-section-info">
+                <div class="client-index-section-info-container">
+                    <h2>Por qué Union Seguros es diferente</h2>
+                    <div class="client-index-info-item">
+                        <img src="public/resources/icons/personal-escucha.png" alt="Logo Te Escuchamos">
+                        <div class="client-index-info-item-text">
+                            <h3>Te escuchamos.</h3>
+                            <p>La satisfacción de nuestros clientes es nuestra prioridad, por lo que atenderlos nos
+                                permite entender sus necesidades y ofrecer soluciones adaptadas a sus requerimientos.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="client-index-info-item">
+                        <img src="public/resources/icons/ahorro.png" alt="Logo Ahorra Siempre">
+                        <div class="client-index-info-item-text">
+                            <h3>Ahorra siempre.</h3>
+                            <p>Nos esforzamos por mantener una gestión financiera responsable y eficiente para poder
+                                ofrecerte precios más bajos y accesibles sin sacrificar la calidad de nuestros
+                                servicios.</p>
+                        </div>
+                    </div>
+                    <div class="client-index-info-item">
+                        <img src="public/resources/icons/personal-profesional.png" alt="Logo Profesionalismo">
+                        <div class="client-index-info-item-text">
+                            <h3>Profesionalismo.</h3>
+                            <p>Invertimos constantemente en la capacitación de nuestro equipo para brindarte un servicio
+                                de seguros de calidad y de vanguardia.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+
+        <%- include('../layouts/footer'); %>
+</body>
+
+</html>

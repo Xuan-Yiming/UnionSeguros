@@ -1,0 +1,18 @@
+.form-correo {
+    display:none;
+}
+
+.form-validacion {
+    display:none;
+}
+
+.form-result {
+    display:none;
+}
+
+.form-result-contect{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    margin-bottom: 30px;
+}

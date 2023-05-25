@@ -1,3 +1,4 @@
+/* General Styles */
 * { 
 	font-family: Calibri,sans-serif;
   font-size: 12px;
@@ -6,6 +7,7 @@
   margin: 0px;
 }
 
+/* headers */
 h1{
   font-size: 36px;
   color: #041E42;
@@ -29,6 +31,7 @@ h4{
   color: #041E42;
 }
 
+/* buttons */
 
 .button-previous{
   border: none;
@@ -91,12 +94,6 @@ h4{
   margin: 10px;
 }
 
-.div-payment{
-  display: none;
-  width: fit-content;
-  height: fit-content;
-}
-
 .button-red-transparente-red-border{
   font-size: 14px;
   background-color: white;
@@ -120,22 +117,76 @@ h4{
   margin-left: 10px;
 }
 
-
-/*FOOTER INICIO*/
-
-footer {
+.button-blue{
+  border: none;
+  border-radius: 5px;
   background-color: #041E42;
   color: white;
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  height: auto;
-  padding: 5px;
-  margin-top: auto;
+  height: fit-content;
+  width: fit-content;
+  padding: 10px 20px;
+  margin: 10px;
 }
 
-footer p, footer h3 {
+.button-blue:active {
+  border: 5px;
+  border-color: #041E42;
+  border-radius: 5px;
+  background-color:  #F7FBFC;
+  color: #041E42;
+  height: fit-content;
+  width: fit-content;
+  padding: 10px 20px;
+  margin: 10px;
+}
+
+.button-blue-whie-back{
+  border: none;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #041E42;
+  height: fit-content;
+  width: fit-content;
+  padding: 10px 20px;
+  margin: 10px;
+}
+
+
+.button-blue-transparente{
+  border: 5px;
+  border-color: #041E42;
+  border-radius: 5px;
+  background-color: rgba(4, 30, 66, 20%);
+  color: #041E42;
+  height: fit-content;
+  width: fit-content;
+  padding: 10px 20px;
+  margin: 10px;
+}
+
+.button-blue-transparente-blue-border{
+  font-size: 16px;
+  background-color: white;
+  color: #041E42;
+  border: 1px solid #041E42;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+
+}
+
+.button-blue-transparente-blue-border:active {
+  font-size: 16px;
+  background-color: #041E42;
   color: white;
+<<<<<<< HEAD
+  border: 1px solid #041E42;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+=======
   margin: 5px;
 }
 
@@ -225,4 +276,5 @@ header .telefono img {
 
 .mensajeError h2{
   margin-bottom: 70px;
+>>>>>>> main
 }

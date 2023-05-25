@@ -2,7 +2,7 @@ import {GLOBAL_URL} from './conection.js';
 
 var planes;
 window.onload = function () {
-    fetch(GLOBAL_URL + '/planSOAT/ListarTodos')
+    fetch(GLOBAL_URL + '/Usuario/ListarTodos')
         .then(response => response.json())
         .then(data => {
             planes = data;
@@ -22,7 +22,7 @@ window.onload = function () {
                 let params = new URLSearchParams();
                 params.append('busqueda', query);
                 
-                let url = new URL(GLOBAL_URL + '/planSOAT/buscarPlanesSOAT?' + params.toString());
+                let url = new URL(GLOBAL_URL + '/usuario/buscarUsuario?' + params.toString());
 
                 fetch(url)
                 .then(response => response.json())
@@ -48,29 +48,25 @@ window.onload = function () {
 function crearLaTabla(data){
     const table = document.querySelector('#table-body');
     table.innerHTML = '';
-    data.forEach(plan => {
+    data.forEach(usaurio => {
         const tableRow = document.createElement('tr');
         tableRow.classList.add('table-row');
 
-        const ID = document.createElement('td');
-        ID.classList.add('td-id');
-        ID.innerText = plan.id;
-        tableRow.appendChild(ID);
+        const nombres = document.createElement('td');
+        nombres.classList.add('td-nombre');
+        nombres.innerText = usaurio.nombres + ", " + usaurio.apellidoPaterno + " " + usaurio.apellidoMaterno;
+        tableRow.appendChild(nombres);
 
-        const nombrePlan = document.createElement('td');
-        nombrePlan.classList.add('td-nombre');
-        nombrePlan.innerText = plan.nombrePlan;
-        tableRow.appendChild(nombrePlan);
+        const rol = document.createElement('td');
+        rol.classList.add('td-rol');
+        rol.innerText = usaurio.rol;
+        tableRow.appendChild(rol);
 
-        const precio = document.createElement('td');
-        precio.classList.add('td-precio');
-        precio.innerText = plan.precio;
-        tableRow.appendChild(precio);
+        const auditoria = document.createElement('td');
+        auditoria.classList.add('td-auditoria');
+        auditoria.innerText = plan.precio;
+        tableRow.appendChild(auditoria);
 
-        const cobertura = document.createElement('td');
-        cobertura.classList.add('td-cobertura');
-        cobertura.innerText = plan.cobertura;
-        tableRow.appendChild(cobertura);
 
         const activo = document.createElement('td');
         activo.classList.add('td-activo');
@@ -94,11 +90,11 @@ function crearLaTabla(data){
     const btnEdits = document.querySelectorAll('.btn-edit');
     btnEdits.forEach(btn => {
         btn.addEventListener('click', function () {
-        const plan = {
+        const usaurio = {
             "id": this.getAttribute('data-id'),
         }
-        localStorage.setItem('plan-id', plan.id);
-        window.location.href = '/admin/detallePlanSOAT';
+        localStorage.setItem('usaurio-id', usaurio.id);
+        window.location.href = '/admin/detalleUsuario';
     });
 });
 }

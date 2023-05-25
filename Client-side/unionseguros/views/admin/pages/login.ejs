@@ -8,10 +8,21 @@
 
     <link rel="stylesheet" href="../public/stylesheets/header.css">
     <link rel="stylesheet" href="../public/stylesheets/style.css">
+    <link rel="stylesheet" href="../public/stylesheets/admin/adminLogin.css">
+
+    <script type="text/javascript" src="../public/scripts/admin/adminLogin.js"></script>
 </head>
 
 <body class="container">
-    <%- include('../layouts/header', {iflogin:'true', username:'Admin'}); %>
+    
+    <div>
+        <img src="../public/resources/logos/Logo.png" alt="Logo">
+        <h2>Iniciar Sesión</h2>
+        <label>Usuario</label>
+        <input type="text" id="txt-usuario" name="user" placeholder="Usuario">
+        <label>Contraseña</label>
+        <input type="password" id="txt-usuario" name="password" placeholder="Contraseña">
+        <button id="button-login" class="button-red">Iniciar Sesión</button>
+    </div>
 
-    <%- include('../partials/login'); %>
 </html>

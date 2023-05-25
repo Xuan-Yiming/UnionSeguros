@@ -1,0 +1,165 @@
+main {
+  height: 100%;
+}
+
+.client-index-section-seguros {
+  display: flex;
+  height: auto;
+  width: 100%;
+<<<<<<< HEAD:Client-side/unionseguros/public/stylesheets/client/index.css
+  background: rgb(255, 255, 255);
+  background: linear-gradient(3deg, rgba(200, 240, 255, 1) 0%, rgba(255, 255, 255, 1) 55%, rgba(200, 240, 255, 1) 100%);
+=======
+  margin-top: 50px;
+  padding: 30px;
+  background: linear-gradient(3deg, rgba(200,240,255,1) 0%, rgba(255,255,255,1) 55%, rgba(200,240,255,1) 100%);
+>>>>>>> main:Client-side/unionseguros/public/stylesheets/index.css
+  flex-direction: column;
+}
+
+.client-index-texto-inicial {
+  align-self: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.client-index-texto-inicial h1 {
+  font-size: 48px;
+  text-align: center;
+}
+
+.client-index-texto-inicial p {
+  font-size: 30px;
+}
+
+.client-index-section-seguros-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 100px;
+  margin: 50px 50px 50px 200px;
+
+  height: 100%;
+  width: 80%;
+}
+
+.client-index-div-seguro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  width: 300px;
+  justify-content: center;
+  background-color: white;
+  border-radius: 25px;
+  box-shadow: rgba(0, 0, 0, 0.2) 10px 10px 20px 5px;
+}
+
+.client-index-div-seguro img {
+  width: 100%;
+  height: auto;
+  border-radius: 25px 25px 0 0;
+}
+
+.client-index-div-seguro-text {
+  padding: 20px;
+}
+
+.client-index-div-seguro-nombre {
+  display: flex;
+  align-content: center;
+  height: 100%;
+  color: #041E42;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.client-index-div-seguro-titulo {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 80px;
+  color: #041E42;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 5px 0 5px 0;
+}
+
+.client-index-div-seguro-descripcion {
+  display: block;
+  align-content: center;
+  height: 100px;
+  color: #041E42;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+/*-----------------------------------------------------------------------------*/
+
+.client-index-section-info {
+  width: 100wv;
+  height: 100hv;
+  background-image: url('/public/resources/images/fondoEjecutivo.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 100% 5%;
+  background-attachment: local;
+  display: flex;
+  padding: 20px;
+}
+
+.client-index-section-info-container {
+  display: block;
+  height: auto;
+  width: 500px;
+  margin: 50px 50px 50px 300px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.2) 10px 10px 20px 5px;
+}
+
+.client-index-section-info-container h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  margin-top: 40px;
+  margin-left: 35px;
+  margin-right: 30px;
+}
+
+.client-index-info-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-direction: row;
+}
+
+
+
+.client-index-info-item img {
+  align-self: center;
+  width: 60px;
+  height: 60PX;
+  margin-right: 15px;
+  margin-left: 30px;
+  object-fit: cover;
+}
+
+.client-index-info-item h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.client-index-info-item p {
+  font-size: 16px;
+  margin: 10px 0 0 0;
+}
+
+.client-index-info-item-text {
+  margin: 0 30px 10px 30px;
+  color: #041E42;
+}
