@@ -4,17 +4,36 @@ window.onload = function () {
     if (localStorage.getItem('plan-id') == null) {
         document.querySelector('#titulo').innerHTML = 'Nuevo Plan SOAT';
     }
-    document.querySelector('#id').innerHTML = localStorage.getItem('plan-id');
-    document.querySelector('#txt-nombre').value = localStorage.getItem('plan-nombre');
-    document.querySelector('#txt-cobertura').value = localStorage.getItem('plan-cobertura');
-    document.querySelector('#txt-precio').value = localStorage.getItem('plan-precio');
-    document.querySelector('#select-estado').value = localStorage.getItem('plan-activo');;
+    
+
+    if (localStorage.getItem('plan-id')){
+
+        let id = localStorage.getItem('plan-id');
+
+        let params = new URLSearchParams();
+        params.append('id', id);
+        let url = new URL(GLOBAL_URL + '/planSOAT/obtenerPorId?' + params.toString());
+    
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                document.querySelector('#id').innerHTML = data.id;
+                document.querySelector('#txt-cobertura').value = data.cobertura;
+                document.querySelector('#txt-precio').value = data.precio;
+                document.querySelector('#txt-nombre').value = data.nombrePlan;
+                document.querySelector('#select-estado').value = data.activo;
+            })
+            .catch(error => {
+                // Handle the error
+                console.error(error);
+            });
+    
+    }
 
     document.querySelector('#regresar').addEventListener('click', function () {
         localStorage.clear();
         window.location.href = '/admin/PlanSOAT';
     });
-
 
     document.querySelector('#btn-guardar').addEventListener('click', function () {
         if (document.querySelector('#id').innerHTML == "") {

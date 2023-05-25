@@ -67,11 +67,11 @@ app.use('/admin/detallePlanSOAT', adminDetallePlanSOATRouter);
 // var adminBeneficioSeguroVehicularRouter = require('./routes/admin/adminBeneficioSeguroVehicular');
 // app.use('/admin/beneficioSeguroVehicular', adminBeneficioSeguroVehicularRouter);
 
-// //pagina de usuario
-// var adminUsuariosRouter = require('./routes/admin/adminUsuarios');
-// app.use('/admin/usuarios', adminUsuariosRouter);
-// var adminDetalleUsuarioRouter = require('./routes/admin/adminDetalleUsuario');
-// app.use('/admin/detalleUsuario', adminDetalleUsuarioRouter);
+//pagina de usuario
+var adminUsuariosRouter = require('./routes/admin/adminUsuario');
+app.use('/admin/usuario', adminUsuariosRouter);
+var adminDetalleUsuarioRouter = require('./routes/admin/adminDetalleUsuario');
+app.use('/admin/detalleUsuario', adminDetalleUsuarioRouter);
 // var adminAuditoriaRouter = require('./routes/admin/adminAuditoria');
 // app.use('/admin/auditoria', adminAuditoriaRouter);
 

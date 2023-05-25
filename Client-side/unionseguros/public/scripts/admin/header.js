@@ -19,7 +19,12 @@ const menuSeguros = [
     link: '/admin/reporte-ventas'
   }
 ];
-const menuUsuarios = [];
+const menuUsuarios = [
+  {
+    name: 'Usuario',
+    link: '/admin/usuario'
+  },
+];
 const menuVehiculos = [];
 
 
