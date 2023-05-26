@@ -3,6 +3,10 @@ const GLOBAL_URL = 'http://localhost:8080/api/v1'
 window.onload = function () {
     if (localStorage.getItem('user') == null) {
         window.location.href = '/admin/login';
+        if(localStorage.getItem('rol') != 2){
+            alert("No eres admin");
+            window.location.href = '/';
+        }
     }
 
     if (localStorage.getItem('data-plan') == null) {

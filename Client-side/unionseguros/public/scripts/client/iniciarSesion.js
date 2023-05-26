@@ -3,7 +3,7 @@ const GLOBAL_URL = 'http://localhost:8080/api/v1'
 window.onload = function () {
     document.querySelector("#button-login").addEventListener('click', function () {
         let params = new URLSearchParams(location.search);
-        params.append('email', document.querySelector("#txt-usuario").value);
+        params.append('email', document.querySelector("#txt-correo").value);
         params.append('contrasena', document.querySelector("#txt-contrasena").value);
 
         let url = new URL(GLOBAL_URL + 'usuario/login?'+ params.toString());
@@ -22,13 +22,7 @@ window.onload = function () {
                         .then(response => response.json())
                         .then(element => {
                             localStorage.setItem('rol', JSON.stringify(element));
-
-                            if (element.toString() == 2){
-                                window.location.href = '/admin/PlanSOAT';
-                            }else{
-                                alert("No eres admin");
-                                window.location.href = '/';
-                            }
+                                window.location.href = '/usuario';
                         })
                         .catch(error => {
                             // Handle the error
