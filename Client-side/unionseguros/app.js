@@ -7,10 +7,11 @@ var logger = require('morgan');
 const app = express();
 
 // Start the server
-const PORT = 8080;
-app.listen(PORT, function () {
-  console.log(`Server listening on port ${PORT}`)
-})
+// const PORT = process.env.PORT || 3000
+
+// app.listen(PORT, function () {
+//   console.log(`Server listening on port ${PORT}`)
+// })
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
