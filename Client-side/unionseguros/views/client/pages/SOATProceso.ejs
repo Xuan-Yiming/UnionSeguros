@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="public/stylesheets/client/SOATProceso.css">
     <link rel="stylesheet" href="public/stylesheets/client/progressBar.css">
     <link rel="stylesheet" href="public/stylesheets/client/form.css">
-
-    <script src="public/scripts/client/SOTAProceso.js"></script>
 </head>
 
 <body class="container">
@@ -51,32 +49,32 @@
                 </div>
                 <div class="form-container-content">
                     <div class="form-content-item">
-                        <button id="btn-previous" class="button-red">Regresar</button>
+                        <button id="btn-previous" class="button-previous">Regresar</button>
                     </div>
 
                     <div class="form-vehiculo form-content-item">
                         <div class="content">
-                            <h1>Necesitamos más información ..</h1>
+                            <h1>Necesitamos más información</h1>
                             <div class="form-inputs">
                                 <div class="form-line">
                                     <div class="form-item">
                                         <h3>Marca</h3>
                                         <select id=" select-marca">
-                                            <option value="" disabled selected>seleccione una marca</option>
+                                            <option value="" disabled selected>Seleccione una marca</option>
                                         </select>
                                     </div>
 
                                     <div class="form-item">
                                         <h3>Modelo</h3>
                                         <select id=" select-modelo">
-                                            <option value="" disabled selected>seleccione un modelo</option>
+                                            <option value="" disabled selected>Seleccione un modelo</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-line">
                                     <div class="form-item">
-                                        <h3>Numero de Asientos</h3>
-                                        <input placeholder=" Ingrese numero" id="txt-asientos" disabled></input>
+                                        <h3>Número de Asientos</h3>
+                                        <input placeholder=" Ingrese número" id="txt-asientos" disabled></input>
                                     </div>
                                     <div class="form-item">
                                         <h3>Año</h3>
@@ -91,7 +89,7 @@
                                 <div class="form-item">
                                     <h3>Uso</h3>
                                     <select id=" select-uso">
-                                        <option value="" disabled selected>seleccione uno</option>
+                                        <option value="" disabled selected>Seleccione uno</option>
                                         <option value="1">Particular</option>
                                         <option value="2">Taxi</option>
                                         <option value="3">Carga</option>
@@ -112,8 +110,10 @@
                                     <input id=" txt-nombres" placeholder="Ingrese nombres"></input>
                                 </div>
                                 <div class="form-item">
+
                                     <h3>Quiero mi SOAT apartir de ..</h3>
                                     <input id="date-picker" type="date"></input>
+
                                 </div>
                             </div>
                         </div>
@@ -147,8 +147,10 @@
                         <div class="client-soat-proceso-form">
                             <h2 id="total-a-pagar">Total: S/.100</h2>
                             <div class="form-item>
-                            <h3>Numero de tarjeta</h3>
-                            <input id = "txt-num-tarjeta" type="text" placeholder="1234-5678-1234-5678">maxlength="16"></input>
+
+                            <h3>Número de tarjeta</h3>
+                            <input id = " txt-num-tarjeta" type="text" placeholder="1234-5678-1234-5678"
+                                maxlength="16"></input>
                             </div>
                             <div class="form-line">
                                 <div class="form-item">
@@ -169,7 +171,6 @@
                                         <option value="2">Dolares</option>
                                     </select>
                                 </div>
-
                             </div>
                             <div class="form-item>
                             <h3>Nombre</h3>
@@ -181,48 +182,32 @@
                             <input id = " txt-email" type="text" placeholder="Ingrese Email"></input>
                             </div>
                         </div>
-
-
                     </div>
-
                     <div class="form-result form-content-item">
                         <h1>¡Gracias por elegirnos!</h1>
                         <p>Has finalizado el proceso de compra, el comprobante de pago ha sido enviado a su correo
                             electrónico.</p>
                         <br>
                         <br>
-
                         <h2>Resumen SOAT</h2>
-
                         <h3>Nombre Completo</h3>
                         <p id="txt-res-nombre">Jimmy Chan Rojas</p>
-
-
                         <h3>Placa</h3>
                         <p id="txt-res-placa">ABC-123</p>
-
-
                         <h3>Plan SOAT</h3>
                         <p id="txt-res-plan">SOAT Plus</p>
-
-
                         <h3>Pago Total</h3>
                         <p id="txt-res-total">S/. 69.90</p>
-
-
                         <h3>Periodo</h3>
                         <p id="txt-res-preiodo">03/04/2023 - 03/04/2024</p>
-
                     </div>
-
                     <div class="form-content-item">
-                        <button id="btn-descargar-constancia" class="button-red-whie-back">Descargar constancia</button>
+                        <button id="btn-descargar-constancia" class="button-red-white-back">Descargar constancia</button>
                         <button id="btn-advance" class="button-red">Continuar</button>
                     </div>
-
                 </div>
             </div>
-
+            <script src="public/scripts/client/SOATProceso.js"></script>
         </main>
 
         <%- include('../layouts/footer'); %>

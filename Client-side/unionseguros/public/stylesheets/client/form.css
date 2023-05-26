@@ -1,25 +1,32 @@
 .form-container{
-    height: 80vh;
-    background: rgb(255,255,255);
+    display: flex;
+    height: auto;
+    min-height: 612px;
+    width: 100%;
+    margin-bottom: 120px;
     background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,211,211,1) 53%, rgba(255,255,255,1) 100%);
+    flex-direction: column;
 }
 
-.form-container-contol{
+.form-container-control{
     display: flex;
     justify-content: space-between;
     padding: 0px;
     height: fit-content;
 }
 
+
 .form-container-content{
+    padding: 20px;
     display: flex;
     flex-direction: column;
     position: relative;
     background-color: white;
     height: fit-content;
+    max-width: 500px;
     width: fit-content;
     border-radius: 10px;
-    margin: 0% auto;
+    margin: 0 auto 60px auto;
     box-shadow: rgba(0,0,0,0.2) 10px 10px 20px 5px;
 }
 
@@ -46,7 +53,14 @@
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-
+.form-result-content p{
+    font-size: 18px;
+    margin-top: 10px;
+}
+.form-result-content{
+    justify-content: center;
+    text-align: center;
+}
 
 
 input[type="radio"] {
@@ -86,12 +100,9 @@ input[type="radio"]:checked:before {
     margin: 10px;
 }
 
-
-
-
-
-#advance{
-    position: absolute;
+#btn-advance{
+    float: right;
+    position: relative;
     bottom: 0;
     right: 0;
     margin: 10px;

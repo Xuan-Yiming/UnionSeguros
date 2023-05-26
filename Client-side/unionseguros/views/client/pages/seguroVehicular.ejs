@@ -1,23 +1,159 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Union Seguros - Seguro vehicular</title>
     <link rel="icon" type="image/x-icon" href="public/resources/icons/page-icon.png">
-    <link rel="stylesheet" href="public/stylesheets/indexHeader.css">
     <link rel="stylesheet" href="public/stylesheets/style.css">
-    <link rel="stylesheet" href="public/stylesheets/SOAT.css">
+    <link rel="stylesheet" href="public/stylesheets/client/seguroVehicular.css">
 
 </head>
 
 <body class="container">
-<%- include('../layouts/indexHeader'); %>
-
+<%- include('../layouts/header'); %>
 <main>
-    <%- include('../partials/seguroVehicular'); %>
+    <section class ="client-seguroVehicular-section-cotiza">
+        <div class="client-seguroVehicular-section-cotiza-text">
+            <h1>Cotiza y compra tu Seguro Vehicular</h1>
+            <h1>100% online</h1>
+        </div>
+        <div class="client-seguroVehicular-section-cotiza-container">
+            <div class="client-seguroVehicular-section-div-cotiza">
+                <h2>Seguro Vehicular</h2>
+                <div class="client-seguroVehicular-section-content">
+                    <div class="client-seguroVehicular-section-content-item">
+                        <h3>Tipo de documento</h3>
+                        <select id = "select-documento">
+                            <option value="0" disabled selected>Seleccione</option>
+                            <option value="1">DNI</option>
+                            <option value="2">CE</option>
+                            <option value="3">RUC</option>
+                        </select>
+                    </div>
+                    <div class="client-seguroVehicular-section-content-item">
+                        <h3>Número de documento</h3>
+                        <input placeholder="Ingresar número" id = "txt-documento" oninput="validateNumericInput(this)" disabled></input>
+                    </div>
+                    <div class="client-seguroVehicular-section-content-item">
+                        <h3>Placa</h3>
+                        <input placeholder="Ingrese la placa"  id = "txt-placa" maxlength="6" oninput="this.value = this.value.toUpperCase()"></input>
+                    </div>
+                </div>
+                <button class ="button-red" id = "btn-cotizar"> Cotizar </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="client-seguroVehicular-section-info">
+        <div id="client-seguroVehicular-section-info-container">
+            <h2>Nuestro Seguro Vehicular te ofrece:</h2>
+            <div class="client-seguroVehicular-section-info-item">
+                <img src="public/resources/icons/cobertura.png" alt="Logo Amplia Cobertura">
+                <div class="client-seguroVehicular-section-info-item-text">
+                    <h3>Amplia cobertura</h3>
+                    <p>Te ofrecemos orientación médica y ambulancia las 24 horas del día. Además ante cualquier emergencia puedes acceder al servicio de grúa,
+                        auxilio mecánico y chofer de reemplazo cuando lo necesites.</p>
+                </div>
+            </div>
+            <div class="client-seguroVehicular-section-info-item">
+                <img src="public/resources/icons/Commerce.png" alt="Logo Programa Descuento">
+                <div class="client-seguroVehicular-section-info-item-text">
+                    <h3>Programa de descuentos</h3>
+                    <p>Obtén múltiples descuentos en tu Seguro Vehicular al adquirirlo con nuestra empresa. Ahorra en diferentes lugares de Perú con nuestras ofertas especiales.
+                        ¡Aprovecha nuestros descuentos!</p>
+                </div>
+            </div>
+            <div class="client-seguroVehicular-section-info-item">
+                <img src="public/resources/icons/vehiculosExtra.png" alt="Logo Vehiculos extra">
+                <div class="client-seguroVehicular-section-info-item-text">
+                    <h3>Vehículos extra</h3>
+                    <p>No te preocupes por tus otros métodos de transporte. Sin costo adicional podrás agregar otros vehículos que poseas,
+                        como bicicletas, motos o scooters. </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class ="client-seguroVehicular-section-faq">
+        <h1>Preguntas Frecuentes Seguro Vehicular </h1>
+        <div class="client-seguroVehicular-section-faq-container">
+            <div class="client-seguroVehicular-section-faq-container-item" >
+                <div class="client-seguroVehicular-section-faq-question" onclick="toggleAnswer(1)" id = "first-client-seguroVehicular-section-faq-container-item">
+                    ¿Qué es un seguro vehicular?
+                    <span class="client-seguroVehicular-section-faq-toggle-icon">+</span>
+                </div>
+                <div class="client-seguroVehicular-section-faq-answer" id="answer1" >
+                    Un seguro vehicular es un contrato de protección que cubre los riesgos asociados a la propiedad y el uso de un vehículo.
+                    Este tipo de seguro brinda cobertura en caso de accidentes, robos, daños materiales, responsabilidad civil y otras eventualidades que
+                    puedan ocurrir mientras el vehículo esté en funcionamiento. Al contratar un seguro vehicular, el asegurado paga una prima periódica y, a cambio,
+                    la compañía de seguros se compromete a indemnizar los gastos o pérdidas relacionadas con el vehículo según los términos y condiciones establecidos
+                    en la póliza.
+                </div>
+            </div>
+            <div class="client-seguroVehicular-section-faq-container-item">
+                <div class="client-seguroVehicular-section-faq-question" onclick="toggleAnswer(2)">
+                    ¿Es obligatorio tener un seguro vehicular?
+                    <span class="client-seguroVehicular-section-faq-toggle-icon">+</span>
+                </div>
+                <div class="client-seguroVehicular-section-faq-answer" id="answer2">
+                    Según la Ley de Tránsito y Seguridad Vial, todos los propietarios de vehículos automotores deben tener un seguro obligatorio de accidentes de tránsito
+                    (SOAT) vigente. Sin embargo, Además del SOAT, es altamente recomendable contratar un seguro
+                    vehicular adicional que brinde cobertura contra daños materiales, robos y otros riesgos para proteger mejor tu vehículo y a ti mismo en
+                    caso de eventos imprevistos.
+                </div>
+            </div>
+            <div class="client-seguroVehicular-section-faq-container-item">
+                <div class="client-seguroVehicular-section-faq-question" onclick="toggleAnswer(3)">
+                    ¿Qué tipo de coberturas ofrece un seguro vehicular?
+                    <span class="client-seguroVehicular-section-faq-toggle-icon">+</span>
+                </div>
+                <div class="client-seguroVehicular-section-faq-answer" id="answer3">
+                    Un seguro vehicular puede ofrecer coberturas como responsabilidad civil y daños materiales, brindando protección contra daños y lesiones a terceros,
+                    así como la protección del propio vehículo en caso de accidentes, colisiones y otros eventos. Todo depende de la póliza y las opciones elegidas al
+                    momento de la compra.
+                </div>
+            </div>
+            <div class="client-seguroVehicular-section-faq-container-item">
+                <div class="client-seguroVehicular-section-faq-question" onclick="toggleAnswer(4)">
+                    ¿Cómo se realiza la renovación de un seguro vehicular?
+                    <span class="client-seguroVehicular-section-faq-toggle-icon">+</span>
+                </div>
+                <div class="client-seguroVehicular-section-faq-answer" id="answer4">
+                    La renovación de tu seguro vehicular es un proceso sencillo. Por lo general, la compañía de seguros te enviará un recordatorio cercano a la fecha
+                    de vencimiento de tu póliza. Puedes renovar tu seguro de manera rápida y conveniente a través de nuestra página web, por teléfono o visitando una
+                    de nuestras sucursales. Nuestro equipo de atención al cliente estará encantado de asistirte y brindarte toda la información necesaria para completar
+                    el proceso de renovación de manera exitosa.
+                </div>
+            </div>
+            <div class="client-seguroVehicular-section-faq-container-item">
+                <div class="client-seguroVehicular-section-faq-question" onclick="toggleAnswer(5)">
+                    ¿Cuándo recibo el Seguro si compro por Union Seguros?
+                    <span class="client-seguroVehicular-section-faq-toggle-icon">+</span>
+                </div>
+                <div class="client-seguroVehicular-section-faq-answer" id="answer5">
+                    Cuando compras un seguro a través de Union Seguros, recibirás la póliza y la documentación relacionada dentro de las 24 horas siguientes a la fecha
+                    de confirmación de tu compra. Una vez que hayamos procesado tu solicitud y verificado la información proporcionada, te enviaremos el seguro por correo
+                    electrónico y también tendrás la opción de recibirlo por correo físico.
+                </div>
+            </div>
+            <div class="client-seguroVehicular-section-faq-container-item">
+                <div class="client-seguroVehicular-section-faq-question" onclick="toggleAnswer(6)" id = "last-client-seguroVehicular-section-faq-container-item">
+                    ¿Por qué varía el precio de mi seguro vehicular?
+                    <span class="client-seguroVehicular-section-faq-toggle-icon">+</span>
+                </div>
+                <div class="client-seguroVehicular-section-faq-answer" id="answer6">
+                    El precio del seguro vehicular puede variar dependiendo de diversos factores, como la marca y modelo del vehículo, el año de fabricación, el
+                    lugar donde se realiza la compra, entre otros. También puede variar dependiendo del monto de cobertura que se desea contratar y del período de cobertura.
+                    Es recomendable comparar precios y coberturas entre distintas aseguradoras antes de comprar tu seguro vehicular.
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="public/scripts/client/seguroVehicular.js"></script>
 </main>
 
-<%- include('../layouts/SOATFooter'); %>
+<%- include('../layouts/footer'); %>
 </body>
 
 </html>

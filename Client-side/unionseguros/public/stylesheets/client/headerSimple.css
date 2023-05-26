@@ -2,19 +2,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding: 10px 100px;
     color: white;
-  }
+
+}
   
   .client-header-simple-logo {
     float: left;
   }
   
   .client-header-simple-logo img {
-    width: 100px;
-    height: auto;
+      width: 125px;
+      height: auto;
   }
   
   .client-header-simple-telefono{

@@ -10,12 +10,10 @@
 
     <link rel="stylesheet" href="public/stylesheets/style.css">
     <link rel="stylesheet" href="public/stylesheets/client/index.css">
-
 </head>
 
 <body class="container">
     <%- include('../layouts/header'); %>
-
         <main>
             <section class="client-index-section-seguros">
                 <div class="client-index-texto-inicial">
@@ -24,8 +22,7 @@
                 </div>
                 <div class="client-index-section-seguros-container">
                     <div class="client-index-div-seguro">
-                        <img src="public/resources/images/seguroVehicularBox.png"
-                            alt="Imagen del cuadro de Seguro Vehicular">
+                        <img src="public/resources/images/seguroVehicularBox.png" alt="Imagen del cuadro de Seguro Vehicular">
                         <div class="client-index-div-seguro-text">
                             <div class="client-index-div-seguro-nombre">
                                 <p>SEGURO VEHÍCULAR</p>
@@ -38,24 +35,26 @@
                                     Además, podras aprovechar múltiples descuentos y beneficios.</p>
                             </div>
                         </div>
-                        <button class="button-red" id="cotizar"> Cotizar </button>
+                        <button onclick="window.location.href='/segurovehicular'" class ="button-red" id = "btn-cotizar"> Cotizar </button>
                     </div>
                     <div class="client-index-div-seguro">
                         <img src="public/resources/images/soatBox.png" alt="Imagen del cuadro de SOAT">
                         <div class="client-index-div-seguro-text">
-                            <p class="client-index-div-seguro-nombre">SOAT ELECTRÓNICO</p>
-                            <p class="client-index-div-seguro-titulo">Consigue fácil y en minutos tu SOAT electrónico
-                                desde S/. 50 al año.</p>
-                            <p class="client-index-div-seguro-descripcion">Además de protegerte obtendrás descuentos en
-                                más de 70 establecimientos afiliados y los mejores planes de renovación.</p>
+                            <div class="client-index-div-seguro-nombre">
+                                <p>SOAT ELECTRÓNICO</p>
+                            </div>
+                            <div class="client-index-div-seguro-titulo">
+                                <p>Consigue fácil y en minutos tu SOAT electrónico desde S/. 50 al año.</p>
+                            </div>
+                            <div class="client-index-div-seguro-descripcion">
+                                <p>Además de protegerte obtendrás descuentos en más de 70 establecimientos afiliados y los mejores planes de renovación.</p>
+                            </div>
                         </div>
-                        <a href="/soat">
-                            <button class="button-red" id="cotizar"> Comprar </button>
-                        </a>
+                        <button onclick="window.location.href='/soat'" class ="button-red" id = "btn-cotizar"> Cotizar </button>
                     </div>
-
                 </div>
             </section>
+
             <section class="client-index-section-info">
                 <div class="client-index-section-info-container">
                     <h2>Por qué Union Seguros es diferente</h2>
