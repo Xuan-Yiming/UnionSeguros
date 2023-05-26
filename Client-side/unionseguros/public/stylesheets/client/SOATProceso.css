@@ -44,6 +44,8 @@
   padding: 10px;
 }
 
+/*------------TARJETA------------*/
+
 .card {
   width: 17.5rem;
   height: 11rem;
@@ -64,6 +66,8 @@
   height: 3rem;
 
 }
+
+/*------------RESUMEN------------*/
 
 .form-result {
   display: none;

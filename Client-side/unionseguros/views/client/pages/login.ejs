@@ -10,9 +10,6 @@
     <link rel="stylesheet" href="public/stylesheets/client/progressBar.css">
     <link rel="stylesheet" href="public/stylesheets/client/login.css">
     <link rel="stylesheet" href="public/stylesheets/client/form.css">
-
-
-   <script src="public/scripts/client/login.js"></script>
 </head>
 
 <body>
@@ -20,20 +17,14 @@
 
 <main>
     <div class="form-container">
-        <div class="form-container-contol">
+        <div class="form-container-control">
             <div class="progress-bar">
                 <ol class="ProgressBar">
                     <li class="ProgressBar-step is-current">
                         <svg class="ProgressBar-icon">
                             <use xlink:href="public/resources/icons/checkmark.circle.svg" />
                         </svg>
-                        <span class="ProgressBar-stepLabel">Registrarme</span>
-                    </li>
-                    <li class="ProgressBar-step is-current">
-                        <svg class="ProgressBar-icon">
-                            <use xlink:href="public/resources/icons/checkmark.circle.svg" />
-                        </svg>
-                        <span class="ProgressBar-stepLabel">Datos personales</span>
+                        <span class="ProgressBar-stepLabel">Registrarse</span>
                     </li>
                     <li class="ProgressBar-step">
                         <svg class="ProgressBar-icon">
@@ -58,12 +49,12 @@
         </div>
         <div class="form-container-content">
             <div class="form-content-item">
-                <button id="previous" class="button-red">Regresar</button>
+                <button id="btn-previous" class="button-previous">Regresar</button>
             </div>
     
             <div class="form-registro form-content-item">
                 <div class="content">
-                    <h1>Registrarme</h1>
+                    <h1>Registrarse</h1>
                     <div class="form-inputs">
                         <div class="form-line">
                             <div class="form-item">
@@ -80,7 +71,7 @@
                         <div class="form-line">
                             <div class="form-item">
                                 <h3>Número de Documento</h3>
-                                <input placeholder="Ingrese número" id = "txt-docNum" maxlength="20"></input>
+                                <input placeholder="Ingrese número" id = "txt-documento" oninput="validateNumericInput(this)" disabled></input>
                             </div>
     
                         </div>
@@ -115,7 +106,7 @@
                         <div class="form-line">
                             <div class="form-item">
                                 <h3>Ingresar PIN</h3>
-                                <input placeholder="Ingrese PIN" id = "txt-PIN" maxlength="20"></input>
+                                <input placeholder="Ingrese PIN" id = "txt-PIN" oninput="validateNumericInput(this)" maxlength="6"></input>
                                 <p>Ingrese el PIN de 6 dígitos que enviamos a tu correo.</p>
                             </div>
     
@@ -127,19 +118,21 @@
             </div>
 
             <div class="form-result form-content-item">
-                <div class="form-result-contect">
+                <div class="form-result-content">
                     <h1>¡Tu cuenta fue creada con exito!</h1>
                     <p>Se ha sido enviado a su correo electrónico la contraseña para ingresar a su cuenta. Podrás cambiarla más adelante</p>
                 </div>
             </div>
     
             <div class="form-content-item">
-                <button id="advance" class="button-red">Continuar</button>
+                <button id="btn-advance" class="button-red">Continuar</button>
             </div>
     
         </div>
     </div>
+    <script src="public/scripts/client/login.js"></script>
 </main>
 
+</body>
 <%- include('../layouts/footer'); %>
 </html>

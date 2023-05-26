@@ -36,11 +36,11 @@ app.use('/SOATProceso', SOATProcesoRouter);
 var SOATRouter = require('./routes/client/SOAT');
 app.use('/SOAT', SOATRouter)
 
-// //pagina de seguro vehicular
-// var seguroVehicularRouter = require('./routes/client/seguroVehicular');
-// app.use('/seguroVehicular', seguroVehicularRouter);
-// var seguroVehicularProcesoRouter = require('./routes/client/seguroVehicularProceso');
-// app.use('/seguroVehicularProceso', seguroVehicularProcesoRouter);
+//pagina de seguro vehicular
+var seguroVehicularRouter = require('./routes/client/seguroVehicular');
+app.use('/seguroVehicular', seguroVehicularRouter);
+var seguroVehicularProcesoRouter = require('./routes/client/seguroVehicularProceso');
+app.use('/seguroVehicularProceso', seguroVehicularProcesoRouter);
 
 //pagina de usuario
 var usuarioRouter = require('./routes/client/usuario');

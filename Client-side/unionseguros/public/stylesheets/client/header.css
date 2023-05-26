@@ -2,8 +2,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Calibri;
+    font-family: Calibri, sans-serif;
     text-decoration: none;
+    display: block;
 }
 
 .client-header{
@@ -51,7 +52,7 @@
     font-size: 18px;
     border: none;
     outline: none;
-    color: black; /*la letra de "MORE"*/
+    color: black;
     padding: 25px 40px;
     background: inherit;
 }
@@ -102,7 +103,6 @@
     display: block;
     color: #041E42;
     font-size: 14px;
-
 }
 
 .client-header-navbar-item-content-row a:hover {
@@ -129,7 +129,6 @@
     align-items: center;
     color: #C8102E;
     text-decoration: none;
-    float: right;
 }
 
 .client-header-navbar-telefono img {
