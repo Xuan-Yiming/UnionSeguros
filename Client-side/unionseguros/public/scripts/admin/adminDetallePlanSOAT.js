@@ -1,31 +1,41 @@
-const GLOBAL_URL = 'http://localhost:8080/api/v1'
+const GLOBAL_URL = 'http://localhost:3000/api/'
 
 window.onload = function () {
-    if (localStorage.getItem('user') == null) {
-        window.location.href = '/admin/login';
-    }
-
-    if (localStorage.getItem('data-plan') == null) {
+    if (localStorage.getItem('plan-id') == null) {
         document.querySelector('#titulo').innerHTML = 'Nuevo Plan SOAT';
-    } else {
-        let data = JSON.parse(localStorage.getItem('data-plan'));
+    }
+    
 
-        document.querySelector('#id').innerHTML = data.id;
-        document.querySelector('#txt-cobertura').value = data.cobertura;
-        document.querySelector('#txt-precio').value = data.precio;
-        document.querySelector('#txt-nombre').value = data.nombrePlan;
-        document.querySelector('#select-estado').value = data.activo;
+    if (localStorage.getItem('plan-id')){
+
+        let id = localStorage.getItem('plan-id');
+
+        let params = new URLSearchParams();
+        params.append('id', id);
+        let url = new URL(GLOBAL_URL + '/planSOAT/obtenerPorId?' + params.toString());
+    
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                document.querySelector('#id').innerHTML = data.id;
+                document.querySelector('#txt-cobertura').value = data.cobertura;
+                document.querySelector('#txt-precio').value = data.precio;
+                document.querySelector('#txt-nombre').value = data.nombrePlan;
+                document.querySelector('#select-estado').value = data.activo;
+            })
+            .catch(error => {
+                // Handle the error
+                console.error(error);
+            });
+    
     }
 
     document.querySelector('#regresar').addEventListener('click', function () {
-        localStorage.removeItem('data-plan');
+        localStorage.clear();
         window.location.href = '/admin/PlanSOAT';
     });
 
     document.querySelector('#btn-guardar').addEventListener('click', function () {
-        if(!verificarCampos()) {
-            return;
-        }
         if (document.querySelector('#id').innerHTML == "") {
             const plan = {
                 "cobertura": document.querySelector('#txt-cobertura').value,
@@ -87,42 +97,6 @@ window.onload = function () {
         }
 
     });
-
-    function verificarCampos(){
-        let cobertura = document.querySelector('#txt-cobertura').value;
-        let precio = document.querySelector('#txt-precio').value;
-        let nombre = document.querySelector('#txt-nombre').value;
-
-        if(cobertura == ""){
-            document.querySelector('#txt-cobertura').focus();
-            alert("Debe ingresar la cobertura");
-            return false;
-        }
-        if(precio == ""){
-            document.querySelector('#txt-precio').focus();
-            alert("Debe ingresar el precio");
-            return false;
-        }
-        if(nombre == ""){
-            document.querySelector('#txt-nombre').focus();
-            alert("Debe ingresar el nombre");
-            return false;
-        }
-
-        if(!/^[0-9]+./.test(precio)){
-            document.querySelector('#txt-precio').focus();
-            alert("El precio debe ser un número");
-            return false;
-        }
-
-        if(!/^[0-9]+./.test(cobertura)){
-            document.querySelector('#txt-cobertura').focus();
-            alert("La cobertura debe ser un número");
-            return false;
-        }
-
-        return true;
-    }
 };
 
 

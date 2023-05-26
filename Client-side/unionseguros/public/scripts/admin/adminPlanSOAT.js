@@ -1,15 +1,11 @@
-const GLOBAL_URL = 'http://localhost:8080/api/v1'
+const GLOBAL_URL = 'http://localhost:3000/api/'
 
 var planes;
 window.onload = function () {
-    if (localStorage.getItem('user') == null) {
-        window.location.href = '/admin/login';
-    }
-
     fetch(GLOBAL_URL + '/planSOAT/ListarTodos')
         .then(response => response.json())
         .then(data => {
-            this.planes = data;
+            planes = data;
             crearLaTabla(data);
         })
         .catch(error => {
@@ -31,7 +27,7 @@ window.onload = function () {
                 fetch(url)
                 .then(response => response.json())
                 .then(data => {
-                    this.planes = data;
+                    planes = data;
                     crearLaTabla(data);
                 })
                 .catch(error => {
@@ -42,7 +38,7 @@ window.onload = function () {
         });
         
         document.querySelector('#btn-nuevo').addEventListener('click', function () {
-            localStorage.removeItem('data-plan');
+            localStorage.clear();
             window.location.href = '/admin/detallePlanSOAT';
         });
 
@@ -88,13 +84,21 @@ function crearLaTabla(data){
         editButton.innerText = 'Editar';
         editButton.setAttribute('data-id', plan.id);
         editButton.addEventListener('click', () => {
-            const dataId = event.target.getAttribute('data-id');
-                localStorage.setItem('data-plan', JSON.stringify(planes.find(plan => plan.id == dataId)));
-                window.location.href = '/admin/detallePlanSOAT';
         });
         button.appendChild(editButton);
         tableRow.appendChild(button);
 
         table.appendChild(tableRow);
     });
+
+    const btnEdits = document.querySelectorAll('.btn-edit');
+    btnEdits.forEach(btn => {
+        btn.addEventListener('click', function () {
+        const plan = {
+            "id": this.getAttribute('data-id'),
+        }
+        localStorage.setItem('plan-id', plan.id);
+        window.location.href = '/admin/detallePlanSOAT';
+    });
+});
 }
