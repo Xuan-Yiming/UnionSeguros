@@ -1,11 +1,14 @@
-const GLOBAL_URL = 'http://localhost:3000/api/'
+const GLOBAL_URL = 'http://localhost:8080/api/v1'
 
-var planes;
+var usuarios;
 window.onload = function () {
-    fetch(GLOBAL_URL + '/Usuario/ListarTodos')
+    if (localStorage.getItem('user') == null) {
+        window.location.href = '/admin/login';
+    }
+    fetch(GLOBAL_URL + '/usuario/ListarTodos')
         .then(response => response.json())
         .then(data => {
-            planes = data;
+            this.usuarios = data;
             crearLaTabla(data);
         })
         .catch(error => {
@@ -27,7 +30,7 @@ window.onload = function () {
                 fetch(url)
                 .then(response => response.json())
                 .then(data => {
-                    planes = data;
+                    this.usuarios = data;
                     crearLaTabla(data);
                 })
                 .catch(error => {
@@ -38,8 +41,8 @@ window.onload = function () {
         });
         
         document.querySelector('#btn-nuevo').addEventListener('click', function () {
-            localStorage.clear();
-            window.location.href = '/admin/detallePlanSOAT';
+            localStorage.removeItem("data-usuario");
+            window.location.href = '/admin/detalleUsuario';
         });
 
 }
@@ -54,23 +57,23 @@ function crearLaTabla(data){
 
         const nombres = document.createElement('td');
         nombres.classList.add('td-nombre');
-        nombres.innerText = usaurio.nombres + ", " + usaurio.apellidoPaterno + " " + usaurio.apellidoMaterno;
+        nombres.innerText = usaurio.nombre + ", " + usaurio.apellidoPaterno + " " + usaurio.apellidoMaterno;
         tableRow.appendChild(nombres);
 
         const rol = document.createElement('td');
         rol.classList.add('td-rol');
-        rol.innerText = usaurio.rol;
+        rol.innerText = usaurio.fidRoles.descripcion;
         tableRow.appendChild(rol);
 
         const auditoria = document.createElement('td');
         auditoria.classList.add('td-auditoria');
-        auditoria.innerText = plan.precio;
+        auditoria.innerText = "Auditoria";
         tableRow.appendChild(auditoria);
 
 
         const activo = document.createElement('td');
         activo.classList.add('td-activo');
-        activo.innerText = plan.activo?'Activo':'Inactivo';
+        activo.innerText = usaurio.activo?'Activo':'Inactivo';
         tableRow.appendChild(activo);
 
         //add edit button
@@ -78,8 +81,11 @@ function crearLaTabla(data){
         const editButton = document.createElement('button');
         editButton.classList.add('btn-edit');
         editButton.innerText = 'Editar';
-        editButton.setAttribute('data-id', plan.id);
+        editButton.setAttribute('data-id', usaurio.id);
         editButton.addEventListener('click', () => {
+            const dataId = event.target.getAttribute('data-id');
+            localStorage.setItem('data-usuario', JSON.stringify(this.usuarios.find( usuario => usuario.id == dataId)));
+            window.location.href = '/admin/detalleUsuario';
         });
         button.appendChild(editButton);
         tableRow.appendChild(button);
@@ -87,14 +93,4 @@ function crearLaTabla(data){
         table.appendChild(tableRow);
     });
 
-    const btnEdits = document.querySelectorAll('.btn-edit');
-    btnEdits.forEach(btn => {
-        btn.addEventListener('click', function () {
-        const usaurio = {
-            "id": this.getAttribute('data-id'),
-        }
-        localStorage.setItem('usaurio-id', usaurio.id);
-        window.location.href = '/admin/detalleUsuario';
-    });
-});
 }

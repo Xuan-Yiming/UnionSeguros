@@ -1,4 +1,4 @@
-const GLOBAL_URL = 'http://localhost:3000/api/'
+const GLOBAL_URL = 'http://localhost:8080/api/v1'
 //Q&A
 window.onload = function () {
     //reset the inputs
