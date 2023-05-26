@@ -1,13 +1,18 @@
-const GLOBAL_URL = 'http://localhost:8080/api/v1'
+const GLOBAL_URL = 'http://localhost:3000/api/'
 
 window.onload = function () {
     document.querySelector("#button-login").addEventListener('click', function () {
-        let params = new URLSearchParams(location.search);
-        params.append('email', document.querySelector("#txt-usuario").value);
-        params.append('contrasena', document.querySelector("#txt-usuario").value);
-
-        let url = new URL(GLOBAL_URL + 'usuario/login?'+ params.toString());
-        fetch(url)
+        const user = {
+            "usuario": document.querySelector("#txt-usuario").value,
+            "password": document.querySelector("#txt-usuario").value
+        }
+        fetch(GLOBAL_URL + '/usuario/login', {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
             .then(response => response.json())
             .then(element => {
                 if (element) {
@@ -22,5 +27,5 @@ window.onload = function () {
                 // Handle the error
                 console.error(error);
             });
-    });
+    }
 }
