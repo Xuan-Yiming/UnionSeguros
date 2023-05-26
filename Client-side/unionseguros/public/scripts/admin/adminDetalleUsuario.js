@@ -5,21 +5,30 @@ window.onload = function () {
         window.location.href = '/admin/login';
     }
 
-    if (localStorage.getItem('data-plan') == null) {
-        document.querySelector('#titulo').innerHTML = 'Nuevo Plan SOAT';
+    if (localStorage.getItem('data-usuario') == null) {
+        document.querySelector('#titulo').innerHTML = 'Nuevo Usuario';
     } else {
-        let data = JSON.parse(localStorage.getItem('data-plan'));
+        let data = JSON.parse(localStorage.getItem('data-usuario'));
 
         document.querySelector('#id').innerHTML = data.id;
-        document.querySelector('#txt-cobertura').value = data.cobertura;
-        document.querySelector('#txt-precio').value = data.precio;
-        document.querySelector('#txt-nombre').value = data.nombrePlan;
+        document.querySelector('#txt-nombre').value = data.nombre;
+        document.querySelector('#txt-apellido-paterno').value = data.apellidoPaterno;
+        document.querySelector('#txt-apellido-materno').value = data.apellidoMaterno;
+        document.querySelector('#txt-celular').value = data.telefono;
+        document.querySelector('#txt-correo').value = data.email;
+        document.querySelector('#txt-contrasena').value = data.contrasena;
         document.querySelector('#select-estado').value = data.activo;
+        document.querySelector('#select-rol').value = data.fidRoles.idRole;
+        document.querySelector('#txt-direccion').value = data.direccion;
+        document.querySelector('#dp-fecha-nacimiento').value = data.fechaNacimiento;
+        document.querySelector('#txt-documento').value = data.numeroDocumento;
+        document.querySelector('#select-documento').value = data.fidTipoDocumento.id;
+        document.querySelector('#select-estado').value = data.activo? 1: 0;
     }
 
     document.querySelector('#regresar').addEventListener('click', function () {
-        localStorage.removeItem('data-plan');
-        window.location.href = '/admin/PlanSOAT';
+        localStorage.removeItem('data-usaurio');
+        window.location.href = '/admin/usuario';
     });
 
     document.querySelector('#btn-guardar').addEventListener('click', function () {
