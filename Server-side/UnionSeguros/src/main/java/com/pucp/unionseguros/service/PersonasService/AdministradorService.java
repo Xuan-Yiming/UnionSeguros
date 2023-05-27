@@ -19,13 +19,15 @@ public class AdministradorService {
     }
 
     public int ingresarAdministrador(Administrador administrador){
-        Administrador foundAdministrador = null;
+        Administrador foundAdministrador = null,foundEmailAdministrador= null;
 
         foundAdministrador = administradorRepository.findAdministradorByNumeroDocumentoAndActivoIsTrue(administrador.getNumeroDocumento());
-        if(foundAdministrador == null){
+        foundEmailAdministrador = administradorRepository.findAdministradorByEmailAndActivoIsTrue(administrador.getEmail());
+        if(foundAdministrador != null){
             return  0;
-        }
-        else{
+        } else if (foundEmailAdministrador!=null) {
+            return -1;
+        } else{
             Administrador savedAdministrador = administradorRepository.saveAndFlush(administrador);
             return  savedAdministrador.getId();
         }
