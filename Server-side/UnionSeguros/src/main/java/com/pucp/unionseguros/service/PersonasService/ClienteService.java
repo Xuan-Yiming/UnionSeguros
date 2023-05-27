@@ -2,7 +2,9 @@ package com.pucp.unionseguros.service.PersonasService;
 
 import com.pucp.unionseguros.model.Personas.Cliente;
 import com.pucp.unionseguros.model.Personas.Roles;
+import com.pucp.unionseguros.model.Personas.Usuario;
 import com.pucp.unionseguros.repository.PersonasRepository.ClienteRepository;
+import com.pucp.unionseguros.repository.PersonasRepository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +14,13 @@ import java.util.List;
 @Component
 public class ClienteService {
     final private  ClienteRepository clienteRepository;
+    private final UsuarioRepository usuarioRepository;
 
     @Autowired
-    public ClienteService(ClienteRepository clienteRepository) {
+    public ClienteService(ClienteRepository clienteRepository,
+                          UsuarioRepository usuarioRepository) {
         this.clienteRepository = clienteRepository;
+        this.usuarioRepository = usuarioRepository;
     }
 
     public List<Cliente> listarClientes(){
@@ -24,12 +29,13 @@ public class ClienteService {
 
     public int ingresarCliente(Cliente cliente) {
 
-        Cliente foundCliente = null, foundEmailCliente = null;
-        foundCliente = clienteRepository.findClienteByNumeroDocumentoAndActivoIsTrue(cliente.getNumeroDocumento());
-        foundEmailCliente = clienteRepository.findClienteByEmailAndActivoIsTrue(cliente.getEmail());
-        if(foundCliente !=null){
+        List<Usuario> foundUsuario = null, foundEmaailAdministrador=null;
+        foundUsuario = usuarioRepository.findUsuario(cliente.getNumeroDocumento());
+
+        foundEmaailAdministrador =  usuarioRepository.findUsuario(cliente.getEmail().toString());
+        if(foundUsuario !=null){
             return 0;
-        } else if (foundEmailCliente!=null) {
+        } else if (foundEmaailAdministrador!=null) {
             return -1;
         } else{
             Cliente savedCliente = clienteRepository.saveAndFlush(cliente);
@@ -46,9 +52,7 @@ public class ClienteService {
         return cliente;
     }
     public Cliente updateCliente(Cliente cliente){
-        Cliente foundCliente = clienteRepository.findClienteByIdAndActivoIsTrue(cliente.getId());
-        foundCliente = cliente;
-        return clienteRepository.save(foundCliente);
+        return clienteRepository.save(cliente);
     }
 
     public Cliente deleteCliente(Cliente cliente){

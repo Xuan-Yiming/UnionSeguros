@@ -32,7 +32,7 @@ public class AdministradorController {
     }
 
     @PostMapping("/insertar")
-    public int registrarNuevoAdministrador(Administrador administrador){
+    public int registrarNuevoAdministrador(@RequestBody Administrador administrador){
         return  administradorService.ingresarAdministrador(administrador);
     }
 

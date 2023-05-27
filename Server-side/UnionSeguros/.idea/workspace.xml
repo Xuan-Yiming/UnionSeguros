@@ -6,17 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="32e535dd-9087-49b2-b16f-1aee167975e6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/PersonasRepository/AdministradorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/PersonasRepository/AdministradorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/PersonasRepository/ClienteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/PersonasRepository/ClienteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/PersonasController/AdministradorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/PersonasController/AdministradorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/PersonasRepository/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/PersonasRepository/UsuarioRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/PersonasService/AdministradorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/PersonasService/AdministradorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/PersonasService/ClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/PersonasService/ClienteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/UnionSeguros-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/UnionSeguros-0.0.1-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/UnionSeguros-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/UnionSeguros-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.pucp.unionseguros.UnionSegurosApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.pucp.unionseguros.UnionSegurosApplicationTests.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.pucp.unionseguros.UnionSegurosApplicationTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.pucp.unionseguros.UnionSegurosApplicationTests.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/PersonasController/AdministradorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/PersonasController/AdministradorController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/PersonasService/AdministradorService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/PersonasService/AdministradorService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/PersonasService/ClienteService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/PersonasService/ClienteService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +123,7 @@
       <workItem from="1685045109782" duration="68000" />
       <workItem from="1685045237918" duration="2258000" />
       <workItem from="1685136081741" duration="8507000" />
-      <workItem from="1685199839202" duration="7082000" />
+      <workItem from="1685199839202" duration="11716000" />
     </task>
     <servers />
   </component>
