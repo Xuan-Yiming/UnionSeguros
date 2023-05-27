@@ -12,10 +12,14 @@
     top:0; left:0; right:0;
     background: white;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
     padding: 0 300px;
+}
+
+.client-header-info-container{
     display: flex;
     align-items: center;
-    z-index: 1000;
+    justify-content: space-between;
 }
 
 .client-header-logo {
@@ -30,10 +34,10 @@
 }
 
 .client-header-navbar {
-    overflow: hidden;
-    justify-items: center;
-    margin-right: 25%;
-    margin-left: 10%;
+    display: flex;
+    flex-direction: row;
+
+    margin-right: 15%;
 }
 
 .client-header-navbar a {
@@ -44,17 +48,20 @@
 }
 
 .client-header-navbar-item{
-    float: left;
     overflow: hidden;
+    display: block;
 }
 
 .client-header-navbar-item-button {
     font-size: 18px;
+    text-align: center;
     border: none;
     outline: none;
     color: black;
     padding: 25px 40px;
     background: inherit;
+    height: 100%;
+    width: 100%;
 }
 
 .client-header-navbar  .client-header-navbar-item:hover .client-header-navbar-item-button {
@@ -69,7 +76,6 @@
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     display: none;
     position: absolute;
-
     width: 100%;
     left: 0;
     z-index: 10;
@@ -116,13 +122,6 @@
     clear: both;
 }
 
-@media(max-width: 650px){
-    .column {
-        width: 100%;
-        height: auto;
-    }
-}
-
 .client-header-navbar-telefono {
     float: right;
     display: flex;
@@ -134,5 +133,18 @@
 .client-header-navbar-telefono img {
     width: 30px;
     height: 30px;
-    margin-right: 5px;
+}
+
+@media(max-width: 1500px){
+    .client-header-navbar-telefono h3{
+        display: none;
+    }
+    .client-header-navbar{
+        margin-right: 0;
+    }
+}
+
+.client-header-group-login-tel{
+    display: flex;
+    flex-direction: row;
 }

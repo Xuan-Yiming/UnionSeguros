@@ -12,14 +12,16 @@
     <link rel="stylesheet" href="../public/stylesheets/admin/adminDetalleUsuario.css">
 
     <script type="text/javascript" src="../public/scripts/admin/adminDetalleUsuario.js"></script>
+    <script type="text/javascript" src="../public/scripts/conection.js"></script>
+    
 </head>
 
 <body class="container">
     <%-include('../layouts/header'); %>
         <main>
             <div class="content-container">
-                <div class="content-cantainer-item">
-                    <button id="regresar" class="button-red">Regresar</button>
+                <div id="content-container-item-regresar" class="content-container-item">
+                    <button id="regresar" class="button-previous">Regresar</button>
                 </div>
 
                 <div class="form-inputs">
@@ -79,7 +81,7 @@
                         </div>
                         <div class="form-item">
                             <h3>Número de documento</h3>
-                                <input placeholder="Ingresar número" id="txt-documento" disabled></input>
+                                <input placeholder="Ingresar número" id="txt-documento"></input>
                         </div>
                     </div>
 
@@ -88,26 +90,24 @@
                             <h3>Rol</h3>
                                 <select id="select-rol">
                                     <option value="" disabled selected>Seleccione</option>
-                                    <option value="1">Vendedor</option>
-                                    <option value="2">Administrador</option>
                                 </select>
                         </div>
                         <div class="form-item">
                             <h3>Estado</h3>
                             <select id="select-estado">
                                 <option value="1">Activo</option>
-                                <option value="2">Inactivo</option>
+                                <option value="0">Inactivo</option>
                             </select>
                         </div>
                     </div>
                 
                 </div>
 
-                <div class="content-cantainer-item bottom">
+                <div class="content-container-item bottom">
                     <button id="btn-guardar" class="button-red">Guardar</button>
                 </div>
 
             </div>
         </main>
-
+</body>
 </html>

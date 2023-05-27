@@ -55,8 +55,9 @@ app.use('/iniciarSesion', iniciarSesionRouter);
 //Admin
 //pagina de administrador
 var adminLoginRouter = require('./routes/admin/adminLogin');
-app.use('/admin/login', adminLoginRouter);
 app.use('/admin', adminLoginRouter);
+app.use('/admin/login', adminLoginRouter);
+
 
 //pagina de SOAT
 var adminPlanSOATRouter = require('./routes/admin/adminPlanSOAT');

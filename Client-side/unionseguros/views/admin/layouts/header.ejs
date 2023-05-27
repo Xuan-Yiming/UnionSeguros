@@ -1,73 +1,56 @@
 <link rel="stylesheet" href="../public/stylesheets/admin/header.css">
-<header>
-    <nav class="navbar">
-        <div></div>
-        <div class="navbar-content">
-
-            <a class="navbar-logo">
-                <img src="../public/resources/logos/logo-blue-back.png" alt="Logo">
-            </a>
-
-            <div class="hover-trigger" id="b-ventas">
-                <a class="button" href="/admin/ventas">Ventas</a>
-            </div>
-
-            <div class="hover-trigger" id="b-clientes">
-                <a class="button" href="#">Clientes</a>
-            </div>
-
-            <div class="hover-trigger" id="b-seguros">
-                <a class="button" href="/admin/seguros">Seguros</a>
-            </div>
-
-            <div class="hover-trigger" id="b-usuarios">
-                <a class="button" href="#">Usuarios</a>
-            </div>
-
-            <div class="hover-trigger" id="b-vehiculos">
-                <a class="button" href="#">Vehiculos</a>
-            </div>
-
-            <div class="navbar-button-list">
-                <button class="button button-icon" id="search-button">
-                    <img src="../public/resources/icons/Magnify.png" alt="Buscar">
-                </button>
-                <button class="button button-icon" id="user-button">
-                    <img src="../public/resources/icons/Human.png" alt="Usuario">
-                </button>
-            </div>
-
-        </div>
-        <div></div>
-    </nav>
-
-    <div class="hover-content">
-        <div class="hover-content-container">
-            <div id="list-container">
-                <ul id="menu-option-list">
-                </ul>
-            </div>
-            <div id="search-container">
-                <div class="search-bar">
-                    <img src="../public/resources/icons/Magnify.png" alt="Buscar">
-                    <input type="text" class="search-box" placeholder="Buscar">
-                </div>
-                <div>
-                    <ul id="search-result">
-                    </ul>
+<header class="admin-header">
+    <div class="admin-header-info-container">
+        <a href="/admin/planSOAT" class="admin-header-logo">
+            <img src="/public/resources/logos/logo-blue-back.png" alt="Logo de Union Seguros">
+        </a>
+        <nav class="admin-header-navbar">
+            <div class="admin-header-navbar-item">
+                <button class="admin-header-navbar-item-button">Ventas</button>
+                <div class="admin-header-navbar-item-content">
+                    <div class="admin-header-navbar-item-content-row">
+                        <a href="/admin/ventas">Lista de ventas</a>
+                    </div>
+                    <div class="admin-header-navbar-item-content-row">
+                        <a href="/admin/reporte-ventas">Reporte de ventas</a>
+                    </div>
                 </div>
             </div>
-            <div id="user-container">
-                <p id="username">
-                    
-                </p>
-                <a id="user-button" href="/admin">
-                    Salir
-                </a>
+            <div class="admin-header-navbar-item">
+                <button onclick="window.location.href='/admin/clientes'" class="admin-header-navbar-item-button">Clientes</button>
+            </div>
+            <div class="admin-header-navbar-item">
+                <button class="admin-header-navbar-item-button">Seguros</button>
+                <div class="admin-header-navbar-item-content">
+                    <div class="admin-header-navbar-item-content-row">
+                        <a href="/admin/planSOAT">SOAT</a>
+                    </div>
+                    <div class="admin-header-navbar-item-content-row">
+                        <a href="/admin/planSeguroVehicular">Seguro vehicular</a>
+                    </div>
+                </div>
+            </div>
+            <div class="admin-header-navbar-item">
+                <button class="admin-header-navbar-item-button">Usuarios</button>
+                <div class="admin-header-navbar-item-content">
+                    <div class="admin-header-navbar-item-content-row">
+                        <a href="/admin/usuario">Usuario</a>
+                    </div>
+                </div>
+            </div>
+            <div class="admin-header-navbar-item">
+                <button onclick="window.location.href='/admin/vehiculos'" class="admin-header-navbar-item-button">Vehiculos</button>
+            </div>
+        </nav>
+        <div class="group-user-navbar-item">
+            <button id="group-user-button">
+                <img id="group-user-button-icon" src="/public/resources/icons/Human.png" alt="Icono Usuario">
+            </button>
+            <div class="group-user-item-content">
+                <div class="group-user-button-content-row">
+                    <a href="/admin">Cerrar sesión</a>
+                </div>
             </div>
         </div>
-
     </div>
-    <script src="../public/scripts/admin/header.js"></script>
-
 </header>

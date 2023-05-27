@@ -1,0 +1,21 @@
+.admin-header-simple {
+    display: flex;
+    align-items: center;
+    padding: 10px 100px;
+    background-color: #041E42;
+}
+
+.admin-header-simple p{
+    font-size: 18px;
+    color: white;
+    margin-left: 15px;
+}
+  
+  .admin-header-simple-logo {
+    float: left;
+  }
+  
+  .admin-header-simple-logo img {
+      width: 125px;
+      height: auto;
+  }
