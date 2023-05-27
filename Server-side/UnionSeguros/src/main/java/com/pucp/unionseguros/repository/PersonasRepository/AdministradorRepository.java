@@ -14,6 +14,7 @@ public interface AdministradorRepository extends JpaRepository<Administrador, In
 
     public Administrador findAdministradorByIdAndActivoIsTrue(Integer id);
 
+    public Administrador findAdministradorByEmailAndActivoIsTrue(String emalIngresado);
     public Administrador findAdministradorByNumeroDocumentoAndActivoIsTrue(String numeroDocumentoIngresado);
 
     @Query("SELECT p.fidRoles FROM Administrador p "+

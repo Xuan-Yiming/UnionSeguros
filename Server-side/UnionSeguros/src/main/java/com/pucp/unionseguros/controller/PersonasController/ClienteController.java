@@ -34,7 +34,7 @@ public class ClienteController {
     public Cliente buscarClientePorDocumento(@RequestParam(name = "numDocumentoIngresado") String numDocumento){
         return clienteService.buscarClientePorDocumento(numDocumento);
     }
-    @PostMapping("/ingresar")
+    @PostMapping("/insertar")
     public int registrarNuevoCliente(@RequestBody Cliente cliente){
         return clienteService.ingresarCliente(cliente);
     }

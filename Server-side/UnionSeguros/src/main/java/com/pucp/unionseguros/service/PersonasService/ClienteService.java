@@ -24,12 +24,14 @@ public class ClienteService {
 
     public int ingresarCliente(Cliente cliente) {
 
-        Cliente foundCliente = null;
+        Cliente foundCliente = null, foundEmailCliente = null;
         foundCliente = clienteRepository.findClienteByNumeroDocumentoAndActivoIsTrue(cliente.getNumeroDocumento());
-
+        foundEmailCliente = clienteRepository.findClienteByEmailAndActivoIsTrue(cliente.getEmail());
         if(foundCliente !=null){
             return 0;
-        }else{
+        } else if (foundEmailCliente!=null) {
+            return -1;
+        } else{
             Cliente savedCliente = clienteRepository.saveAndFlush(cliente);
 
 

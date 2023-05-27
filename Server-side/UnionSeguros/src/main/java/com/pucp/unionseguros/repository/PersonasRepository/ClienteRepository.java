@@ -14,6 +14,8 @@ public interface ClienteRepository extends JpaRepository<Cliente,Integer> {
 
     public Cliente findClienteByIdAndActivoIsTrue(Integer id);
 
+    public Cliente findClienteByEmailAndActivoIsTrue(String emailIngresado);
+
     @Query("SELECT p.fidRoles FROM Cliente p "+
             "    WHERE p.id=:id")
     public Roles getRol(int id);
