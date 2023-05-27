@@ -18,4 +18,5 @@ public interface PlanSOATRepository extends JpaRepository<PlanSOAT, Integer> {
             "LIKE CONCAT('%', ?1, '%') " +
             "ORDER BY p.nombrePlan ASC")
     public List<PlanSOAT> findPlanSOAT(String busqueda);
+
 }
