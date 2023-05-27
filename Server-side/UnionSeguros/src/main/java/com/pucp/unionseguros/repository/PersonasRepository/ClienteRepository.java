@@ -15,4 +15,5 @@ public interface ClienteRepository extends JpaRepository<Cliente,Integer> {
     @Query("SELECT p.fidRoles FROM Cliente p "+
             "    WHERE p.id=:id")
     public Roles getRol(int id);
+
 }

@@ -26,7 +26,7 @@ public class SOATController {
         this.soatService = soatService;
     }
 
-    @GetMapping("/listarTodas")
+    @GetMapping("/listarTodos")
     public List<SOAT> listarSOATs(){
         return soatService.listarSOAT();
     }

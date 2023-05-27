@@ -6,6 +6,7 @@ import com.pucp.unionseguros.repository.PersonasRepository.AdministradorReposito
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -18,8 +19,17 @@ public class AdministradorService {
     }
 
     public int ingresarAdministrador(Administrador administrador){
-        Administrador savedAdministrador = administradorRepository.saveAndFlush(administrador);
-        return  savedAdministrador.getId();
+        Administrador foundAdministrador = null;
+
+        foundAdministrador = administradorRepository.findAdministradorByNumeroDocumentoAndActivoIsTrue(administrador.getNumeroDocumento());
+        if(foundAdministrador == null){
+            return  0;
+        }
+        else{
+            Administrador savedAdministrador = administradorRepository.saveAndFlush(administrador);
+            return  savedAdministrador.getId();
+        }
+
     }
 
     public List<Administrador> listarAdministradoresActivos(){
@@ -37,6 +47,13 @@ public class AdministradorService {
         foundAdministrador.setActivo(false);
         return administradorRepository.save(foundAdministrador);
 
+    }
+
+
+    public List<Administrador> listarAdministradoresActivos(String busqueda){
+        List<Administrador> lista = new ArrayList<>();
+        lista = administradorRepository.listAdministrador(busqueda);
+        return  lista;
     }
 
     public Integer getRol(int id){

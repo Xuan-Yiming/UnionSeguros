@@ -22,8 +22,19 @@ public class ClienteService {
     }
 
     public int ingresarCliente(Cliente cliente) {
-        Cliente savedCliente = clienteRepository.saveAndFlush(cliente);
-        return savedCliente.getId();
+
+        Cliente foundCliente = null;
+        foundCliente = clienteRepository.findClienteByNumeroDocumentoAndActivoIsTrue(cliente.getNumeroDocumento());
+
+        if(foundCliente !=null){
+            return 0;
+        }else{
+            Cliente savedCliente = clienteRepository.saveAndFlush(cliente);
+
+
+            return savedCliente.getId();
+        }
+
     }
 
     public Cliente buscarClientePorDocumento(String numeroDocumentoIngresado){
