@@ -44,6 +44,10 @@
   padding: 10px;
 }
 
+.form-container{
+  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,211,211,1) 53%, rgba(255,255,255,1) 100%);
+}
+
 /*------------TARJETA------------*/
 
 .card {

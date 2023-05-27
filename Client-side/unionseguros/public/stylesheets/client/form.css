@@ -3,9 +3,8 @@
     height: auto;
     min-height: 612px;
     width: 100%;
-    margin-bottom: 120px;
-    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,211,211,1) 53%, rgba(255,255,255,1) 100%);
     flex-direction: column;
+    padding-bottom: 100px;
 }
 
 .form-container-control{
