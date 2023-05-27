@@ -12,23 +12,9 @@ window.onload = function () {
             .then(element => {
                 if (element!=0) {
                     localStorage.setItem('user', JSON.stringify(element));
-                    
-                    let params = new URLSearchParams();
-                    params.append('id', element.toString());
-
-                    let url = new URL(GLOBAL_URL + 'administrador/getRol?' + params.toString());
-
-                    fetch(url)
-                        .then(response => response.json())
-                        .then(element => {
-                            localStorage.setItem('rol', JSON.stringify(element));
-                                window.location.href = '/usuario';
-                        })
-                        .catch(error => {
-                            // Handle the error
-                            console.error(error);
-                        });
-
+                    if(element != 0 ){
+                    window.location.href = '/usuario';
+                    }
                     
                 } else {
                     alert("Usuario o contraseña incorrectos");
