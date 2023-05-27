@@ -30,7 +30,7 @@ public class BoletaDeVentaController {
         return boletaDeVentaService.listarBoletaDeVenta();
     }
 
-    @GetMapping("/listarActivas")
+    @GetMapping("/listarTodasActivas")
     public List<BoletaDeVenta> listarBoletasDeVentaActivas(){
         return  boletaDeVentaService.listarBoletasDeVentaActivas();
     }
@@ -38,5 +38,7 @@ public class BoletaDeVentaController {
     public int  insertarNuevaBoletaDeVenta(@RequestBody BoletaDeVenta boletaDeVenta){
         return boletaDeVentaService.insertarBoletaDeVenta(boletaDeVenta);
     }
+
+
 
 }

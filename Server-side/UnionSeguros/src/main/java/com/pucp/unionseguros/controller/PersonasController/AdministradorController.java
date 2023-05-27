@@ -26,8 +26,12 @@ public class AdministradorController {
         lista = administradorService.listarAdministradoresActivos();
         return  lista;
     }
+    @GetMapping(params = "busqueda",path ="/listarAdministradoresActivos")
+    public List<Administrador> listarAdministradoresActivos(@RequestParam(name = "busqueda") String busqueda){
+        return administradorService.listarAdministradoresActivos(busqueda);
+    }
 
-    @PostMapping("/ingresar")
+    @PostMapping("/insertar")
     public int registrarNuevoAdministrador(Administrador administrador){
         return  administradorService.ingresarAdministrador(administrador);
     }
@@ -41,8 +45,12 @@ public class AdministradorController {
     public Administrador eliminarAdministrador(@RequestBody Administrador administrador){
         return administradorService.deleteAdministrador(administrador);
     }
+
+    /*PARTE DE LOGIN NO TOCAR*/
     @GetMapping(path ="/getRol")
     public Integer getRol(@RequestParam(name = "id") int id){
         return administradorService.getRol(id);
     }
+
+
 }
