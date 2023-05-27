@@ -53,4 +53,9 @@ public class ClienteController {
     public Integer getRol(@RequestParam(name = "id") int id){
         return clienteService.getRol(id);
     }
+
+    @GetMapping(params = "busqueda",path ="/listarClientesActivos")
+    public List<Cliente> listarClientesActivos(@RequestParam(name = "busqueda") String busqueda){
+        return clienteService.listarClientesActivos(busqueda);
+    }
 }

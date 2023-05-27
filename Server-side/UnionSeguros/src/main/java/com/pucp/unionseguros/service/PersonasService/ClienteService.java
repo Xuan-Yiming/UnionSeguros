@@ -6,6 +6,7 @@ import com.pucp.unionseguros.repository.PersonasRepository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -61,5 +62,11 @@ public class ClienteService {
         fidRol=rol.getIdRole();
         if (rol == null) fidRol=0;
         return  fidRol;
+    }
+
+    public List<Cliente> listarClientesActivos(String busqueda){
+        List<Cliente> lista = new ArrayList<>();
+        lista = clienteRepository.listCliente(busqueda);
+        return  lista;
     }
 }
