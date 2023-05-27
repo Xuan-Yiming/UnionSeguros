@@ -1,4 +1,4 @@
-const GLOBAL_URL = 'http://localhost:8080/api/v1'
+
 
 window.onload = function () {
     if (localStorage.getItem('user') == null) {
@@ -88,7 +88,7 @@ window.onload = function () {
                 .then(element => {
                     if (parseInt(element) > 0) {
                         alert("Se ha guardado correctamente");
-                        window.location.href = '/admin/PlanSOAT';
+                        window.location.href = '/admin/usuario';
                     } else {
                         if (parseInt(element) > 0 == 0) {
                         alert("Numero de documento repetido");
@@ -132,6 +132,8 @@ window.onload = function () {
                     }
                 }
             }
+            console.log(JSON.stringify(usuario));
+
             fetch(GLOBAL_URL + '/administrador/modificar', {
                 method: 'PUT',
                 body: JSON.stringify(usuario),
@@ -141,19 +143,11 @@ window.onload = function () {
             })
                 .then(response => response.json())
                 .then(element => {
-                    if (parseInt(element) > 0) {
+                    if (element) {
                         alert("Se ha guardado correctamente");
-                        window.location.href = '/admin/PlanSOAT';
+                        window.location.href = '/admin/usuario';
                     } else {
-                        if (parseInt(element) > 0 == 0) {
-                        alert("Numero de documento repetido");
-                        } else if (parseInt(element) > 0 == -1) {
-                        alert("Correo repetido");
-                        } else {
                         alert("Ha ocurrido un error");
-                        }
-                        return;
-                        
                     }
                 })
                 .catch(error => {

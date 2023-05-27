@@ -1,4 +1,4 @@
-const GLOBAL_URL = 'http://localhost:8080/api/v1'
+
 
 window.onload = function () {
     document.querySelector("#ingresar-btn").addEventListener('click', function () {
@@ -10,11 +10,9 @@ window.onload = function () {
         fetch(url)
             .then(response => response.json())
             .then(element => {
-                if (element==0) {
+                if (parseInt(element) > 0) {
                     localStorage.setItem('user', JSON.stringify(element));
-                    if(element != 0 ){
                     window.location.href = '/usuario';
-                    }
                 } else {
                     alert("Usuario o contraseña incorrectos");
                     return;

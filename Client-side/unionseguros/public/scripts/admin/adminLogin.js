@@ -1,4 +1,4 @@
-const GLOBAL_URL = 'http://localhost:8080/api/v1'
+
 
 window.onload = function () {
     document.querySelector("#button-login").addEventListener('click', function () {
@@ -6,17 +6,13 @@ window.onload = function () {
         params.append('email', document.querySelector("#txt-usuario").value);
         params.append('contrasena', document.querySelector("#txt-contrasena").value);
 
-        let url = new URL(GLOBAL_URL + 'usuario/login?'+ params.toString());
+        let url = new URL(GLOBAL_URL + '/usuario/login?'+ params.toString());
         fetch(url)
             .then(response => response.json())
             .then(element => {
-                if (element!=0) {
+                if (parseInt(element) > 0) {
                     localStorage.setItem('user', JSON.stringify(element));
-                    
-                    if(element != 0 ){
-                        window.location.href = '/admin/usuario';
-                    }
-                    
+                    window.location.href = '/admin/usuario';
                 } else {
                     alert("Usuario o contraseña incorrectos");
                     return;
