@@ -31,6 +31,7 @@ public class AdministradorController {
         return administradorService.listarAdministradoresActivos(busqueda);
     }
 
+
     @PostMapping("/insertar")
     public int registrarNuevoAdministrador(@RequestBody Administrador administrador){
         return  administradorService.ingresarAdministrador(administrador);

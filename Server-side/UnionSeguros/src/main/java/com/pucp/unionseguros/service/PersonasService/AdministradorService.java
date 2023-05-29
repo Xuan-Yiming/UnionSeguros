@@ -24,19 +24,31 @@ public class AdministradorService {
     }
 
     public int ingresarAdministrador(Administrador administrador){
-        List<Usuario> foundUsuario = null, foundEmaailAdministrador=null;
+        Usuario foundUsuario = null, foundEmaailAdministrador=null;
 
-        foundUsuario = usuarioRepository.findUsuario(administrador.getNumeroDocumento());
+        foundUsuario = usuarioRepository.findUsuarioByNumeroDocumento(administrador.getNumeroDocumento());
 
-        foundEmaailAdministrador =  usuarioRepository.findUsuario(administrador.getEmail().toString());
+        foundEmaailAdministrador =  usuarioRepository.findUsuarioByEmail(administrador.getEmail().toString());
 
-        if (foundUsuario != null) {
+        if (foundUsuario !=null) {
             return 0 ;
-        }else if(foundEmaailAdministrador!=null){
+        }else if(foundEmaailAdministrador !=null){
             return -1;
         }
-        Administrador savedAdministrador = administradorRepository.saveAndFlush(administrador);
-        return  savedAdministrador.getId();
+            Administrador savedAdministrador = administradorRepository.saveAndFlush(administrador);
+            return  savedAdministrador.getId();
+
+
+//        if(foundUsuario.isEmpty() && foundEmaailAdministrador.isEmpty()){
+//            Administrador savedAdministrador = administradorRepository.saveAndFlush(administrador);
+//            return  savedAdministrador.getId();
+//        }if (foundUsuario.size()>0){
+//            return 0;
+//        }
+//        return -1;
+
+
+
 
     }
 
