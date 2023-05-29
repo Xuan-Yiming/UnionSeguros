@@ -1,12 +1,8 @@
-const GLOBAL_URL = 'http://54.208.54.180:8080/api/v1'
+
 
 window.onload = function () {
     if (localStorage.getItem('user') == null) {
         window.location.href = '/admin/login';
-        if(localStorage.getItem('rol') != 2){
-            alert("No eres admin");
-            window.location.href = '/';
-        }
     }
 
     if (localStorage.getItem('data-plan') == null) {
@@ -35,7 +31,7 @@ window.onload = function () {
                 "cobertura": document.querySelector('#txt-cobertura').value,
                 "precio": document.querySelector('#txt-precio').value,
                 "nombrePlan": document.querySelector('#txt-nombre').value,
-                "activo": document.querySelector('#select-estado').value
+                "activo": document.querySelector('#select-estado').value?true:false
             }
             fetch(GLOBAL_URL + '/planSOAT/insertar', {
                 method: 'POST',
@@ -64,7 +60,7 @@ window.onload = function () {
                 "cobertura": document.querySelector('#txt-cobertura').value,
                 "precio": document.querySelector('#txt-precio').value,
                 "nombrePlan": document.querySelector('#txt-nombre').value,
-                "activo": document.querySelector('#select-estado').value
+                "activo": document.querySelector('#select-estado').value?true:false
             }
 
             fetch(GLOBAL_URL + '/planSOAT/modificar', {

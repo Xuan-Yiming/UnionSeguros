@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../public/stylesheets/admin/adminUsuario.css">
 
     <script type="text/javascript" src="../public/scripts/admin/adminUsuario.js"></script>
+    <script type="text/javascript" src="../public/scripts/conection.js"></script>
+
 </head>
 
 <body class="container">
@@ -18,13 +20,14 @@
     <main id="tabla-plan-soat">
         <h2>Usuario </h2>
         <div id="control-bar">
-    
             <div id="control-bar-button">
-                <button class="button-blue" id="btn-nuevo"><img src="../public/resources/icons/Gaming.png" alt="Nuevo"><span>Nuevo</span></button>
+                <button class="button-blue-transparente-blue-border" id="btn-nuevo">
+                    + Agregar nuevo
+                </button>
             </div>
             <div id="control-bar-search">
                 <img src="../public/resources/icons/Accessibility.png" alt="Buscar">
-                <input id="txt-buscar" type="text" placeholder="buscar">
+                <input id="txt-buscar" type="text" placeholder="Buscar">
             </div>
         </div>
         <table id="tableID" class="display" style="width:100%">
@@ -32,7 +35,7 @@
                 <tr>
                     <th>Nombre Completo</th>
                     <th>Rol</th>
-                    <th>Aduditoria</th>
+                    <th>Auditoria</th>
                     <th>Estado</th>
                     <th>Herramientas</th>
                 </tr>
@@ -43,5 +46,5 @@
         </table>
     
     </main>
-
+</body>
 </html>

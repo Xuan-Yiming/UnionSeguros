@@ -1,5 +1,5 @@
 
-const GLOBAL_URL = 'http://54.208.54.180:8080/api/v1'
+
 
 //Q&A
 function toggleAnswer(answerId) {

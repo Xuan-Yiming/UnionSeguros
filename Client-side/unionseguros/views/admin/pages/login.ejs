@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
-    <title>Seguros</title>
-    <link rel="icon" type="image/x-icon" href="../public/resources/icons/page-icon.png">
+    <title>Admin - Iniciar sesión</title>
+    <link rel="icon" type="image/x-icon" href="/public/resources/icons/page-icon.png">
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <link rel="stylesheet" href="/public/stylesheets/admin/adminLogin.css">
+    <script type="text/javascript" src="../public/scripts/conection.js"></script>
 
-    <link rel="stylesheet" href="../public/stylesheets/header.css">
-    <link rel="stylesheet" href="../public/stylesheets/style.css">
-    <link rel="stylesheet" href="../public/stylesheets/admin/adminLogin.css">
-
-    <script type="text/javascript" src="../public/scripts/admin/adminLogin.js"></script>
 </head>
 
 <body class="container">
-    
-    <div>
-        <img src="../public/resources/logos/Logo.png" alt="Logo">
-        <h2>Iniciar Sesión</h2>
-        <label>Usuario</label>
-        <input type="text" id="txt-usuario" name="user" placeholder="Usuario">
-        <label>Contraseña</label>
-        <input type="password" id="txt-contrasena" name="password" placeholder="Contraseña">
-        <button id="button-login" class="button-red">Iniciar Sesión</button>
+<%- include('../layouts/headerSimple'); %>
+
+<main class="main-container">
+    <div class="content-container">
+        <h1>Iniciar sesión</h1>
+        <div class="bloque-items-input">
+            <div class="item-registro">
+                <h3>Usuario</h3>
+                <input placeholder="Ingresar usuario" id = "txt-usuario" ></input>
+            </div>
+            <div class="item-registro">
+                <h3>Contraseña</h3>
+                <input type="password" placeholder="Ingrese contraseña" id = "txt-contrasena" ></input>
+            </div>
+        </div>
+        <div class="botones-registro">
+            <button id="button-login" class="button-red">Ingresar</button>
+        </div>
     </div>
+    <script type="text/javascript" src="../public/scripts/admin/adminLogin.js"></script>
+</main>
+
+<%- include('../layouts/footer'); %>
+</body>
 
 </html>
+

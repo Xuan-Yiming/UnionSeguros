@@ -1,16 +1,13 @@
-const GLOBAL_URL = 'http://54.208.54.180:8080/api/v1'
+
 
 var planes;
+var searchTimer;
 window.onload = function () {
     if (localStorage.getItem('user') == null) {
         window.location.href = '/admin/login';
-        if(localStorage.getItem('rol') != 2){
-            alert("No eres admin");
-            window.location.href = '/';
-        }
     }
 
-    fetch(GLOBAL_URL + '/planSOAT/ListarTodos')
+    fetch(GLOBAL_URL + '/planSOAT/listarActivos')
         .then(response => response.json())
         .then(data => {
             this.planes = data;
@@ -21,18 +18,17 @@ window.onload = function () {
             console.error(error);
         });
 
-        document.querySelector('#txt-buscar').addEventListener('input', function () {
-            clearTimeout(searchTimer);
-            searchTimer = setTimeout(function () {
-                const query = document.querySelector('#txt-buscar').value.toLowerCase();
-                searchResult.innerHTML = '';
+    document.querySelector('#txt-buscar').addEventListener('input', function () {
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(function () {
+            const query = document.querySelector('#txt-buscar').value.toLowerCase();
 
-                let params = new URLSearchParams();
-                params.append('busqueda', query);
-                
-                let url = new URL(GLOBAL_URL + '/planSOAT/buscarPlanesSOAT?' + params.toString());
+            let params = new URLSearchParams();
+            params.append('busqueda', query);
 
-                fetch(url)
+            let url = new URL(GLOBAL_URL + '/planSOAT/buscarPlanesSOAT?' + params.toString());
+
+            fetch(url)
                 .then(response => response.json())
                 .then(data => {
                     this.planes = data;
@@ -42,18 +38,18 @@ window.onload = function () {
                     // Handle the error
                     console.error(error);
                 });
-            }, 500);
-        });
-        
-        document.querySelector('#btn-nuevo').addEventListener('click', function () {
-            localStorage.removeItem('data-plan');
-            window.location.href = '/admin/detallePlanSOAT';
-        });
+        }, 500);
+    });
+
+    document.querySelector('#btn-nuevo').addEventListener('click', function () {
+        localStorage.removeItem('data-plan');
+        window.location.href = '/admin/detallePlanSOAT';
+    });
 
 }
 
 
-function crearLaTabla(data){
+function crearLaTabla(data) {
     const table = document.querySelector('#table-body');
     table.innerHTML = '';
     data.forEach(plan => {
@@ -80,11 +76,6 @@ function crearLaTabla(data){
         cobertura.innerText = plan.cobertura;
         tableRow.appendChild(cobertura);
 
-        const activo = document.createElement('td');
-        activo.classList.add('td-activo');
-        activo.innerText = plan.activo?'Activo':'Inactivo';
-        tableRow.appendChild(activo);
-
         //add edit button
         const button = document.createElement('td');
         const editButton = document.createElement('button');
@@ -93,10 +84,53 @@ function crearLaTabla(data){
         editButton.setAttribute('data-id', plan.id);
         editButton.addEventListener('click', () => {
             const dataId = event.target.getAttribute('data-id');
-                localStorage.setItem('data-plan', JSON.stringify(planes.find(plan => plan.id == dataId)));
-                window.location.href = '/admin/detallePlanSOAT';
+            localStorage.setItem('data-plan', JSON.stringify(planes.find(plan => plan.id == dataId)));
+            window.location.href = '/admin/detallePlanSOAT';
         });
         button.appendChild(editButton);
+
+        //add delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('btn-delete');
+        deleteButton.innerText = 'Eliminar';
+        deleteButton.setAttribute('data-id', plan.id);
+        deleteButton.addEventListener('click', () => {
+        const dataId = event.target.getAttribute('data-id');
+           
+            if (confirm("¿Está seguro que desea eliminar el plan SOAT con ID: " + dataId + "?")) {
+                let planElegido = planes.find(plan => plan.id == dataId)
+                const plan = {
+                    "id": planElegido.id,
+                    "cobertura": planElegido.cobertura,
+                    "precio": planElegido.precio,
+                    "nombrePlan": planElegido.nombrePlan,
+                    "activo": false
+                }
+
+                fetch(GLOBAL_URL + '/planSOAT/modificar', {
+                    method: 'PUT',
+                    body: JSON.stringify(plan),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                    .then(response => response.json())
+                    .then(element => {
+                        if (element) {
+                            alert("Se ha eliminado correctamente");
+                            location.reload();
+                        } else {
+                            alert("No se ha podido eliminar");
+                            return;
+                        }
+                    })
+                    .catch(error => {
+                        // Handle the error
+                        console.error(error);
+                    });
+            }
+        });
+        button.appendChild(deleteButton);
         tableRow.appendChild(button);
 
         table.appendChild(tableRow);

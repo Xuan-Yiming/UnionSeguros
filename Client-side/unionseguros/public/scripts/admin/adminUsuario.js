@@ -1,13 +1,9 @@
-const GLOBAL_URL = 'http://54.208.54.180:8080/api/v1'
+
 
 var usuarios;
 window.onload = function () {
     if (localStorage.getItem('user') == null) {
         window.location.href = '/admin/login';
-        if(localStorage.getItem('rol') != 2){
-            alert("No eres admin");
-            window.location.href = '/';
-        }
     }
     fetch(GLOBAL_URL + '/usuario/ListarTodos')
         .then(response => response.json())
