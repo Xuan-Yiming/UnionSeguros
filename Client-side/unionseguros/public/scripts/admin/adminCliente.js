@@ -1,12 +1,11 @@
-
-
 var usuarios;
 var searchTimer;
+
 window.onload = function () {
     if (localStorage.getItem('user') == null) {
         window.location.href = '/admin/login';
     }
-    fetch(GLOBAL_URL + '/administrador/listarTodosActivos')
+    fetch(GLOBAL_URL + '/cliente/listarClientesActivos?busqueda=')
         .then(response => response.json())
         .then(data => {
             this.usuarios = data;
@@ -17,17 +16,17 @@ window.onload = function () {
             console.error(error);
         });
 
-    document.querySelector('#txt-buscar').addEventListener('input', function () {
-        clearTimeout(searchTimer);
-        searchTimer = setTimeout(function () {
-            const query = document.querySelector('#txt-buscar').value.toLowerCase();
+        document.querySelector('#txt-buscar').addEventListener('input', function () {
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(function () {
+                const query = document.querySelector('#txt-buscar').value.toLowerCase();
 
-            let params = new URLSearchParams();
-            params.append('busqueda', query);
+                let params = new URLSearchParams();
+                params.append('busqueda', query);
+                
+                let url = new URL(GLOBAL_URL + '/cliente/listarClientesActivos?' + params.toString());
 
-            let url = new URL(GLOBAL_URL + '/administrador/listarAdministradoresActivos?' + params.toString());
-
-            fetch(url)
+                fetch(url)
                 .then(response => response.json())
                 .then(data => {
                     this.usuarios = data;
@@ -37,18 +36,18 @@ window.onload = function () {
                     // Handle the error
                     console.error(error);
                 });
-        }, 500);
-    });
-
-    document.querySelector('#btn-nuevo').addEventListener('click', function () {
-        localStorage.removeItem("data-usuario");
-        window.location.href = '/admin/detalleUsuario';
-    });
+            }, 500);
+        });
+        
+        document.querySelector('#btn-nuevo').addEventListener('click', function () {
+            localStorage.removeItem("data-cliente");
+            window.location.href = '/admin/detalleCliente';
+        });
 
 }
 
 
-function crearLaTabla(data) {
+function crearLaTabla(data){
     const table = document.querySelector('#table-body');
     table.innerHTML = '';
     data.forEach(usaurio => {
@@ -70,6 +69,11 @@ function crearLaTabla(data) {
         correo.innerText = usaurio.email;
         tableRow.appendChild(correo);
 
+        const baneado = document.createElement('td');
+        baneado.classList.add('td-baneado');
+        baneado.innerText = usaurio.baneado?"Baneado": "Regular";
+        tableRow.appendChild(baneado);
+
         const auditoria = document.createElement('td');
         auditoria.classList.add('td-auditoria');
         auditoria.innerText = "Auditoria";
@@ -83,8 +87,8 @@ function crearLaTabla(data) {
         editButton.setAttribute('data-id', usaurio.id);
         editButton.addEventListener('click', () => {
             const dataId = event.target.getAttribute('data-id');
-            localStorage.setItem('data-usuario', JSON.stringify(this.usuarios.find(usuario => usuario.id == dataId)));
-            window.location.href = '/admin/detalleUsuario';
+            localStorage.setItem('data-cliente', JSON.stringify(this.usuarios.find( usuario => usuario.id == dataId)));
+            window.location.href = '/admin/detalleCliente';
         });
         button.appendChild(editButton);
 
@@ -95,7 +99,7 @@ function crearLaTabla(data) {
         deleteButton.setAttribute('data-id', usaurio.id);
         deleteButton.addEventListener('click', () => {
             const dataId = event.target.getAttribute('data-id');
-            let data = this.usuarios.find(usuario => usuario.id == dataId)
+            let data = this.usuarios.find( usuario => usuario.id == dataId)
             const usuario = {
                 "id": data.id,
                 "nombre": data.nombre,
@@ -114,6 +118,7 @@ function crearLaTabla(data) {
                 "fechaCreacion": data.fechaCreacion,
                 "activoUsuario": false,
                 "activo": false,
+                "baneado": data.baneado,
                 "fidRoles": {
                     "idRole": 1,
                     "fidPermisos": {
@@ -123,7 +128,7 @@ function crearLaTabla(data) {
             }
             console.log(JSON.stringify(usuario));
 
-            fetch(GLOBAL_URL + '/administrador/modificar', {
+            fetch(GLOBAL_URL + '/cliente/modificar', {
                 method: 'PUT',
                 body: JSON.stringify(usuario),
                 headers: {
@@ -134,7 +139,7 @@ function crearLaTabla(data) {
                 .then(element => {
                     if (element) {
                         alert("Se ha guardado correctamente");
-                        window.location.href = '/admin/usuario';
+                        window.location.href = '/admin/cliente';
                     } else {
                         alert("Ha ocurrido un error");
                     }

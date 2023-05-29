@@ -1,3 +1,49 @@
+window.onload = function () {
+    fetch(GLOBAL_URL + '/tipoDocumento/listarActivos')
+    .then(response => response.json())
+    .then(data => {
+        document.querySelector('#select-documento').innerHTML = '';
+        data.forEach(tipoDocumento => {
+            const option = document.createElement('option');
+            option.value = tipoDocumento.id;
+            option.innerText = tipoDocumento.nombre;
+            document.querySelector('#select-documento').appendChild(option);
+        });
+    })
+    .then(() => {
+        document.getElementById("select-documento").addEventListener("change", function () {
+            const selectedValue = this.value;
+            document.getElementById("txt-documento").disabled = false;
+            if (document.querySelector("#select-documento").value == "1") {
+                document.getElementById("txt-documento").maxLength = "8";
+            } else if (document.querySelector("#select-documento").value == "2") {
+                document.getElementById("txt-documento").maxLength = "9";
+            } else if (document.querySelector("#select-documento").value == "5") {
+                document.getElementById("txt-documento").maxLength = "11";
+            }
+        });
+    })
+    .catch(error => {
+        // Handle the error
+        console.error(error);
+    });
+
+    document.querySelector("#btn-cotizar").addEventListener("click", function () {
+
+        if (verificacion()) {
+            return;
+        }
+    
+        localStorage.setItem("placa", document.querySelector("#txt-placa").value);
+        localStorage.setItem("documento", document.querySelector("#txt-documento").value);
+        localStorage.setItem("tipoDocumento", document.querySelector("#select-documento").value);
+    
+        window.location.href = "/seguroVehicularProceso";
+    });
+
+}
+
+
 //Q&A
 function toggleAnswer(answerId) {
     var answer = document.getElementById('answer' + answerId);
@@ -11,66 +57,45 @@ function toggleAnswer(answerId) {
     }
 }
 
-document.getElementById("select-documento").addEventListener("change", function () {
-    const selectedValue = this.value;
-    document.getElementById("txt-documento").disabled = false;
-    if (document.querySelector("#select-documento").value == "1") {
-        document.getElementById("txt-documento").maxLength = "8";
-    } else if (document.querySelector("#select-documento").value == "2") {
-        document.getElementById("txt-documento").maxLength = "9";
-    } else if (document.querySelector("#select-documento").value == "3") {
-        document.getElementById("txt-documento").maxLength = "11";
-    }
-});
-
-
-document.querySelector("#btn-cotizar").addEventListener("click", function () {
-
-    if (verificacion()) {
-        return;
-    }
-
-    localStorage.setItem("placa", document.querySelector("#txt-placa").value);
-    localStorage.setItem("documento", document.querySelector("#txt-documento").value);
-    localStorage.setItem("tipoDocumento", document.querySelector("#select-documento").value);
-
-    window.location.href = "/seguroVehicularProceso";
-});
-
-function validateNumericInput(input) {
-    input.value = input.value.replace(/\D/g, ''); // Eliminar caracteres que no sean números
-}
-
 function verificacion() {
     var placa = document.querySelector("#txt-placa").value;
     var documento = document.querySelector("#txt-documento").value;
     var tipoDocumento = document.querySelector("#select-documento").value;
 
     if(tipoDocumento === "0"){
+
         alert("Por favor ingrese el documento correcto.");
         return true;
-    }else if (tipoDocumento === "3") {
+    }else if (tipoDocumento === "5") {
         if((documento.length !== 11 || !/^[0-9]+$/.test(documento)) || (documento.substring(0, 2) !== "10" && documento.substring(0, 2) !== "20")){
+            document.querySelector("#txt-documento").focus();
             alert("Por favor ingrese un RUC correcto.");
             return true;
         }
     }else if (tipoDocumento === "1") {
         if (documento.length !== 8 || !/^[0-9]+$/.test(documento)) {
+            document.querySelector("#txt-documento").focus();
             alert("Por favor ingrese un DNI correcto.");
             return true;
         }
     }else if (tipoDocumento === "2") {
         if (documento.length !== 9 || !/^[0-9]+$/.test(documento)){
+            document.querySelector("#txt-documento").focus();
             alert("Por favor ingrese un CE correcto.");
             return true;
         }
+    }else if (tipoDocumento === "3") {
+        document.querySelector("#txt-documento").focus();
+        if ( !/^[A-Z0-9]+$/.test(documento) ){
+            alert("Por favor ingrese un pasaporte correcto.");
+            return true;
+        }
     }
-
     if (placa == "" || placa.length !== 6 || !/^[A-Za-z0-9]+$/.test(placa)) {
+        document.querySelector("#txt-placa").focus();
         alert("Por favor ingrese la placa correcta.");
         return true;
     }
 
     return false
 }
-
