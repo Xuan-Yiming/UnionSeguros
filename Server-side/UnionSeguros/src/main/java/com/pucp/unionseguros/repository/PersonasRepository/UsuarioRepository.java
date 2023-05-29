@@ -22,9 +22,13 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
             "ORDER BY p.nombre ASC, p.apellidoPaterno ASC,p.apellidoMaterno ASC")
     public List<Usuario> findUsuario(String busqueda);
 
-
-
     @Query("SELECT p.id FROM Usuario p "+
             "    WHERE p.email=:email and p.contrasena=:contrasena")
     public Integer inicioSesion(String email,String contrasena);
+
+
+
+    public Usuario findUsuarioByNumeroDocumento(String numeroDocumentoIngresado);
+
+    public Usuario findUsuarioByEmail(String emailIngresado);
 }
