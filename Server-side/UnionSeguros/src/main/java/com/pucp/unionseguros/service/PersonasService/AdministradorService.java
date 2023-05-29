@@ -2,7 +2,9 @@ package com.pucp.unionseguros.service.PersonasService;
 
 import com.pucp.unionseguros.model.Personas.Administrador;
 import com.pucp.unionseguros.model.Personas.Roles;
+import com.pucp.unionseguros.model.Personas.Usuario;
 import com.pucp.unionseguros.repository.PersonasRepository.AdministradorRepository;
+import com.pucp.unionseguros.repository.PersonasRepository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,25 +14,29 @@ import java.util.List;
 @Component
 public class AdministradorService {
     final private AdministradorRepository administradorRepository;
+    private final UsuarioRepository usuarioRepository;
 
     @Autowired
-    public AdministradorService(AdministradorRepository administradorRepository) {
+    public AdministradorService(AdministradorRepository administradorRepository,
+                                UsuarioRepository usuarioRepository) {
         this.administradorRepository = administradorRepository;
+        this.usuarioRepository = usuarioRepository;
     }
 
     public int ingresarAdministrador(Administrador administrador){
-        Administrador foundAdministrador = null,foundEmailAdministrador= null;
+        List<Usuario> foundUsuario = null, foundEmaailAdministrador=null;
 
-        foundAdministrador = administradorRepository.findAdministradorByNumeroDocumentoAndActivoIsTrue(administrador.getNumeroDocumento());
-        foundEmailAdministrador = administradorRepository.findAdministradorByEmailAndActivoIsTrue(administrador.getEmail());
-        if(foundAdministrador != null){
-            return  0;
-        } else if (foundEmailAdministrador!=null) {
+        foundUsuario = usuarioRepository.findUsuario(administrador.getNumeroDocumento());
+
+        foundEmaailAdministrador =  usuarioRepository.findUsuario(administrador.getEmail().toString());
+
+        if (foundUsuario != null) {
+            return 0 ;
+        }else if(foundEmaailAdministrador!=null){
             return -1;
-        } else{
-            Administrador savedAdministrador = administradorRepository.saveAndFlush(administrador);
-            return  savedAdministrador.getId();
         }
+        Administrador savedAdministrador = administradorRepository.saveAndFlush(administrador);
+        return  savedAdministrador.getId();
 
     }
 
@@ -38,16 +44,15 @@ public class AdministradorService {
         return administradorRepository.findAdministradorsByActivoIsTrue();
     }
     public Administrador updateAdministrador(Administrador administrador){
-        Administrador foundAdministrador = administradorRepository.findAdministradorByIdAndActivoIsTrue(administrador.getId());
-        foundAdministrador = administrador;
-        return administradorRepository.save(foundAdministrador);
+        return administradorRepository.save(administrador);
 
     }
 
     public Administrador deleteAdministrador(Administrador administrador){
-        Administrador foundAdministrador = administradorRepository.findAdministradorByIdAndActivoIsTrue(administrador.getId());
-        foundAdministrador.setActivo(false);
-        return administradorRepository.save(foundAdministrador);
+//        Administrador foundAdministrador = administradorRepository.findAdministradorByIdAndActivoIsTrue(administrador.getId());
+//        foundAdministrador.setActivo(false);
+        administrador.setActivo(false);
+        return administradorRepository.save(administrador);
 
     }
 
