@@ -1,0 +1,5 @@
+# Created at 2023-05-27T18:46:48.158
+Boot Manifest-JAR contains absolute paths in classpath 'D:\Universidad\Cursos 2023-1\Ingeniería de Software\Repositorio de TA\UnionSeguros\Server-side\UnionSeguros\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
