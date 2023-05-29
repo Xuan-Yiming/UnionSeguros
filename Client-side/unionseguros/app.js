@@ -80,10 +80,10 @@ app.use('/admin/detalleUsuario', adminDetalleUsuarioRouter);
 // app.use('/admin/auditoria', adminAuditoriaRouter);
 
 // //pagina de cliente
-// var adminClientesRouter = require('./routes/admin/adminClientes');
-// app.use('/admin/clientes', adminClientesRouter);
-// var adminDetalleClienteRouter = require('./routes/admin/adminDetalleCliente');
-// app.use('/admin/detalleCliente', adminDetalleClienteRouter);
+var adminClientesRouter = require('./routes/admin/adminCliente');
+app.use('/admin/cliente', adminClientesRouter);
+var adminDetalleClienteRouter = require('./routes/admin/adminDetalleCliente');
+app.use('/admin/detalleCliente', adminDetalleClienteRouter);
 
 // //pagina de vehiculo
 // var adminVehiculosRouter = require('./routes/admin/adminVehiculos');

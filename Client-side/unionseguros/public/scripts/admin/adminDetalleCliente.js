@@ -1,5 +1,3 @@
-
-
 window.onload = function () {
     if (localStorage.getItem('user') == null) {
         window.location.href = '/admin/login';
@@ -33,31 +31,30 @@ window.onload = function () {
         console.error(error);
     });
 
-    if (localStorage.getItem('data-usuario') == null) {
-        document.querySelector('#titulo').innerHTML = 'Nuevo Usuario';
-    } else {
-        let data = JSON.parse(localStorage.getItem('data-usuario'));
+            if (localStorage.getItem('data-cliente') == null) {
+                document.querySelector('#titulo').innerHTML = 'Nuevo cliente';
+            } else {
+                let data = JSON.parse(localStorage.getItem('data-cliente'));
 
-        document.querySelector('#id').innerHTML = data.id;
-        document.querySelector('#txt-nombre').value = data.nombre;
-        document.querySelector('#txt-apellido-paterno').value = data.apellidoPaterno;
-        document.querySelector('#txt-apellido-materno').value = data.apellidoMaterno;
-        document.querySelector('#txt-celular').value = data.telefono;
-        document.querySelector('#txt-correo').value = data.email;
-        document.querySelector('#txt-contrasena').value = data.contrasena;
-        document.querySelector('#select-estado').value = data.activo;
-        document.querySelector('#txt-direccion').value = data.direccion;
-        document.querySelector('#dp-fecha-nacimiento').value = data.fechaNacimiento;
-        document.querySelector('#txt-documento').value = data.numeroDocumento;
-        document.querySelector('#select-documento').value = data.fidTipoDocumento.id;
+                document.querySelector('#id').innerHTML = data.id;
+                document.querySelector('#txt-nombre').value = data.nombre;
+                document.querySelector('#txt-apellido-paterno').value = data.apellidoPaterno;
+                document.querySelector('#txt-apellido-materno').value = data.apellidoMaterno;
+                document.querySelector('#txt-celular').value = data.telefono;
+                document.querySelector('#txt-correo').value = data.email;
+                document.querySelector('#txt-contrasena').value = data.contrasena;
+                document.querySelector('#txt-direccion').value = data.direccion;
+                document.querySelector('#dp-fecha-nacimiento').value = data.fechaNacimiento;
+                document.querySelector('#txt-documento').value = data.numeroDocumento;
+                document.querySelector('#select-documento').value = data.fidTipoDocumento.id;
+                document.querySelector('#checkbox-baneado').checked = data.baneado;
+            }
 
-    }
 
-    
 
     document.querySelector('#regresar').addEventListener('click', function () {
         localStorage.removeItem('data-usaurio');
-        window.location.href = '/admin/usuario';
+        window.location.href = '/admin/cliente';
     });
 
     document.querySelector('#btn-guardar').addEventListener('click', function () {
@@ -66,30 +63,30 @@ window.onload = function () {
         }
         if (document.querySelector('#id').innerHTML == "") {
             const usuario = {
-                "nombre":  document.querySelector('#txt-nombre').value,
-                "apellidoPaterno":  document.querySelector('#txt-apellido-paterno').value,
-                "apellidoMaterno":  document.querySelector('#txt-apellido-materno').value,
+                "nombre": document.querySelector('#txt-nombre').value,
+                "apellidoPaterno": document.querySelector('#txt-apellido-paterno').value,
+                "apellidoMaterno": document.querySelector('#txt-apellido-materno').value,
                 "fechaNacimiento": new Date(document.querySelector('#dp-fecha-nacimiento').value).toISOString().slice(0, 10),
-                "telefono":  document.querySelector('#txt-celular').value,
+                "telefono": document.querySelector('#txt-celular').value,
                 "direccion": document.querySelector('#txt-direccion').value,
                 "numeroDocumento": document.querySelector('#txt-documento').value,
                 "activoPersona": true,
                 "fidTipoDocumento": {
                     "id": document.querySelector('#select-documento').value
                 },
-                "email":  document.querySelector('#txt-correo').value,
-                "contrasena":  document.querySelector('#txt-contrasena').value,
+                "email": document.querySelector('#txt-correo').value,
+                "contrasena": document.querySelector('#txt-contrasena').value,
                 "fechaCreacion": new Date().toISOString().slice(0, 10),
                 "activoUsuario": true,
                 "activo": true,
+                "baneado": false,
                 "fidRoles": {
-                    "idRole":  2,
+                    "idRole": 1,
                     "fidPermisos": {
-                        "id": 2
+                        "id": 1
                     }
                 }
             }
-
             console.log(JSON.stringify(usuario));
             fetch(GLOBAL_URL + '/administrador/insertar', {
                 method: 'POST',
@@ -102,17 +99,17 @@ window.onload = function () {
                 .then(element => {
                     if (parseInt(element) > 0) {
                         alert("Se ha guardado correctamente");
-                        window.location.href = '/admin/usuario';
+                        window.location.href = '/admin/cliente';
                     } else {
                         if (parseInt(element) > 0 == 0) {
-                        alert("Numero de documento repetido");
+                            alert("Numero de documento repetido");
                         } else if (parseInt(element) > 0 == -1) {
-                        alert("Correo repetido");
+                            alert("Correo repetido");
                         } else {
-                        alert("Ha ocurrido un error");
+                            alert("Ha ocurrido un error");
                         }
                         return;
-                        
+
                     }
                 })
                 .catch(error => {
@@ -120,35 +117,36 @@ window.onload = function () {
                     console.error(error);
                 });
         } else {
-            let data = JSON.parse(localStorage.getItem('data-usuario'));
+            let data = JSON.parse(localStorage.getItem('data-cliente'));
             const usuario = {
                 "id": data.id,
-                "nombre":  document.querySelector('#txt-nombre').value,
-                "apellidoPaterno":  document.querySelector('#txt-apellido-paterno').value,
-                "apellidoMaterno":  document.querySelector('#txt-apellido-materno').value,
+                "nombre": document.querySelector('#txt-nombre').value,
+                "apellidoPaterno": document.querySelector('#txt-apellido-paterno').value,
+                "apellidoMaterno": document.querySelector('#txt-apellido-materno').value,
                 "fechaNacimiento": new Date(document.querySelector('#dp-fecha-nacimiento').value).toISOString().slice(0, 10),
-                "telefono":  document.querySelector('#txt-celular').value,
+                "telefono": document.querySelector('#txt-celular').value,
                 "direccion": document.querySelector('#txt-direccion').value,
                 "numeroDocumento": document.querySelector('#txt-documento').value,
                 "activoPersona": true,
                 "fidTipoDocumento": {
                     "id": document.querySelector('#select-documento').value
                 },
-                "email":  document.querySelector('#txt-correo').value,
-                "contrasena":  document.querySelector('#txt-contrasena').value,
+                "email": document.querySelector('#txt-correo').value,
+                "contrasena": document.querySelector('#txt-contrasena').value,
                 "fechaCreacion": data.fechaCreacion,
                 "activoUsuario": true,
-                "activo": document.querySelector('#select-estado').value == 1 ? true : false,
+                "activo": true,
+                "baneado": document.querySelector("#checkbox-baneado").checked,
                 "fidRoles": {
-                    "idRole":  2,
+                    "idRole": 1,
                     "fidPermisos": {
-                        "id":  2
+                        "id": 1
                     }
                 }
             }
             console.log(JSON.stringify(usuario));
 
-            fetch(GLOBAL_URL + '/administrador/modificar', {
+            fetch(GLOBAL_URL + '/cliente/modificar', {
                 method: 'PUT',
                 body: JSON.stringify(usuario),
                 headers: {
@@ -159,7 +157,7 @@ window.onload = function () {
                 .then(element => {
                     if (element) {
                         alert("Se ha guardado correctamente");
-                        window.location.href = '/admin/usuario';
+                        window.location.href = '/admin/cliente';
                     } else {
                         alert("Ha ocurrido un error");
                     }
@@ -206,46 +204,42 @@ window.onload = function () {
             alert("La cobertura debe ser un número");
             return false;
         }
+        var documento = document.querySelector("#txt-documento").value;
+        var tipoDocumento = document.querySelector("#select-documento").value;
 
-
-            var documento = document.querySelector("#txt-documento").value;
-            var tipoDocumento = document.querySelector("#select-documento").value;
-        
-            if(tipoDocumento === "0"){
-                alert("Por favor ingrese el documento correcto.");
-                return false;
-            }else if (tipoDocumento === "5") {
-                if((documento.length !== 11 || !/^[0-9]+$/.test(documento)) || (documento.substring(0, 2) !== "10" && documento.substring(0, 2) !== "20")){
-                    document.querySelector("#txt-documento").focus();
-                    alert("Por favor ingrese un RUC correcto.");
-                    return false;
-                }
-            }else if (tipoDocumento === "1") {
-                if (documento.length !== 8 || !/^[0-9]+$/.test(documento)) {
-                    document.querySelector("#txt-documento").focus();
-                    alert("Por favor ingrese un DNI correcto.");
-                    return false;
-                }
-            }else if (tipoDocumento === "2") {
-                if (documento.length !== 9 || !/^[0-9]+$/.test(documento)){
-                    document.querySelector("#txt-documento").focus();
-                    alert("Por favor ingrese un CE correcto.");
-                    return false;
-                }
-            }else if (tipoDocumento === "3") {
+        if (tipoDocumento === "0") {
+            alert("Por favor ingrese el documento correcto.");
+            return false;
+        } else if (tipoDocumento === "5") {
+            if ((documento.length !== 11 || !/^[0-9]+$/.test(documento)) || (documento.substring(0, 2) !== "10" && documento.substring(0, 2) !== "20")) {
                 document.querySelector("#txt-documento").focus();
-                if ( !/^[A-Z0-9]+$/.test(documento) ){
-                    alert("Por favor ingrese un pasaporte correcto.");
-                    return false;
-                }
-            }
-            if (placa == "" || placa.length !== 6 || !/^[A-Za-z0-9]+$/.test(placa)) {
-                document.querySelector("#txt-placa").focus();
-                alert("Por favor ingrese la placa correcta.");
+                alert("Por favor ingrese un RUC correcto.");
                 return false;
             }
-        
-        
+        } else if (tipoDocumento === "1") {
+            if (documento.length !== 8 || !/^[0-9]+$/.test(documento)) {
+                document.querySelector("#txt-documento").focus();
+                alert("Por favor ingrese un DNI correcto.");
+                return false;
+            }
+        } else if (tipoDocumento === "2") {
+            if (documento.length !== 9 || !/^[0-9]+$/.test(documento)) {
+                document.querySelector("#txt-documento").focus();
+                alert("Por favor ingrese un CE correcto.");
+                return false;
+            }
+        } else if (tipoDocumento === "3") {
+            document.querySelector("#txt-documento").focus();
+            if (!/^[A-Z0-9]+$/.test(documento)) {
+                alert("Por favor ingrese un pasaporte correcto.");
+                return false;
+            }
+        }
+        if (placa == "" || placa.length !== 6 || !/^[A-Za-z0-9]+$/.test(placa)) {
+            document.querySelector("#txt-placa").focus();
+            alert("Por favor ingrese la placa correcta.");
+            return false;
+        }
         return true;
     }
 };
