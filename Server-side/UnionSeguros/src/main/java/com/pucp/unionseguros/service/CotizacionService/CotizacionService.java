@@ -19,4 +19,9 @@ public class CotizacionService {
     public List<Cotizacion> listarCotizacion(){
         return cotizacionRepository.findAll();
     }
+
+    public int insertarCotizacion(Cotizacion cotizacion){
+        Cotizacion savedCotizacion = cotizacionRepository.saveAndFlush(cotizacion);
+        return savedCotizacion.getId();
+    }
 }

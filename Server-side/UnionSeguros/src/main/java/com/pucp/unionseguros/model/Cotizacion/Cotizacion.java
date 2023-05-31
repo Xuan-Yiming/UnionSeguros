@@ -50,6 +50,14 @@ public class Cotizacion {
     @JoinColumn(name = "fid_distrito")
     private Distrito fidDistrito;
 
+    @ManyToOne
+    @JoinColumn(name = "fid_cliente")
+    private Cliente fidCliente;
+
+
+    @ManyToOne
+    @JoinColumn(name = "fid_vehiculo")
+    private Vehiculo fidVehiculo;
     //private List<DetalleCotizacion> listaDeDetalles;
 
 
