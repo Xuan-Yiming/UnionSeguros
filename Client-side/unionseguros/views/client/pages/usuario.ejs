@@ -3,51 +3,116 @@
 
 <head>
     <meta charset="UTF-8">
+    <title>Union Seguros</title>
     <link rel="icon" type="image/x-icon" href="/public/resources/icons/page-icon.png">
     <link rel="stylesheet" href="/public/stylesheets/style.css">
-
-    <title>Union Seguros</title>
-
-    <link rel="stylesheet" href="/public/stylesheets/style.css">
-    <link rel="stylesheet" href="/public/stylesheets/client/index.css">
+    <link rel="stylesheet" href="/public/stylesheets/client/usuario.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <script type="text/javascript" src="../public/scripts/conection.js"></script>
+
 
 </head>
 
 <body class="container">
     <%- include('../layouts/headerUsuario'); %>
         <main>
-            <section class="client-index-section-seguros">
-                <div class="client-index-texto-inicial">
-                    <h1>Unidos protegemos lo que más quieres</h1>
-                    <p>Conoce nuestros seguros:</p>
-                </div>
-                <div class="client-index-section-seguros-container">
-                    <div class="client-index-div-seguro">
-                        <img src="/public/resources/images/soatBox.png" alt="Imagen del cuadro de SOAT">
-                        <div class="client-index-div-seguro-text">
-                            <div class="client-index-div-seguro-nombre">
-                                <p>SOAT ELECTRÓNICO</p>
-                            </div>
-                            <div class="client-index-div-seguro-titulo">
-                                <p>Consigue fácil y en minutos tu SOAT electrónico desde S/. 50 al año.</p>
-                            </div>
-                            <div class="client-index-div-seguro-descripcion">
-                                <p>Además de protegerte obtendrás descuentos en más de 70 establecimientos afiliados y los mejores planes de renovación.</p>
+            <section class="user-index-section-info">
+                <div class="user-section-info-contacto">
+                    <h1>Contáctese con nosotros 24/7</h1>
+                    <img id="imagen-contacto" src="/public/resources/images/atencion.png" alt="Imagen del cuadro de contacto">
+                    <a href="http://www.facebook.com/" target="_blank">
+                        <div class="info-contacto-whatsapp-container">
+                            <img id="whatsapp-icon" src="/public/resources/icons/WhatsApp_icon.png" alt="Botón de WhatsApp contacto">
+                            <div id="whatsapp-numero">
+                                +51 999001080
                             </div>
                         </div>
-                        <button onclick="window.location.href='/soat'" class ="button-red" id = "btn-cotizar"> Cotizar </button>
+                    </a>
+                </div>
+                <div class="user-section-info-productos">
+                    <div class="user-index-texto-inicial">
+                        <h1>Manténte informado y gestiona tus productos</h1>
+                        <p>Mis seguros</p>
                     </div>
-                    <div class="client-index-div-seguro">
+                    <div class="info-productos-wrapper">
+                        <i id="left" class="fa-solid fa-angle-left"></i>
+                        <div class="info-productos-wrapper-carousel">
+                            <div class="wrapper-carousel-item">
+                                <h2>SOAT A</h2>
+                                <p>Placa: ACB-123</p>
+                                <p>Vigencia hasta 12/06/2023</p>
+                                <button class="button-red">Ver detalle</button>
+                            </div>
+                            <div class="wrapper-carousel-item">
+                                <h2>SOAT B</h2>
+                                <p>Placa: XYZ-456</p>
+                                <p>Vigencia hasta 15/09/2024</p>
+                                <button class="button-red">Ver detalle</button>
+                            </div>
+                            <div class="wrapper-carousel-item">
+                                <h2>SOAT C</h2>
+                                <p>Placa: DEF-789</p>
+                                <p>Vigencia hasta 01/09/2025</p>
+                                <button class="button-red">Ver detalle</button>
+                            </div>
+                            <div class="wrapper-carousel-item">
+                                <h2>SOAT D</h2>
+                                <p>Placa: DXF-759</p>
+                                <p>Vigencia hasta 25/10/2024</p>
+                                <button class="button-red">Ver detalle</button>
+                            </div>
+                        </div>
+                        <i id="right" class="fa-solid fa-angle-right"></i>
+                    </div>
+                    <div class="user-index-texto-inicial">
+                        <p>Mis pagos</p>
+                    </div>
+                    <div class="info-pagos-wrapper">
+                        <div class="info-pagos-left-side">
+                            <div class="info-pagos-wrapper-descripcion">
+                                <p>Ten acceso a tu historial de pagos y verifica si existen cuotas por pagar.</p>
+                            </div>
+                            <button onclick="window.location.href='/pagos'" class ="button-red" id = "btn-cotizar"> Mis pagos</button>
+                        </div>
+                        <img src="/public/resources/images/control-pagos.png" alt="Imagen del cuadro de Seguro Vehicular">
+
+                    </div>
+                </div>
+            </section>
+            <hr>
+            <section class="user-section-seguros">
+                <div class="user-texto-inicial">
+                    <h1>Pensado en tu bienestar</h1>
+                    <p>Conoce los seguros que tenemos para ofrecerte:</p>
+                </div>
+                <div class="user-section-seguros-container">
+                    <div class="user-div-seguro">
+                        <img src="/public/resources/images/soatBox.png" alt="Imagen del cuadro de SOAT">
+                        <div class="user-div-seguro-text">
+                            <div class="user-div-seguro-nombre">
+                                <p>SOAT ELECTRÓNICO</p>
+                            </div>
+                            <div class="user-div-seguro-titulo">
+                                <p>Consigue fácil y en minutos tu SOAT electrónico desde S/. 50 al año.</p>
+                            </div>
+                            <div class="user-div-seguro-descripcion">
+                                <p>Además de protegerte obtendrás descuentos en más de 70 establecimientos afiliados y los mejores planes de renovación.</p>
+                            </div>
+
+                        </div>
+                        <button onclick="window.location.href='/soat'" class ="button-red" id = "btn-cotizar"> Cotizar </button>
+
+                    </div>
+                    <div class="user-div-seguro">
                         <img src="/public/resources/images/seguroVehicularBox.png" alt="Imagen del cuadro de Seguro Vehicular">
-                        <div class="client-index-div-seguro-text">
-                            <div class="client-index-div-seguro-nombre">
+                        <div class="user-div-seguro-text">
+                            <div class="user-div-seguro-nombre">
                                 <p>SEGURO VEHÍCULAR</p>
                             </div>
-                            <div class="client-index-div-seguro-titulo">
+                            <div class="user-div-seguro-titulo">
                                 <p>Protege tu auto y ahorra pagando desde 25$ mensuales.</p>
                             </div>
-                            <div class="client-index-div-seguro-descripcion">
+                            <div class="user-div-seguro-descripcion">
                                 <p>Aseguramos tu tranquilidad ante cualquier accidente o robo que sufra tu vehículo.
                                     Además, podras aprovechar múltiples descuentos y beneficios.</p>
                             </div>
@@ -56,41 +121,9 @@
                     </div>
                 </div>
             </section>
-
-            <section class="client-index-section-info">
-                <div class="client-index-section-info-container">
-                    <h2>Por qué Union Seguros es diferente</h2>
-                    <div class="client-index-info-item">
-                        <img src="/public/resources/icons/personal-escucha.png" alt="Logo Te Escuchamos">
-                        <div class="client-index-info-item-text">
-                            <h3>Te escuchamos.</h3>
-                            <p>La satisfacción de nuestros clientes es nuestra prioridad, por lo que atenderlos nos
-                                permite entender sus necesidades y ofrecer soluciones adaptadas a sus requerimientos.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="client-index-info-item">
-                        <img src="/public/resources/icons/ahorro.png" alt="Logo Ahorra Siempre">
-                        <div class="client-index-info-item-text">
-                            <h3>Ahorra siempre.</h3>
-                            <p>Nos esforzamos por mantener una gestión financiera responsable y eficiente para poder
-                                ofrecerte precios más bajos y accesibles sin sacrificar la calidad de nuestros
-                                servicios.</p>
-                        </div>
-                    </div>
-                    <div class="client-index-info-item">
-                        <img src="/public/resources/icons/personal-profesional.png" alt="Logo Profesionalismo">
-                        <div class="client-index-info-item-text">
-                            <h3>Profesionalismo.</h3>
-                            <p>Invertimos constantemente en la capacitación de nuestro equipo para brindarte un servicio
-                                de seguros de calidad y de vanguardia.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </main>
 
         <%- include('../layouts/footer'); %>
 </body>
-
+<script type="text/javascript" src="../public/scripts/client/usuario.js"></script>
 </html>
