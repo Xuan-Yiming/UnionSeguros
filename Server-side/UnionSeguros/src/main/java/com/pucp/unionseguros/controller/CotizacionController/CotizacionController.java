@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @Service
+@RestController
 @RequestMapping(path = "api/v1/cotizacion")
 public class CotizacionController {
 
@@ -26,7 +27,7 @@ public class CotizacionController {
         this.cotizacionService = cotizacionService;
     }
 
-    @GetMapping
+    @GetMapping("/listar")
     public List<Cotizacion> getCotizaciones(){
         return  cotizacionService.listarCotizacion();
     }
