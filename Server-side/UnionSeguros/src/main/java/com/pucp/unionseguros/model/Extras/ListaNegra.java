@@ -19,15 +19,15 @@ public class ListaNegra {
     private Integer idListaNegra;
 
 
-    @Column(name = "tipo_documento", nullable = false)
+    @Column(name = "tipo_documento", length = 10)
     private String tipoDocumento;
 
-    @Column(name = "numero_documento", nullable = false)
+    @Column(name = "numero_documento", length = 10)
     private String numeroDocumento;
 
-    @Column(name = "nombre_apellido", nullable = false)
+    @Column(name = "nombre_apellido",  length = 100)
     private String nombreApellidos;
 
-    @Column(name = "motivo", nullable = false)
+    @Column(name = "motivo", length = 70)
     private String motivo;
 }
