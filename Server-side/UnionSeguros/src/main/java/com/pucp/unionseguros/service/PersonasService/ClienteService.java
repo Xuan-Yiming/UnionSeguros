@@ -35,7 +35,7 @@ public class ClienteService {
         foundEmaailAdministrador =  usuarioRepository.findUsuarioByEmail(cliente.getEmail().toString());
         if(foundUsuario !=null){
             return 0;
-        } else if (foundEmaailAdministrador !=null) {
+        } else if (foundEmaailAdministrador !=null && cliente.getEmail()!=null ) {
             return -1;
         } else{
             Cliente savedCliente = clienteRepository.saveAndFlush(cliente);

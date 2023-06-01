@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32e535dd-9087-49b2-b16f-1aee167975e6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/ExtrasController/ListaNegraController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/ExtrasRepository/ListaNegraRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/ExtrasRepository/SoatVigenteRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/ExtrasService/ListaNegraService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/ExtrasService/SoatVigenteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/94bd93f7-1223-44d7-b999-1bc47fda4d19.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/94bd93f7-1223-44d7-b999-1bc47fda4d19.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/model/Extras/ListaNegra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/model/Extras/ListaNegra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/PersonasService/ClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/PersonasService/ClienteService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +130,7 @@
       <workItem from="1685550265442" duration="7000" />
       <workItem from="1685550325160" duration="2360000" />
       <workItem from="1685564533043" duration="4554000" />
-      <workItem from="1685635609836" duration="637000" />
+      <workItem from="1685635609836" duration="1764000" />
     </task>
     <servers />
   </component>
