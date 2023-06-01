@@ -70,6 +70,7 @@
     background: inherit;
     height: 100%;
     width: 100%;
+    cursor: pointer;
 }
 
 .client-header-navbar  .client-header-navbar-item:hover .client-header-navbar-item-button {

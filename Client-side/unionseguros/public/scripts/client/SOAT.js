@@ -1,47 +1,45 @@
 
-window.onload = function () {
-    fetch(GLOBAL_URL + '/tipoDocumento/listarActivos')
-    .then(response => response.json())
-    .then(data => {
-        document.querySelector('#select-documento').innerHTML = '';
-        data.forEach(tipoDocumento => {
-            const option = document.createElement('option');
-            option.value = tipoDocumento.id;
-            option.innerText = tipoDocumento.nombre;
-            document.querySelector('#select-documento').appendChild(option);
-        });
-    })
-    .then(() => {
-        document.getElementById("select-documento").addEventListener("change", function () {
-            document.getElementById("txt-documento").disabled = false;
-            if (document.querySelector("#select-documento").value == "1") {
-                document.getElementById("txt-documento").maxLength = "8";
-            } else if (document.querySelector("#select-documento").value == "2") {
-                document.getElementById("txt-documento").maxLength = "9";
-            } else if (document.querySelector("#select-documento").value == "5") {
-                document.getElementById("txt-documento").maxLength = "11";
-            }
-        });
-    })
-    .catch(error => {
-        // Handle the error
-        console.error(error);
+window.onload = function() {
+    document.getElementById("select-documento").addEventListener("change", function() {
+        document.getElementById("txt-documento").disabled = false;
+        if (document.querySelector("#select-documento").value == "1") {
+            document.getElementById("txt-documento").maxLength = "8";
+        } else if (document.querySelector("#select-documento").value == "2") {
+            document.getElementById("txt-documento").maxLength = "9";
+        } else if (document.querySelector("#select-documento").value == "5") {
+            document.getElementById("txt-documento").maxLength = "11";
+        }
     });
 
-    document.querySelector("#btn-cotizar").addEventListener("click", function () {
+    fetch(GLOBAL_URL + '/tipoDocumento/listarActivos')
+        .then(response => response.json())
+        .then(data => {
+            document.querySelector('#select-documento').innerHTML = '';
+            data.forEach(tipoDocumento => {
+                const option = document.createElement('option');
+                option.value = tipoDocumento.id;
+                option.innerText = tipoDocumento.nombre;
+                document.querySelector('#select-documento').appendChild(option);
+            });
+        })
+        .catch(error => {
+            // Handle the error
+            console.error(error);
+        });
 
+    document.querySelector("#btn-cotizar").addEventListener("click", function() {
         if (verificacion()) {
             return;
         }
-    
+
         localStorage.setItem("placa", document.querySelector("#txt-placa").value);
         localStorage.setItem("documento", document.querySelector("#txt-documento").value);
         localStorage.setItem("tipoDocumento", document.querySelector("#select-documento").value);
-    
+
         window.location.href = "/SOATProceso";
     });
-
 }
+
 
 //Q&A
 function toggleAnswer(answerId) {
@@ -90,7 +88,7 @@ function verificacion() {
             return true;
         }
     }
-    if (placa == "" || placa.length !== 6 || !/^[A-Za-z0-9]+$/.test(placa)) {
+    if (placa === "" || placa.length !== 6 || !/^[A-Za-z0-9]+$/.test(placa)) {
         document.querySelector("#txt-placa").focus();
         alert("Por favor ingrese la placa correcta.");
         return true;
