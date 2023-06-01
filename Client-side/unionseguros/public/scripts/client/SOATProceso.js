@@ -433,7 +433,7 @@ async function insertarCliente() {
             }
         };
         console.log(JSON.stringify(infoCliente));
-        fetch(GLOBAL_URL + '/cliente/ingresar', {
+        fetch(GLOBAL_URL + '/cliente/insertar', {
             method: 'POST',
             body: JSON.stringify(infoCliente),
             headers: {
