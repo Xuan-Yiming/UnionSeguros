@@ -1,5 +1,6 @@
 
 
+
 var stage = 0;
 
 var placa = localStorage.getItem("placa");
@@ -11,9 +12,11 @@ localStorage.setItem("idVehiculo", 0);
 
 window.onload = function () {
     if (localStorage.getItem("placa") == null || localStorage.getItem("tipoDocumento") == null || localStorage.getItem("documento") == null) {
-        window.location.href = "/SOAT";
+        window.location.href = "/seguroVehicular";
     }
     const today = new Date();
+    document.querySelector("#date-picker2").value = today.toISOString().split("T")[0];
+
     document.querySelector("#date-picker").min = today.toISOString().split("T")[0];
     document.querySelector("#date-picker").value = today.toISOString().split("T")[0];
 
@@ -26,7 +29,7 @@ document.querySelector("#btn-advance").addEventListener("click", function () {
         localStorage.removeItem("placa");
         localStorage.removeItem("tipoDocumento");
         localStorage.removeItem("documento");
-        window.location.href = "/SOAT";
+        window.location.href = "/seguroVehicular";
     }
 
     if (!verificacion()) {
@@ -61,7 +64,7 @@ document.querySelector("#btn-previous").addEventListener("click", function () {
 
     if (stage == 0) {
         if (confirm("Deseas cancelar el proceso?")) {
-            window.location.href = "/SOAT";
+            window.location.href = "/seguroVehicular";
             return;
         } else {
             return;
@@ -95,6 +98,7 @@ function changeStage() {
     switch (stage) {
         case 0:
             document.querySelector(".form-vehiculo ").style.display = "block";
+            document.querySelector(".form-personal ").style.display = "none"; 
             document.querySelector(".form-plans").style.display = "none";
             document.querySelector(".form-payment").style.display = "none";
             document.querySelector(".form-result").style.display = "none";
@@ -103,6 +107,16 @@ function changeStage() {
             break;
         case 1:
             document.querySelector(".form-vehiculo ").style.display = "none";
+            document.querySelector(".form-personal ").style.display = "block"; 
+            document.querySelector(".form-plans").style.display = "none";
+            document.querySelector(".form-payment").style.display = "none";
+            document.querySelector(".form-result").style.display = "none";
+            document.querySelector("#btn-descargar-constancia").style.display = "none";
+            document.querySelector("#btn-previous").style.display = "block";
+            break;
+        case 2:
+            document.querySelector(".form-vehiculo ").style.display = "none";
+            document.querySelector(".form-personal ").style.display = "none"; 
             document.querySelector(".form-plans").style.display = "block";
             document.querySelector(".form-payment").style.display = "none";
             document.querySelector(".form-result").style.display = "none";
@@ -110,8 +124,9 @@ function changeStage() {
             document.querySelector("#btn-previous").style.display = "block";
             loadPlans();
             break;
-        case 2:
+        case 3:
             document.querySelector(".form-vehiculo ").style.display = "none";
+            document.querySelector(".form-personal ").style.display = "none"; 
             document.querySelector(".form-plans").style.display = "none";
             document.querySelector(".form-payment").style.display = "block";
             document.querySelector(".form-result").style.display = "none";
@@ -119,13 +134,14 @@ function changeStage() {
             document.querySelector("#btn-previous").style.display = "block";
             loadTarjeta();
             break;
-        case 3:
+        case 4:
             guardar();
             if (localStorage.getItem("errot")==1){
                 return;
             }
 
             document.querySelector(".form-vehiculo ").style.display = "none";
+            document.querySelector(".form-personal ").style.display = "none"; 
             document.querySelector(".form-plans").style.display = "none";
             document.querySelector(".form-payment").style.display = "none";
             document.querySelector(".form-result").style.display = "block";
@@ -138,33 +154,33 @@ function changeStage() {
 }
 
 function loadPlans() {
-    fetch(GLOBAL_URL + '/planSOAT/listarActivos')
+    fetch(GLOBAL_URL + '/detalleCotizacion/listarActivos')
         .then(response => response.json())
         .then(data => {
             const planContainer = document.querySelector('.content-plan');
             planContainer.innerHTML = '';
             data.forEach(plan => {
                 const planDiv = document.createElement('div');
-                planDiv.classList.add('plan-soat');
+                planDiv.classList.add('plan-seguro-vehicular');
 
                 const heading = document.createElement('h2');
-                heading.innerText = plan.nombrePlan;
+                heading.innerText = `Seguro Vehicular ${plan.id_detalle_cotizacion}`;
                 planDiv.appendChild(heading);
 
                 const price = document.createElement('h1');
-                price.innerText = `S/.${plan.precio}`;
+                price.innerText = `S/.${plan.monto}`;
                 planDiv.appendChild(price);
 
                 const descriptionList = document.createElement('ul');
-                descriptionList.classList.add('plan-soat-description');
+                descriptionList.classList.add('plan-seguro-description');
 
                 const coverage = document.createElement('li');
                 coverage.innerText = `Cobertura completa hasta S/.${plan.cobertura}`;
                 descriptionList.appendChild(coverage);
 
-                const discount = document.createElement('li');
-                discount.innerText = 'Descuento del 30% en Repsol y Primax';
-                descriptionList.appendChild(discount);
+                const beneficio = document.createElement('li');
+                beneficio.innerText = `${plan.beneficio}`;
+                descriptionList.appendChild(beneficio);
 
                 const ley = document.createElement('li');
                 ley.innerText = 'SOAT de acuerdo a la ley.';
@@ -233,19 +249,28 @@ function verificacion() {
     const uso = document.querySelector("#select-uso").value;
     const numSerie = document.querySelector("#txt-serie").value;
     const fecha = document.querySelector("#date-picker").value;
+    const fecha2 = document.querySelector("#date-picker2").value;
+    const numCelular = document.querySelector("#txt-numCelular").value;
+    const departamento = document.querySelector("#select-departamento").value;
+    const provincia = document.querySelector("#select-provincia").value;
+    const distrito = document.querySelector("#select-distrito").value;
+    const direccion = document.querySelector("#txt-direccion").value;
 
     switch (stage) {
         case 0:
-            if (apdPaterno == "" || nombres == "" || marca == "" || modelo == "" || anio == "" || uso == "" || numAsiento == "" || numSerie == "" || fecha == "") {
+            /*if (apdPaterno == "" || nombres == "" || marca == "" || modelo == "" || anio == "" || uso == "" || numAsiento == "" || numSerie == "" || fecha == ""
+                || fecha2 == "" || numCelular == "" || departamento == "" || provincia == "" || distrito == "" || direccion == "") {
                 alert("Falta completar campos");
                 return false;
-            }
+            }*/
 
             if (!/^[0-9]+$/.test(numAsiento)) {
                 document.querySelector("#txt-asientos").focus();
                 alert("El número de asientos debe ser numérico");
                 return false;
             }
+
+           
 
             if (numAsiento < 1 || numAsiento > 20) {
                 document.querySelector("#txt-asientos").focus();
@@ -272,6 +297,21 @@ function verificacion() {
                 return false;
             }
 
+            
+            break;
+        case 1:
+            if (!/^[0-9]+$/.test(numCelular)) {
+                document.querySelector("#txt-numCelular").focus();
+                alert("El número celular debe ser numérico");
+                return false;
+            }
+
+            if (numCelular.length != 9) {
+                document.querySelector("#txt-numCelular").focus();
+                alert("El número celular debe tener 9 caracteres");
+                return false;
+            }
+
             if (!/^[A-Za-z]+$/.test(apdPaterno) || !/^[A-Za-z]+$/.test(apdMaterno) || !/^[A-Za-z ]+$/.test(nombres)) {
                 if (apdMaterno != "-") {
                     document.querySelector("#txt-apdPaterno").focus();
@@ -279,8 +319,10 @@ function verificacion() {
                     return false;
                 }
             }
+
             break;
-        case 1:
+
+        case 2:
             //verificar que se haya seleccionado un plan
             var cont = 0;
             document.querySelectorAll('input[name="select-plan"]').forEach((plan) => {
@@ -289,12 +331,12 @@ function verificacion() {
                 }
             });
             if (cont == 0) {
-                alert("Debe seleccionar un plan");
+                alert("Debe seleccionar un seguro");
                 return false;
             }
 
             break;
-        case 2:
+        case 3:
             //verificar que se haya llenado los datos de la tarjeta
             const numTarjeta = document.querySelector("#txt-num-tarjeta").value;
             const cvv = document.querySelector("#txt-CVV").value;
@@ -351,7 +393,7 @@ function verificacion() {
             }
 
             break;
-        case 3:
+        case 4:
             break;
     }
     return true;
@@ -388,7 +430,7 @@ async function guardar() {
       console.log(response);
       response = await insertarPoliza();
       console.log(response);
-      response = await insertarSOAT();
+      response = await insertarSOAT(); //detalle_cotizacion
       console.log(response);
 
       localStorage.clear();
@@ -433,7 +475,7 @@ async function insertarCliente() {
             }
         };
         console.log(JSON.stringify(infoCliente));
-        fetch(GLOBAL_URL + '/cliente/insertar', {
+        fetch(GLOBAL_URL + '/cliente/ingresar', {
             method: 'POST',
             body: JSON.stringify(infoCliente),
             headers: {
@@ -588,7 +630,7 @@ async function insertarPoliza() {
 
 
 }
-
+/*
 async function insertarSOAT() {
     const soat = {
         "fidPlanSoat": {
@@ -620,13 +662,16 @@ async function insertarSOAT() {
         });
 
 }
-
+*/
 
 async function inicializar() {
     await cargarMarcas();
     await cargarModelos();
     await cargarPersona();
     await cargarVehiculo();
+    //await cargarProvincia();
+    //await cargarDepartamento();
+    //await cargarDistrito();
 }
 
 async function cargarMarcas() {

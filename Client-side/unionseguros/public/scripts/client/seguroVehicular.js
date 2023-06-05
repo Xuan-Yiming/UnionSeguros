@@ -1,4 +1,16 @@
 window.onload = function () {
+    document.getElementById("select-documento").addEventListener("change", function () {
+        const selectedValue = this.value;
+        document.getElementById("txt-documento").disabled = false;
+        if (document.querySelector("#select-documento").value == "1") {
+            document.getElementById("txt-documento").maxLength = "8";
+        } else if (document.querySelector("#select-documento").value == "2") {
+            document.getElementById("txt-documento").maxLength = "9";
+        } else if (document.querySelector("#select-documento").value == "5") {
+            document.getElementById("txt-documento").maxLength = "11";
+        }
+    });
+
     fetch(GLOBAL_URL + '/tipoDocumento/listarActivos')
     .then(response => response.json())
     .then(data => {
@@ -8,19 +20,6 @@ window.onload = function () {
             option.value = tipoDocumento.id;
             option.innerText = tipoDocumento.nombre;
             document.querySelector('#select-documento').appendChild(option);
-        });
-    })
-    .then(() => {
-        document.getElementById("select-documento").addEventListener("change", function () {
-            const selectedValue = this.value;
-            document.getElementById("txt-documento").disabled = false;
-            if (document.querySelector("#select-documento").value == "1") {
-                document.getElementById("txt-documento").maxLength = "8";
-            } else if (document.querySelector("#select-documento").value == "2") {
-                document.getElementById("txt-documento").maxLength = "9";
-            } else if (document.querySelector("#select-documento").value == "5") {
-                document.getElementById("txt-documento").maxLength = "11";
-            }
         });
     })
     .catch(error => {
