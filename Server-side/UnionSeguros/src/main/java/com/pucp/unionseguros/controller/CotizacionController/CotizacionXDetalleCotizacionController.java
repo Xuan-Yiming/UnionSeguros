@@ -30,7 +30,7 @@ public class CotizacionXDetalleCotizacionController {
         return cotizacionXDetalleCorizacionService.listarDetallesPorIdCotizacion(idCotizacion);
     }
 
-    @PostMapping("/cotizacionXDetalleCotizacion")
+    @PostMapping("/insertar")
     public List<CotizacionXDetalleCotizacion> insertarCotizacionXDetalle(@RequestBody List<CotizacionXDetalleCotizacion> listaInsertada){
         return cotizacionXDetalleCorizacionService.insertarCotizacionXDetalle(listaInsertada);
     }
