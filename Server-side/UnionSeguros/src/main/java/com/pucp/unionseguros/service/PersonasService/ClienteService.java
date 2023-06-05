@@ -29,16 +29,17 @@ public class ClienteService {
 
     public int ingresarCliente(Cliente cliente) {
 
-        if(cliente.getEmail() ==null){
-            cliente.setEmail("");
-        }
+        int verificacion=0;
         Usuario foundUsuario = null, foundEmaailAdministrador=null;
         foundUsuario = usuarioRepository.findUsuarioByNumeroDocumento(cliente.getNumeroDocumento());
+        if(cliente.getEmail()!=null){
+            foundEmaailAdministrador =  usuarioRepository.findUsuarioByEmail(cliente.getEmail().toString());
+            verificacion=1;
+        }
 
-        foundEmaailAdministrador =  usuarioRepository.findUsuarioByEmail(cliente.getEmail().toString());
         if(foundUsuario !=null){
             return 0;
-        } else if (foundEmaailAdministrador !=null) {
+        } else if (foundEmaailAdministrador !=null && verificacion==1) {
             return -1;
         } else{
             Cliente savedCliente = clienteRepository.saveAndFlush(cliente);
