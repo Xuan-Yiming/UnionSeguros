@@ -88,7 +88,7 @@ window.onload = function () {
                 }
             }
             console.log(JSON.stringify(usuario));
-            fetch(GLOBAL_URL + '/administrador/insertar', {
+            fetch(GLOBAL_URL + '/cliente/insertar', {
                 method: 'POST',
                 body: JSON.stringify(usuario),
                 headers: {

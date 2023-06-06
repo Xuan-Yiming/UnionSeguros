@@ -379,23 +379,130 @@ function validateCardExpiration(expirationDate) {
 }
 
 async function guardar() {
-    try {
-      let response = await insertarCliente();
-      console.log(response);
-      response = await insertarVehiculo();
-      console.log(response);
-      response = await insertarMetodDePago();
-      console.log(response);
-      response = await insertarPoliza();
-      console.log(response);
-      response = await insertarSOAT();
-      console.log(response);
 
-      localStorage.clear();
+    const apdPaterno = document.querySelector("#txt-apdPaterno").value;
+    const apdMaterno = document.querySelector("#txt-apdMaterno").value;
+    const nombres = document.querySelector("#txt-nombres").value;
+    const fecha = document.querySelector("#date-picker").value;
+    const dateParts = fecha.split('-');
+    const yyyy = dateParts[0];
+    const mm = dateParts[1];
+    const dd = dateParts[2];
+    const formattedDate = `${yyyy}-${mm}-${dd}`;
+
+    const marca = document.querySelector("#select-marca").value;
+    const modelo = document.querySelector("#select-modelo").value;
+    const anio = document.querySelector("#txt-anio").value;
+    const uso = document.querySelector("#select-uso").value;
+    const numAsiento = document.querySelector("#txt-asientos").value;
+    const numSerie = document.querySelector("#txt-serie").value;
+
+    const numTarjeta = document.querySelector("#txt-num-tarjeta").value;
+    const cvv = document.querySelector("#txt-CVV").value;
+    const fechaVencimiento = document.querySelector("#txt-fecha-venc").value;
+    const nombreTitular = document.querySelector("#txt-tarjeta-nombre").value;
+    const email = document.querySelector("#txt-email").value;
+    const [month, year] = fechaVencimiento.split('/');
+    const date = `${20 + year}-${month}-01`;
+
+    const moneda = document.querySelector("#select-moneda").value;
+
+    try {
+        let data = {
+            "cliente": {
+                "nombre": nombres,
+                "apellidoPaterno": apdPaterno,
+                "apellidoMaterno": apdMaterno,
+                "numeroDocumento": localStorage.getItem("documento"),
+                "fidRoles": {
+                    "id": "1"
+                },
+                "fidTipoDocumento": {
+                    "id": localStorage.getItem("tipoDocumento")
+                },
+                "fechaCreacion": formattedDate
+            },
+
+            "vehiculo": {
+                "fidTipoUso": {
+                    "id": uso
+                },
+                "fidModelo": {
+                    "id": modelo
+                },
+                "anhoFabricacion": anio + "-01-01",
+                "numeroAsientos": numAsiento,
+                "placa": this.placa,
+                "serie": numSerie,
+            },
+            "MetodoPago": {
+                "nombreMetodo": "VISA",
+                "nombreTitular": nombreTitular,
+                "correo": email,
+                "numeroTarjeta": numTarjeta,
+                "cvv": cvv,
+                "fechaVencimiento": date,
+            },
+            "poliza": {
+                "fidMoneda": {
+                    "id": moneda
+                },
+                "precioBase": localStorage.getItem("precioPlan"),
+                "fechaVigenciaDesde": formattedDate,
+                "fechaVigenciaFin": `${parseInt(yyyy) + 1}-${mm}-${dd}`,
+            },
+            "soat": {
+                "fidPlanSoat": {
+                    "id": "1"
+                },
+                "fechaDeEmision": new Date().toISOString().slice(0, 10),
+                "montoPrima": localStorage.getItem("precioPlan"),
+            }
+        };
+
+        const idCliente = this.idCliente;
+        if (idCliente) {
+            data.cliente.id = idCliente;
+        }
+        console.log(JSON.stringify(data));
+        fetch(GLOBAL_URL + '/cliente/insertar', {
+            method: 'POST',
+            body: JSON.stringify(infoCliente),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                localStorage.setItem("idCliente", data);
+            })
+
+            .catch(error => {
+                // Handle the error
+                console.error(error);
+                localStorage.setItem("errot", 1);
+            });
     } catch (error) {
-      console.error('Error:', error);
-      // Handle any errors that occurred during the insert operations
+        console.error('Error:', error);
     }
+
+    // try {
+    //   let response = await insertarCliente();
+    //   console.log(response);
+    //   response = await insertarVehiculo();
+    //   console.log(response);
+    //   response = await insertarMetodDePago();
+    //   console.log(response);
+    //   response = await insertarPoliza();
+    //   console.log(response);
+    //   response = await insertarSOAT();
+    //   console.log(response);
+
+    //   localStorage.clear();
+    // } catch (error) {
+    //   console.error('Error:', error);
+    //   // Handle any errors that occurred during the insert operations
+    // }
   }
   
 
@@ -417,10 +524,15 @@ async function insertarCliente() {
             "apellidoPaterno": apdPaterno,
             "apellidoMaterno": apdMaterno,
             "numeroDocumento": localStorage.getItem("documento"),
+            "fechaNacimiento": null,
+            "telefono": "",
+            "direccion": "",
             "activo": true,
             "fidTipoDocumento": {
                 "id": localStorage.getItem("tipoDocumento")
             },
+            "email": "",
+            "contrasena":"",
             "fechaCreacion": formattedDate,
             "activoUsuario": true,
             "activoPersona": true,
