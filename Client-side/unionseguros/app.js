@@ -66,8 +66,8 @@ var adminDetallePlanSOATRouter = require('./routes/admin/adminDetallePlanSOAT');
 app.use('/admin/detallePlanSOAT', adminDetallePlanSOATRouter);
 
 // //pagina de seguro vehicular
-// var adminSeguroVehicularRouter = require('./routes/admin/adminSeguroVehicular');
-// app.use('/admin/seguroVehicular', adminSeguroVehicularRouter);
+var adminSeguroVehicularRouter = require('./routes/admin/adminSeguroVehicular');
+app.use('/admin/seguroVehicular', adminSeguroVehicularRouter);
 // var adminBeneficioSeguroVehicularRouter = require('./routes/admin/adminBeneficioSeguroVehicular');
 // app.use('/admin/beneficioSeguroVehicular', adminBeneficioSeguroVehicularRouter);
 
@@ -86,10 +86,10 @@ var adminDetalleClienteRouter = require('./routes/admin/adminDetalleCliente');
 app.use('/admin/detalleCliente', adminDetalleClienteRouter);
 
 // //pagina de vehiculo
-// var adminVehiculosRouter = require('./routes/admin/adminVehiculos');
-// app.use('/admin/vehiculos', adminVehiculosRouter);
-// var adminDetalleVehiculoRouter = require('./routes/admin/adminDetalleVehiculo');
-// app.use('/admin/detalleVehiculo', adminDetalleVehiculoRouter);
+var adminVehiculosRouter = require('./routes/admin/adminVehiculos');
+app.use('/admin/vehiculos', adminVehiculosRouter);
+var adminDetalleVehiculoRouter = require('./routes/admin/adminDetalleVehiculo');
+app.use('/admin/detalleVehiculo', adminDetalleVehiculoRouter);
 
 // //pagina de ventas
 // var adminVentasRouter = require('./routes/admin/adminVentas');
