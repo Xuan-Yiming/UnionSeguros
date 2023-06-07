@@ -52,6 +52,7 @@ public class ProcesoSOATController {
 
     @PostMapping("/insertarInfoProceso1")
     public ResponseEntity<String> handleJsonRequest(@RequestBody String json){
+        String errorNombre="";
         try{
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode root = objectMapper.readTree(json);
@@ -66,6 +67,7 @@ public class ProcesoSOATController {
             cliente.setApellidoPaterno(clienteNode.get("apellidoPaterno").asText());
             cliente.setApellidoMaterno(clienteNode.get("apellidoMaterno").asText());
             cliente.setNumeroDocumento(clienteNode.get("numeroDocumento").asText());
+
             //ROLES
             JsonNode fidRolesNode = clienteNode.get("fidRoles");
             cliente.setFidRoles(new Roles());
@@ -76,6 +78,14 @@ public class ProcesoSOATController {
             cliente.getFidTipoDocumento().setId(fidTipoDocumentoNode.get("id").asInt());
             cliente.setFechaCreacion(LocalDate.parse(clienteNode.get("fechaCreacion").asText()));
 
+            //correo de creado manualmente
+            if(!clienteNode.has("id")){ //CLIENTE NUEVO SE LE ASIGNA UN CORREO HASTA QUE QUIERA ASIGNAR SU CUENTA
+                cliente.setEmail(cliente.getNumeroDocumento().toString()+"UnionSeguros.pe.com");
+            }
+
+
+
+
             if(cliente.getId()!=null){// me pasaron un ID -> existe el cliente
                 //no hago nada
             }else{ // no me pasaron ID debo insertarlo
@@ -85,7 +95,9 @@ public class ProcesoSOATController {
                 cliente.setActivoUsuario(true);
                 idRecibidoPorIngresarAlCliente = clienteService.ingresarCliente(cliente);
                 cliente.setId(idRecibidoPorIngresarAlCliente);
+
             }
+            errorNombre="insertoPersona";
 
             //VEHICULO
             Vehiculo vehiculo = new Vehiculo();
@@ -104,7 +116,7 @@ public class ProcesoSOATController {
                 //PERSONA
 
 
-            vehiculo.setAnhoFabricacion(LocalDate.parse((vehiculeNode.get("anhoFabricación").asText())));
+            vehiculo.setAnhoFabricacion(LocalDate.parse((vehiculeNode.get("anhoFabricacion").asText())));
             vehiculo.setNumeroAsientos(vehiculeNode.get("numeroAsientos").asInt());
             vehiculo.setPlaca(vehiculeNode.get("placa").asText());
             vehiculo.setSerie(vehiculeNode.get("serie").asText());
@@ -118,7 +130,7 @@ public class ProcesoSOATController {
                 idRecibidoPorIngresarVehiculo = vehiculoService.insertarVehiculo(vehiculo);
                 vehiculo.setId(idRecibidoPorIngresarVehiculo);
             }
-
+            errorNombre="insertoVehiculo";
 
             //METODO DE PAGO
             MetodoDePago metodoDePago = new MetodoDePago();
@@ -134,7 +146,7 @@ public class ProcesoSOATController {
             idRecibidoPorIngresarElMetodoDePago = metodoDePagoService.insertarMetodoDePago(metodoDePago);
             metodoDePago.setId(idRecibidoPorIngresarElMetodoDePago);
 
-
+            errorNombre="insertoMetodoPAgo";
             //POLIZA
             Poliza poliza = new Poliza();
             JsonNode PolizaNode = root.get("poliza");
@@ -156,6 +168,9 @@ public class ProcesoSOATController {
             idRecibidoPorIngresarLaPoliza = polizaService.insertarPoliza(poliza);
             poliza.setId(idRecibidoPorIngresarLaPoliza);
             poliza.setActivo(true);
+
+
+            errorNombre="insertoPoliza";
             //SOAT
             SOAT soat = new SOAT();
             JsonNode SoatNode = root.get("soat");
@@ -170,12 +185,12 @@ public class ProcesoSOATController {
 
             int idRecibidoPorIngresarElSOAT;
             idRecibidoPorIngresarElSOAT = soatService.insertarSOAT(soat);
-            System.out.println("Se insertor  "+idRecibidoPorIngresarElSOAT);
-
+            //System.out.println("Se insertor  "+idRecibidoPorIngresarElSOAT);
+            errorNombre="insertoSOAT";
 
             return ResponseEntity.ok("InsertoCorrectamente Todo");
         }catch (Exception e){
-            return ResponseEntity.badRequest().body("Error al procesar el JSON");
+            return ResponseEntity.badRequest().body("Error al procesar el JSON"+ errorNombre );
         }
     }
 
