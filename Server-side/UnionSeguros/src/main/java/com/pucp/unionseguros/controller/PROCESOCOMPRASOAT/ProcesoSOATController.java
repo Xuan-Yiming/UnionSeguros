@@ -5,8 +5,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pucp.unionseguros.model.Cotizacion.Moneda;
 import com.pucp.unionseguros.model.Personas.Cliente;
 import com.pucp.unionseguros.model.Personas.Persona;
+import com.pucp.unionseguros.model.Personas.Roles;
 import com.pucp.unionseguros.model.Personas.TipoDocumento;
 import com.pucp.unionseguros.model.SOAT.MetodoDePago;
+import com.pucp.unionseguros.model.SOAT.PlanSOAT;
 import com.pucp.unionseguros.model.SOAT.Poliza;
 import com.pucp.unionseguros.model.SOAT.SOAT;
 import com.pucp.unionseguros.model.Vehiculo.Modelo;
@@ -63,6 +65,12 @@ public class ProcesoSOATController {
             cliente.setNombre(clienteNode.get("nombre").asText());
             cliente.setApellidoPaterno(clienteNode.get("apellidoPaterno").asText());
             cliente.setApellidoMaterno(clienteNode.get("apellidoMaterno").asText());
+            cliente.setNumeroDocumento(clienteNode.get("numeroDocumento").asText());
+            //ROLES
+            JsonNode fidRolesNode = clienteNode.get("fidRoles");
+            cliente.setFidRoles(new Roles());
+            cliente.getFidRoles().setIdRole(fidRolesNode.get("id").asInt());
+            //TipoDocuemnto
             JsonNode fidTipoDocumentoNode = clienteNode.get("fidTipoDocumento");
             cliente.setFidTipoDocumento(new TipoDocumento());
             cliente.getFidTipoDocumento().setId(fidTipoDocumentoNode.get("id").asInt());
@@ -72,6 +80,9 @@ public class ProcesoSOATController {
                 //no hago nada
             }else{ // no me pasaron ID debo insertarlo
                 int idRecibidoPorIngresarAlCliente;
+                cliente.setActivo(true);
+                cliente.setActivoPersona(true);
+                cliente.setActivoUsuario(true);
                 idRecibidoPorIngresarAlCliente = clienteService.ingresarCliente(cliente);
                 cliente.setId(idRecibidoPorIngresarAlCliente);
             }
@@ -97,7 +108,7 @@ public class ProcesoSOATController {
             vehiculo.setNumeroAsientos(vehiculeNode.get("numeroAsientos").asInt());
             vehiculo.setPlaca(vehiculeNode.get("placa").asText());
             vehiculo.setSerie(vehiculeNode.get("serie").asText());
-
+            vehiculo.setActivo(true);
             if (vehiculo.getId()!=null){ // me pasaron un ID -> vehiculo existe
                 //no hago nada
             }else {// tengo que insertarlo para la persona que me estan dando
@@ -118,9 +129,10 @@ public class ProcesoSOATController {
             metodoDePago.setNumeroTarjeta(MetodoPagoNode.get("numeroTarjeta").asText());
             metodoDePago.setCvv(MetodoPagoNode.get("cvv").asText());
             metodoDePago.setFechaVencimiento(LocalDate.parse(MetodoPagoNode.get("fechaVencimiento").asText()));
-
+            metodoDePago.setActivo(true);
             int idRecibidoPorIngresarElMetodoDePago;
             idRecibidoPorIngresarElMetodoDePago = metodoDePagoService.insertarMetodoDePago(metodoDePago);
+            metodoDePago.setId(idRecibidoPorIngresarElMetodoDePago);
 
 
             //POLIZA
@@ -133,16 +145,32 @@ public class ProcesoSOATController {
             poliza.setPrecioBase(PolizaNode.get("precioBase").asDouble());
             poliza.setFechaVigenciaDesde(LocalDate.parse(PolizaNode.get("fechaVigenciaDesde").asText()));
             poliza.setFechaVigenciaFin(LocalDate.parse(PolizaNode.get("fechaVigenciaFin").asText()));
+                //METODO A MANO
+                poliza.setFidMetodo(metodoDePago);
+                //CLIENTE A MANO
+                poliza.setFidCliente(cliente);
+                //VEHICULO A MANO
+                poliza.setFidVehiculo(vehiculo);
 
-
-
+            int idRecibidoPorIngresarLaPoliza;
+            idRecibidoPorIngresarLaPoliza = polizaService.insertarPoliza(poliza);
+            poliza.setId(idRecibidoPorIngresarLaPoliza);
+            poliza.setActivo(true);
             //SOAT
             SOAT soat = new SOAT();
             JsonNode SoatNode = root.get("soat");
-
+                //PLAN SOAT
+                JsonNode fidPlanSoatNode = SoatNode.get("fidPlanSoat");
+                soat.setFidPlanSoat(new PlanSOAT());
+                soat.getFidPlanSoat().setId(fidPlanSoatNode.get("id").asInt());
             soat.setFechaDeEmision(LocalDate.parse(SoatNode.get("fechaDeEmision").asText()));
             soat.setMontoPrima(SoatNode.get("montoPrima").asDouble());
+                //POLIZA INGRESADA
+                soat.setFidPoliza(poliza);
 
+            int idRecibidoPorIngresarElSOAT;
+            idRecibidoPorIngresarElSOAT = soatService.insertarSOAT(soat);
+            System.out.println("Se insertor  "+idRecibidoPorIngresarElSOAT);
 
 
             return ResponseEntity.ok("InsertoCorrectamente Todo");
@@ -150,4 +178,6 @@ public class ProcesoSOATController {
             return ResponseEntity.badRequest().body("Error al procesar el JSON");
         }
     }
+
+
 }
