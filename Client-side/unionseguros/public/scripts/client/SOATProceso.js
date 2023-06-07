@@ -460,14 +460,20 @@ async function guardar() {
             }
         };
 
-        const idCliente = this.idCliente;
-        if (idCliente) {
+        const idCliente = localStorage.getItem("idCliente");
+        if (idCliente && idCliente != 0) {
             data.cliente.id = idCliente;
         }
+
+        const idVehiculo = localStorage.getItem("idVehiculo");
+        if (idVehiculo && idVehiculo != 0) {
+            data.vehiculo.id = idVehiculo;
+        }
+
         console.log(JSON.stringify(data));
         fetch(GLOBAL_URL + '/cliente/insertar', {
             method: 'POST',
-            body: JSON.stringify(infoCliente),
+            body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json'
             },
