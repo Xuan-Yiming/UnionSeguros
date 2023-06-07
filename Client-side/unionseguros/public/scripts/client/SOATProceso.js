@@ -453,7 +453,7 @@ async function guardar() {
             },
             "soat": {
                 "fidPlanSoat": {
-                    "id": "1"
+                    "id": localStorage.getItem("idPlan")
                 },
                 "fechaDeEmision": new Date().toISOString().slice(0, 10),
                 "montoPrima": localStorage.getItem("precioPlan"),
