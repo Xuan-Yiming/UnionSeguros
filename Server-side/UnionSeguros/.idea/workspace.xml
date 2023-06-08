@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32e535dd-9087-49b2-b16f-1aee167975e6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/CorreosController/EmailController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/CorreosService/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/94bd93f7-1223-44d7-b999-1bc47fda4d19.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/94bd93f7-1223-44d7-b999-1bc47fda4d19.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/PROCESOCOMPRASOAT/ProcesoSOATController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/PROCESOCOMPRASOAT/ProcesoSOATController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,11 +58,6 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-
-    "last_opened_file_path": "D:/Universidad/Cursos 2023-1/Ingeniería de Software/Testeo/UnionSeguros-main/Server-side/UnionSeguros",
-
-    "last_opened_file_path": "C:/Cursos Universidad/Cursos 2023-1/Ingeniería de Software/Repositorio TA/UnionSeguros/UnionSeguros/Server-side/UnionSeguros",
-
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "D:/Universidad/Cursos 2023-1/Ingeniería de Software/Repositorio de TA/UnionSeguros/Server-side/UnionSeguros",
     "node.js.detected.package.eslint": "true",
@@ -146,6 +137,7 @@
       <workItem from="1685895452966" duration="16462000" />
       <workItem from="1685991687729" duration="10667000" />
       <workItem from="1686104868926" duration="6224000" />
+      <workItem from="1686160591903" duration="1211000" />
     </task>
     <servers />
   </component>

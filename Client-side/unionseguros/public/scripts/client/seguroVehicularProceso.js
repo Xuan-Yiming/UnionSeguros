@@ -223,7 +223,7 @@ function loadResumen() {
     const currentDate = new Date(dateValue);
     currentDate.setFullYear(currentDate.getFullYear() + 1);
 
-    document.querySelector("#txt-res-preiodo").innerText = document.querySelector("#date-picker").value + " - " + currentDate.toISOString().slice(0, 10);
+    document.querySelector("#txt-res-periodo").innerText = document.querySelector("#date-picker").value + " - " + currentDate.toISOString().slice(0, 10);
 
     localStorage.removeItem("placa");
     localStorage.removeItem("tipoDocumento");
@@ -267,7 +267,7 @@ function verificacion() {
             if (!/^[0-9]+$/.test(numAsiento)) {
                 document.querySelector("#txt-asientos").focus();
                 alert("El número de asientos debe ser numérico");
-                return false;
+                return true;
             }
 
            
@@ -275,26 +275,32 @@ function verificacion() {
             if (numAsiento < 1 || numAsiento > 20) {
                 document.querySelector("#txt-asientos").focus();
                 alert("El número de asientos debe estar entre 1 y 20");
-                return false;
+                return true;
             }
 
             if (!/^[0-9]+$/.test(anio)) {
                 document.querySelector("#txt-anio").focus();
                 alert("El año debe ser numérico");
-                return false;
+                return true;
             }
 
 
             if (anio < 2000 || anio > new Date().getFullYear()) {
                 document.querySelector("#txt-anio").focus();
                 alert("El año debe estar entre 2000 y " + new Date().getFullYear());
-                return false;
+                return true;
             }
 
             if (numSerie.length != 17) {
                 document.querySelector("#txt-serie").focus();
                 alert("El número de serie debe tener 17 caracteres");
-                return false;
+                return true;
+            }
+
+            if(uso===""){
+                document.querySelector("#select-uso").focus();
+                alert("Seleccione el uso de su vehículo");
+                return true;
             }
 
             
@@ -303,20 +309,20 @@ function verificacion() {
             if (!/^[0-9]+$/.test(numCelular)) {
                 document.querySelector("#txt-numCelular").focus();
                 alert("El número celular debe ser numérico");
-                return false;
+                return true;
             }
 
             if (numCelular.length != 9) {
                 document.querySelector("#txt-numCelular").focus();
                 alert("El número celular debe tener 9 caracteres");
-                return false;
+                return true;
             }
 
             if (!/^[A-Za-z]+$/.test(apdPaterno) || !/^[A-Za-z]+$/.test(apdMaterno) || !/^[A-Za-z ]+$/.test(nombres)) {
                 if (apdMaterno != "-") {
                     document.querySelector("#txt-apdPaterno").focus();
                     alert("Los nombres y apellidos no deben contener caracteres especiales");
-                    return false;
+                    return true;
                 }
             }
 
@@ -324,16 +330,7 @@ function verificacion() {
 
         case 2:
             //verificar que se haya seleccionado un plan
-            var cont = 0;
-            document.querySelectorAll('input[name="select-plan"]').forEach((plan) => {
-                if (plan.checked) {
-                    cont++;
-                }
-            });
-            if (cont == 0) {
-                alert("Debe seleccionar un seguro");
-                return false;
-            }
+
 
             break;
         case 3:
