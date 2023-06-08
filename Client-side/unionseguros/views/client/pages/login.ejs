@@ -39,6 +39,12 @@
                         <svg class="ProgressBar-icon">
                             <use xlink:href="/public/resources/icons/checkmark.circle.svg" />
                         </svg>
+                        <span class="ProgressBar-stepLabel">Ingresar Contraseña</span>
+                    </li>
+                    <li class="ProgressBar-step">
+                        <svg class="ProgressBar-icon">
+                            <use xlink:href="/public/resources/icons/checkmark.circle.svg" />
+                        </svg>
                         <span class="ProgressBar-stepLabel">Validar Correo</span>
                     </li>
                     <li class="ProgressBar-step">
@@ -74,9 +80,8 @@
                         <div class="form-line">
                             <div class="form-item">
                                 <h3>Número de Documento</h3>
-                                <input placeholder="Ingrese número" id = "txt-documento" oninput="validateNumericInput(this)" disabled></input>
+                                <input placeholder="Ingrese número" id = "txt-documento" oninput="validateNumericInput(this)" ></input>
                             </div>
-    
                         </div>
     
                     </div>
@@ -115,7 +120,26 @@
                 </div>
     
             </div>
+            
+            <div class="form-contrasena form-content-item">
+                <div class="content">
+                    <h1>Ingresar contraseña</h1>
+                    <div class="form-inputs">
+                        
+                        <div class="form-line">
+                            <div class="form-item">
+                                <h3>Contraseña</h3>
+                                <input placeholder="Ingrese contraseña" id = "txt-contrasena"></input>
+                            </div>
     
+                        </div>
+    
+                    </div>
+                </div>
+    
+            </div>
+
+
             <div class="form-validacion form-content-item">
                 <div class="content">
                     <h1>Validar correo</h1>

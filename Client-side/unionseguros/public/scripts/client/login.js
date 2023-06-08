@@ -6,13 +6,24 @@ window.onload = function () {
     localStorage.setItem("idCliente", 0);
     localStorage.setItem("idVehiculo", 0);
 
-
+    fetch(GLOBAL_URL + '/tipoDocumento/listarActivos')
+        .then(response => response.json())
+        .then(data => {
+            document.querySelector('#select-documento').innerHTML = '';
+            data.forEach(tipoDocumento => {
+                const option = document.createElement('option');
+                option.value = tipoDocumento.id;
+                option.innerText = tipoDocumento.nombre;
+                document.querySelector('#select-documento').appendChild(option);
+            });
+        })
+        .catch(error => {
+            // Handle the error
+            console.error(error);
+        });
     document.querySelector("#dpFecha").value = new Date().toISOString().split("T")[0];
-
     const today = new Date();
-
     document.querySelector("#dpFecha").min = today.toISOString().split("T")[0];
-
 };
 
 document.getElementById("select-documento").addEventListener("change", function () {
@@ -29,7 +40,7 @@ document.getElementById("select-documento").addEventListener("change", function 
 
 
 document.querySelector("#btn-advance").addEventListener("click", function () {
-    if (stage == 3) {
+    if (stage == 4) {
         window.location.href = "/";
     }
 
@@ -100,6 +111,7 @@ function changeStage() {
         case 0:
             document.querySelector(".form-registro").style.display = "block";
             document.querySelector(".form-correo").style.display = "none";
+            document.querySelector(".form-contrasena").style.display = "none";
             document.querySelector(".form-validacion").style.display = "none";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
@@ -107,27 +119,37 @@ function changeStage() {
         case 1:
             document.querySelector(".form-registro").style.display = "none";
             document.querySelector(".form-correo").style.display = "block";
+            document.querySelector(".form-contrasena").style.display = "none";
             document.querySelector(".form-validacion").style.display = "none";
             document.querySelector(".form-result").style.display = "none";;
             document.querySelector("#btn-previous").style.display = "block";
-            loadIngresoDatos();
             break;
         case 2:
             document.querySelector(".form-registro").style.display = "none";
             document.querySelector(".form-correo").style.display = "none";
-            document.querySelector(".form-validacion").style.display = "block";
+            document.querySelector(".form-contrasena").style.display = "block";
+            document.querySelector(".form-validacion").style.display = "none";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
-            loadIngresoCorreo();
             break;
         case 3:
             document.querySelector(".form-registro").style.display = "none";
             document.querySelector(".form-correo").style.display = "none";
+            document.querySelector(".form-contrasena").style.display = "none";
+            document.querySelector(".form-validacion").style.display = "block";
+            document.querySelector(".form-result").style.display = "none";
+            document.querySelector("#btn-previous").style.display = "block";
+            break;
+        case 4:
+            document.querySelector(".form-registro").style.display = "none";
+            document.querySelector(".form-correo").style.display = "none";
+            document.querySelector(".form-contrasena").style.display = "none";
             document.querySelector(".form-validacion").style.display = "none";
             document.querySelector(".form-result").style.display = "block";
             document.querySelector("#btn-previous").style.display = "none";
-            guardar();
-            loadFin();
+            if (localStorage.getItem("error")==1){
+                return;
+            }
             break;
     }
 }
@@ -136,22 +158,12 @@ function validateNumericInput(input) {
     input.value = input.value.replace(/\D/g, ''); // Eliminar caracteres que no sean números
 }
 
-function loadIngresoDatos() {
-
-}
-
-function loadFin() {
-
-}
-
-function loadIngresoCorreo() {
-
-}
 
 function verificacion() {
     const apdPaterno = document.querySelector("#txt-apdPaterno").value;
     const apdMaterno = document.querySelector("#txt-apdMaterno").value;
     const nombres = document.querySelector("#txt-nombres").value;
+
     switch (stage) {
         case 0:
             var documento = document.querySelector("#txt-documento").value;
@@ -160,27 +172,37 @@ function verificacion() {
             if(tipoDocumento === "0"){
                 alert("Por favor ingrese el documento correcto.");
                 return true;
-            }else if (tipoDocumento === "3") {
+            }else if (tipoDocumento === "5") {
                 if((documento.length !== 11 || !/^[0-9]+$/.test(documento)) || (documento.substring(0, 2) !== "10" && documento.substring(0, 2) !== "20")){
-                    alert("Por favor ingrese el documento correcto.");
+                    document.querySelector("#txt-documento").focus();
+                    alert("Por favor ingrese un RUC correcto.");
                     return true;
                 }
             }else if (tipoDocumento === "1") {
                 if (documento.length !== 8 || !/^[0-9]+$/.test(documento)) {
-                    alert("Por favor ingrese el documento correcto.");
+                    document.querySelector("#txt-documento").focus();
+                    alert("Por favor ingrese un DNI correcto.");
                     return true;
                 }
             }else if (tipoDocumento === "2") {
                 if (documento.length !== 9 || !/^[0-9]+$/.test(documento)){
-                    alert("Por favor ingrese el documento correcto.");
+                    document.querySelector("#txt-documento").focus();
+                    alert("Por favor ingrese un CE correcto.");
+                    return true;
+                }
+            }else if (tipoDocumento === "3") {
+                document.querySelector("#txt-documento").focus();
+                if ( !/^[A-Z0-9]+$/.test(documento) ){
+                    alert("Por favor ingrese un pasaporte correcto.");
                     return true;
                 }
             }
             return false;
+
             break;
         case 1:
 
-        
+
             const email = document.querySelector("#txt-correo").value;
             if (  email === "" || apdPaterno == "" || nombres == "" ) {
                 alert("Falta completar campos");
@@ -202,6 +224,14 @@ function verificacion() {
             return false;
             break;
         case 2:
+            const contrasena = document.querySelector("#txt-contrasena").value;
+            if (  contrasena === "" ) {
+                alert("Falta completar el campo");
+                return true;
+            }
+            return false;
+            break;
+        case 3:
             const pin = document.querySelector("#txt-PIN").value;
 
             if (  pin === "" ) {
@@ -220,7 +250,7 @@ function verificacion() {
             }
             return false;
             break;
-        case 3:
+        case 4:
             break;
     }
     return true;
