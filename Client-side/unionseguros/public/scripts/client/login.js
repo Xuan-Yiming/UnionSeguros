@@ -21,13 +21,9 @@ window.onload = function () {
             // Handle the error
             console.error(error);
         });
-
     document.querySelector("#dpFecha").value = new Date().toISOString().split("T")[0];
-
     const today = new Date();
-
     document.querySelector("#dpFecha").min = today.toISOString().split("T")[0];
-
 };
 
 document.getElementById("select-documento").addEventListener("change", function () {
@@ -119,7 +115,6 @@ function changeStage() {
             document.querySelector(".form-validacion").style.display = "none";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
-            loadIngresoDatos();
             break;
         case 1:
             document.querySelector(".form-registro").style.display = "none";
@@ -128,7 +123,6 @@ function changeStage() {
             document.querySelector(".form-validacion").style.display = "none";
             document.querySelector(".form-result").style.display = "none";;
             document.querySelector("#btn-previous").style.display = "block";
-            loadIngresoCorreo();
             break;
         case 2:
             document.querySelector(".form-registro").style.display = "none";
@@ -137,7 +131,6 @@ function changeStage() {
             document.querySelector(".form-validacion").style.display = "none";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
-            loadEnviarPIN();
             break;
         case 3:
             document.querySelector(".form-registro").style.display = "none";
@@ -146,7 +139,6 @@ function changeStage() {
             document.querySelector(".form-validacion").style.display = "block";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
-            loadIngresoPIN();
             break;
         case 4:
             document.querySelector(".form-registro").style.display = "none";
@@ -155,8 +147,7 @@ function changeStage() {
             document.querySelector(".form-validacion").style.display = "none";
             document.querySelector(".form-result").style.display = "block";
             document.querySelector("#btn-previous").style.display = "none";
-            guardar();
-            if (localStorage.getItem("errot")==1){
+            if (localStorage.getItem("error")==1){
                 return;
             }
             break;
@@ -166,133 +157,6 @@ function changeStage() {
 function validateNumericInput(input) {
     input.value = input.value.replace(/\D/g, ''); // Eliminar caracteres que no sean números
 }
-
-function loadIngresoDatos() {
-
-}
-
-function loadIngresoPIN() {
-    const contrasena = document.querySelector("#txt-contrasena").value;
-    fetch(GLOBAL_URL + '/email/verificarToken', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ parametro: contrasena }) 
-    })
-        .then(response => response.json())
-        .then(data => {
-            
-            const resultado = data.booleano;
-            if(resultado){
-                alert("Por favor ingrese el documento correcto.");                    
-                return false;
-            }else{
-                alert("PIN incorrecto.");                    
-                return true;
-            }
-           
-    
-            
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    
-}
-
-function loadIngresoCorreo() {
-
-}
-
-function loadEnviarPIN(){
-    const email = document.querySelector("#txt-correo").value;
-    fetch(GLOBAL_URL + '/email/generarToken', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ parametro: email }) 
-    })
-        .then(response => response.json())
-        .then(data => {
-            
-            const cadenaRetornada = data.cadena;
-    
-           
-            alert(cadenaRetornada);
-    
-           
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    
-
-}
-
-async function guardar() {
-
-
-    const usuario = {
-        "nombre": document.querySelector('#txt-nombres').value,
-        "apellidoPaterno": document.querySelector('#txt-apdPaterno').value,
-        "apellidoMaterno": document.querySelector('#txt-apdMaterno').value,
-        //"fechaNacimiento": new Date(document.querySelector('#dp-fecha-nacimiento').value).toISOString().slice(0, 10),
-        //"telefono": document.querySelector('#txt-celular').value,
-        //"direccion": document.querySelector('#txt-direccion').value,
-        "numeroDocumento": document.querySelector('#txt-documento').value,
-        "activoPersona": true,
-        "fidTipoDocumento": {
-            "id": document.querySelector('#select-documento').value
-        },
-        "email": document.querySelector('#txt-correo').value,
-        "contrasena": document.querySelector('#txt-contrasena').value,
-        "fechaCreacion": new Date().toISOString().slice(0, 10),
-        "activoUsuario": true,
-        "activo": true,
-        "baneado": false,
-        "fidRoles": {
-            "idRole": 1,
-            "fidPermisos": {
-                "id": 1
-            }
-        }
-    }
-    console.log(JSON.stringify(usuario));
-    fetch(GLOBAL_URL + '/cliente/insertar', {
-        method: 'POST',
-        body: JSON.stringify(usuario),
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-        .then(response => response.json())
-        .then(element => {
-            if (parseInt(element) > 0) {
-                alert("Se ha guardado correctamente");
-                window.location.href = '/admin/cliente';
-            } else {
-                if (parseInt(element) > 0 == 0) {
-                    alert("Numero de documento repetido");
-                } else if (parseInt(element) > 0 == -1) {
-                    alert("Correo repetido");
-                } else {
-                    alert("Ha ocurrido un error");
-                }
-                return;
-
-            }
-        })
-        .catch(error => {
-            // Handle the error
-            console.error(error);
-        });
-
-    
-}
-
-
 
 
 function verificacion() {
@@ -307,30 +171,30 @@ function verificacion() {
 
             if(tipoDocumento === "0"){
                 alert("Por favor ingrese el documento correcto.");
-                return false;
+                return true;
             }else if (tipoDocumento === "5") {
                 if((documento.length !== 11 || !/^[0-9]+$/.test(documento)) || (documento.substring(0, 2) !== "10" && documento.substring(0, 2) !== "20")){
                     document.querySelector("#txt-documento").focus();
                     alert("Por favor ingrese un RUC correcto.");
-                    return false;
+                    return true;
                 }
             }else if (tipoDocumento === "1") {
                 if (documento.length !== 8 || !/^[0-9]+$/.test(documento)) {
                     document.querySelector("#txt-documento").focus();
                     alert("Por favor ingrese un DNI correcto.");
-                    return false;
+                    return true;
                 }
             }else if (tipoDocumento === "2") {
                 if (documento.length !== 9 || !/^[0-9]+$/.test(documento)){
                     document.querySelector("#txt-documento").focus();
                     alert("Por favor ingrese un CE correcto.");
-                    return false;
+                    return true;
                 }
             }else if (tipoDocumento === "3") {
                 document.querySelector("#txt-documento").focus();
                 if ( !/^[A-Z0-9]+$/.test(documento) ){
                     alert("Por favor ingrese un pasaporte correcto.");
-                    return false;
+                    return true;
                 }
             }
             return false;
