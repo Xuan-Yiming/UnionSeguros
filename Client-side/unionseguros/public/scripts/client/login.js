@@ -29,7 +29,7 @@ document.getElementById("select-documento").addEventListener("change", function 
 
 
 document.querySelector("#btn-advance").addEventListener("click", function () {
-    if (stage == 3) {
+    if (stage == 4) {
         window.location.href = "/";
     }
 
@@ -187,7 +187,7 @@ function loadIngresoPIN() {
 }
 
 function loadIngresoCorreo() {
-    
+
 }
 
 function loadEnviarPIN(){
