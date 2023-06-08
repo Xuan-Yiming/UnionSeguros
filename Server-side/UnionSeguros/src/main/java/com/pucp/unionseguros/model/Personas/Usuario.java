@@ -30,6 +30,9 @@ public class Usuario extends Persona{
     @Column(name = "contrasena", length = 30)
     private String contrasena;
 
+    @Column(name = "token",length = 7)
+    private String token;
+
     @Column(name = "fecha_creacion")
     private LocalDate fechaCreacion;
 
