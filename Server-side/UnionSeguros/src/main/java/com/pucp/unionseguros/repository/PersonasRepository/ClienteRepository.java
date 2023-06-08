@@ -2,6 +2,7 @@ package com.pucp.unionseguros.repository.PersonasRepository;
 
 import com.pucp.unionseguros.model.Personas.Cliente;
 import com.pucp.unionseguros.model.Personas.Roles;
+import com.pucp.unionseguros.model.Personas.TipoDocumento;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -27,4 +28,6 @@ public interface ClienteRepository extends JpaRepository<Cliente,Integer> {
             "ORDER BY a.nombre ASC, a.apellidoPaterno ASC,a.apellidoMaterno ASC")
     public List<Cliente> listCliente(String busqueda);
 
+
+    //public Cliente findClienteByNumeroDocumentoAndFidTipoDocumentoAndContrasenaIsEmptyOrContrasenaIsNull(String numDocumentoIngresado, TipoDocumento TipoDocumento);
 }

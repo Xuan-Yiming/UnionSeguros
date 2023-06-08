@@ -1,5 +1,7 @@
 package com.pucp.unionseguros.repository.PersonasRepository;
 
+import com.pucp.unionseguros.model.Personas.Cliente;
+import com.pucp.unionseguros.model.Personas.TipoDocumento;
 import com.pucp.unionseguros.model.Personas.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -34,5 +36,10 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     public Usuario findUsuarioByEmail(String emailIngresado);
 
+    @Query("SELECT usu FROM Usuario usu WHERE usu.numeroDocumento=:numDocumentIngresado AND " +
+            "usu.fidTipoDocumento=:fidTipoDocIngresado AND  (usu.contrasena IS NULL OR usu.contrasena = '') ")
+    public Usuario verificarExistenciaDeCliente(String numDocumentIngresado, TipoDocumento fidTipoDocIngresado);
 
+    @Query("SELECT usu FROM Usuario  usu WHERE usu.email=:correoIngresado")
+    public Usuario verificarCorreoIngresadoLibre(String correoIngresado);
 }

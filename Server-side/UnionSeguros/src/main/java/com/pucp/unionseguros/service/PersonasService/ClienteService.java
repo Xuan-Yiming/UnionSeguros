@@ -2,6 +2,7 @@ package com.pucp.unionseguros.service.PersonasService;
 
 import com.pucp.unionseguros.model.Personas.Cliente;
 import com.pucp.unionseguros.model.Personas.Roles;
+import com.pucp.unionseguros.model.Personas.TipoDocumento;
 import com.pucp.unionseguros.model.Personas.Usuario;
 import com.pucp.unionseguros.repository.PersonasRepository.ClienteRepository;
 import com.pucp.unionseguros.repository.PersonasRepository.UsuarioRepository;
@@ -79,4 +80,7 @@ public class ClienteService {
         lista = clienteRepository.listCliente(busqueda);
         return  lista;
     }
+
+
+
 }

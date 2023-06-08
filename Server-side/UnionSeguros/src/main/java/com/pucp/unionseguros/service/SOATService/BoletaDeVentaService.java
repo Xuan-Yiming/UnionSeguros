@@ -32,7 +32,11 @@ public class BoletaDeVentaService {
         lista= boletaDeVentaRepository.findBoletaDeVentaByActivoIsTrue();
         return lista;
     }
-
+    public List<BoletaDeVenta> BuscarBoletasDeVentaParametro(String busqueda){
+        List<BoletaDeVenta> lista = new ArrayList<>();
+        lista = boletaDeVentaRepository.findPagos(busqueda);
+        return  lista;
+    }
 //    public BoletaDeVenta updateBoletaDeVenta(BoletaDeVenta boletaDeVenta){
 //        BoletaDeVenta foundBoleta = boletaDeVentaRepository.findBoletaDeVentaByIdAndActivoIsTrue(boletaDeVenta.getId());
 //        foundBoleta.setId(boletaDeVenta.getId());

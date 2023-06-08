@@ -34,5 +34,14 @@ public class DetalleCotizacionService {
         return savedDetalleCotizacion.getId();
     }
 
+    public DetalleCotizacion modificarDetalleCotizacion(DetalleCotizacion detalleCotizacion){
+        return detalleCotizacionRepository.save(detalleCotizacion);
+    }
 
+    public DetalleCotizacion eliminarDetalleCotizacionPorID(Integer idIngresado){
+        DetalleCotizacion foundDetalleCotizacion = detalleCotizacionRepository.findDetalleCotizacionById(idIngresado);
+        foundDetalleCotizacion.setActivo(false);
+        return detalleCotizacionRepository.save(foundDetalleCotizacion);
+
+    }
 }
