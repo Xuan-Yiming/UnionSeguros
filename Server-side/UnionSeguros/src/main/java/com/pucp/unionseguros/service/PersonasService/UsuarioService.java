@@ -1,8 +1,11 @@
 package com.pucp.unionseguros.service.PersonasService;
 
+import com.pucp.unionseguros.model.Personas.Cliente;
+import com.pucp.unionseguros.model.Personas.TipoDocumento;
 import com.pucp.unionseguros.model.Personas.Usuario;
 import com.pucp.unionseguros.repository.PersonasRepository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -31,6 +34,35 @@ public class UsuarioService {
         id = usuarioRepository.inicioSesion(email,contrasena);
         if (id == null) id=0;
         return  id;
+    }
+
+    public Usuario verificarExistenciaDeCliente(String numIngresado, Integer idTipoDocumento){
+        Usuario usuario = null;
+        TipoDocumento tipoDocumento = new TipoDocumento();
+        tipoDocumento.setId(idTipoDocumento);
+        usuario = usuarioRepository.verificarExistenciaDeCliente(numIngresado,tipoDocumento);
+
+        if(usuario==null){
+            //NO SE ENCONTRO AL CLIENTE NO ESTÁ REGISTRADO EN LA BD
+            return null;
+        }else{
+            //SE ENCONTRO AL USUARIO
+            return usuario;
+        }
+
+    }
+
+    public boolean CorreoIngresadoDisponible(String correoIngresado){
+        boolean success = false;
+        Usuario usuario = null;
+        usuario = usuarioRepository.verificarCorreoIngresadoLibre(correoIngresado);
+        if(usuario==null){
+            //NO SE ENCONTRO NINGUN USUARIO CON ESE CORREO Y POR ESO SE DEBERIA CONTINUAR
+            success = true;
+        }
+        return  success;
+
+
     }
 
 }

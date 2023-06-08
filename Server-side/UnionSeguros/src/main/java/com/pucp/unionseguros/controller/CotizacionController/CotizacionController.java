@@ -34,4 +34,17 @@ public class CotizacionController {
     public int insertarCotizacion(@RequestBody Cotizacion cotizacion){
         return cotizacionService.insertarCotizacion(cotizacion);
     }
+    @PutMapping("/modificar")
+    public Cotizacion modificarCotizacion(@RequestBody Cotizacion cotizacion){
+        return cotizacionService.updateCotizacion(cotizacion);
+    }
+
+    @PutMapping(params = "eliminar",path = "/eliminar")
+    public void eliminarCotizacion(@RequestParam(name = "eliminar") Integer id){
+        cotizacionService.eliminarCotizacion(id);
+    }
+    @GetMapping(params = "busqueda",path ="/listarCotiazacionesActivos")
+    public List<Cotizacion> listarCotizacionesActivos(@RequestParam(name = "busqueda") String busqueda){
+        return cotizacionService.listarCotizacionesActivos(busqueda);
+    }
 }

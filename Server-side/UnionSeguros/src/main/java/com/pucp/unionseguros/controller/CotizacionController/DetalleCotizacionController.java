@@ -33,4 +33,15 @@ public class DetalleCotizacionController {
     public int insertarDetalleCotizacion(@RequestBody DetalleCotizacion detalleCotizacion){
         return detalleCotizacionService.insertarDetalleCotizacion(detalleCotizacion);
     }
+
+    @PutMapping("/modificar")
+    public  DetalleCotizacion modificarDetalleCotizacion(@RequestBody DetalleCotizacion detalleCotizacion){
+        return  detalleCotizacionService.modificarDetalleCotizacion(detalleCotizacion);
+    }
+
+    @PutMapping(params = "idIngresado",path = "/eliminar")
+    public DetalleCotizacion eliminarDetalleCotizacionPorID(@RequestParam(name = "idIngresado") Integer IdIngresado){
+        return  detalleCotizacionService.eliminarDetalleCotizacionPorID(IdIngresado);
+    }
+
 }

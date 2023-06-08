@@ -52,4 +52,25 @@ public class VehiculoController {
         Page<Vehiculo> lista = vehiculoService.findAll(pageable);
         return lista;
     }
+
+    @GetMapping(params = "busqueda",path ="/buscarVehiculoParametros")
+    public List<Vehiculo> buscarVehiculoParametro(@RequestParam(name = "busqueda") String busqueda){
+        return vehiculoService.buscarVehiculoParametro(busqueda);
+    }
+
+    @PutMapping("/modificar")
+    public Vehiculo modificarVehiculo(@RequestBody Vehiculo vehiculo){
+        return vehiculoService.updateVehiculo(vehiculo);
+    }
+
+    @PutMapping("/eliminar")
+    public Vehiculo eliminarVehiculo(@RequestBody Vehiculo vehiculo){
+        return vehiculoService.deleteVehiculo(vehiculo);
+    }
+
+    @PutMapping(params = "eliminar",path ="/eliminar2")
+    public void eliminarVehiculo2(@RequestParam(name = "eliminar") Integer id){
+        vehiculoService.eliminarVehiculo(id);
+    }
+
 }
