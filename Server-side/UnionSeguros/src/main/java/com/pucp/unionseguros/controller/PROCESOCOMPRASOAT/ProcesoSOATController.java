@@ -67,6 +67,7 @@ public class ProcesoSOATController {
             cliente.setApellidoPaterno(clienteNode.get("apellidoPaterno").asText());
             cliente.setApellidoMaterno(clienteNode.get("apellidoMaterno").asText());
             cliente.setNumeroDocumento(clienteNode.get("numeroDocumento").asText());
+            cliente.setEmail(clienteNode.get("email").asText());
 
             //ROLES
             JsonNode fidRolesNode = clienteNode.get("fidRoles");

@@ -10,4 +10,6 @@ import java.util.List;
 public interface DetalleCotizacionRepository extends JpaRepository<DetalleCotizacion,Integer> {
     public List<DetalleCotizacion> findAllByActivoIsTrue();
 
+    public DetalleCotizacion findDetalleCotizacionById(Integer idIngresado);
+
 }

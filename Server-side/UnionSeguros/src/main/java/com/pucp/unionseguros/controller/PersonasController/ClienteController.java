@@ -58,4 +58,6 @@ public class ClienteController {
     public List<Cliente> listarClientesActivos(@RequestParam(name = "busqueda") String busqueda){
         return clienteService.listarClientesActivos(busqueda);
     }
+
+
 }

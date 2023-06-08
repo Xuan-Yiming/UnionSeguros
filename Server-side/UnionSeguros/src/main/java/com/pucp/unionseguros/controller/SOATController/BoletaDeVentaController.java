@@ -39,6 +39,9 @@ public class BoletaDeVentaController {
         return boletaDeVentaService.insertarBoletaDeVenta(boletaDeVenta);
     }
 
-
+    @GetMapping(params = "busqueda",path ="/buscarBoletaDeVentaParametros")
+    public List<BoletaDeVenta> buscarBoletaDeVentaParametro(@RequestParam(name = "busqueda") String busqueda){
+        return boletaDeVentaService.BuscarBoletasDeVentaParametro(busqueda);
+    }
 
 }
