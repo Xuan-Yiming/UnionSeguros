@@ -122,7 +122,7 @@ function changeStage() {
             document.querySelector(".form-validacion").style.display = "none";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
-            
+            loadEnviarPIN();
             break;
         case 3:
             document.querySelector(".form-registro").style.display = "none";
@@ -153,14 +153,66 @@ function validateNumericInput(input) {
 }
 
 function loadIngresoDatos() {
-    
+
 }
 
 function loadIngresoPIN() {
-
+    const contrasena = document.querySelector("#txt-contrasena").value;
+    fetch(GLOBAL_URL + '/email/verificarToken', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ parametro: contrasena }) 
+    })
+        .then(response => response.json())
+        .then(data => {
+            
+            const resultado = data.booleano;
+            if(resultado){
+                alert("Por favor ingrese el documento correcto.");                    
+                return false;
+            }else{
+                alert("PIN incorrecto.");                    
+                return true;
+            }
+           
+    
+            
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    
 }
 
 function loadIngresoCorreo() {
+    
+}
+
+function loadEnviarPIN(){
+    const email = document.querySelector("#txt-correo").value;
+    fetch(GLOBAL_URL + '/email/generarToken', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ parametro: email }) 
+    })
+        .then(response => response.json())
+        .then(data => {
+            
+            const cadenaRetornada = data.cadena;
+    
+           
+            alert(cadenaRetornada);
+    
+           
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    
 
 }
 
