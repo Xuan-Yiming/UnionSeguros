@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Seguros</title>
+    <title>Marcas y Modelos</title>
     <link rel="icon" type="image/x-icon" href="../public/resources/icons/page-icon.png">
 
     <link rel="stylesheet" href="../public/stylesheets/style.css">
@@ -32,11 +32,18 @@
     <%- include('../layouts/header'); %>
 
         <main id="tabla-plan-soat">
-            <h2>Beneficios de Seguro Vehicular</h2>
+            <h2>Marcas y Modelos</h2>
             <div id="control-bar">
                 <div id="control-bar-button">
                     <button class="button-blue-transparente-blue-border" id="btn-nuevo" onclick="openModal()">
-                        + Agregar nuevo
+                        + Agregar marca
+                    </button>
+                    <button class="button-blue-transparente-blue-border" id="btn-nuevo" onclick="openModal()">
+                        + Agregar modelo
+                    </button>
+
+                    <button class="button-blue-transparente-blue-border" id="btn-nuevo">
+                        + Carga masiva
                     </button>
                 </div>
                 <div id="control-bar-search">
@@ -48,8 +55,9 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Descipcion</th>
-                        <th>Precio</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Valor</th>
                         <th>Herramientas</th>
                     </tr>
                 </thead>
