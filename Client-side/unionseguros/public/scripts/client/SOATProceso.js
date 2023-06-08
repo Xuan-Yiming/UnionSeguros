@@ -266,14 +266,14 @@ function verificacion() {
                 return false;
             }
 
-            if (numSerie.length != 17) {
+            if (numSerie.length !== 17) {
                 document.querySelector("#txt-serie").focus();
                 alert("El número de serie debe tener 17 caracteres");
                 return false;
             }
 
             if (!/^[A-Za-z]+$/.test(apdPaterno) || !/^[A-Za-z]+$/.test(apdMaterno) || !/^[A-Za-z ]+$/.test(nombres)) {
-                if (apdMaterno != "-") {
+                if (apdMaterno !== "-") {
                     document.querySelector("#txt-apdPaterno").focus();
                     alert("Los nombres y apellidos no deben contener caracteres especiales");
                     return false;
