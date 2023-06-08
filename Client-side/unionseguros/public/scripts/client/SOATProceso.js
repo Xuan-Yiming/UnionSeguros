@@ -141,7 +141,7 @@ function loadPlans() {
     fetch(GLOBAL_URL + '/planSOAT/listarActivos')
         .then(response => response.json())
         .then(data => {
-            const planContainer = document.querySelector('.content-plan');
+            const planContainer = document.querySelector('.content-planes');
             planContainer.innerHTML = '';
             data.forEach(plan => {
                 const planDiv = document.createElement('div');
@@ -180,12 +180,12 @@ function loadPlans() {
                 selectButton.setAttribute('id-plan', plan.id);
                 selectButton.setAttribute('precio-plan', plan.precio);
                 selectButton.setAttribute('nombre-plan', plan.nombrePlan);
+                planDiv.appendChild(selectButton);
                 selectButton.addEventListener('click', function () {
                     localStorage.setItem('idPlan', event.target.getAttribute('id-plan'));
                     localStorage.setItem('precioPlan', event.target.getAttribute('precio-plan'));
                     localStorage.setItem('nombrePlan', event.target.getAttribute('nombre-plan'));
                 });
-                planDiv.appendChild(selectButton);
 
                 planContainer.appendChild(planDiv);
             });
@@ -207,7 +207,7 @@ function loadResumen() {
     const currentDate = new Date(dateValue);
     currentDate.setFullYear(currentDate.getFullYear() + 1);
 
-    document.querySelector("#txt-res-preiodo").innerText = document.querySelector("#date-picker").value + " - " + currentDate.toISOString().slice(0, 10);
+    document.querySelector("#txt-res-periodo").innerText = document.querySelector("#date-picker").value + " - " + currentDate.toISOString().slice(0, 10);
 
     localStorage.removeItem("placa");
     localStorage.removeItem("tipoDocumento");
