@@ -6,6 +6,21 @@ window.onload = function () {
     localStorage.setItem("idCliente", 0);
     localStorage.setItem("idVehiculo", 0);
 
+    fetch(GLOBAL_URL + '/tipoDocumento/listarActivos')
+        .then(response => response.json())
+        .then(data => {
+            document.querySelector('#select-documento').innerHTML = '';
+            data.forEach(tipoDocumento => {
+                const option = document.createElement('option');
+                option.value = tipoDocumento.id;
+                option.innerText = tipoDocumento.nombre;
+                document.querySelector('#select-documento').appendChild(option);
+            });
+        })
+        .catch(error => {
+            // Handle the error
+            console.error(error);
+        });
 
     document.querySelector("#dpFecha").value = new Date().toISOString().split("T")[0];
 
@@ -284,7 +299,7 @@ function verificacion() {
     const apdPaterno = document.querySelector("#txt-apdPaterno").value;
     const apdMaterno = document.querySelector("#txt-apdMaterno").value;
     const nombres = document.querySelector("#txt-nombres").value;
-    
+
     switch (stage) {
         case 0:
             var documento = document.querySelector("#txt-documento").value;
@@ -292,28 +307,38 @@ function verificacion() {
 
             if(tipoDocumento === "0"){
                 alert("Por favor ingrese el documento correcto.");
-                return true;
-            }else if (tipoDocumento === "3") {
+                return false;
+            }else if (tipoDocumento === "5") {
                 if((documento.length !== 11 || !/^[0-9]+$/.test(documento)) || (documento.substring(0, 2) !== "10" && documento.substring(0, 2) !== "20")){
-                    alert("Por favor ingrese el documento correcto.");
-                    return true;
+                    document.querySelector("#txt-documento").focus();
+                    alert("Por favor ingrese un RUC correcto.");
+                    return false;
                 }
             }else if (tipoDocumento === "1") {
                 if (documento.length !== 8 || !/^[0-9]+$/.test(documento)) {
-                    alert("Por favor ingrese el documento correcto.");
-                    return true;
+                    document.querySelector("#txt-documento").focus();
+                    alert("Por favor ingrese un DNI correcto.");
+                    return false;
                 }
             }else if (tipoDocumento === "2") {
                 if (documento.length !== 9 || !/^[0-9]+$/.test(documento)){
-                    alert("Por favor ingrese el documento correcto.");
-                    return true;
+                    document.querySelector("#txt-documento").focus();
+                    alert("Por favor ingrese un CE correcto.");
+                    return false;
+                }
+            }else if (tipoDocumento === "3") {
+                document.querySelector("#txt-documento").focus();
+                if ( !/^[A-Z0-9]+$/.test(documento) ){
+                    alert("Por favor ingrese un pasaporte correcto.");
+                    return false;
                 }
             }
             return false;
+
             break;
         case 1:
 
-        
+
             const email = document.querySelector("#txt-correo").value;
             if (  email === "" || apdPaterno == "" || nombres == "" ) {
                 alert("Falta completar campos");
