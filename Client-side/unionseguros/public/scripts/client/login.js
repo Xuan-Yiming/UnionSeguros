@@ -100,34 +100,50 @@ function changeStage() {
         case 0:
             document.querySelector(".form-registro").style.display = "block";
             document.querySelector(".form-correo").style.display = "none";
+            document.querySelector(".form-contrasena").style.display = "none";
             document.querySelector(".form-validacion").style.display = "none";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
+            loadIngresoDatos();
             break;
         case 1:
             document.querySelector(".form-registro").style.display = "none";
             document.querySelector(".form-correo").style.display = "block";
+            document.querySelector(".form-contrasena").style.display = "none";
             document.querySelector(".form-validacion").style.display = "none";
             document.querySelector(".form-result").style.display = "none";;
             document.querySelector("#btn-previous").style.display = "block";
-            loadIngresoDatos();
+            loadIngresoCorreo();
             break;
         case 2:
             document.querySelector(".form-registro").style.display = "none";
             document.querySelector(".form-correo").style.display = "none";
-            document.querySelector(".form-validacion").style.display = "block";
+            document.querySelector(".form-contrasena").style.display = "block";
+            document.querySelector(".form-validacion").style.display = "none";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
-            loadIngresoCorreo();
+            
             break;
         case 3:
             document.querySelector(".form-registro").style.display = "none";
             document.querySelector(".form-correo").style.display = "none";
+            document.querySelector(".form-contrasena").style.display = "none";
+            document.querySelector(".form-validacion").style.display = "block";
+            document.querySelector(".form-result").style.display = "none";
+            document.querySelector("#btn-previous").style.display = "block";
+            loadIngresoPIN();
+            break;
+        case 4:
+            document.querySelector(".form-registro").style.display = "none";
+            document.querySelector(".form-correo").style.display = "none";
+            document.querySelector(".form-contrasena").style.display = "none";
             document.querySelector(".form-validacion").style.display = "none";
             document.querySelector(".form-result").style.display = "block";
             document.querySelector("#btn-previous").style.display = "none";
             guardar();
-            loadFin();
+            if (localStorage.getItem("errot")==1){
+                return;
+            }
             break;
     }
 }
@@ -137,10 +153,10 @@ function validateNumericInput(input) {
 }
 
 function loadIngresoDatos() {
-
+    
 }
 
-function loadFin() {
+function loadIngresoPIN() {
 
 }
 
@@ -148,10 +164,75 @@ function loadIngresoCorreo() {
 
 }
 
+async function guardar() {
+
+
+    const usuario = {
+        "nombre": document.querySelector('#txt-nombres').value,
+        "apellidoPaterno": document.querySelector('#txt-apdPaterno').value,
+        "apellidoMaterno": document.querySelector('#txt-apdMaterno').value,
+        //"fechaNacimiento": new Date(document.querySelector('#dp-fecha-nacimiento').value).toISOString().slice(0, 10),
+        //"telefono": document.querySelector('#txt-celular').value,
+        //"direccion": document.querySelector('#txt-direccion').value,
+        "numeroDocumento": document.querySelector('#txt-documento').value,
+        "activoPersona": true,
+        "fidTipoDocumento": {
+            "id": document.querySelector('#select-documento').value
+        },
+        "email": document.querySelector('#txt-correo').value,
+        "contrasena": document.querySelector('#txt-contrasena').value,
+        "fechaCreacion": new Date().toISOString().slice(0, 10),
+        "activoUsuario": true,
+        "activo": true,
+        "baneado": false,
+        "fidRoles": {
+            "idRole": 1,
+            "fidPermisos": {
+                "id": 1
+            }
+        }
+    }
+    console.log(JSON.stringify(usuario));
+    fetch(GLOBAL_URL + '/cliente/insertar', {
+        method: 'POST',
+        body: JSON.stringify(usuario),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+        .then(response => response.json())
+        .then(element => {
+            if (parseInt(element) > 0) {
+                alert("Se ha guardado correctamente");
+                window.location.href = '/admin/cliente';
+            } else {
+                if (parseInt(element) > 0 == 0) {
+                    alert("Numero de documento repetido");
+                } else if (parseInt(element) > 0 == -1) {
+                    alert("Correo repetido");
+                } else {
+                    alert("Ha ocurrido un error");
+                }
+                return;
+
+            }
+        })
+        .catch(error => {
+            // Handle the error
+            console.error(error);
+        });
+
+    
+}
+
+
+
+
 function verificacion() {
     const apdPaterno = document.querySelector("#txt-apdPaterno").value;
     const apdMaterno = document.querySelector("#txt-apdMaterno").value;
     const nombres = document.querySelector("#txt-nombres").value;
+    
     switch (stage) {
         case 0:
             var documento = document.querySelector("#txt-documento").value;
@@ -202,6 +283,14 @@ function verificacion() {
             return false;
             break;
         case 2:
+            const contrasena = document.querySelector("#txt-contrasena").value;
+            if (  contrasena === "" ) {
+                alert("Falta completar el campo");
+                return true;
+            }
+            return false;
+            break;
+        case 3:
             const pin = document.querySelector("#txt-PIN").value;
 
             if (  pin === "" ) {
@@ -220,7 +309,7 @@ function verificacion() {
             }
             return false;
             break;
-        case 3:
+        case 4:
             break;
     }
     return true;
