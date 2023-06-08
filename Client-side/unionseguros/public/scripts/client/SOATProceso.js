@@ -349,7 +349,6 @@ function verificacion() {
                 alert("El nombre del titular no debe contener caracteres especiales");
                 return false;
             }
-
             break;
         case 3:
             break;
