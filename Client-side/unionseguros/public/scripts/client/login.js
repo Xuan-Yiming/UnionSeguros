@@ -149,7 +149,9 @@ function loadIngresoCorreo() {
 }
 
 function verificacion() {
-
+    const apdPaterno = document.querySelector("#txt-apdPaterno").value;
+    const apdMaterno = document.querySelector("#txt-apdMaterno").value;
+    const nombres = document.querySelector("#txt-nombres").value;
     switch (stage) {
         case 0:
             var documento = document.querySelector("#txt-documento").value;
@@ -177,11 +179,22 @@ function verificacion() {
             return false;
             break;
         case 1:
+
+        
             const email = document.querySelector("#txt-correo").value;
-            if (  email === "" ) {
+            if (  email === "" || apdPaterno == "" || nombres == "" ) {
                 alert("Falta completar campos");
                 return true;
             }
+
+            if (!/^[A-Za-z]+$/.test(apdPaterno) || !/^[A-Za-z]+$/.test(apdMaterno) || !/^[A-Za-z ]+$/.test(nombres)) {
+                if (apdMaterno != "-") {
+                    document.querySelector("#txt-apdPaterno").focus();
+                    alert("Los nombres y apellidos no deben contener caracteres especiales");
+                    return true;
+                }
+            }
+
             if (!(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email))) {
                 alert("El correo electrónico no es válido");
                 return true;
@@ -197,7 +210,7 @@ function verificacion() {
             }
 
             if (pin.length !== 6) {
-                alert("El número de tarjeta debe tener 6 dígitos");
+                alert("El PIN debe tener 6 dígitos");
                 return true;
             }
 
