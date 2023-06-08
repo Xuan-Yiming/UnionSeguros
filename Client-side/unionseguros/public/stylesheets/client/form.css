@@ -10,9 +10,10 @@
 .form-container-control{
     display: flex;
     justify-content: space-between;
-    padding: 0px;
+    padding: 0;
     height: fit-content;
 }
+
 
 
 .form-container-content{
@@ -22,7 +23,7 @@
     position: relative;
     background-color: white;
     height: fit-content;
-    max-width: 500px;
+    max-width: 1000px;
     width: fit-content;
     border-radius: 10px;
     margin: 0 auto 60px auto;
@@ -56,6 +57,7 @@
     font-size: 18px;
     margin-top: 10px;
 }
+
 .form-result-content{
     justify-content: center;
     text-align: center;
@@ -70,13 +72,13 @@ input[type="radio"] {
     outline: none;
     background-color: transparent;
 
-    position: absolute;
-    bottom:   0;
+    position: relative;
+
 
 }
 
 input[type="radio"]:before {
-    content: "seleccionar";
+    content: "Seleccionar";
     border: none;
     border-radius: 5px;
     background-color: white;
@@ -85,10 +87,12 @@ input[type="radio"]:before {
     width: fit-content;
     padding: 10px 20px;
     margin: 10px;
+    position: relative;
+    text-align: center;
 }
 
 input[type="radio"]:checked:before {
-    content: "Sleccionado";
+    content: "Seleccionado";
     border: none;
     border-radius: 5px;
     background-color: #C8102E;
@@ -97,6 +101,7 @@ input[type="radio"]:checked:before {
     width: fit-content;
     padding: 10px 20px;
     margin: 10px;
+    position: relative;
 }
 
 #btn-advance{
