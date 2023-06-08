@@ -56,7 +56,7 @@ window.onload = function () {
     
 
     document.querySelector('#regresar').addEventListener('click', function () {
-        localStorage.removeItem('data-usaurio');
+        localStorage.removeItem('data-usuario');
         window.location.href = '/admin/usuario';
     });
 

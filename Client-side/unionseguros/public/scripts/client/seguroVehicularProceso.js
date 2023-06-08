@@ -100,7 +100,6 @@ function changeStage() {
             document.querySelector(".form-vehiculo ").style.display = "block";
             document.querySelector(".form-personal ").style.display = "none"; 
             document.querySelector(".form-plans").style.display = "none";
-            document.querySelector(".form-payment").style.display = "none";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-descargar-constancia").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
@@ -109,7 +108,6 @@ function changeStage() {
             document.querySelector(".form-vehiculo ").style.display = "none";
             document.querySelector(".form-personal ").style.display = "block"; 
             document.querySelector(".form-plans").style.display = "none";
-            document.querySelector(".form-payment").style.display = "none";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-descargar-constancia").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
@@ -118,43 +116,30 @@ function changeStage() {
             document.querySelector(".form-vehiculo ").style.display = "none";
             document.querySelector(".form-personal ").style.display = "none"; 
             document.querySelector(".form-plans").style.display = "block";
-            document.querySelector(".form-payment").style.display = "none";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-descargar-constancia").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
             loadPlans();
             break;
         case 3:
-            document.querySelector(".form-vehiculo ").style.display = "none";
-            document.querySelector(".form-personal ").style.display = "none"; 
-            document.querySelector(".form-plans").style.display = "none";
-            document.querySelector(".form-payment").style.display = "block";
-            document.querySelector(".form-result").style.display = "none";
-            document.querySelector("#btn-descargar-constancia").style.display = "none";
-            document.querySelector("#btn-previous").style.display = "block";
-            loadTarjeta();
-            break;
-        case 4:
             guardar();
             if (localStorage.getItem("errot")==1){
                 return;
             }
-
             document.querySelector(".form-vehiculo ").style.display = "none";
-            document.querySelector(".form-personal ").style.display = "none"; 
+            document.querySelector(".form-personal ").style.display = "none";
             document.querySelector(".form-plans").style.display = "none";
-            document.querySelector(".form-payment").style.display = "none";
             document.querySelector(".form-result").style.display = "block";
             document.querySelector("#btn-descargar-constancia").style.display = "block";
             document.querySelector("#btn-previous").style.display = "none";
-            
+
             loadResumen();
             break;
     }
 }
 
 function loadPlans() {
-    fetch(GLOBAL_URL + '/detalleCotizacion/listarActivos')
+    fetch(GLOBAL_URL + '/detalleCotizacion/listarTodosActivos')
         .then(response => response.json())
         .then(data => {
             const planContainer = document.querySelector('.content-plan');
@@ -174,16 +159,13 @@ function loadPlans() {
                 const descriptionList = document.createElement('ul');
                 descriptionList.classList.add('plan-seguro-description');
 
-                const coverage = document.createElement('li');
-                coverage.innerText = `Cobertura completa hasta S/.${plan.cobertura}`;
-                descriptionList.appendChild(coverage);
 
                 const beneficio = document.createElement('li');
                 beneficio.innerText = `${plan.beneficio}`;
                 descriptionList.appendChild(beneficio);
 
                 const ley = document.createElement('li');
-                ley.innerText = 'SOAT de acuerdo a la ley.';
+                ley.innerText = 'Seguro Vehicular de acuerdo a la ley.';
                 descriptionList.appendChild(ley);
 
                 planDiv.appendChild(descriptionList);
