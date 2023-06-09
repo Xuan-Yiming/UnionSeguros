@@ -1,21 +1,21 @@
 
 
-var usuarios;
+var vehculos;
 var searchTimer;
 window.onload = function () {
     if (localStorage.getItem('user') == null) {
         window.location.href = '/admin/login';
     }
-    fetch(GLOBAL_URL + '/administrador/listarTodosActivos')
-        .then(response => response.json())
-        .then(data => {
-            this.usuarios = data;
-            crearLaTabla(data);
-        })
-        .catch(error => {
-            // Handle the error
-            console.error(error);
-        });
+    fetch(GLOBAL_URL + "/vehiculo/buscarVehiculoParametros?busqueda=")
+      .then((response) => response.json())
+      .then((data) => {
+        this.vehculos = data;
+        crearLaTabla(data);
+      })
+      .catch((error) => {
+        // Handle the error
+        console.error(error);
+      });
 
     document.querySelector('#txt-buscar').addEventListener('input', function () {
         clearTimeout(searchTimer);
@@ -25,12 +25,16 @@ window.onload = function () {
             let params = new URLSearchParams();
             params.append('busqueda', query);
 
-            let url = new URL(GLOBAL_URL + '/administrador/listarAdministradoresActivos?' + params.toString());
+            let url = new URL(
+              GLOBAL_URL +
+                "/vehiculo/buscarVehiculoParametros?" +
+                params.toString()
+            );
 
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
-                    this.usuarios = data;
+                    this.vehculos = data;
                     crearLaTabla(data);
                 })
                 .catch(error => {
@@ -51,51 +55,50 @@ window.onload = function () {
 function crearLaTabla(data) {
     const table = document.querySelector('#table-body');
     table.innerHTML = '';
-    data.forEach(usaurio => {
+    data.forEach(vehiculo => {
         const tableRow = document.createElement('tr');
         tableRow.classList.add('table-row');
 
-        const documento = document.createElement('td');
-        documento.classList.add('td-documento');
-        documento.innerText = usaurio.numeroDocumento;
-        tableRow.appendChild(documento);
+        const placa = document.createElement('td');
+        placa.classList.add("td-placa");
+        placa.innerText = vehiculo.placa;
+        tableRow.appendChild(placa);
 
-        const nombres = document.createElement('td');
-        nombres.classList.add('td-nombre');
-        nombres.innerText = usaurio.nombre + ", " + usaurio.apellidoPaterno + " " + usaurio.apellidoMaterno;
-        tableRow.appendChild(nombres);
+        const marca = document.createElement('td');
+        marca.classList.add("td-marca");
+        marca.innerText = vehiculo.fidModelo.fidMarcaVehiculo.marca;
+        tableRow.appendChild(marca);
 
-        const correo = document.createElement('td');
-        correo.classList.add('td-correo');
-        correo.innerText = usaurio.email;
-        tableRow.appendChild(correo);
+        const modelo = document.createElement('td');
+        modelo.classList.add("td-modelo");
+        modelo.innerText = vehiculo.fidModelo.modelo;
+        tableRow.appendChild(modelo);
 
-        const auditoria = document.createElement('td');
-        auditoria.classList.add('td-auditoria');
-        auditoria.innerText = "Auditoria";
-        tableRow.appendChild(auditoria);
+        const serie = document.createElement('td');
+        serie.classList.add("td-serie");
+        serie.innerText = vehiculo.serie;
+        tableRow.appendChild(serie);
 
+        const dueno = document.createElement('td');
+        dueno.classList.add("td-dueno");
+        dueno.innerText =
+          vehiculo.fidPersona.nombre +
+          " " +
+          vehiculo.fidPersona.apellidoPaterno +
+          " " +
+          vehiculo.fidPersona.apellidoMaterno;
+        tableRow.appendChild(dueno);
         //add edit button
         const button = document.createElement('td');
-        const editButton = document.createElement('button');
-        editButton.classList.add('btn-edit');
-        editButton.innerText = 'Editar';
-        editButton.setAttribute('data-id', usaurio.id);
-        editButton.addEventListener('click', () => {
-            const dataId = event.target.getAttribute('data-id');
-            localStorage.setItem('data-vehiculo', JSON.stringify(this.usuarios.find(usuario => usuario.id == dataId)));
-            window.location.href = '/admin/detallVehiculo';
-        });
-        button.appendChild(editButton);
 
         //add delete button
         const deleteButton = document.createElement('button');
         deleteButton.classList.add('btn-delete');
         deleteButton.innerText = 'Eliminar';
-        deleteButton.setAttribute('data-id', usaurio.id);
+        deleteButton.setAttribute("data-id", vehiculo.id);
         deleteButton.addEventListener('click', () => {
             const dataId = event.target.getAttribute('data-id');
-            let data = this.usuarios.find(usuario => usuario.id == dataId)
+            let data = this.usuarios.find((vehiculo) => vehiculo.id == dataId);
             const usuario = {
                 "id": data.id,
                 "nombre": data.nombre,
