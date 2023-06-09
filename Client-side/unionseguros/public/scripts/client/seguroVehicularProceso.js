@@ -123,7 +123,7 @@ function changeStage() {
             break;
         case 3:
             guardar();
-            if (localStorage.getItem("errot")==1){
+            if (localStorage.getItem("error")==1){
                 return;
             }
             document.querySelector(".form-vehiculo ").style.display = "none";
@@ -469,7 +469,7 @@ async function insertarCliente() {
             .catch(error => {
                 // Handle the error
                 console.error(error);
-                localStorage.setItem("errot", 1);
+                localStorage.setItem("error", 1);
             });
 
     }
@@ -514,7 +514,7 @@ async function insertarVehiculo() {
             })
             .catch(error => {
                 // Handle the error
-                localStorage.setItem("errot", 1);
+                localStorage.setItem("error", 1);
                 console.error(error);
             });
     }
@@ -554,7 +554,7 @@ async function insertarMetodDePago() {
             // Handle the error
             alert("No se ha podido guardar metodo de pago");
             console.error(error);
-            localStorage.setItem("errot", 1);
+            localStorage.setItem("error", 1);
         });
 
 }
@@ -602,7 +602,7 @@ async function insertarPoliza() {
         })
         .catch(error => {
             // Handle the error
-            localStorage.setItem("errot", 1);
+            localStorage.setItem("error", 1);
             console.error(error);
             alert("No se ha podido generar poliza");
         });
@@ -635,7 +635,7 @@ async function insertarSOAT() {
         })
         .catch(error => {
             // Handle the error
-            localStorage.setItem("errot", 1);
+            localStorage.setItem("error", 1);
             console.error(error);
             alert("No se ha podido cumplir con la operacion");
         });
