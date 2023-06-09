@@ -1,5 +1,3 @@
-
-
 window.onload = function () {
     document.querySelector("#button-login").addEventListener('click', function () {
         let params = new URLSearchParams(location.search);

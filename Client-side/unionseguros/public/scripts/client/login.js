@@ -40,7 +40,30 @@ document.getElementById("select-documento").addEventListener("change", function 
 
 
 document.querySelector("#btn-advance").addEventListener("click", function () {
-    if (stage == 4) {
+    if(stage === 0){
+        let params = new URLSearchParams(location.search);
+        params.append('id_tipo_documento', document.querySelector("#select-documento").value);
+        params.append('numero_documento', document.querySelector("#txt-documento").value);
+
+        let url = new URL(GLOBAL_URL + '/usuario/verificarExistenciaDeCliente?'+ params.toString());
+        fetch(url)
+            .then(response => response.json())
+            .then(element => {
+                if (element === null) {
+                    alert("El documento indicado ya se encuentra registrado");
+                    return;
+                } else {
+                    localStorage.setItem('user', JSON.stringify(element));
+                    const id = element.id;
+                }
+            })
+            .catch(error => {
+                // Handle the error
+                console.error(error);
+            });
+    }
+
+    if (stage === 4) {
         window.location.href = "/";
     }
 
@@ -69,11 +92,12 @@ document.querySelector("#btn-advance").addEventListener("click", function () {
 
     stage = stage + 1;
     console.log(stage);
+
     changeStage();
+
 });
 
 document.querySelector("#btn-previous").addEventListener("click", function () {
-
     if (stage == 0) {
         if (confirm("Deseas cancelar el proceso de registro?")) {
             window.location.href = "/iniciarSesion";
@@ -147,6 +171,7 @@ function changeStage() {
             document.querySelector(".form-validacion").style.display = "none";
             document.querySelector(".form-result").style.display = "block";
             document.querySelector("#btn-previous").style.display = "none";
+            guardar();
             if (localStorage.getItem("error")==1){
                 return;
             }
@@ -157,7 +182,6 @@ function changeStage() {
 function validateNumericInput(input) {
     input.value = input.value.replace(/\D/g, ''); // Eliminar caracteres que no sean números
 }
-
 
 function verificacion() {
     const apdPaterno = document.querySelector("#txt-apdPaterno").value;
@@ -254,4 +278,10 @@ function verificacion() {
             break;
     }
     return true;
+}
+
+/****APIS****/
+
+async function guardar(){
+
 }
