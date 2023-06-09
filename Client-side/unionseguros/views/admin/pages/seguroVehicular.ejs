@@ -22,11 +22,11 @@
             <h2>Detalles</h2>
             <label for="txt-beneficio">Beneficio</label>
             <input type="text" id="txt-beneficio" placeholder="Beneficio">
-            <label for="txt-precio">Precio</label>
-            <input type="text" id="txt-precio" placeholder="Precio">
+            <label for="txt-monto">Precio</label>
+            <input type="text" id="txt-monto" placeholder="Precio">
 
-            <button onclick="closeModal()">Cancelar</button>
-            <button onclick="closeModal()">Guardar</button>
+            <button id="btn-modal-cancelar" ">Cancelar</button>
+            <button id="btn-modal-guardar" ">Guardar</button>
         </div>
     </div>
     <%- include('../layouts/header'); %>
@@ -35,7 +35,7 @@
             <h2>Beneficios de Seguro Vehicular</h2>
             <div id="control-bar">
                 <div id="control-bar-button">
-                    <button class="button-blue-transparente-blue-border" id="btn-nuevo" onclick="openModal()">
+                    <button class="button-blue-transparente-blue-border" id="btn-nuevo" ">
                         + Agregar nuevo
                     </button>
                 </div>
