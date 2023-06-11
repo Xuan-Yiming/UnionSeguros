@@ -410,6 +410,7 @@ async function guardar() {
         let data = {
             "cliente": {
                 "nombre": nombres,
+                "email":email,
                 "apellidoPaterno": apdPaterno,
                 "apellidoMaterno": apdMaterno,
                 "numeroDocumento": localStorage.getItem("documento"),
