@@ -92,6 +92,11 @@ var adminDetalleVehiculoRouter = require('./routes/admin/adminDetalleVehiculo');
 app.use('/admin/detalleVehiculo', adminDetalleVehiculoRouter);
 var adminMarcaModeloRouter = require('./routes/admin/adminMarcaModelo');
 app.use('/admin/marcaModelo', adminMarcaModeloRouter);
+var adminModeloRouter = require('./routes/admin/adminModelo');
+app.use('/admin/modelo', adminModeloRouter);
+var adminModeloDetalleRouter = require('./routes/admin/adminModeloDetalle');
+app.use('/admin/modeloDetalle', adminModeloDetalleRouter);
+
 // //pagina de ventas
 // var adminVentasRouter = require('./routes/admin/adminVentas');
 // app.use('/admin/ventas', adminVentasRouter);

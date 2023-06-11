@@ -42,7 +42,7 @@ window.onload = function () {
 //   });
 
   document.querySelector("#btn-nuevo").addEventListener("click", function () {
-    localStorage.removeItem("data-plan");
+    localStorage.removeItem("data-beneficio");
     openModal(configurarModal());
   });
     
@@ -55,55 +55,57 @@ window.onload = function () {
                 monto: monto,
                 activo: true
             };
-            if (localStorage.getItem("data-plan")) {
-                const dataId = JSON.parse(localStorage.getItem("data-plan")).id;
-                data.id = dataId;
-                fetch(GLOBAL_URL + "/detalleCotizacion/modificar", {
-                  method: "PUT",
-                  body: JSON.stringify(data),
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
+            if (localStorage.getItem("data-beneficio")) {
+              const dataId = JSON.parse(
+                localStorage.getItem("data-beneficio")
+              ).id;
+              data.id = dataId;
+              fetch(GLOBAL_URL + "/detalleCotizacion/modificar", {
+                method: "PUT",
+                body: JSON.stringify(data),
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              })
+                .then((response) => response.json())
+                .then((element) => {
+                  if (element) {
+                    alert("Se ha actualizado correctamente");
+                    location.reload();
+                    return true;
+                  } else {
+                    alert("No se ha podido actualizar");
+                    return false;
+                  }
                 })
-                  .then((response) => response.json())
-                  .then((element) => {
-                    if (element) {
-                      alert("Se ha actualizado correctamente");
-                      location.reload();
-                      return true;
-                    } else {
-                      alert("No se ha podido actualizar");
-                      return false;
-                    }
-                  })
-                  .catch((error) => {
-                    // Handle the error
-                    console.error(error);
-                  });
+                .catch((error) => {
+                  // Handle the error
+                  console.error(error);
+                });
             } else {
-                fetch(GLOBAL_URL + "/detalleCotizacion/insertar", {
-                  method: "POST",
-                  body: JSON.stringify(data),
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                })
-                  .then((response) => response.json())
-                  .then((element) => {
-                    if (element) {
-                      alert("Se ha insertado correctamente");
-                      location.reload();
-                      return true;
-                    } else {
-                      alert("No se ha podido insertar");
+              fetch(GLOBAL_URL + "/detalleCotizacion/insertar", {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              })
+                .then((response) => response.json())
+                .then((element) => {
+                  if (element) {
+                    alert("Se ha insertado correctamente");
+                    location.reload();
+                    return true;
+                  } else {
+                    alert("No se ha podido insertar");
 
-                      return false;
-                    }
-                  })
-                  .catch((error) => {
-                    // Handle the error
-                    console.error(error);
-                  });
+                    return false;
+                  }
+                })
+                .catch((error) => {
+                  // Handle the error
+                  console.error(error);
+                });
             }
         });
     });
@@ -118,8 +120,8 @@ window.onload = function () {
 };
 
 function configurarModal() {
-  if (localStorage.getItem("data-plan")) {
-    const data = JSON.parse(localStorage.getItem("data-plan"));
+  if (localStorage.getItem("data-beneficio")) {
+    const data = JSON.parse(localStorage.getItem("data-beneficio"));
     document.querySelector("#txt-beneficio").value = data.beneficio;
     document.querySelector("#txt-monto").value = data.monto;
   } else {
@@ -159,7 +161,7 @@ function crearLaTabla(data) {
     editButton.addEventListener("click", () => {
       const dataId = event.target.getAttribute("data-id");
       localStorage.setItem(
-        "data-plan",
+        "data-beneficio",
         JSON.stringify(beneficios.find((beneficio) => beneficio.id == dataId))
       );
       openModal(configurarModal());
@@ -200,6 +202,7 @@ function crearLaTabla(data) {
     button.appendChild(deleteButton);
     tableRow.appendChild(button);
 
+    
     table.appendChild(tableRow);
   });
 }
