@@ -1,75 +1,91 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Detalle Vehiculo</title>
+    <head>
+        <meta charset="UTF-8">
+        <title>Detalle Vehiculo</title>
 
-    <link rel="icon" type="image/x-icon" href="../public/resources/icons/page-icon.png">
+        <link rel="icon" type="image/x-icon" href="../public/resources/icons/page-icon.png">
 
-    <link rel="stylesheet" href="../public/stylesheets/style.css">
-    <link rel="stylesheet" href="../public/stylesheets/client/form.css">
-    <link rel="stylesheet" href="../public/stylesheets/admin/adminDetalleVehiculo.css">
+        <link rel="stylesheet" href="../public/stylesheets/style.css">
+        <link rel="stylesheet" href="../public/stylesheets/client/form.css">
+        <link rel="stylesheet" href="../public/stylesheets/admin/adminDetalleVehiculo.css">
 
-    <script type="text/javascript" src="../public/scripts/admin/adminDetalleVehiculo.js"></script>
-    <script type="text/javascript" src="../public/scripts/conection.js"></script>
+        <script type="text/javascript" src="../public/scripts/admin/adminDetalleVehiculo.js"></script>
+        <script type="text/javascript" src="../public/scripts/conection.js"></script>
 
-</head>
+    </head>
 
-<body class="container">
-    <%-include('../layouts/header'); %>
-        <main>
-            <div class="content-container">
-                <div id="content-container-item-regresar" class="content-container-item">
-                    <button id="regresar" class="button-previous">Regresar</button>
-                </div>
-
-                <div class="form-inputs">
-                    <h2 id="titulo">Detalle Vehiculo #</h2>
-                    <h2 id="id"></h2>
-                    <div class="form-item">
-                        <h3>Nombre</h3>
-                        <input id="txt-nombre" type="text" placeholder="Ingresar nombre"></input>
+    <body class="container">
+        <%-include('../layouts/header'); %>
+            <main>
+                <div class="content-container">
+                    <div id="content-container-item-regresar" class="content-container-item">
+                        <button id="regresar" class="button-previous">Regresar</button>
                     </div>
-                    <div class="form-line">
+
+                    <div class="form-inputs">
+                        <h2 id="titulo">Detalle Vehiculo #</h2>
+                        <h2 id="id"></h2>
+                        <div class="form-line">
+                            <div class="form-item">
+                                <h3>Placa</h3>
+                                <input placeholder="Ingrese placa" id="txt-placa" maxlength="6"></input>
+                            </div>
+                        </div>
+                        <div class="form-line">
+                            <div class="form-item">
+                                <h3>Marca</h3>
+                                <select id="select-marca">
+                                    <option value="" disabled selected>Seleccione una marca</option>
+                                </select>
+                            </div>
+
+                            <div class="form-item">
+                                <h3>Modelo</h3>
+                                <select id="select-modelo">
+                                    <option value="" disabled selected>Seleccione un modelo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-line">
+                            <div class="form-item">
+                                <h3>Número de Asientos</h3>
+                                <input placeholder="Ingrese número" id="txt-asientos"></input>
+                            </div>
+                            <div class="form-item">
+                                <h3>Año</h3>
+                                <input placeholder="Ingrese año" id="txt-anio"></input>
+                            </div>
+                        </div>
+
                         <div class="form-item">
-                            <h3>Moneda</h3>
-                            <select id="select-moneda">
-                                <option value="1">Soles</option>
-                                <option value="2">Dolares</option>
+                            <h3>Serie</h3>
+                            <input placeholder="Ingrese Serie" id="txt-serie" maxlength="17"></input>
+                        </div>
+                        <div class="form-item">
+                            <h3>Uso</h3>
+                            <select id="select-uso">
+                                <option value="" disabled selected>Seleccione uno</option>
+                                <option value="1">Particular</option>
+                                <option value="2">Taxi</option>
+                                <option value="5">Carga</option>
                             </select>
                         </div>
 
                         <div class="form-item">
-                            <h3>Precio</h3>
-                            <input id="txt-precio" type="text" placeholder="Ingrese precio"></input>
-                        </div>
-                    </div>
-                    <div class="form-line">
-                        <div class="form-item">
-                            <h3>Monto Cobertura</h3>
-                            <input id="txt-cobertura" type="text" placeholder="Ingrese monto"></input>
-
-
-                        </div>
-                        <div class="form-item">
-                            <h3>Estado</h3>
-                            <select id="select-estado">
-                                <option value="true">Activo</option>
-                                <option value="false">Inactivo</option>
-                            </select>
+                            <h3>Dueño</h3>
+                            <input placeholder="Ingrese Dueño" id="txt-dueno" maxlength="17"></input>
                         </div>
 
                     </div>
 
-                </div>
+                    <div class="content-container-item bottom">
+                        <button id="btn-guardar" class="button-red">Guardar</button>
+                    </div>
 
-                <div class="content-container-item bottom">
-                    <button id="btn-guardar" class="button-red">Guardar</button>
                 </div>
-
-            </div>
-        </main>
-</body>
+            </main>
+    </body>
 
 </html>

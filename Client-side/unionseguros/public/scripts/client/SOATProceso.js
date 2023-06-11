@@ -471,23 +471,23 @@ async function guardar() {
         }
 
         console.log(JSON.stringify(data));
-        fetch(GLOBAL_URL + '/cliente/insertar', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            },
+        fetch(GLOBAL_URL + "/ProcesoSOAT/insertarInfoProceso1", {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+          },
         })
-            .then(response => response.json())
-            .then(data => {
-                localStorage.setItem("idCliente", data);
-            })
+          .then((response) => response.json())
+          .then((data) => {
+            localStorage.setItem("idCliente", data);
+          })
 
-            .catch(error => {
-                // Handle the error
-                console.error(error);
-                localStorage.setItem("error", 1);
-            });
+          .catch((error) => {
+            // Handle the error
+            console.error(error);
+            localStorage.setItem("error", 1);
+          });
     } catch (error) {
         console.error('Error:', error);
     }

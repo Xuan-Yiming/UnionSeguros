@@ -13,7 +13,7 @@ window.onload = function () {
         localStorage.removeItem("data-marca");
         window.location.href = "/admin/marcaModelo";
     });
-    
+
   var params = new URLSearchParams();
   params.append("idMarca", JSON.parse(localStorage.getItem("data-marca")).id);
 
@@ -180,7 +180,7 @@ function crearLaTabla(data) {
       const dataId = event.target.getAttribute("data-id");
       localStorage.setItem(
         "data-modelo",
-        JSON.stringify(modelos.find((modelo) => modelo.id == dataId))
+          JSON.stringify(modelos.find((modelo) => modelo.id == dataId))
       );
       openModal(configurarModal());
     });
