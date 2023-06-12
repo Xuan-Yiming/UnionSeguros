@@ -40,7 +40,7 @@ public class Vehiculo {
     private Persona fidPersona;
 
     @Column(name = "anho_fabricacion")
-    private LocalDate anhoFabricacion;
+    private int anhoFabricacion;
 
     @Column(name = "numero_asientos")
     private Integer numeroAsientos;
