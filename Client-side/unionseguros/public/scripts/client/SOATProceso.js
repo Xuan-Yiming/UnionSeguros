@@ -197,17 +197,19 @@ function loadPlans() {
 }
 
 function loadResumen() {
-    document.querySelector("#txt-res-nombre").innerText = document.querySelector("#txt-nombres").value + ", " + document.querySelector("#txt-apdPaterno").value + " " + document.querySelector("#txt-apdMaterno").value;
-    document.querySelector("#txt-res-placa").innerText = localStorage.getItem("placa");
+    let placa = localStorage.getItem("placa");
+    let nuevaPlaca = placa.substring(0, 3) + "-" + placa.substring(3);
+    document.querySelector("#txt-res-nombre").innerText = document.querySelector("#txt-nombres").value + document.querySelector("#txt-apdPaterno").value + " " + document.querySelector("#txt-apdMaterno").value;
+    document.querySelector("#txt-res-placa").innerText = nuevaPlaca
     document.querySelector("#txt-res-plan").innerText = localStorage.getItem("nombrePlan");
-    document.querySelector("#txt-res-total").innerText = localStorage.getItem("precioPlan");
+    document.querySelector("#txt-res-total").innerText = "S/." + localStorage.getItem("precioPlan");
     const datePickerInput = document.querySelector("#date-picker");
     const dateValue = datePickerInput.value; // Assuming the input value is a valid date string
 
     const currentDate = new Date(dateValue);
     currentDate.setFullYear(currentDate.getFullYear() + 1);
 
-    document.querySelector("#txt-res-periodo").innerText = document.querySelector("#date-picker").value + " - " + currentDate.toISOString().slice(0, 10);
+    document.querySelector("#txt-res-periodo").innerText = "Desde " + document.querySelector("#date-picker").value + " hasta " + currentDate.toISOString().slice(0, 10);
 
     localStorage.removeItem("placa");
     localStorage.removeItem("tipoDocumento");

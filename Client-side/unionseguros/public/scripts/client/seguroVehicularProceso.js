@@ -1,8 +1,7 @@
 
-
-
 var stage = 0;
-
+let selectedPlans = [];
+let total = 0;
 var placa = localStorage.getItem("placa");
 var tipoDocumento = localStorage.getItem("tipoDocumento");
 var numeroDocumento = localStorage.getItem("documento");
@@ -30,6 +29,10 @@ document.querySelector("#btn-advance").addEventListener("click", function () {
         localStorage.removeItem("tipoDocumento");
         localStorage.removeItem("documento");
         window.location.href = "/seguroVehicular";
+    }
+
+    if(stage === 2){
+        localStorage.setItem('total', total);
     }
 
     if (!verificacion()) {
@@ -62,7 +65,7 @@ document.querySelector("#btn-advance").addEventListener("click", function () {
 
 document.querySelector("#btn-previous").addEventListener("click", function () {
 
-    if (stage == 0) {
+    if (stage === 0) {
         if (confirm("Deseas cancelar el proceso?")) {
             window.location.href = "/seguroVehicular";
             return;
@@ -106,7 +109,7 @@ function changeStage() {
             break;
         case 1:
             document.querySelector(".form-vehiculo ").style.display = "none";
-            document.querySelector(".form-personal ").style.display = "block"; 
+            document.querySelector(".form-personal ").style.display = "block";
             document.querySelector(".form-plans").style.display = "none";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-descargar-constancia").style.display = "none";
@@ -114,7 +117,7 @@ function changeStage() {
             break;
         case 2:
             document.querySelector(".form-vehiculo ").style.display = "none";
-            document.querySelector(".form-personal ").style.display = "none"; 
+            document.querySelector(".form-personal ").style.display = "none";
             document.querySelector(".form-plans").style.display = "block";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-descargar-constancia").style.display = "none";
@@ -148,40 +151,35 @@ function loadPlans() {
                 const planDiv = document.createElement('div');
                 planDiv.classList.add('plan-seguro-vehicular');
 
-                const heading = document.createElement('h2');
-                heading.innerText = `Seguro Vehicular ${plan.id_detalle_cotizacion}`;
-                planDiv.appendChild(heading);
+                const benefit = document.createElement('h2');
+                benefit.innerText = `${plan.beneficio}`;
+                planDiv.appendChild(benefit);
 
                 const price = document.createElement('h1');
                 price.innerText = `S/.${plan.monto}`;
                 planDiv.appendChild(price);
 
-                const descriptionList = document.createElement('ul');
-                descriptionList.classList.add('plan-seguro-description');
-
-
-                const beneficio = document.createElement('li');
-                beneficio.innerText = `${plan.beneficio}`;
-                descriptionList.appendChild(beneficio);
-
-                const ley = document.createElement('li');
-                ley.innerText = 'Seguro Vehicular de acuerdo a la ley.';
-                descriptionList.appendChild(ley);
-
-                planDiv.appendChild(descriptionList);
-
                 const selectButton = document.createElement('input');
-                selectButton.type = 'radio';
-                selectButton.name = 'select-plan';
-                selectButton.classList.add('button-red-white-back');
+                selectButton.type = 'checkbox'; // Cambiar el tipo de input a checkbox
+                selectButton.classList.add('checkbox_benefit');
                 selectButton.value = plan.id;
                 selectButton.setAttribute('id-plan', plan.id);
-                selectButton.setAttribute('precio-plan', plan.precio);
-                selectButton.setAttribute('nombre-plan', plan.nombrePlan);
-                selectButton.addEventListener('click', function () {
-                    localStorage.setItem('idPlan', event.target.getAttribute('id-plan'));
-                    localStorage.setItem('precioPlan', event.target.getAttribute('precio-plan'));
-                    localStorage.setItem('nombrePlan', event.target.getAttribute('nombre-plan'));
+                selectButton.setAttribute('monto-plan', plan.monto);
+                selectButton.setAttribute('beneficio-plan', plan.beneficio);
+                selectButton.addEventListener('change', function (event) {
+                    const planId = event.target.getAttribute('id-plan');
+                    const planPrice = parseFloat(event.target.getAttribute('monto-plan'));
+                    const planBenefit = event.target.getAttribute('beneficio-plan');
+
+                    if (event.target.checked) {
+                        // Agregar el plan a la lista de seleccionados
+                        selectedPlans.push({ id: planId, monto: planPrice, beneficio: planBenefit });
+                    } else {
+                        // Remover el plan de la lista de seleccionados
+                        selectedPlans = selectedPlans.filter(plan => plan.id !== planId);
+                    }
+                    updateTotal();
+
                 });
                 planDiv.appendChild(selectButton);
 
@@ -194,31 +192,60 @@ function loadPlans() {
         });
 }
 
+function updateTotal() {
+    const totalElement = document.getElementById('total');
+    total = 0;
+    selectedPlans.forEach(plan => {
+        total += plan.monto;
+    });
+
+    totalElement.innerText = `Total: S/.${total}`;
+}
+
+function updateLocalStorage() {
+    localStorage.setItem('selectedPlans', JSON.stringify(selectedPlans));
+    localStorage.setItem('total', total);
+}
+
+// Cargar los planes y actualizar el total inicial
+
+
+
 function loadResumen() {
-    document.querySelector("#txt-res-nombre").innerText = document.querySelector("#txt-nombres").value + ", " + document.querySelector("#txt-apdPaterno").value + " " + document.querySelector("#txt-apdMaterno").value;
-    document.querySelector("#txt-res-placa").innerText = localStorage.getItem("placa");
-    document.querySelector("#txt-res-plan").innerText = localStorage.getItem("nombrePlan");
-    document.querySelector("#txt-res-total").innerText = localStorage.getItem("precioPlan");
+    let placa = localStorage.getItem("placa");
+    let nuevaPlaca = placa.substring(0, 3) + "-" + placa.substring(3);
+    document.querySelector("#txt-res-nombre").innerText = document.querySelector("#txt-nombres").value + document.querySelector("#txt-apdPaterno").value + " " + document.querySelector("#txt-apdMaterno").value;
+    document.querySelector("#txt-res-placa").innerText = nuevaPlaca;
+    document.querySelector("#txt-res-total").innerText = "S/." + localStorage.getItem("total");
     const datePickerInput = document.querySelector("#date-picker");
     const dateValue = datePickerInput.value; // Assuming the input value is a valid date string
 
     const currentDate = new Date(dateValue);
     currentDate.setFullYear(currentDate.getFullYear() + 1);
 
-    document.querySelector("#txt-res-periodo").innerText = document.querySelector("#date-picker").value + " - " + currentDate.toISOString().slice(0, 10);
+    document.querySelector("#txt-res-periodo").innerText = "Desde " + document.querySelector("#date-picker").value + " hasta " + currentDate.toISOString().slice(0, 10);
+
+    const listaBeneficios = document.getElementById('lista-beneficios-escogidos');
+    listaBeneficios.innerHTML = '';
+    selectedPlans.forEach(function(plan) {
+        const planElement = document.createElement('div');
+        const beneficioElement = document.createElement('p');
+        const montoElement = document.createElement('p');
+
+        beneficioElement.textContent = "· " + plan.beneficio + ":";
+        montoElement.textContent = "S/. " + plan.monto;
+
+        planElement.appendChild(beneficioElement);
+        planElement.appendChild(montoElement);
+        listaBeneficios.appendChild(planElement);
+    });
 
     localStorage.removeItem("placa");
     localStorage.removeItem("tipoDocumento");
     localStorage.removeItem("documento");
 }
 
-function loadTarjeta() {
-    document.querySelectorAll('input[name="select-plan"]').forEach((plan) => {
-        if (plan.checked) {
-            document.querySelector("#total-a-pagar").innerText = 'Total: ' + plan.parentElement.querySelector('h1').innerText;
-        }
-    });
-}
+
 
 function verificacion() {
     const apdPaterno = document.querySelector("#txt-apdPaterno").value;
@@ -311,68 +338,10 @@ function verificacion() {
             break;
 
         case 2:
-            //verificar que se haya seleccionado un plan
-
 
             break;
+
         case 3:
-            //verificar que se haya llenado los datos de la tarjeta
-            const numTarjeta = document.querySelector("#txt-num-tarjeta").value;
-            const cvv = document.querySelector("#txt-CVV").value;
-            const fechaVencimiento = document.querySelector("#txt-fecha-venc").value;
-            const nombreTitular = document.querySelector("#txt-tarjeta-nombre").value;
-            const email = document.querySelector("#txt-email").value;
-            const moneda = document.querySelector("#select-moneda").value;
-
-            if (numTarjeta == "" || cvv == "" || fechaVencimiento == "" || nombreTitular == "" || email == "" || moneda == "") {
-                alert("Falta completar campos");
-                return false;
-            }
-
-            if (numTarjeta.length != 16) {
-                document.querySelector("#txt-num-tarjeta").focus();
-                alert("El número de tarjeta debe tener 16 caracteres");
-                return false;
-            }
-
-            if (!/^[0-9]+$/.test(numTarjeta)) {
-                document.querySelector("#txt-num-tarjeta").focus();
-                alert("El número de tarjeta debe ser numérico");
-                return false;
-            }
-
-            if (!validateCardExpiration(fechaVencimiento)) {
-                document.querySelector("#txt-fecha-venc").focus();
-                alert("La fecha de vencimiento no es válido (MM/YY)");
-                return false;
-            }
-
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                document.querySelector("#txt-email").focus();
-                alert("El correo electrónico no es válido");
-                return false;
-            }
-
-            if (cvv.length != 3) {
-                document.querySelector("#txt-CVV").focus();
-                alert("El CVV debe tener 3 caracteres");
-                return false;
-            }
-
-            if (!/^[0-9]+$/.test(cvv)) {
-                document.querySelector("#txt-CVV").focus();
-                alert("El CVV debe ser numérico");
-                return false;
-            }
-
-            if (!/^[A-Za-z ]+$/.test(nombreTitular)) {
-                document.querySelector("#txt-tarjeta-nombre").focus();
-                alert("El nombre del titular no debe contener caracteres especiales");
-                return false;
-            }
-
-            break;
-        case 4:
             break;
     }
     return true;
@@ -408,8 +377,6 @@ async function guardar() {
       response = await insertarMetodDePago();
       console.log(response);
       response = await insertarPoliza();
-      console.log(response);
-      response = await insertarSOAT(); //detalle_cotizacion
       console.log(response);
 
       localStorage.clear();
@@ -520,44 +487,7 @@ async function insertarVehiculo() {
     }
 }
 
-async function insertarMetodDePago() {
-    const numTarjeta = document.querySelector("#txt-num-tarjeta").value;
-    const cvv = document.querySelector("#txt-CVV").value;
-    const fechaVencimiento = document.querySelector("#txt-fecha-venc").value;
-    const nombreTitular = document.querySelector("#txt-tarjeta-nombre").value;
-    const email = document.querySelector("#txt-email").value;
-    const [month, year] = fechaVencimiento.split('/');
-    const date = `${20 + year}-${month}-01`;
 
-    const infoTarejta = {
-        "nombreMetodo": "VISA",
-        "nombreTitular": nombreTitular,
-        "correo": email,
-        "numeroTarjeta": numTarjeta,
-        "cvv": cvv,
-        "fechaVencimiento": date,
-        "activo": true
-    }
-    console.log(JSON.stringify(infoTarejta));
-    fetch(GLOBAL_URL + '/metodoDePago/insertar', {
-        method: 'POST',
-        body: JSON.stringify(infoTarejta),
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-        .then(response => response.json())
-        .then(data => {
-                localStorage.setItem("idMetodo", data);
-        })
-        .catch(error => {
-            // Handle the error
-            alert("No se ha podido guardar metodo de pago");
-            console.error(error);
-            localStorage.setItem("error", 1);
-        });
-
-}
 
 async function insertarPoliza() {
     const fecha = document.querySelector("#date-picker").value;
@@ -581,7 +511,7 @@ async function insertarPoliza() {
         "fidCliente": {
             "id": localStorage.getItem("idCliente")
         },
-        "precioBase": localStorage.getItem("precioPlan"),
+        "montoBase": localStorage.getItem("montoPlan"),
         "fechaVigenciaDesde": formattedDate,
         "fechaVigenciaFin": `${parseInt(yyyy) + 1}-${mm}-${dd}`,
         "activo": true
@@ -607,50 +537,19 @@ async function insertarPoliza() {
             alert("No se ha podido generar poliza");
         });
 
-
 }
-/*
-async function insertarSOAT() {
-    const soat = {
-        "fidPlanSoat": {
-            "id": localStorage.getItem("idPlan"),
-        },
-        "fidPoliza": {
-            "id": localStorage.getItem("idPoliza")
-        },
-        "fechaDeEmision": new Date().toISOString().slice(0, 10),
-        "montoPrima": localStorage.getItem("precioPlan"),
-        "activo": true
-    }
-    console.log(JSON.stringify(soat));
-    fetch(GLOBAL_URL + '/SOAT/insertar', {
-        method: 'POST',
-        body: JSON.stringify(soat),
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-        .then(response => response.json())
-        .then(element => {
-        })
-        .catch(error => {
-            // Handle the error
-            localStorage.setItem("error", 1);
-            console.error(error);
-            alert("No se ha podido cumplir con la operacion");
-        });
 
-}
-*/
 
 async function inicializar() {
     await cargarMarcas();
     await cargarModelos();
     await cargarPersona();
     await cargarVehiculo();
-    //await cargarProvincia();
-    //await cargarDepartamento();
-    //await cargarDistrito();
+    await cargarDepartamento();
+    await cargarProvincia();
+    await cargarDistrito();
+    document.querySelector(".form-vehiculo ").style.display = "block";
+    document.querySelector(".form-plans").style.display = "none";
 }
 
 async function cargarMarcas() {
@@ -702,11 +601,11 @@ async function cargarPersona() {
                 document.querySelector("#txt-apdMaterno").value = data.apellidoMaterno;
                 document.querySelector("#txt-nombres").value = data.nombre;
 
-                if (data.apellidoMaterno == "") {
+                if (data.apellidoMaterno === "") {
                     document.querySelector("#txt-apdMaterno").value = "-";
                 }
 
-                if (data.serie != "") {
+                if (data.serie !== "") {
                     document.querySelector("#txt-nombres").disabled = true;
                     document.querySelector("#txt-apdPaterno").disabled = true;
                     document.querySelector("#txt-apdMaterno").disabled = true;
@@ -790,4 +689,65 @@ async function cargarVehiculo() {
         });
 
 
+}
+
+async function cargarDepartamento() {
+    fetch(GLOBAL_URL + '/Departamento/listarDepartamentos')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(element => {
+                var _option = document.createElement("option");
+                _option.value = element.id;
+                _option.text = element.nombreDepartamento;
+                document.querySelector("#select-departamento").appendChild(_option);
+            });
+        }).catch(error => {
+        console.error(error);
+    });
+}
+
+async function cargarProvincia() {
+    document.querySelector("#select-departamento").addEventListener("change", function () {
+        document.querySelector("#select-provincia").innerHTML = "";
+        const params = new URLSearchParams();
+        params.append("idDepartamento", document.querySelector("#select-departamento").value);
+
+        const url = GLOBAL_URL + "/Provincia/listarProvinciasPorDepartamento?" + params.toString();
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(element => {
+                    var _option = document.createElement("option");
+                    _option.value = element.id;
+                    _option.text = element.nombreProvincia;
+                    document.querySelector("#select-provincia").appendChild(_option);
+                });
+            }).catch(error => {
+            // Handle the error
+            console.error(error);
+        });
+    });
+}
+
+async function cargarDistrito() {
+    document.querySelector("#select-provincia").addEventListener("change", function () {
+        document.querySelector("#select-distrito").innerHTML = "";
+        const params = new URLSearchParams();
+        params.append("idProvincia", document.querySelector("#select-provincia").value);
+
+        const url = GLOBAL_URL + "/Distrito/listarDistritosPorProvincia?" + params.toString();
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(element => {
+                    var _option = document.createElement("option");
+                    _option.value = element.id;
+                    _option.text = element.nombreDistrito;
+                    document.querySelector("#select-distrito").appendChild(_option);
+                });
+            }).catch(error => {
+            // Handle the error
+            console.error(error);
+        });
+    });
 }

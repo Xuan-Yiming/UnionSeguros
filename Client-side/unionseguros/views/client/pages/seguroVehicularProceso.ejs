@@ -10,9 +10,7 @@
     <link rel="stylesheet" href="/public/stylesheets/client/seguroVehicularProceso.css">
     <link rel="stylesheet" href="/public/stylesheets/client/progressBar.css">
     <link rel="stylesheet" href="/public/stylesheets/client/form.css">
-
     <script type="text/javascript" src="../public/scripts/conection.js"></script>
-
 </head>
 
 <body class="container">
@@ -54,7 +52,6 @@
                     <div class="form-content-item">
                         <button id="btn-previous" class="button-previous">Regresar</button>
                     </div>
-
                     <div class="form-vehiculo form-content-item">
                         <div class="content">
                             <h1>Necesitamos más información de tu vehículo</h1>
@@ -108,9 +105,7 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                     <div class="form-personal form-content-item">
                         <div class="content">
                             <h1>Necesitamos conocerte más </h1>
@@ -172,22 +167,21 @@
                         </div>
                     </div>
                     <div class="form-plans form-content-item">
+                        <h1>Escoge los beneficios que desees agregar</h1>
                         <div class="content-plan">
                         </div>
+                        <h1 id="total">Total: $0</h1>
                     </div>
                     <div class="form-result form-content-item">
                         <h1>¡Gracias por elegirnos!</h1>
-                        <p>Has finalizado el proceso de compra, el comprobante de pago ha sido enviado a su correo
-                            electrónico.</p>
-                        <br>
                         <br>
                         <h2>Resumen Seguro Vehicular</h2>
                         <h3>Nombre Completo</h3>
                         <p id="txt-res-nombre">Jimmy Chan Rojas</p>
                         <h3>Placa</h3>
                         <p id="txt-res-placa">ABC-123</p>
-                        <h3>Plan Seguro</h3>
-                        <p id="txt-res-plan">Seguro Vehicular Básico</p>
+                        <h3>Beneficios escogidos</h3>
+                        <p id="lista-beneficios-escogidos">Seguro Vehicular Básico</p>
                         <h3>Pago Total</h3>
                         <p id="txt-res-total">S/. 69.90</p>
                         <h3>Periodo</h3>
@@ -199,9 +193,8 @@
                     </div>
                 </div>
             </div>
-            <script src="/public/scripts/client/seguroVehicularProceso.js"></script>
         </main>
-
         <%- include('../layouts/footer'); %>
+        <script src="/public/scripts/client/seguroVehicularProceso.js"></script>
 </body>
 </html>

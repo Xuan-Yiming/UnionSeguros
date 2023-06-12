@@ -25,6 +25,7 @@
   flex-direction: row;
   height: fit-content;
   margin-bottom: 10px;
+  justify-content: center;
 }
 
 .content-planes {
@@ -32,12 +33,14 @@
 }
 
 .plan-seguro-vehicular {
-  width: 210px;
+  width: 230px;
+  height: 160px;
   margin: 10px;
-  padding: 20px 50px;
-  background-color: rgba(255, 240, 240, 0.99);
-  border: 1px solid #ddd;
+  padding: 20px 10px 10px 10px;
+  background-color: rgb(243, 244, 252);
+  border: 1px solid #041E42;
   border-radius: 5px;
+  align-content: center;
 }
 
 .plan-seguro-vehicular h2 {
@@ -71,35 +74,23 @@
   .client-seguro-proceso-content-container-item {
     margin: 10px;
     padding: 10px;
+
   }
   
   .form-container{
     background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,211,211,1) 53%, rgba(255,255,255,1) 100%);
   }
-  
-  /*------------TARJETA------------*/
-  
-  .card {
-    width: 17.5rem;
-    height: 11rem;
-    background: rgb(200, 16, 46);
-    background: linear-gradient(164deg, rgba(200, 16, 46, 0.6783088235294117) 28%, rgba(255, 255, 255, 1) 100%);
-    border-radius: 0.7rem;
-    padding: 1.3rem 1.6rem;
-    margin: 0 auto;
-    box-shadow: rgba(0, 0, 0, 0.2) 10px 10px 10px 5px;
-    margin-bottom: 30px;
-    position: relative;
+
+  #total{
+    font-size: 32px;
+    text-align: center;
   }
-  
-  #card-logo {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    height: 3rem;
-  
+  .checkbox_benefit{
+    transform: scale(2);
+    display: flex;
+    margin: 25px auto 0 auto;
   }
-  
+
   /*------------RESUMEN------------*/
   
   .form-result {
@@ -119,4 +110,8 @@
     position: absolute;
     bottom: 0;
     left: 0;
+  }
+
+  h1{
+    text-align: center;
   }
