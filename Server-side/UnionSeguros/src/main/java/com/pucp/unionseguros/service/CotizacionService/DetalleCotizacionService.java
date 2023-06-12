@@ -44,4 +44,11 @@ public class DetalleCotizacionService {
         return detalleCotizacionRepository.save(foundDetalleCotizacion);
 
     }
+
+    public List<DetalleCotizacion> buscarDetallesDeCotizacionPorParametros(String Busqueda){
+        List<DetalleCotizacion> lista = null;
+
+        lista = detalleCotizacionRepository.listarDetallesPorNombreOId(Busqueda);
+        return  lista;
+    }
 }
