@@ -3,27 +3,41 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>Vehiculos</title>
+        <title>Modelos</title>
         <link rel="icon" type="image/x-icon" href="../public/resources/icons/page-icon.png">
 
         <link rel="stylesheet" href="../public/stylesheets/style.css">
-        <link rel="stylesheet" href="../public/stylesheets/admin/adminVehiculo.css">
+        <link rel="stylesheet" href="../public/stylesheets/admin/adminModelo.css">
+        <link rel="stylesheet" href="../public/stylesheets/modal.css">
 
-        <script type="text/javascript" src="../public/scripts/admin/adminVehiculo.js"></script>
+        <script type="text/javascript" src="../public/scripts/admin/adminModelo.js"></script>
         <script type="text/javascript" src="../public/scripts/conection.js"></script>
+        <script type="text/javascript" src="../public/scripts/modal.js"></script>
 
     </head>
 
-    <body class="container">
+    <body class="modal-container">
+        <div class="modal-overlay" id="modalOverlay">
+            <div class="modal-main">
+                <h2>Detalles</h2>
+                <label for="txt-marca">Marca</label>
+                <input type="text" id="txt-marca" placeholder="Nombre Marca">
+
+                <button id="btn-modal-cancelar">Cancelar</button>
+                <button id="btn-modal-guardar">Guardar</button>
+            </div>
+        </div>
         <%- include('../layouts/header'); %>
 
             <main id="tabla-plan-soat">
-                <h2>Vehiculos</h2>
+                <button id="btn-regresar">Regresar</button>
+                <h2>Modelo</h2>
                 <div id="control-bar">
                     <div id="control-bar-button">
                         <button class="button-blue-transparente-blue-border" id="btn-nuevo">
-                            + Agregar Vehiculo
+                            + Agregar marca
                         </button>
+
                     </div>
                     <div id="control-bar-search">
                         <img src="../public/resources/icons/Accessibility.png" alt="Buscar">
@@ -33,11 +47,10 @@
                 <table id="tableID" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Placa</th>
-                            <th>Marca</th>
+                            <th>ID</th>
                             <th>Modelo</th>
-                            <th>Serie</th>
-                            <th>Dueño</th>
+                            <th>Tipo Vehiculo</th>
+                            <th>Valor</th>
                             <th>Herramientas</th>
                         </tr>
                     </thead>

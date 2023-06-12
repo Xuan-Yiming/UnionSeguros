@@ -121,7 +121,7 @@ function changeStage() {
             break;
         case 3:
             guardar();
-            if (localStorage.getItem("errot")==1){
+            if (localStorage.getItem("error")==1){
                 return;
             }
 
@@ -410,6 +410,7 @@ async function guardar() {
         let data = {
             "cliente": {
                 "nombre": nombres,
+                "email":email,
                 "apellidoPaterno": apdPaterno,
                 "apellidoMaterno": apdMaterno,
                 "numeroDocumento": localStorage.getItem("documento"),
@@ -470,23 +471,23 @@ async function guardar() {
         }
 
         console.log(JSON.stringify(data));
-        fetch(GLOBAL_URL + '/cliente/insertar', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            },
+        fetch(GLOBAL_URL + "/ProcesoSOAT/insertarInfoProceso1", {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+          },
         })
-            .then(response => response.json())
-            .then(data => {
-                localStorage.setItem("idCliente", data);
-            })
+          .then((response) => response.json())
+          .then((data) => {
+            localStorage.setItem("idCliente", data);
+          })
 
-            .catch(error => {
-                // Handle the error
-                console.error(error);
-                localStorage.setItem("errot", 1);
-            });
+          .catch((error) => {
+            // Handle the error
+            console.error(error);
+            localStorage.setItem("error", 1);
+          });
     } catch (error) {
         console.error('Error:', error);
     }
@@ -565,7 +566,7 @@ async function insertarCliente() {
             .catch(error => {
                 // Handle the error
                 console.error(error);
-                localStorage.setItem("errot", 1);
+                localStorage.setItem("error", 1);
             });
 
     }
@@ -610,7 +611,7 @@ async function insertarVehiculo() {
             })
             .catch(error => {
                 // Handle the error
-                localStorage.setItem("errot", 1);
+                localStorage.setItem("error", 1);
                 console.error(error);
             });
     }
@@ -650,7 +651,7 @@ async function insertarMetodDePago() {
             // Handle the error
             alert("No se ha podido guardar metodo de pago");
             console.error(error);
-            localStorage.setItem("errot", 1);
+            localStorage.setItem("error", 1);
         });
 
 }
@@ -698,7 +699,7 @@ async function insertarPoliza() {
         })
         .catch(error => {
             // Handle the error
-            localStorage.setItem("errot", 1);
+            localStorage.setItem("error", 1);
             console.error(error);
             alert("No se ha podido generar poliza");
         });
@@ -731,7 +732,7 @@ async function insertarSOAT() {
         })
         .catch(error => {
             // Handle the error
-            localStorage.setItem("errot", 1);
+            localStorage.setItem("error", 1);
             console.error(error);
             alert("No se ha podido cumplir con la operacion");
         });
