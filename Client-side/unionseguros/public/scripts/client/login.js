@@ -62,7 +62,27 @@ document.querySelector("#btn-advance").addEventListener("click", function () {
                 console.error(error);
             });
     }
-
+    if(stage===0){
+        if(!validacionRegistro()){
+            alert("Ya existe una cuenta con tal documento");
+            return;
+        }
+    }
+    if(stage===1){
+        if(!validacionCorreo()){
+            alert("El correo ingresado ya se encuentra vinculado a una cuenta");
+            return;
+        }else{
+            if(!enviarPIN()){
+                return;
+            }
+        }
+    }
+    if(stage===2){
+        if(!validarPIN()){
+            return;
+        }
+    }
     if (stage === 4) {
         window.location.href = "/";
     }
@@ -135,44 +155,40 @@ function changeStage() {
         case 0:
             document.querySelector(".form-registro").style.display = "block";
             document.querySelector(".form-correo").style.display = "none";
-            document.querySelector(".form-contrasena").style.display = "none";
             document.querySelector(".form-validacion").style.display = "none";
+            document.querySelector(".form-contrasena").style.display = "none";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
-            validacionRegistro();
             break;
         case 1:
             document.querySelector(".form-registro").style.display = "none";
             document.querySelector(".form-correo").style.display = "block";
-            document.querySelector(".form-contrasena").style.display = "none";
             document.querySelector(".form-validacion").style.display = "none";
+            document.querySelector(".form-contrasena").style.display = "none";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
-            validacionCorreo();
             break;
         case 2:
             document.querySelector(".form-registro").style.display = "none";
             document.querySelector(".form-correo").style.display = "none";
-            document.querySelector(".form-contrasena").style.display = "block";
-            document.querySelector(".form-validacion").style.display = "none";
+            document.querySelector(".form-validacion").style.display = "block";
+            document.querySelector(".form-contrasena").style.display = "none";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
-            enviarPIN();
             break;
         case 3:
             document.querySelector(".form-registro").style.display = "none";
             document.querySelector(".form-correo").style.display = "none";
-            document.querySelector(".form-contrasena").style.display = "none";
-            document.querySelector(".form-validacion").style.display = "block";
+            document.querySelector(".form-validacion").style.display = "none";
+            document.querySelector(".form-contrasena").style.display = "block";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
-            validarPIN();
             break;
         case 4:
             document.querySelector(".form-registro").style.display = "none";
             document.querySelector(".form-correo").style.display = "none";
-            document.querySelector(".form-contrasena").style.display = "none";
             document.querySelector(".form-validacion").style.display = "none";
+            document.querySelector(".form-contrasena").style.display = "none";
             document.querySelector(".form-result").style.display = "block";
             document.querySelector("#btn-previous").style.display = "none";
             guardar();
@@ -229,8 +245,6 @@ function verificacion() {
 
             break;
         case 1:
-
-
             const email = document.querySelector("#txt-correo").value;
             if (  email === "" || apdPaterno == "" || nombres == "" ) {
                 alert("Falta completar campos");
@@ -252,14 +266,6 @@ function verificacion() {
             return false;
             break;
         case 2:
-            const contrasena = document.querySelector("#txt-contrasena").value;
-            if (  contrasena === "" ) {
-                alert("Falta completar el campo");
-                return true;
-            }
-            return false;
-            break;
-        case 3:
             const pin = document.querySelector("#txt-PIN").value;
 
             if (  pin === "" ) {
@@ -278,6 +284,15 @@ function verificacion() {
             }
             return false;
             break;
+        case 3:
+            const contrasena = document.querySelector("#txt-contrasena").value;
+            if (  contrasena === "" ) {
+                alert("Falta completar el campo");
+                return true;
+            }
+            return false;
+            break;
+
         case 4:
             break;
     }
@@ -286,7 +301,7 @@ function verificacion() {
 
 /****APIS****/
 function validacionRegistro(){
-
+    return true;
 }
 function validacionCorreo(){
 
@@ -294,7 +309,7 @@ function validacionCorreo(){
 function enviarPIN(){
     const email = document.querySelector("#txt-correo").value;
     const emailLista = [email];
-
+    var flag;
     try {
         let data = [
             email
@@ -312,17 +327,23 @@ function enviarPIN(){
                 const cadenaRetornada = data.cadena;
                 alert(cadenaRetornada);
                 if(cadenaRetornada === "SE ENVIO EL TOKEN"){
+                     flag = true;
                 }else{
+                     flag = false;
                 }
             })
             .catch(error => {
                 // Handle the error
                 console.error(error);
                 localStorage.setItem("error", 1);
+                flag = false;
             });
     } catch (error) {
         console.error('Error:', error);
+        flag = false;
     }
+
+    return flag;
 }
 function validarPIN(){
 
