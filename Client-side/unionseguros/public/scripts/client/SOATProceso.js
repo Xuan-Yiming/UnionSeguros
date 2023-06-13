@@ -443,7 +443,7 @@ async function guardar() {
                 "correo": email,
                 "numeroTarjeta": numTarjeta,
                 "cvv": cvv,
-                "fechaVencimiento": date,
+                "fechaVencimiento": date
             },
             "poliza": {
                 "fidMoneda": {
@@ -451,14 +451,14 @@ async function guardar() {
                 },
                 "precioBase": localStorage.getItem("precioPlan"),
                 "fechaVigenciaDesde": formattedDate,
-                "fechaVigenciaFin": `${parseInt(yyyy) + 1}-${mm}-${dd}`,
+                "fechaVigenciaFin": `${parseInt(yyyy) + 1}-${mm}-${dd}`
             },
             "soat": {
                 "fidPlanSoat": {
                     "id": localStorage.getItem("idPlan")
                 },
                 "fechaDeEmision": new Date().toISOString().slice(0, 10),
-                "montoPrima": localStorage.getItem("precioPlan"),
+                "montoPrima": localStorage.getItem("precioPlan")
             }
         };
 
@@ -468,7 +468,7 @@ async function guardar() {
         }
 
         const idVehiculo = localStorage.getItem("idVehiculo");
-        if (idVehiculo && idVehiculo != 0) {
+        if (idVehiculo && idVehiculo !== 0) {
             data.vehiculo.id = idVehiculo;
         }
 

@@ -264,6 +264,7 @@ function verificacion() {
     const provincia = document.querySelector("#select-provincia").value;
     const distrito = document.querySelector("#select-distrito").value;
     const direccion = document.querySelector("#txt-direccion").value;
+    const email = document.querySelector("#txt-correo").value;
 
     switch (stage) {
         case 0:
@@ -335,6 +336,11 @@ function verificacion() {
                 }
             }
 
+            if (!(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email))) {
+                alert("El correo electrónico no es válido");
+                return true;
+            }
+
             break;
 
         case 2:
@@ -368,81 +374,28 @@ function validateCardExpiration(expirationDate) {
     return true;
 }
 
+
 async function guardar() {
-    try {
-      let response = await insertarCliente();
-      console.log(response);
-      response = await insertarVehiculo();
-      console.log(response);
-      response = await insertarMetodDePago();
-      console.log(response);
-      response = await insertarPoliza();
-      console.log(response);
 
-      localStorage.clear();
-    } catch (error) {
-      console.error('Error:', error);
-      // Handle any errors that occurred during the insert operations
-    }
-  }
-  
-
-async function insertarCliente() {
     const apdPaterno = document.querySelector("#txt-apdPaterno").value;
     const apdMaterno = document.querySelector("#txt-apdMaterno").value;
     const nombres = document.querySelector("#txt-nombres").value;
-    const fecha = document.querySelector("#date-picker").value;
+    const email = document.querySelector("#txt-email").value;
+    const fecha = document.querySelector("#date-picker").value; // FECHA DEL INICIO DE SEGURO VEHICULAR
     const dateParts = fecha.split('-');
     const yyyy = dateParts[0];
     const mm = dateParts[1];
     const dd = dateParts[2];
     const formattedDate = `${yyyy}-${mm}-${dd}`;
+    const fechaBirth = document.querySelector("#date-picker2").value; // FECHA DE NACIMIENTO COMENTADO
+    const datePartsBirth = fechaBirth.split('-');
+    const yyyyBirth = datePartsBirth[0];
+    const mmBirth = datePartsBirth[1];
+    const ddBirth = datePartsBirth[2];
+    const formattedDateBirth = `${yyyyBirth}-${mmBirth}-${ddBirth}`;
+    const direccion = document.querySelector("#txt-direccion").value;
+    const numCelular = document.querySelector("#txt-numCelular").value;
 
-
-    if (localStorage.getItem('idCliente') == 0) {
-        const infoCliente = {
-            "nombre": nombres,
-            "apellidoPaterno": apdPaterno,
-            "apellidoMaterno": apdMaterno,
-            "numeroDocumento": localStorage.getItem("documento"),
-            "activo": true,
-            "fidTipoDocumento": {
-                "id": localStorage.getItem("tipoDocumento")
-            },
-            "fechaCreacion": formattedDate,
-            "activoUsuario": true,
-            "activoPersona": true,
-            "baneado": false,
-            "fidRoles": {
-                "idRole": 1,
-                "fidPermisos": {
-                    "id": 1
-                }
-            }
-        };
-        console.log(JSON.stringify(infoCliente));
-        fetch(GLOBAL_URL + '/cliente/ingresar', {
-            method: 'POST',
-            body: JSON.stringify(infoCliente),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        })
-            .then(response => response.json())
-            .then(data => {
-                    localStorage.setItem("idCliente", data);
-            })
-
-            .catch(error => {
-                // Handle the error
-                console.error(error);
-                localStorage.setItem("error", 1);
-            });
-
-    }
-}
-
-async function insertarVehiculo() {
     const marca = document.querySelector("#select-marca").value;
     const modelo = document.querySelector("#select-modelo").value;
     const anio = document.querySelector("#txt-anio").value;
@@ -450,93 +403,117 @@ async function insertarVehiculo() {
     const numAsiento = document.querySelector("#txt-asientos").value;
     const numSerie = document.querySelector("#txt-serie").value;
 
-    if (localStorage.getItem('idVehiculo') == 0) {
-        const infoVehiculo = {
-            "fidTipoUso": {
-                "idTipoUso": uso
+    const moneda = document.querySelector("#select-moneda").value;
+
+    const distrito = document.querySelector("#select-distrito").value;
+
+
+
+    try {
+        let data = {
+            "cliente": {
+                "nombre": nombres,
+                "email":email,
+                "apellidoPaterno": apdPaterno,
+                "apellidoMaterno": apdMaterno,
+                "numeroDocumento": localStorage.getItem("documento"),
+                "fidRoles": {
+                    "id": "1"
+                },
+                "fidTipoDocumento": {
+                    "id": localStorage.getItem("tipoDocumento")
+                },
+                "fechaNacimiento": formattedDateBirth,
+                "direccion": direccion,
+                "telefono": numCelular,
+                "fechaCreacion": new Date().toISOString().slice(0, 10)  //Fecha de creacion del usuario
             },
-            "fidModelo": {
-                "id": modelo
+            "vehiculo": {
+                "fidTipoUso": {
+                    "id": uso
+                },
+                "fidModelo": {
+                    "id": modelo
+                },
+                "anhoFabricacion": anio + "-01-01",
+                "numeroAsientos": numAsiento,
+                "placa": this.placa,
+                "serie": numSerie
             },
-            "fidPersona": {
-                "id": localStorage.getItem('idCliente')
+            "fidMoneda": {
+                "id": 1 //moneda en lugar de 1
             },
-            "anhoFabricacion": anio + "-01-01",
-            "numeroAsientos": numAsiento,
-            "placa": this.placa,
-            "serie": numSerie,
-            "activo": true
+            "fidDistrito": {
+                "id": distrito
+            },
+            "fechaCotizacion": formattedDate
+        };
+
+        const idCliente = localStorage.getItem("idCliente");
+        if (idCliente && idCliente !== 0) {
+            data.cliente.id = idCliente;
         }
-        console.log(JSON.stringify(infoVehiculo));
-        fetch(GLOBAL_URL + '/vehiculo/insertar', {
+
+        const idVehiculo = localStorage.getItem("idVehiculo");
+        if (idVehiculo && idVehiculo !== 0) {
+            data.vehiculo.id = idVehiculo;
+        }
+
+        console.log(JSON.stringify(data));
+        fetch(GLOBAL_URL + '/cotizacion/insertar', {
             method: 'POST',
-            body: JSON.stringify(infoVehiculo),
+            body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json'
             },
         })
             .then(response => response.json())
             .then(data => {
-                localStorage.setItem("idVehiculo", data);
+                localStorage.setItem("idCotizacion", data);
             })
             .catch(error => {
                 // Handle the error
-                localStorage.setItem("error", 1);
                 console.error(error);
+                localStorage.setItem("error", 1);
             });
+    } catch (error) {
+        console.error('Error:', error);
     }
-}
 
-
-
-async function insertarPoliza() {
-    const fecha = document.querySelector("#date-picker").value;
-    const dateParts = fecha.split('-');
-    const yyyy = dateParts[0];
-    const mm = dateParts[1];
-    const dd = dateParts[2];
-    const formattedDate = `${yyyy}-${mm}-${dd}`;
-    const moneda = document.querySelector("#select-moneda").value;
-
-    const infoPoliza = {
-        "fidMoneda": {
-            "id": moneda
-        },
-        "fidMetodo": {
-            "id": localStorage.getItem("idMetodo")
-        },
-        "fidVehiculo": {
-            "id": localStorage.getItem("idVehiculo")
-        },
-        "fidCliente": {
-            "id": localStorage.getItem("idCliente")
-        },
-        "montoBase": localStorage.getItem("montoPlan"),
-        "fechaVigenciaDesde": formattedDate,
-        "fechaVigenciaFin": `${parseInt(yyyy) + 1}-${mm}-${dd}`,
-        "activo": true
+    var listaCotizacionXDetalle = [];
+    for (var i = 0; i < selectedPlans.length; i++) {
+        var plan = selectedPlans[i];
+        var cotizacionXDetalle = {
+            fidCotizacion: localStorage.getItem("idCotizacion"),
+            fidDetalleCotizacion: plan.id
+        };
+        listaCotizacionXDetalle.push(cotizacionXDetalle);
     }
-    console.log(JSON.stringify(infoPoliza));
-    fetch(GLOBAL_URL + '/poliza/insertar', {
-        method: 'POST',
-        body: JSON.stringify(infoPoliza),
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-        .then(response => response.json())
-        .then(element => {
-                console.log(JSON.stringify(element));
-                localStorage.setItem("idPoliza", element);
-                
+
+    try {
+        let data = {
+            "listaInsertada": listaCotizacionXDetalle
+        };
+        console.log(JSON.stringify(data));
+        fetch(GLOBAL_URL + '/cotizacionXDetalleCotizacion/insertar', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            },
         })
-        .catch(error => {
-            // Handle the error
-            localStorage.setItem("error", 1);
-            console.error(error);
-            alert("No se ha podido generar poliza");
-        });
-
+            .then(response => response.json())
+            .then(data => {
+                //supuestamente devuelve la lista
+            })
+            .catch(error => {
+                // Handle the error
+                console.error(error);
+                localStorage.setItem("error", 1);
+            });
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
 
 
