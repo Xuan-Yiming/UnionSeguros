@@ -139,14 +139,16 @@ function changeStage() {
             document.querySelector(".form-validacion").style.display = "none";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
+            validacionRegistro();
             break;
         case 1:
             document.querySelector(".form-registro").style.display = "none";
             document.querySelector(".form-correo").style.display = "block";
             document.querySelector(".form-contrasena").style.display = "none";
             document.querySelector(".form-validacion").style.display = "none";
-            document.querySelector(".form-result").style.display = "none";;
+            document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
+            validacionCorreo();
             break;
         case 2:
             document.querySelector(".form-registro").style.display = "none";
@@ -155,6 +157,7 @@ function changeStage() {
             document.querySelector(".form-validacion").style.display = "none";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
+            enviarPIN();
             break;
         case 3:
             document.querySelector(".form-registro").style.display = "none";
@@ -163,6 +166,7 @@ function changeStage() {
             document.querySelector(".form-validacion").style.display = "block";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
+            validarPIN();
             break;
         case 4:
             document.querySelector(".form-registro").style.display = "none";
@@ -281,7 +285,48 @@ function verificacion() {
 }
 
 /****APIS****/
+function validacionRegistro(){
 
-async function guardar(){
+}
+function validacionCorreo(){
+
+}
+function enviarPIN(){
+    const email = document.querySelector("#txt-correo").value;
+    const emailLista = [email];
+
+    try {
+        let data = [
+            email
+        ];
+        console.log(JSON.stringify(data));
+        fetch(GLOBAL_URL + '/email/generarToken', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                const cadenaRetornada = data.cadena;
+                alert(cadenaRetornada);
+                if(cadenaRetornada === "SE ENVIO EL TOKEN"){
+                }else{
+                }
+            })
+            .catch(error => {
+                // Handle the error
+                console.error(error);
+                localStorage.setItem("error", 1);
+            });
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+function validarPIN(){
+
+}
+function guardar(){
 
 }

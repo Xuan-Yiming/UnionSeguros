@@ -126,7 +126,7 @@ function changeStage() {
             break;
         case 3:
             guardar();
-            if (localStorage.getItem("error")==1){
+            if (localStorage.getItem("error")===1){
                 return;
             }
             document.querySelector(".form-vehiculo ").style.display = "none";
