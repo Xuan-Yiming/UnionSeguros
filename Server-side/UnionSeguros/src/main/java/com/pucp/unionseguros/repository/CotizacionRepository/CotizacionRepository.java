@@ -21,4 +21,6 @@ public interface CotizacionRepository extends JpaRepository<Cotizacion, Integer>
             "and a.fidCliente.id=c.id and a.fidVehiculo.id= v.id " +
             " order by c.nombre ASC, c.apellidoPaterno ASC,c.apellidoMaterno ASC")
     public List<Cotizacion> listCotizacion(String busqueda);
+
+    public List<Cotizacion> findCotizacionsByActivoIsTrue();
 }

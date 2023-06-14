@@ -1169,7 +1169,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="271" parent="60" name="id_marca_vehiculo">
-      <AutoIncrement>4</AutoIncrement>
+      <AutoIncrement>70</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1237,7 +1237,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="286" parent="62" name="id_modelo">
-      <AutoIncrement>7</AutoIncrement>
+      <AutoIncrement>5317</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1814,7 +1814,7 @@
       <Position>4</Position>
     </column>
     <column id="413" parent="76" name="anho_fabricacion">
-      <DasType>date|0s</DasType>
+      <DasType>int|0s</DasType>
       <Position>5</Position>
     </column>
     <column id="414" parent="76" name="numero_asientos">

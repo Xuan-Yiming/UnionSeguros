@@ -35,4 +35,14 @@ public class SOATController {
     public int insertarNuevoSOAT(@RequestBody SOAT soat){
         return soatService.insertarSOAT(soat);
     }
+
+    @PutMapping("/eliminar")
+    public SOAT eliminarSOAT(@RequestBody SOAT soat){
+        return soatService.eliminarSOAT(soat);
+    }
+
+    @GetMapping("/listarSOATsActivos")
+    public List<SOAT> listarSOATSActivos(){
+        return soatService.listarSOATsActivos();
+    }
 }

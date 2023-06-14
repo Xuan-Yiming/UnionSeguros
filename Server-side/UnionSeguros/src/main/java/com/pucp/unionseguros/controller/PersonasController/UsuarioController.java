@@ -41,13 +41,20 @@ public class UsuarioController {
         return usuarioService.login(email, contrasena);
     }
 
-    @GetMapping("/verificarExistenciaDeCliente")
-    public Usuario verificarCliente(@RequestBody List<String> informacion ){
-        return usuarioService.verificarExistenciaDeCliente(informacion.get(0), Integer.valueOf(informacion.get(1)));
+    @GetMapping(path="/verificarExistenciaDeCliente")
+    public Usuario verificarCliente(@RequestParam(name = "numDocumento") String numDocumento, @RequestParam(name = "tipoDocumento")String tipoDocumento ){
+        return usuarioService.verificarExistenciaDeCliente(numDocumento, Integer.valueOf(tipoDocumento));
     }
 
     @GetMapping(params = "correoIngresado",path = "/verificarEmailIngresadoDisponible")
     public boolean verificarCorreo(@RequestParam(name = "correoIngresado") String correoIngresado){
         return usuarioService.CorreoIngresadoDisponible(correoIngresado);
     }
+
+    @GetMapping(path = "/verificarTokenIngresado")
+    public  boolean verificarTokenIngresado(@RequestParam(name = "correoIngresado") String correoIngresado,@RequestParam(name = "tokenIngresado") String tokenIngresado){
+        return usuarioService.verificarTokenIngresado(correoIngresado,tokenIngresado);
+    }
+
+
 }

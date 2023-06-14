@@ -51,9 +51,9 @@ public class EmailController {
         }
         try{
 
-            success = emailService.sendEmailTool("El token para validar su correo es: "+ sb.toString(),
+            success = emailService.sendEmailTool("El token para validar su correo es: "+ sb.toString() +"\nAtentamente Union Seguros.",
                                                 correo.get(0),
-                                                "VALIDAR SESION UNION SEGUROS");
+                                                "Token de validación de cuenta - UnionSeguros");
             if(success){
                 foundUsuario = usuarioRepository.findUsuarioByEmail(correo.get(0));
                 //tendría toda la información del usuario y ahora solo tengo que setear el token

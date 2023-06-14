@@ -38,4 +38,21 @@ public class ModeloService {
         return  savedModelo.getId();
     }
 
+    public Modelo modificarModelo(Modelo modelo){
+        return modeloRepository.save(modelo);
+
+    }
+
+    public Modelo eliminarModelo(Modelo modelo){
+        modelo.setActivo(false);
+        return modeloRepository.save(modelo);
+    }
+
+    public List<Modelo> busquedaDeModelosPorNombreIDMarca(String busqueda){
+        List<Modelo> lista = null;
+        lista= modeloRepository.buscarModelosPorNombreIdMarca(busqueda);
+        return lista;
+    }
+
+
 }
