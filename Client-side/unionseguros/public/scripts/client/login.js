@@ -1,11 +1,13 @@
 
 
 var stage = 0;
+localStorage.setItem("idCliente", null);
+localStorage.setItem("idVehiculo", null);
+
+var flagCorreo = false;
+var flagEnviarPIN = false;
 
 window.onload = function () {
-    localStorage.setItem("idCliente", 0);
-    localStorage.setItem("idVehiculo", 0);
-
     fetch(GLOBAL_URL + '/tipoDocumento/listarActivos')
         .then(response => response.json())
         .then(data => {
@@ -39,56 +41,36 @@ document.getElementById("select-documento").addEventListener("change", function 
 });
 
 
-document.querySelector("#btn-advance").addEventListener("click", function () {
-    if(stage === 0){
-        let params = new URLSearchParams(location.search);
-        params.append('id_tipo_documento', document.querySelector("#select-documento").value);
-        params.append('numero_documento', document.querySelector("#txt-documento").value);
-
-        let url = new URL(GLOBAL_URL + '/usuario/verificarExistenciaDeCliente?'+ params.toString());
-        fetch(url)
-            .then(response => response.json())
-            .then(element => {
-                if (element === null) {
-                    alert("El documento indicado ya se encuentra registrado");
-                    return;
-                } else {
-                    localStorage.setItem('user', JSON.stringify(element));
-                    const id = element.id;
-                }
-            })
-            .catch(error => {
-                // Handle the error
-                console.error(error);
-            });
+document.querySelector("#btn-advance").addEventListener("click", async function () {
+    if (verificacion()) {
+        return;
     }
     if(stage===0){
-        if(!validacionRegistro()){
+        const validacionRegistroResult = await validacionRegistro();
+        if(validacionRegistroResult){ //AGREGAR ! FALTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
             alert("Ya existe una cuenta con tal documento");
             return;
         }
     }
     if(stage===1){
-        if(!validacionCorreo()){
-            alert("El correo ingresado ya se encuentra vinculado a una cuenta");
+        await validacionCorreo();
+        if(!flagCorreo){
             return;
         }else{
-            if(!enviarPIN()){
+            await enviarPIN();
+            if(!flagEnviarPIN){
                 return;
             }
         }
     }
     if(stage===2){
-        if(!validarPIN()){
+        const validarPINResult = await validarPIN();
+        if(!validarPINResult){
             return;
         }
     }
     if (stage === 4) {
         window.location.href = "/";
-    }
-
-    if (verificacion()) {
-        return;
     }
 
     var bar = document.querySelector(".ProgressBar");
@@ -118,7 +100,7 @@ document.querySelector("#btn-advance").addEventListener("click", function () {
 });
 
 document.querySelector("#btn-previous").addEventListener("click", function () {
-    if (stage == 0) {
+    if (stage === 0) {
         if (confirm("Deseas cancelar el proceso de registro?")) {
             window.location.href = "/iniciarSesion";
             return;
@@ -192,7 +174,7 @@ function changeStage() {
             document.querySelector(".form-result").style.display = "block";
             document.querySelector("#btn-previous").style.display = "none";
             guardar();
-            if (localStorage.getItem("error")==1){
+            if (localStorage.getItem("error")==="1"){
                 return;
             }
             break;
@@ -246,13 +228,13 @@ function verificacion() {
             break;
         case 1:
             const email = document.querySelector("#txt-correo").value;
-            if (  email === "" || apdPaterno == "" || nombres == "" ) {
+            if (  email === "" || apdPaterno === "" || nombres === "" ) {
                 alert("Falta completar campos");
                 return true;
             }
 
             if (!/^[A-Za-z]+$/.test(apdPaterno) || !/^[A-Za-z]+$/.test(apdMaterno) || !/^[A-Za-z ]+$/.test(nombres)) {
-                if (apdMaterno != "-") {
+                if (apdMaterno !== "-") {
                     document.querySelector("#txt-apdPaterno").focus();
                     alert("Los nombres y apellidos no deben contener caracteres especiales");
                     return true;
@@ -300,16 +282,70 @@ function verificacion() {
 }
 
 /****APIS****/
-function validacionRegistro(){
-    return true;
-}
-function validacionCorreo(){
+async function validacionRegistro() {
+    const numero_documento = document.querySelector("#txt-documento").value;
+    const id_tipo_documento = document.querySelector("#select-documento").value;
+    const informacion = [numero_documento, id_tipo_documento]
+    const url = GLOBAL_URL + "/usuario/verificarExistenciaDeCliente?informacion=" + encodeURIComponent(JSON.stringify(informacion));
 
+    try {
+        const response = await fetch(url);
+        const element = await response.json();
+
+        if (element != null) { // ya está registrado
+            localStorage.setItem('user', JSON.stringify(element));
+            const contrasena = element.contrasena;
+            if (contrasena === "") { // no tiene contraseña
+                document.querySelector("#txt-nombres").value = element.nombre;
+                document.querySelector("#txt-apdPaterno").value = element.apellidoPaterno;
+                document.querySelector("#txt-apdMaterno").value = element.apellidoMaterno;
+                document.querySelector("#txt-correo").value = element.email;
+
+                document.querySelector("#txt-nombres").disabled = true;
+                document.querySelector("#txt-apdPaterno").disabled = true;
+                document.querySelector("#txt-apdMaterno").disabled = true;
+                document.querySelector("#txt-correo").disabled = true;
+
+                return true;
+            } else { // ya tiene contraseña, está listo
+                return false;
+            }
+        } else { // no está registrado
+            return true;
+        }
+    } catch (error) {
+        console.error(error);
+        localStorage.setItem("error", "1");
+        return false;
+    }
 }
-function enviarPIN(){
+
+
+async function validacionCorreo() {
     const email = document.querySelector("#txt-correo").value;
-    const emailLista = [email];
-    var flag;
+
+    try {
+        const response = await fetch(GLOBAL_URL + '/usuario/verificarEmailIngresadoDisponible?correoIngresado=' + email);
+        const data = await response.json();
+
+        if(!data) {
+            flagCorreo = false;
+            alert("El correo ingresado ya esta en uso. Ingrese otro.")
+        } else {
+            flagCorreo = true;
+        }
+
+        // Aquí puedes colocar el código que quieres que se ejecute después de validacionCorreo()
+    } catch (error) {
+        console.error(error);
+        flagCorreo = false;
+    }
+}
+
+
+async function enviarPIN() {
+    const email = document.querySelector("#txt-correo").value;
+
     try {
         let data = [
             email
@@ -323,29 +359,28 @@ function enviarPIN(){
             },
         })
             .then(response => response.json())
-            .then(data => {
-                const cadenaRetornada = data.cadena;
-                alert(cadenaRetornada);
-                if(cadenaRetornada === "SE ENVIO EL TOKEN"){
-                     flag = true;
-                }else{
-                     flag = false;
+            .then(element => {
+                alert(Object.keys(element));
+                alert(element);
+                if (element === "SE ENVIO EL TOKEN") {
+                    flagEnviarPIN = true;
                 }
             })
             .catch(error => {
                 // Handle the error
                 console.error(error);
-                localStorage.setItem("error", 1);
-                flag = false;
+                localStorage.setItem("error", "1");
             });
+
     } catch (error) {
         console.error('Error:', error);
-        flag = false;
+        localStorage.setItem("error", "1");
+        flagEnviarPIN = false;
     }
-
-    return flag;
 }
-function validarPIN(){
+
+
+async function validarPIN(){
 
 }
 function guardar(){

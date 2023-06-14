@@ -6,8 +6,8 @@ var placa = localStorage.getItem("placa");
 var tipoDocumento = localStorage.getItem("tipoDocumento");
 var numeroDocumento = localStorage.getItem("documento");
 
-localStorage.setItem("idCliente", 0);
-localStorage.setItem("idVehiculo", 0);
+localStorage.setItem("idCliente", null);
+localStorage.setItem("idVehiculo", null);
 
 window.onload = function () {
     if (localStorage.getItem("placa") == null || localStorage.getItem("tipoDocumento") == null || localStorage.getItem("documento") == null) {
@@ -126,7 +126,7 @@ function changeStage() {
             break;
         case 3:
             guardar();
-            if (localStorage.getItem("error")===1){
+            if (localStorage.getItem("error")==="1"){
                 return;
             }
             document.querySelector(".form-vehiculo ").style.display = "none";
@@ -322,14 +322,14 @@ function verificacion() {
                 return true;
             }
 
-            if (numCelular.length != 9) {
+            if (numCelular.length !== 9) {
                 document.querySelector("#txt-numCelular").focus();
                 alert("El número celular debe tener 9 caracteres");
                 return true;
             }
 
             if (!/^[A-Za-z]+$/.test(apdPaterno) || !/^[A-Za-z]+$/.test(apdMaterno) || !/^[A-Za-z ]+$/.test(nombres)) {
-                if (apdMaterno != "-") {
+                if (apdMaterno !== "-") {
                     document.querySelector("#txt-apdPaterno").focus();
                     alert("Los nombres y apellidos no deben contener caracteres especiales");
                     return true;
@@ -435,7 +435,7 @@ async function guardar() {
                 "fidModelo": {
                     "id": modelo
                 },
-                "anhoFabricacion": anio + "-01-01",
+                "anhoFabricacion": anio,
                 "numeroAsientos": numAsiento,
                 "placa": this.placa,
                 "serie": numSerie
@@ -450,12 +450,12 @@ async function guardar() {
         };
 
         const idCliente = localStorage.getItem("idCliente");
-        if (idCliente && idCliente !== 0) {
+        if (idCliente) {
             data.cliente.id = idCliente;
         }
 
         const idVehiculo = localStorage.getItem("idVehiculo");
-        if (idVehiculo && idVehiculo !== 0) {
+        if (idVehiculo) {
             data.vehiculo.id = idVehiculo;
         }
 
@@ -474,7 +474,7 @@ async function guardar() {
             .catch(error => {
                 // Handle the error
                 console.error(error);
-                localStorage.setItem("error", 1);
+                localStorage.setItem("error", "1");
             });
     } catch (error) {
         console.error('Error:', error);
@@ -509,7 +509,7 @@ async function guardar() {
             .catch(error => {
                 // Handle the error
                 console.error(error);
-                localStorage.setItem("error", 1);
+                localStorage.setItem("error", "1");
             });
     } catch (error) {
         console.error('Error:', error);
