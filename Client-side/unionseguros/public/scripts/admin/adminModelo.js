@@ -9,9 +9,11 @@ window.onload = function () {
     window.location.href = "/admin/marcaModelo";
   }
 
-    document.querySelector("#btn-regresar").addEventListener("click", function () {
-        localStorage.removeItem("data-marca");
-        window.location.href = "/admin/marcaModelo";
+  document
+    .querySelector("#btn-regresar")
+    .addEventListener("click", function () {
+      localStorage.removeItem("data-marca");
+      window.location.href = "/admin/marcaModelo";
     });
 
   var params = new URLSearchParams();
@@ -20,6 +22,7 @@ window.onload = function () {
   let url = new URL(
     GLOBAL_URL + "/modelo/listarModelosPorIdMarca?" + params.toString()
   );
+  
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
@@ -40,7 +43,7 @@ window.onload = function () {
       params.append("busqueda", query);
 
       let url = new URL(
-        GLOBAL_URL + "/marcaVehiculo/buscarPorId?" + params.toString()
+        GLOBAL_URL + "/modelo/buscarModelosPorParametros?" + params.toString()
       );
 
       fetch(url)
@@ -57,7 +60,7 @@ window.onload = function () {
   });
 
   document.querySelector("#btn-nuevo").addEventListener("click", function () {
-    localStorage.removeItem("data-marca");
+    localStorage.removeItem("data-modelo");
     openModal(configurarModal());
   });
 
@@ -65,15 +68,15 @@ window.onload = function () {
     .querySelector("#btn-modal-guardar")
     .addEventListener("click", function () {
       closeModal(function () {
-        const nombre = document.querySelector("#txt-marca").value;
+        const nombre = document.querySelector("#txt-modelo").value;
         const data = {
-          marca: nombre,
+          modelo: nombre,
           activo: true,
         };
-        if (localStorage.getItem("data-marca")) {
-          const dataId = JSON.parse(localStorage.getItem("data-marca")).id;
+        if (localStorage.getItem("data-modelo")) {
+          const dataId = JSON.parse(localStorage.getItem("data-modelo")).id;
           data.id = dataId;
-          fetch(GLOBAL_URL + "/marcaVehiculo/modificar", {
+          fetch(GLOBAL_URL + "/modelo/modificar", {
             method: "PUT",
             body: JSON.stringify(data),
             headers: {
@@ -96,7 +99,7 @@ window.onload = function () {
               console.error(error);
             });
         } else {
-          fetch(GLOBAL_URL + "/marcaVehiculo/insertar", {
+          fetch(GLOBAL_URL + "/modelo/insertar", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -180,7 +183,7 @@ function crearLaTabla(data) {
       const dataId = event.target.getAttribute("data-id");
       localStorage.setItem(
         "data-modelo",
-          JSON.stringify(modelos.find((modelo) => modelo.id == dataId))
+        JSON.stringify(modelos.find((modelo) => modelo.id == dataId))
       );
       openModal(configurarModal());
     });
@@ -198,12 +201,9 @@ function crearLaTabla(data) {
           "¿Está seguro que desea eliminar el plan SOAT con ID: " + dataId + "?"
         )
       ) {
-        fetch(
-          GLOBAL_URL + "/detalleCotizacion/eliminar?idIngresado=" + dataId,
-          {
-            method: "PUT",
-          }
-        )
+        fetch(GLOBAL_URL + "/modelo/eliminar?idIngresado=" + dataId, {
+          method: "PUT",
+        })
           .then((response) => response.json())
           .then((element) => {
             if (element) {

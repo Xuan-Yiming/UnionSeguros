@@ -46,6 +46,38 @@ window.onload = function () {
     openModal(configurarModal());
   });
 
+  const fileInput = document.querySelector("#btn-masiva");
+
+  // Add event listener for file selection
+  fileInput.addEventListener("change", handleFileUpload);
+
+  // Handle file upload event
+  function handleFileUpload(event) {
+    const file = event.target.files[0];
+
+    // Create a FormData object
+    const formData = new FormData();
+    formData.append("file", file);
+
+    // Send the file to the server
+    fetch("/marcaVehiculo/insertarMasivo", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        if (response.ok) {
+          // File upload successful
+          console.log("File uploaded successfully");
+        } else {
+          // File upload failed
+          console.error("File upload failed");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+
   document
     .querySelector("#btn-modal-guardar")
     .addEventListener("click", function () {
