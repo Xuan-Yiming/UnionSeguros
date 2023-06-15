@@ -430,7 +430,7 @@ async function guardar() {
                 "fidModelo": {
                     "id": modelo
                 },
-                "anhoFabricacion": anio + "-01-01",
+                "anhoFabricacion": anio,
                 "numeroAsientos": numAsiento,
                 "placa": this.placa,
                 "serie": numSerie,
