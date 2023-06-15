@@ -549,7 +549,7 @@ async function cargarPersona() {
 
                 document.querySelector("#txt-apdPaterno").value = data.apellidoPaterno;
                 document.querySelector("#txt-apdMaterno").value = data.apellidoMaterno;
-                group-user-button-text
+                document.querySelector("#txt-nombres").value = data.nombre;
 
                 if (data.apellidoMaterno == "") {
                     document.querySelector("#txt-apdMaterno").value = "-";
