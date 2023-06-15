@@ -11,10 +11,7 @@ import java.util.List;
 public interface SOATRepository extends JpaRepository<SOAT,Integer> {
 
     public List<SOAT> findSOATSByActivoIsTrue();
-<<<<<<< HEAD
-=======
 
->>>>>>> 202c3e12be5714d6285bf2048291700d936f1418
     @Query("SELECT s FROM SOAT s INNER JOIN Poliza po INNER JOIN Vehiculo v INNER JOIN Cliente c INNER JOIN PlanSOAT p " +
             "WHERE CONCAT(s.id, c.nombre, c.apellidoPaterno, c.apellidoMaterno, v.placa, p.nombrePlan) " +
             "LIKE CONCAT('%', ?1, '%') AND s.activo = true " +
