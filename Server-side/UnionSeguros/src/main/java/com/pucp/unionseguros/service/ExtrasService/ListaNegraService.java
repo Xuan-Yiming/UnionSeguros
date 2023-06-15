@@ -29,7 +29,7 @@ public class ListaNegraService {
         try(BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()))){
             String line;
             List<ListaNegra> ListalistaNegra = new ArrayList<>();
-
+            br.readLine();
             while((line=br.readLine())!=null){
                 String[] data = line.split(getSeparator(line));
                 ListaNegra listanegra = new ListaNegra();
