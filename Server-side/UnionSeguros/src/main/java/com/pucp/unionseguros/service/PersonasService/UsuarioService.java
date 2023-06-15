@@ -65,4 +65,14 @@ public class UsuarioService {
 
     }
 
+    public boolean verificarTokenIngresado(String correoIngresado, String tokenIngresado){
+        boolean success= false;
+        Usuario usuario = null;
+        usuario = usuarioRepository.verificarTokenIngresado(correoIngresado,tokenIngresado);
+        if(usuario!=null){
+            success = true;
+        }
+        return success;
+    }
+
 }

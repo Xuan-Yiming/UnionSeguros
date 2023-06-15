@@ -51,4 +51,6 @@ public class DetalleCotizacionService {
         lista = detalleCotizacionRepository.listarDetallesPorNombreOId(Busqueda);
         return  lista;
     }
+
+
 }

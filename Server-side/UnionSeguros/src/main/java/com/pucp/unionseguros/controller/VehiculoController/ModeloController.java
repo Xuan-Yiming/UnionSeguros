@@ -9,6 +9,7 @@ package com.pucp.unionseguros.controller.VehiculoController;
 import com.pucp.unionseguros.model.Vehiculo.Modelo;
 import com.pucp.unionseguros.service.VehiculoService.ModeloService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,5 +45,20 @@ public class ModeloController {
     @PostMapping("/insertar")
     public  int registrarNuevoModelo(@RequestBody Modelo modelo){
         return modeloService.insertarModelo(modelo);
+    }
+
+    @PutMapping("/modificar")
+    public Modelo modificarModelo(@RequestBody Modelo modelo){
+        return modeloService.modificarModelo(modelo);
+    }
+
+    @PutMapping("/eliminar")
+    public Modelo eliminarModelo(@RequestBody Modelo modelo){
+        return modeloService.eliminarModelo(modelo);
+    }
+
+    @GetMapping(params = "busqueda",path = "/buscarModelosPorParametros")
+    public List<Modelo> buscarModelosPorMarcaNombreID(@RequestParam(name = "busqueda") String busqueda){
+        return modeloService.busquedaDeModelosPorNombreIDMarca(busqueda);
     }
 }

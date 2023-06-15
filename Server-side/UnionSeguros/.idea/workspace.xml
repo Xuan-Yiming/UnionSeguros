@@ -4,7 +4,224 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e535dd-9087-49b2-b16f-1aee167975e6" name="Changes" comment="">
+    <list default="true" id="c533adc8-9480-47e7-ba91-492753cd2c4a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/.eslintcache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/01471f165d9afa076a095bb0965723f2aedb06cb93600d04272bba0b7f6ae2d9.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/05bfffcf2d858b744b1dc01ae786eb195ed94483a14202218592c65d5c70534f.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/0679186bac77ee64269c0e977203d706f4e6c70f20da6b6322a616906bc3125d.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/0850ce3938ebedb313ddc7bf61296a49a73e002b1e3a6263ccab0181a6d9b6df.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/0a8b96b21e011db5dcb23bdde251c1aef10a192bb6e049e65adb3f56f78c59a7.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/0b8729d418a0508c87bee41fd2667eca96ef833955fa1aaa1abc1aff4bdb3c9d.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/0d08f901d107bf079872d5617d1045c7e5bd443954ff3e5affe1ba8820d7f8ee.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/0f0d45cc0324d57031558da2f1cf56e3762e6d19db496fd529a213133d50ad10.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/140a2d86d0a9a5318bc2844fb3333dcf80e8b3c9be12cea5fba0b428b6879d1d.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/15bca11857218f614a019dd14b6731253745dcab9021e59e8f98068ae1329cbc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/17eafbcd7bb24824c2b4464484b5766cdb036e879c445e3e397b3ace15c4d36a.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/17f37f2f835c6efb914fb39095d919268bae17f787b4b9463bcdd53ffe4f8868.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/18b8f587fb8e77b412b1747c58bd5b9c9167a5a322933b79b9276f17b198216b.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/1b0e71c9e31cfc9ec5fe14d7a06f5f6225f89f163f31b23916c6b562b2cccade.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/1bb9c028b2fad497bb7fb41897cb083ae80dd8ecf529946575061c8c4bf60c6a.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/1d2c0bcf8453fc12f06bdb1ee9e16dc4b654bb0cfd3dc83d95e358428385b49d.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/1f1db431dcd97d2ee6b9db728417b224d0c3e123705c070f698b4c478df4b79c.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/2050aa479c3976dcd610edab78020c5bfb42d0daa1c26446886f045082e32902.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/213e9f01f3a993e51d0c634ff67b760caec68bca8398d35f135d21d8bf748c88.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/336d6ab6270975c3181e70a62992e6fcf2348f5a1a02d71900a6987695745485.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/339adcbc18accb40fc3522ff3226669d0bf0f3c79b13931338ef12d62d55d15b.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/343dd45bb2fe61ba3ce56e24d12c6db73b2f58dffe2c28edbce0a4bc7926ecfd.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/38cb82f94b9d4ce3c5ee123e100b09e80641601a6551e380e3440fdee627340c.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/3ebb38be35701ebd1c671f694f452d43e8e3e62dc810bcecb5a9d5406b763112.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/41ab3082dc376262f82ca843e71a311466a813f75f338539017364868794ffad.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/468ce542b5149213e8f40bd827be3d29f5af207c6dbafc1d5c7ac10e03bffec1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/49548770cc416e0cbd9a7e61dc2d7095ae68ccd2c07cc6ce81cb2776b43783b2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/49e1cfb7f68eedfc153163ff13f570e97319d9b496a6662d0cf7ace42cfc7341.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/4e736feef745654c3de763d00409395171c3b92e276e2c1b04bb1cd1ad5917e5.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/5098c2b6956d0f9fddd95897120595459edd9dc438570f9bddc41924dc6aa140.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/50d7d2d41d733426f82225eb1ec383497bc21976c748e5b5a7af8af7fca827c5.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/516cc52a43233df55127751c80b94ee2221095632f0620e3da4550b7734ded10.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/56f46b536553d60eb093bc9d9284808c5594c470f2f936e93ffc271d6dc76c8f.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/578c81f4d66504d470306e0e87bf8aa4c3846651d8645d1bc960e933ad93aa39.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/5806565af4c8793e9997801fd36a387125dda88499ec879cef09b1046faf6c8b.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/584677902a5e96941898a3f59ce1b81ffabe0358caaa34ef9b37c08f1ef8156e.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/5abc2a6bda965952faa033bff659adcc758fac83b72006f788703e7aed0615ef.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/5d6cc941a216104186a92acd0d8311bdd0c07fbbd5e655c2357ec16efc709a94.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/6128786841c263571d55def05114c9bca11c58a449f30731524a0cb8adce055b.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/61acb0b5862aa9a8426c151e6d85ff8638bc9e5cd468b8c01e40e0d2cc61c214.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/626a1e41f28aace35a4b0381921c7beb00d7b227d81f212ce667e21da2a76afa.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/62a719ea831884953de49a80e11d8f103a448160db4a737697ca2bfc5154e1bb.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/64fd7c7ad235c545855d50a125246e1fcb4ec929bc8e7728c31089fae3b6a435.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/695074e4bb40684d56aff0437addb329ed3e8521c09b10ec7e173119b2a043e0.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/6c39d4366e2b47c27f51ca300cef10e6c7e6a9899f7c161fb38b40a7eb9649a1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/6dbefe0b11c4326ac99a4650227f540560aafa8b3238b3dd4a359b83e1ce6f7c.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/707ec0a5906c5f9d42524c16615fcc4596732943fc3915949f1d389cd50be641.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/7636ac11784f8eb132dcccaf5af5b2b427f397aaa7398e7736aa46ce532bc2fc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/77dffd3bd429858064186dbb02a25272b91e85f0f24b490001564facff45df7a.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/7801957592ee1ebff2236af3c09302dfc6ebc544af1f87fc6278390deabe72af.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/7b38d981d6345718f9d582d9da18b9e8c5f17678bc3cc0e055f76e8f182c786a.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/7eb2dd5141e36b832fa5fb35b8817194249790bf04292879889fb9168a9e5364.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/80a06efde010659e5af5aa289834e9cae38d8cc52a0fc72cdf3c28b4ce0ddfbd.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/825aaee6ccc9ede1fee3e8bef9008fdac787395f1128f31376b264cb74f0e416.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/85a3530d4c5c86bfcc4b30024a92e097fd9afac335b228eb9303429cff980409.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/8b6e8f2b50b23243cd8f77ba24714334d1926072f41b4eddf45d614c07cb0380.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/8b8b786deb1cedfaaf334dd02793333ff7cd0c6a18da38b7892f5237d914e7bb.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/8eee5ab24d8c227be1b3124049b811e113c57bc9c2f7098d8ee7e83857374dcf.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/91d6226524d878593a9b82a4f46e7b9fcf81f97f06b40cef9ce4939899bf75f2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/922623e283e233a86c28d015f80b1a7f71c85da3498f44d46151b35c5e2ceeb5.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/936c81dbafb9472dec5aa62637f31db1c33d4a1e701fad782754a103e22b146b.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/963d5835844635620755d16c77782e08e1faeaad8c0ccccda9f508e926b4dc73.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/996d818246abccdf9856470a7690f96731258bd80ce4363269bb539bcc2f1fe2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/99a9fe5921deb762b59e964fea48d38c2abc553d0105df5d8feb856f01c26ee0.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/9a02657ae20de29f24d0c97089af0c367ff4c1b837271f092e64aef8f9e79613.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/9a7bb10462248bc97a7229d0e1792b2ff20ea352f9922dafe908765e15c169fe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/9e8d58ac7d9bc5359157a52b69d1bef209b068b8d1c4052f6ca6faa8b36c8181.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/9f18447873effea0a3ed78b411fb601445c2163f2ebc976d8869c40e0ffabc08.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/a2f4f90b3ae563a237f002cb1e1f72d622f07f62ec50bb4cfa68eb51c0a6af16.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/a38699caa08f74bd8d14b381b4c5fa43809fd549ace198e7c88a968489312937.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/a6ca9f4864a20b5c21fae5962f78004e78307212e015211e60fa2a3606925f92.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/aa7a8f2e54ea5c1ebe06aa42826ca1b1f5e4b09ed615c7f6bc5bf331af919fe9.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/b089eba66793882d4b5c13cf3b555a1f7ee083b8daebdb28736c038d1801dcff.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/b1bc724ff887c2e9b25f91824c8255c779764cc01fe13ee404b3c8707cd01a85.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/b207b95287bfa0d1a94bcc9f68abe1564413f022509631cde441cfb5d4df1102.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/b7419346cc12dc64f55d86644ee543d239f95a8db3144dd954d84cb687c63258.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/b80214c7120ed8d3d6f239862294092f69eb4888e482bbff17feb560232db82d.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/b99d4c53cfbb54297671f349cf6907b17fbf47f86ba53d655807122d1ac66ac3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/bebadf00a9ff2bcbac36331f5e9393f2d051198aa8b25be27efe40dae5490b29.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/c087736d289d8d88951da511c689a8d760186fd51be2922ef0540056577b84a6.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/c2167ea7f4434ba6452ed874a058c747a95ea2e7ca96816e67e324d79e72b999.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/c5168c1959365e1d7baae80c227597e2053d488417b1f654cf45bc3a0ca84c50.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/c5e2e8a5ebcdc040cb1df8c31c38ad570bd1f235b8ba55f8109d8c428e1023b1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/c7ba7b6ffb639e78acbe753f44ab037f8a221792032e63325bc64219d7e81da3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/cc719aa83e56fc7a8f81a1cd8af48a8e610e09b7094adc3e43f16a6b2472de93.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/dcbb7c86bd38f863f34ffcd27abd518ab3473ad6147414fb6a89f388dcdb544b.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/ddb85c8b35683b8db0d8b0084c5020f0c9050a6db4a234f81965b7cdd24cf5d9.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/e04df46d5e6d5530d7b557a006121574f61f0dbeb40c4f78db212097851cce5f.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/e0e87f72293b0a8e715eb0aafad414894dc5b9ba120e5c5ee832ce1c09ee023a.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/e44f3323a1569d10cd7d1361d0d04c3c0cda5459227bad0ee1d67d4ef57a16b8.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/e7e2575b8d4c52bdff9f8b494bded4bb917af423199c7c2090462111159bc460.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/e88c012999f6bdbedd7c751659fee33389cab5e8e0ed8b09410b9efcacf58cb9.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/eb8d3ce9359ee9bc1c688205260078be0b2ff64b5f9deebbbcfcc73a74ad9edc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/ed4b9aa6027161299af5b6be44ae201b21c4af8b67bda6d7000af31832b393cb.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/eda0950af3a49f4e5e3f0d4e64e9a8eea107e2eda3fd0a40806a2dbf77d6da8b.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/f2fd70cc65720acc3a5d83895dfddf77b4f995d6ffd24155445df4fdd558733a.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/f67f954fb112fa9d6910f5427ea030bfed4982be3cbee3378d337afd75a861c6.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/f8c13b4f1001170fcc1dac02df294263dd8052c3aa31a7db8888b78fb55b5659.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/f8f9b4b756029b4cec4c6f89fa9635b2f5f1ec5a718db98fc80d241e7381cd2c.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/f9a9299aefc77ac830ed0990b48fcf6e45f9713e6a18f4112d50ce41f5901ac3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/fcae1b30f1914fd9ea0f9e073e8a8da4c7f3e17f67faed4577aa9033c1e48316.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/babel-loader/feb03d323a04ecff9d999c5eab3942e22472d78d6d2292b85e86eebc841c09b5.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/default-development/0.pack" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/.cache/default-development/index.pack" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/iconv-lite/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/iconv-lite/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/iconv-lite/.idea/iconv-lite.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/iconv-lite/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/iconv-lite/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/iconv-lite/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/94bd93f7-1223-44d7-b999-1bc47fda4d19.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/94bd93f7-1223-44d7-b999-1bc47fda4d19.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/CorreosController/EmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/CorreosController/EmailController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/CotizacionController/CotizacionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/CotizacionController/CotizacionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/CotizacionController/DetalleCotizacionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/CotizacionController/DetalleCotizacionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/PROCESOCOMPRASOAT/ProcesoSOATController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/PROCESOCOMPRASOAT/ProcesoSOATController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/PersonasController/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/PersonasController/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/SOATController/SOATController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/SOATController/SOATController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/VehiculoController/MarcaVehiculoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/VehiculoController/MarcaVehiculoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/VehiculoController/ModeloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/VehiculoController/ModeloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/model/Vehiculo/Vehiculo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/model/Vehiculo/Vehiculo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/CotizacionRepository/CotizacionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/CotizacionRepository/CotizacionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/PersonasRepository/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/PersonasRepository/UsuarioRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/SOATRepository/SOATRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/SOATRepository/SOATRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/VehiculoRepository/MarcaVehiculoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/VehiculoRepository/MarcaVehiculoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/VehiculoRepository/ModeloRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/VehiculoRepository/ModeloRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/CotizacionService/CotizacionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/CotizacionService/CotizacionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/CotizacionService/DetalleCotizacionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/CotizacionService/DetalleCotizacionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/PersonasService/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/PersonasService/UsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/SOATService/SOATService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/SOATService/SOATService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/VehiculoService/MarcaVehiculoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/VehiculoService/MarcaVehiculoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/VehiculoService/ModeloService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/VehiculoService/ModeloService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/CorreosController/EmailController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/CorreosController/EmailController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/CotizacionController/CotizacionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/CotizacionController/CotizacionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/CotizacionController/DetalleCotizacionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/CotizacionController/DetalleCotizacionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/PROCESOCOMPRASOAT/ProcesoSOATController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/PROCESOCOMPRASOAT/ProcesoSOATController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/VehiculoController/MarcaVehiculoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/VehiculoController/MarcaVehiculoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/VehiculoController/ModeloController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/VehiculoController/ModeloController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/model/Vehiculo/Vehiculo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/model/Vehiculo/Vehiculo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/CotizacionRepository/CotizacionRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/CotizacionRepository/CotizacionRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/CotizacionRepository/DetalleCotizacionRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/CotizacionRepository/DetalleCotizacionRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/VehiculoRepository/MarcaVehiculoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/VehiculoRepository/MarcaVehiculoRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/VehiculoRepository/ModeloRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/VehiculoRepository/ModeloRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/CotizacionService/CotizacionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/CotizacionService/CotizacionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/CotizacionService/DetalleCotizacionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/CotizacionService/DetalleCotizacionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/ExtrasService/ListaNegraService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/ExtrasService/ListaNegraService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/VehiculoService/MarcaVehiculoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/VehiculoService/MarcaVehiculoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/VehiculoService/ModeloService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/VehiculoService/ModeloService.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2RASEYmo8mvdAmMFKu51ONxqp3d" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/Universidad/Cursos 2023-1/Ingeniería de Software/Repositorio de TA/UnionSeguros/Server-side/UnionSeguros",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "spring.configuration.checksum": "daf1c4774a8ab2aa9d8e207ecff73eae",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="UnionSegurosApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="UnionSeguros" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.pucp.unionseguros.UnionSegurosApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c533adc8-9480-47e7-ba91-492753cd2c4a" name="Changes" comment="" />
+      <created>1686598455662</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1686598455662</updated>
+      <workItem from="1686598456766" duration="8541000" />
+      <workItem from="1686691285435" duration="7716000" />
     </task>
     <servers />
   </component>

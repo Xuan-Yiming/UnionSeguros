@@ -22,4 +22,16 @@ public class SOATService {
         SOAT savedSOAT = soatRepository.saveAndFlush(soat);
         return savedSOAT.getId();
     }
+
+    public List<SOAT> listarSOATsActivos(){
+        List<SOAT> lista = null ;
+        lista = soatRepository.findSOATSByActivoIsTrue();
+        return lista;
+    }
+
+    public  SOAT eliminarSOAT(SOAT soat){
+        soat.setActivo(false);
+        return soatRepository.saveAndFlush(soat);
+    }
+
 }

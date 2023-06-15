@@ -48,4 +48,6 @@ public class DetalleCotizacionController {
     public List<DetalleCotizacion> BuscarDetallesDeCotizacion(@RequestParam(name = "busqueda") String busqueda){
         return detalleCotizacionService.buscarDetallesDeCotizacionPorParametros(busqueda);
     }
+
+
 }

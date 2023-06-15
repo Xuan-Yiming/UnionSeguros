@@ -117,7 +117,7 @@ public class ProcesoSOATController {
                 //PERSONA
 
 
-            vehiculo.setAnhoFabricacion(LocalDate.parse((vehiculeNode.get("anhoFabricacion").asText())));
+            vehiculo.setAnhoFabricacion((vehiculeNode.get("anhoFabricacion")).asInt());
             vehiculo.setNumeroAsientos(vehiculeNode.get("numeroAsientos").asInt());
             vehiculo.setPlaca(vehiculeNode.get("placa").asText());
             vehiculo.setSerie(vehiculeNode.get("serie").asText());
