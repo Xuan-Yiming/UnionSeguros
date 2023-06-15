@@ -7,8 +7,7 @@
     <list default="true" id="6fa78c07-b115-4a69-b73b-58c95ea1b005" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/SOATProceso.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/SOATProceso.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/seguroVehicularProceso.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/seguroVehicularProceso.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/dataSources/94bd93f7-1223-44d7-b999-1bc47fda4d19.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/dataSources/94bd93f7-1223-44d7-b999-1bc47fda4d19.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -91,7 +90,8 @@
       <workItem from="1686515197722" duration="20753000" />
       <workItem from="1686549026095" duration="27966000" />
       <workItem from="1686693049580" duration="1830000" />
-      <workItem from="1686699074412" duration="19262000" />
+      <workItem from="1686699074412" duration="19301000" />
+      <workItem from="1686782510635" duration="1373000" />
     </task>
     <servers />
   </component>

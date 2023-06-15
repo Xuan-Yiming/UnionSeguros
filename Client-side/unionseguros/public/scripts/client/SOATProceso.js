@@ -420,7 +420,7 @@ async function guardar() {
                 "fidTipoDocumento": {
                     "id": localStorage.getItem("tipoDocumento")
                 },
-                "fechaCreacion": formattedDate
+                "fechaCreacion": new Date().toISOString().slice(0, 10)
             },
 
             "vehiculo": {

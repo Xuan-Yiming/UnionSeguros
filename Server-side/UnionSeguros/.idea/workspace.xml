@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="32e535dd-9087-49b2-b16f-1aee167975e6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/SOATProceso.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/SOATProceso.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/seguroVehicularProceso.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/seguroVehicularProceso.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/94bd93f7-1223-44d7-b999-1bc47fda4d19.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/94bd93f7-1223-44d7-b999-1bc47fda4d19.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -142,7 +140,8 @@
       <workItem from="1686146163155" duration="9494000" />
       <workItem from="1686266462255" duration="628000" />
       <workItem from="1686515214595" duration="22256000" />
-      <workItem from="1686693091204" duration="14421000" />
+      <workItem from="1686693091204" duration="14528000" />
+      <workItem from="1686782433076" duration="1231000" />
     </task>
     <servers />
   </component>
