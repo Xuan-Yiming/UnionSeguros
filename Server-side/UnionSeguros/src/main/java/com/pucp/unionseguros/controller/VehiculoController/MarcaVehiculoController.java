@@ -32,6 +32,10 @@ public class MarcaVehiculoController {
         return marcaVehiculoService.listarMarcaVehiculo();
     }
 
+    @GetMapping("/listarTodasActivas")
+    public List<MarcaVehiculo> listarMarcasActivas(){
+        return marcaVehiculoService.listarMarcasActivas();
+    }
     @PostMapping("/insertar")
     public int insertarNuevoMarcaVehiculo(@RequestBody MarcaVehiculo marcaVehiculo){
        return marcaVehiculoService.insertarMarcaVehiculo(marcaVehiculo);
@@ -40,5 +44,10 @@ public class MarcaVehiculoController {
     @GetMapping(params = "idMarca",path = "/buscarPorId")
     public MarcaVehiculo buscarMarcaVehiculo(@RequestParam Integer idMarca){
         return marcaVehiculoService.buscarMarcaConElId(idMarca);
+    }
+
+    @GetMapping(params = "busqueda",path = "/buscaquedaDeMarcas")
+    public List<MarcaVehiculo> busquedaDeMarcasPorParametro(@RequestParam(name = "busqueda") String busqueda){
+        return marcaVehiculoService.busquedaDeMarcasPorParametro(busqueda);
     }
 }

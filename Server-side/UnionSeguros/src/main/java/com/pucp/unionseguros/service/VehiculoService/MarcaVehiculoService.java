@@ -28,4 +28,15 @@ public class MarcaVehiculoService {
     public MarcaVehiculo buscarMarcaConElId(Integer idMarca){
         return marcaVehiculoRepository.findMarcaVehiculoById(idMarca);
     }
+
+    public List<MarcaVehiculo> busquedaDeMarcasPorParametro(String busqueda){
+        return marcaVehiculoRepository.buscarMarcasVehiculosPorParametro(busqueda);
+    }
+
+    public List<MarcaVehiculo> listarMarcasActivas(){
+        List<MarcaVehiculo> lista = null;
+        lista= marcaVehiculoRepository.findMarcaVehiculosByActivoIsTrue();
+        return lista;
+
+    }
 }

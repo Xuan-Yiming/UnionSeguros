@@ -13,8 +13,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @Entity
 @Table(name = "vehiculo")
 @AllArgsConstructor
@@ -40,7 +38,7 @@ public class Vehiculo {
     private Persona fidPersona;
 
     @Column(name = "anho_fabricacion")
-    private LocalDate anhoFabricacion;
+    private int anhoFabricacion;
 
     @Column(name = "numero_asientos")
     private Integer numeroAsientos;

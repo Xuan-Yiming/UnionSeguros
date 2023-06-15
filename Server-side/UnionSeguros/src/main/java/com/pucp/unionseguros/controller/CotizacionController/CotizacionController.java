@@ -25,9 +25,9 @@ public class CotizacionController {
         this.cotizacionService = cotizacionService;
     }
 
-    @GetMapping("/listar")
+    @GetMapping("/listarCotizacionesActivas")
     public List<Cotizacion> getCotizaciones(){
-        return  cotizacionService.listarCotizacion();
+        return  cotizacionService.listarCotizacionActivas();
     }
 
     @PostMapping("/insertar")

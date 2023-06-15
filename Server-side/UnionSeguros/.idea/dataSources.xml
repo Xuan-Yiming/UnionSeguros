@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="UnionSeguros@unionseguros.cigom8xhau0r.us-east-1.rds.amazonaws.com" uuid="94bd93f7-1223-44d7-b999-1bc47fda4d19">
+    <data-source source="LOCAL" name="@unionseguros.cisezxqgljh8.us-east-1.rds.amazonaws.com" uuid="7fb1e746-6fce-41aa-a170-ed5481bd9795">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://unionseguros.cigom8xhau0r.us-east-1.rds.amazonaws.com:3306/UnionSeguros</jdbc-url>
+      <jdbc-url>jdbc:mysql://unionseguros.cisezxqgljh8.us-east-1.rds.amazonaws.com:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

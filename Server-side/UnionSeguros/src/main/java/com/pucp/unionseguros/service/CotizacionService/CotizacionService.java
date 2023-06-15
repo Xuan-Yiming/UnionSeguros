@@ -18,8 +18,8 @@ public class CotizacionService {
     public CotizacionService(CotizacionRepository cotizacionRepository) {
         this.cotizacionRepository = cotizacionRepository;
     }
-    public List<Cotizacion> listarCotizacion(){
-        return cotizacionRepository.findAll();
+    public List<Cotizacion> listarCotizacionActivas(){
+        return cotizacionRepository.findCotizacionsByActivoIsTrue();
     }
 
     public int insertarCotizacion(Cotizacion cotizacion){
@@ -37,5 +37,10 @@ public class CotizacionService {
         List<Cotizacion> lista = new ArrayList<>();
         lista = cotizacionRepository.listCotizacion(busqueda);
         return  lista;
+    }
+
+    public Cotizacion deleteCotizacion(Cotizacion cotizacion){
+        cotizacion.setActivo(false);
+        return cotizacionRepository.save(cotizacion);
     }
 }

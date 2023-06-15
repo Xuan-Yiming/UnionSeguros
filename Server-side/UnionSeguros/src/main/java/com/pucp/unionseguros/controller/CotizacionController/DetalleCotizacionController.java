@@ -44,4 +44,10 @@ public class DetalleCotizacionController {
         return  detalleCotizacionService.eliminarDetalleCotizacionPorID(IdIngresado);
     }
 
+    @GetMapping(params = "busqueda",path = "/buscarPorParametros")
+    public List<DetalleCotizacion> BuscarDetallesDeCotizacion(@RequestParam(name = "busqueda") String busqueda){
+        return detalleCotizacionService.buscarDetallesDeCotizacionPorParametros(busqueda);
+    }
+
+
 }
