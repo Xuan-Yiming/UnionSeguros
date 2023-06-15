@@ -45,4 +45,9 @@ public class SOATController {
     public List<SOAT> listarSOATSActivos(){
         return soatService.listarSOATsActivos();
     }
+
+    @GetMapping(params = "busqueda",path ="/buscarSOATParametros")
+    public List<SOAT> BuscarSOATParametro(@RequestParam(name = "busqueda") String busqueda){
+        return soatService.BuscarSOATParametro(busqueda);
+    }
 }

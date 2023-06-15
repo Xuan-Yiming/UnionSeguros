@@ -5,7 +5,6 @@ Descripcion:        Archivo model de la clase Persona
 */
 package com.pucp.unionseguros.model.Personas;
 
-import com.pucp.unionseguros.service.PersonasService.UsuarioService;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Date;
+
 @Entity
 @Table(name = "persona")
 @Inheritance(strategy = InheritanceType.JOINED)
