@@ -4,8 +4,10 @@ var stage = 0;
 localStorage.setItem("idCliente", null);
 localStorage.setItem("idVehiculo", null);
 
+var flagRegistro = false;
 var flagCorreo = false;
 var flagEnviarPIN = false;
+var flagValidarPIN = false;
 
 window.onload = function () {
     fetch(GLOBAL_URL + '/tipoDocumento/listarActivos')
@@ -46,8 +48,8 @@ document.querySelector("#btn-advance").addEventListener("click", async function 
         return;
     }
     if(stage===0){
-        const validacionRegistroResult = await validacionRegistro();
-        if(validacionRegistroResult){ //AGREGAR ! FALTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        await validacionRegistro();
+        if(!flagRegistro){
             alert("Ya existe una cuenta con tal documento");
             return;
         }
@@ -64,8 +66,8 @@ document.querySelector("#btn-advance").addEventListener("click", async function 
         }
     }
     if(stage===2){
-        const validarPINResult = await validarPIN();
-        if(!validarPINResult){
+        await validarPIN();
+        if(!flagValidarPIN){
             return;
         }
     }
@@ -285,15 +287,14 @@ function verificacion() {
 async function validacionRegistro() {
     const numero_documento = document.querySelector("#txt-documento").value;
     const id_tipo_documento = document.querySelector("#select-documento").value;
-    const informacion = [numero_documento, id_tipo_documento]
-    const url = GLOBAL_URL + "/usuario/verificarExistenciaDeCliente?informacion=" + encodeURIComponent(JSON.stringify(informacion));
+    const informacion = JSON.stringify([numero_documento, id_tipo_documento]);
+    const url = GLOBAL_URL + '/usuario/verificarEmailIngresadoDisponible?informacion=' + informacion;
 
     try {
         const response = await fetch(url);
         const element = await response.json();
 
-        if (element != null) { // ya está registrado
-            localStorage.setItem('user', JSON.stringify(element));
+        if (element !== null) { // ya está registrado
             const contrasena = element.contrasena;
             if (contrasena === "") { // no tiene contraseña
                 document.querySelector("#txt-nombres").value = element.nombre;
@@ -306,17 +307,17 @@ async function validacionRegistro() {
                 document.querySelector("#txt-apdMaterno").disabled = true;
                 document.querySelector("#txt-correo").disabled = true;
 
-                return true;
+                flagRegistro= true;
             } else { // ya tiene contraseña, está listo
-                return false;
+                flagRegistro= false;
             }
         } else { // no está registrado
-            return true;
+            flagRegistro= true;
         }
     } catch (error) {
         console.error(error);
         localStorage.setItem("error", "1");
-        return false;
+        flagRegistro= false;
     }
 }
 
@@ -335,7 +336,6 @@ async function validacionCorreo() {
             flagCorreo = true;
         }
 
-        // Aquí puedes colocar el código que quieres que se ejecute después de validacionCorreo()
     } catch (error) {
         console.error(error);
         flagCorreo = false;
@@ -347,33 +347,26 @@ async function enviarPIN() {
     const email = document.querySelector("#txt-correo").value;
 
     try {
-        let data = [
-            email
-        ];
+        const data = [email];
         console.log(JSON.stringify(data));
-        fetch(GLOBAL_URL + '/email/generarToken', {
+        const response = await fetch(GLOBAL_URL + '/email/generarToken', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json'
             },
-        })
-            .then(response => response.json())
-            .then(element => {
-                alert(Object.keys(element));
-                alert(element);
-                if (element === "SE ENVIO EL TOKEN") {
-                    flagEnviarPIN = true;
-                }
-            })
-            .catch(error => {
-                // Handle the error
-                console.error(error);
-                localStorage.setItem("error", "1");
-            });
+        });
+        const responseData = await response.text();
 
+        alert(responseData);
+        if(responseData === "SE ENVIO EL TOKEN") {
+            flagEnviarPIN = true;
+        } else {
+            flagEnviarPIN = false;
+        }
     } catch (error) {
-        console.error('Error:', error);
+        // Handle the error
+        console.error(error);
         localStorage.setItem("error", "1");
         flagEnviarPIN = false;
     }
@@ -381,7 +374,26 @@ async function enviarPIN() {
 
 
 async function validarPIN(){
+    const correo = document.querySelector("#txt-documento").value;
+    const token_ingresado = document.querySelector("#txt-PIN").value;
+    const informacion = JSON.stringify([correo, token_ingresado]);
+    const url = GLOBAL_URL + '/usuario/verificarToken?informacion=' + informacion;
 
+    try {
+        const response = await fetch(url);
+        const element = await response.json();
+
+        if (element) { //el PIN ingresado coincide con el enviado
+            flagValidarPIN = true;
+        } else { //el PIN ingresado coincide con el enviado
+            alert("El PIN ingresado no coincide")
+            flagValidarPIN = false;
+        }
+    } catch (error) {
+        console.error(error);
+        localStorage.setItem("error", "1");
+        flagRegistro= false;
+    }
 }
 function guardar(){
 

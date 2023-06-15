@@ -8,6 +8,8 @@ var numeroDocumento = localStorage.getItem("documento");
 
 localStorage.setItem("idCliente", null);
 localStorage.setItem("idVehiculo", null);
+var flagMonto = false;
+var montoEstimado = 0.0;
 
 window.onload = function () {
     if (localStorage.getItem("placa") == null || localStorage.getItem("tipoDocumento") == null || localStorage.getItem("documento") == null) {
@@ -23,7 +25,15 @@ window.onload = function () {
 
 };
 
-document.querySelector("#btn-advance").addEventListener("click", function () {
+document.querySelector("#btn-advance").addEventListener("click", async function () {
+    if(stage===0){
+        await validacionMonto();
+        if(!flagMonto){
+            alert("Su vehiculo no puede ser cotizado debido a su año de fabricacion.");
+            return;
+        }
+    }
+
     if (stage === 3) {
         localStorage.removeItem("placa");
         localStorage.removeItem("tipoDocumento");
@@ -209,8 +219,6 @@ function updateLocalStorage() {
 
 // Cargar los planes y actualizar el total inicial
 
-
-
 function loadResumen() {
     let placa = localStorage.getItem("placa");
     let nuevaPlaca = placa.substring(0, 3) + "-" + placa.substring(3);
@@ -352,170 +360,6 @@ function verificacion() {
     }
     return true;
 }
-function validateCardExpiration(expirationDate) {
-    const currentDate = new Date();
-    const currentMonth = currentDate.getMonth() + 1; // Adding 1 because getMonth() returns zero-based index
-    const currentYear = currentDate.getFullYear() % 100; // Getting the last two digits of the current year
-
-    // Check if the expiration date has the correct format MM/yy
-    const datePattern = /^(0[1-9]|1[0-2])\/\d{2}$/;
-    if (!datePattern.test(expirationDate)) {
-        return false;
-    }
-
-    // Extract month and year from the expiration date
-    const [expirationMonth, expirationYear] = expirationDate.split('/').map(Number);
-
-    // Check if the expiration date is greater than the current date
-    if (expirationYear < currentYear || (expirationYear === currentYear && expirationMonth <= currentMonth)) {
-        return false;
-    }
-
-    return true;
-}
-
-
-async function guardar() {
-
-    const apdPaterno = document.querySelector("#txt-apdPaterno").value;
-    const apdMaterno = document.querySelector("#txt-apdMaterno").value;
-    const nombres = document.querySelector("#txt-nombres").value;
-    const email = document.querySelector("#txt-email").value;
-    const fecha = document.querySelector("#date-picker").value; // FECHA DEL INICIO DE SEGURO VEHICULAR
-    const dateParts = fecha.split('-');
-    const yyyy = dateParts[0];
-    const mm = dateParts[1];
-    const dd = dateParts[2];
-    const formattedDate = `${yyyy}-${mm}-${dd}`;
-    const fechaBirth = document.querySelector("#date-picker2").value; // FECHA DE NACIMIENTO COMENTADO
-    const datePartsBirth = fechaBirth.split('-');
-    const yyyyBirth = datePartsBirth[0];
-    const mmBirth = datePartsBirth[1];
-    const ddBirth = datePartsBirth[2];
-    const formattedDateBirth = `${yyyyBirth}-${mmBirth}-${ddBirth}`;
-    const direccion = document.querySelector("#txt-direccion").value;
-    const numCelular = document.querySelector("#txt-numCelular").value;
-
-    const marca = document.querySelector("#select-marca").value;
-    const modelo = document.querySelector("#select-modelo").value;
-    const anio = document.querySelector("#txt-anio").value;
-    const uso = document.querySelector("#select-uso").value;
-    const numAsiento = document.querySelector("#txt-asientos").value;
-    const numSerie = document.querySelector("#txt-serie").value;
-
-    const moneda = document.querySelector("#select-moneda").value;
-
-    const distrito = document.querySelector("#select-distrito").value;
-
-
-
-    try {
-        let data = {
-            "cliente": {
-                "nombre": nombres,
-                "email":email,
-                "apellidoPaterno": apdPaterno,
-                "apellidoMaterno": apdMaterno,
-                "numeroDocumento": localStorage.getItem("documento"),
-                "fidRoles": {
-                    "id": "1"
-                },
-                "fidTipoDocumento": {
-                    "id": localStorage.getItem("tipoDocumento")
-                },
-                "fechaNacimiento": formattedDateBirth,
-                "direccion": direccion,
-                "telefono": numCelular,
-                "fechaCreacion": new Date().toISOString().slice(0, 10)  //Fecha de creacion del usuario
-            },
-            "vehiculo": {
-                "fidTipoUso": {
-                    "id": uso
-                },
-                "fidModelo": {
-                    "id": modelo
-                },
-                "anhoFabricacion": anio,
-                "numeroAsientos": numAsiento,
-                "placa": this.placa,
-                "serie": numSerie
-            },
-            "fidMoneda": {
-                "id": 1 //moneda en lugar de 1
-            },
-            "fidDistrito": {
-                "id": distrito
-            },
-            "fechaCotizacion": formattedDate
-        };
-
-        const idCliente = localStorage.getItem("idCliente");
-        if (idCliente) {
-            data.cliente.id = idCliente;
-        }
-
-        const idVehiculo = localStorage.getItem("idVehiculo");
-        if (idVehiculo) {
-            data.vehiculo.id = idVehiculo;
-        }
-
-        console.log(JSON.stringify(data));
-        fetch(GLOBAL_URL + '/cotizacion/insertar', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        })
-            .then(response => response.json())
-            .then(data => {
-                localStorage.setItem("idCotizacion", data);
-            })
-            .catch(error => {
-                // Handle the error
-                console.error(error);
-                localStorage.setItem("error", "1");
-            });
-    } catch (error) {
-        console.error('Error:', error);
-    }
-
-    var listaCotizacionXDetalle = [];
-    for (var i = 0; i < selectedPlans.length; i++) {
-        var plan = selectedPlans[i];
-        var cotizacionXDetalle = {
-            fidCotizacion: localStorage.getItem("idCotizacion"),
-            fidDetalleCotizacion: plan.id
-        };
-        listaCotizacionXDetalle.push(cotizacionXDetalle);
-    }
-
-    try {
-        let data = {
-            "listaInsertada": listaCotizacionXDetalle
-        };
-        console.log(JSON.stringify(data));
-        fetch(GLOBAL_URL + '/cotizacionXDetalleCotizacion/insertar', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        })
-            .then(response => response.json())
-            .then(data => {
-                //supuestamente devuelve la lista
-            })
-            .catch(error => {
-                // Handle the error
-                console.error(error);
-                localStorage.setItem("error", "1");
-            });
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
-
 
 async function inicializar() {
     await cargarMarcas();
@@ -529,7 +373,7 @@ async function inicializar() {
     document.querySelector(".form-plans").style.display = "none";
 }
 
-async function cargarMarcas() {
+async function cargarMarcas(){
     fetch(GLOBAL_URL + '/marcaVehiculo/listarTodas')
         .then(response => response.json())
         .then(data => {
@@ -727,4 +571,237 @@ async function cargarDistrito() {
             console.error(error);
         });
     });
+}
+
+async function guardar() {
+
+    const apdPaterno = document.querySelector("#txt-apdPaterno").value;
+    const apdMaterno = document.querySelector("#txt-apdMaterno").value;
+    const nombres = document.querySelector("#txt-nombres").value;
+    const email = document.querySelector("#txt-email").value;
+    const fecha = document.querySelector("#date-picker").value; // FECHA DEL INICIO DE SEGURO VEHICULAR
+    const dateParts = fecha.split('-');
+    const yyyy = dateParts[0];
+    const mm = dateParts[1];
+    const dd = dateParts[2];
+    const formattedDate = `${yyyy}-${mm}-${dd}`;
+    const fechaBirth = document.querySelector("#date-picker2").value; // FECHA DE NACIMIENTO COMENTADO
+    const datePartsBirth = fechaBirth.split('-');
+    const yyyyBirth = datePartsBirth[0];
+    const mmBirth = datePartsBirth[1];
+    const ddBirth = datePartsBirth[2];
+    const formattedDateBirth = `${yyyyBirth}-${mmBirth}-${ddBirth}`;
+    const direccion = document.querySelector("#txt-direccion").value;
+    const numCelular = document.querySelector("#txt-numCelular").value;
+
+    const marca = document.querySelector("#select-marca").value;
+    const modelo = document.querySelector("#select-modelo").value;
+    const anio = document.querySelector("#txt-anio").value;
+    const uso = document.querySelector("#select-uso").value;
+    const numAsiento = document.querySelector("#txt-asientos").value;
+    const numSerie = document.querySelector("#txt-serie").value;
+
+    const moneda = document.querySelector("#select-moneda").value;
+
+    const distrito = document.querySelector("#select-distrito").value;
+    const valorAgregado = calcularValorAgregado();
+
+
+    try {
+        let data = {
+            "cliente": {
+                "nombre": nombres,
+                "email":email,
+                "apellidoPaterno": apdPaterno,
+                "apellidoMaterno": apdMaterno,
+                "numeroDocumento": localStorage.getItem("documento"),
+                "fidRoles": {
+                    "id": "1"
+                },
+                "fidTipoDocumento": {
+                    "id": localStorage.getItem("tipoDocumento")
+                },
+                "fechaNacimiento": formattedDateBirth,
+                "direccion": direccion,
+                "telefono": numCelular,
+                "fechaCreacion": formattedDate
+            },
+            "vehiculo": {
+                "fidTipoUso": {
+                    "id": uso
+                },
+                "fidModelo": {
+                    "id": modelo
+                },
+                "anhoFabricacion": anio,
+                "numeroAsientos": numAsiento,
+                "placa": this.placa,
+                "serie": numSerie
+            },
+            "fidMoneda": {
+                "id": 1 //moneda en lugar de 1
+            },
+            "fidDistrito": {
+                "id": distrito
+            },
+            "fechaCotizacion": formattedDate,
+
+            "montoEstimado": montoEstimado + valorAgregado
+        };
+
+        const idCliente = localStorage.getItem("idCliente");
+        if (idCliente) {
+            data.cliente.id = idCliente;
+        }
+
+        const idVehiculo = localStorage.getItem("idVehiculo");
+        if (idVehiculo) {
+            data.vehiculo.id = idVehiculo;
+        }
+
+        console.log(JSON.stringify(data));
+        fetch(GLOBAL_URL + '/cotizacion/insertar', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                localStorage.setItem("idCotizacion", data);
+            })
+            .catch(error => {
+                // Handle the error
+                console.error(error);
+                localStorage.setItem("error", "1");
+            });
+    } catch (error) {
+        console.error('Error:', error);
+    }
+
+    var listaCotizacionXDetalle = [];
+    for (var i = 0; i < selectedPlans.length; i++) {
+        var plan = selectedPlans[i];
+        var cotizacionXDetalle = {
+            fidCotizacion: localStorage.getItem("idCotizacion"),
+            fidDetalleCotizacion: plan.id
+        };
+        listaCotizacionXDetalle.push(cotizacionXDetalle);
+    }
+
+    try {
+        let data = {
+            "listaInsertada": listaCotizacionXDetalle
+        };
+        console.log(JSON.stringify(data));
+        fetch(GLOBAL_URL + '/cotizacionXDetalleCotizacion/insertar', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                //supuestamente devuelve la lista
+            })
+            .catch(error => {
+                // Handle the error
+                console.error(error);
+                localStorage.setItem("error", "1");
+            });
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+/*---------------------LA FORMA ANIDADA SI NO FUNCIONA LA ANTERIOR------------------------------*/
+
+/*fetch(GLOBAL_URL + '/cotizacion/insertar', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+        'Content-Type': 'application/json'
+    },
+})
+    .then(response => response.json())
+    .then(data => {
+        localStorage.setItem("idCotizacion", data);
+
+        var listaCotizacionXDetalle = [];
+        for (var i = 0; i < selectedPlans.length; i++) {
+            var plan = selectedPlans[i];
+            var cotizacionXDetalle = {
+                fidCotizacion: localStorage.getItem("idCotizacion"),
+                fidDetalleCotizacion: plan.id
+            };
+            listaCotizacionXDetalle.push(cotizacionXDetalle);
+        }
+
+        try {
+            let data = {
+                "listaInsertada": listaCotizacionXDetalle
+            };
+            console.log(JSON.stringify(data));
+            fetch(GLOBAL_URL + '/cotizacionXDetalleCotizacion/insertar', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Supuestamente devuelve la lista
+                })
+                .catch(error => {
+                    // Handle the error
+                    console.error(error);
+                    localStorage.setItem("error", "1");
+                });
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    })
+    .catch(error => {
+        // Handle the error
+        console.error(error);
+        localStorage.setItem("error", "1");
+    });
+*/
+
+async function validacionMonto() {
+    const marca = document.querySelector("#select-marca").value;
+    const modelo = document.querySelector("#select-modelo").value;
+    const anhoFabricacion = document.querySelector("#txt-anio").value;
+
+    try {
+        let params = new URLSearchParams();
+        params.append('nombreMarca', marca);
+        params.append('nombreModelo', modelo);
+        params.append('anhoFabricacion', anhoFabricacion);
+
+        let url = new URL(GLOBAL_URL + '/vehiculo/verificarInformacionVehicularParaCalcularPrima?' + params.toString());
+        const response = await fetch(url);
+        const prima = await response.json();
+
+        if(prima > 0) {
+            montoEstimado = prima;
+            flagMonto = true;
+        } else {
+            flagMonto = false;
+        }
+    } catch (error) {
+        console.error(error);
+        flagMonto = false;
+    }
+}
+
+function calcularValorAgregado(){
+    let total = 0.0;
+    for (var i = 0; i < selectedPlans.length; i++) {
+        var plan = selectedPlans[i];
+        total += plan.monto;
+    }
+    return total;
 }
