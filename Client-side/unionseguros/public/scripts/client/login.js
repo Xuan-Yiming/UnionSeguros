@@ -1,11 +1,15 @@
 
 
 var stage = 0;
+localStorage.setItem("idCliente", null);
+localStorage.setItem("idVehiculo", null);
+
+var flagRegistro = false;
+var flagCorreo = false;
+var flagEnviarPIN = false;
+var flagValidarPIN = false;
 
 window.onload = function () {
-    localStorage.setItem("idCliente", 0);
-    localStorage.setItem("idVehiculo", 0);
-
     fetch(GLOBAL_URL + '/tipoDocumento/listarActivos')
         .then(response => response.json())
         .then(data => {
@@ -39,36 +43,36 @@ document.getElementById("select-documento").addEventListener("change", function 
 });
 
 
-document.querySelector("#btn-advance").addEventListener("click", function () {
-    if(stage === 0){
-        let params = new URLSearchParams(location.search);
-        params.append('id_tipo_documento', document.querySelector("#select-documento").value);
-        params.append('numero_documento', document.querySelector("#txt-documento").value);
-
-        let url = new URL(GLOBAL_URL + '/usuario/verificarExistenciaDeCliente?'+ params.toString());
-        fetch(url)
-            .then(response => response.json())
-            .then(element => {
-                if (element === null) {
-                    alert("El documento indicado ya se encuentra registrado");
-                    return;
-                } else {
-                    localStorage.setItem('user', JSON.stringify(element));
-                    const id = element.id;
-                }
-            })
-            .catch(error => {
-                // Handle the error
-                console.error(error);
-            });
-    }
-
-    if (stage === 4) {
-        window.location.href = "/";
-    }
-
+document.querySelector("#btn-advance").addEventListener("click", async function () {
     if (verificacion()) {
         return;
+    }
+    if(stage===0){
+        await validacionRegistro();
+        if(!flagRegistro){
+            alert("Ya existe una cuenta con tal documento");
+            return;
+        }
+    }
+    if(stage===1){
+        await validacionCorreo();
+        if(!flagCorreo){
+            return;
+        }else{
+            await enviarPIN();
+            if(!flagEnviarPIN){
+                return;
+            }
+        }
+    }
+    if(stage===2){
+        await validarPIN();
+        if(!flagValidarPIN){
+            return;
+        }
+    }
+    if (stage === 4) {
+        window.location.href = "/";
     }
 
     var bar = document.querySelector(".ProgressBar");
@@ -98,7 +102,7 @@ document.querySelector("#btn-advance").addEventListener("click", function () {
 });
 
 document.querySelector("#btn-previous").addEventListener("click", function () {
-    if (stage == 0) {
+    if (stage === 0) {
         if (confirm("Deseas cancelar el proceso de registro?")) {
             window.location.href = "/iniciarSesion";
             return;
@@ -135,44 +139,44 @@ function changeStage() {
         case 0:
             document.querySelector(".form-registro").style.display = "block";
             document.querySelector(".form-correo").style.display = "none";
-            document.querySelector(".form-contrasena").style.display = "none";
             document.querySelector(".form-validacion").style.display = "none";
+            document.querySelector(".form-contrasena").style.display = "none";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
             break;
         case 1:
             document.querySelector(".form-registro").style.display = "none";
             document.querySelector(".form-correo").style.display = "block";
-            document.querySelector(".form-contrasena").style.display = "none";
             document.querySelector(".form-validacion").style.display = "none";
-            document.querySelector(".form-result").style.display = "none";;
+            document.querySelector(".form-contrasena").style.display = "none";
+            document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
             break;
         case 2:
             document.querySelector(".form-registro").style.display = "none";
             document.querySelector(".form-correo").style.display = "none";
-            document.querySelector(".form-contrasena").style.display = "block";
-            document.querySelector(".form-validacion").style.display = "none";
+            document.querySelector(".form-validacion").style.display = "block";
+            document.querySelector(".form-contrasena").style.display = "none";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
             break;
         case 3:
             document.querySelector(".form-registro").style.display = "none";
             document.querySelector(".form-correo").style.display = "none";
-            document.querySelector(".form-contrasena").style.display = "none";
-            document.querySelector(".form-validacion").style.display = "block";
+            document.querySelector(".form-validacion").style.display = "none";
+            document.querySelector(".form-contrasena").style.display = "block";
             document.querySelector(".form-result").style.display = "none";
             document.querySelector("#btn-previous").style.display = "block";
             break;
         case 4:
             document.querySelector(".form-registro").style.display = "none";
             document.querySelector(".form-correo").style.display = "none";
-            document.querySelector(".form-contrasena").style.display = "none";
             document.querySelector(".form-validacion").style.display = "none";
+            document.querySelector(".form-contrasena").style.display = "none";
             document.querySelector(".form-result").style.display = "block";
             document.querySelector("#btn-previous").style.display = "none";
             guardar();
-            if (localStorage.getItem("error")==1){
+            if (localStorage.getItem("error")==="1"){
                 return;
             }
             break;
@@ -225,16 +229,14 @@ function verificacion() {
 
             break;
         case 1:
-
-
             const email = document.querySelector("#txt-correo").value;
-            if (  email === "" || apdPaterno == "" || nombres == "" ) {
+            if (  email === "" || apdPaterno === "" || nombres === "" ) {
                 alert("Falta completar campos");
                 return true;
             }
 
             if (!/^[A-Za-z]+$/.test(apdPaterno) || !/^[A-Za-z]+$/.test(apdMaterno) || !/^[A-Za-z ]+$/.test(nombres)) {
-                if (apdMaterno != "-") {
+                if (apdMaterno !== "-") {
                     document.querySelector("#txt-apdPaterno").focus();
                     alert("Los nombres y apellidos no deben contener caracteres especiales");
                     return true;
@@ -248,14 +250,6 @@ function verificacion() {
             return false;
             break;
         case 2:
-            const contrasena = document.querySelector("#txt-contrasena").value;
-            if (  contrasena === "" ) {
-                alert("Falta completar el campo");
-                return true;
-            }
-            return false;
-            break;
-        case 3:
             const pin = document.querySelector("#txt-PIN").value;
 
             if (  pin === "" ) {
@@ -274,6 +268,15 @@ function verificacion() {
             }
             return false;
             break;
+        case 3:
+            const contrasena = document.querySelector("#txt-contrasena").value;
+            if (  contrasena === "" ) {
+                alert("Falta completar el campo");
+                return true;
+            }
+            return false;
+            break;
+
         case 4:
             break;
     }
@@ -281,7 +284,117 @@ function verificacion() {
 }
 
 /****APIS****/
+async function validacionRegistro() {
+    const numero_documento = document.querySelector("#txt-documento").value;
+    const id_tipo_documento = document.querySelector("#select-documento").value;
+    const informacion = JSON.stringify([numero_documento, id_tipo_documento]);
+    const url = GLOBAL_URL + '/usuario/verificarEmailIngresadoDisponible?informacion=' + informacion;
 
-async function guardar(){
+    try {
+        const response = await fetch(url);
+        const element = await response.json();
+
+        if (element !== null) { // ya está registrado
+            const contrasena = element.contrasena;
+            if (contrasena === "") { // no tiene contraseña
+                document.querySelector("#txt-nombres").value = element.nombre;
+                document.querySelector("#txt-apdPaterno").value = element.apellidoPaterno;
+                document.querySelector("#txt-apdMaterno").value = element.apellidoMaterno;
+                document.querySelector("#txt-correo").value = element.email;
+
+                document.querySelector("#txt-nombres").disabled = true;
+                document.querySelector("#txt-apdPaterno").disabled = true;
+                document.querySelector("#txt-apdMaterno").disabled = true;
+                document.querySelector("#txt-correo").disabled = true;
+
+                flagRegistro= true;
+            } else { // ya tiene contraseña, está listo
+                flagRegistro= false;
+            }
+        } else { // no está registrado
+            flagRegistro= true;
+        }
+    } catch (error) {
+        console.error(error);
+        localStorage.setItem("error", "1");
+        flagRegistro= false;
+    }
+}
+
+
+async function validacionCorreo() {
+    const email = document.querySelector("#txt-correo").value;
+
+    try {
+        const response = await fetch(GLOBAL_URL + '/usuario/verificarEmailIngresadoDisponible?correoIngresado=' + email);
+        const data = await response.json();
+
+        if(!data) {
+            flagCorreo = false;
+            alert("El correo ingresado ya esta en uso. Ingrese otro.")
+        } else {
+            flagCorreo = true;
+        }
+
+    } catch (error) {
+        console.error(error);
+        flagCorreo = false;
+    }
+}
+
+
+async function enviarPIN() {
+    const email = document.querySelector("#txt-correo").value;
+
+    try {
+        const data = [email];
+        console.log(JSON.stringify(data));
+        const response = await fetch(GLOBAL_URL + '/email/generarToken', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+        const responseData = await response.text();
+
+        alert(responseData);
+        if(responseData === "SE ENVIO EL TOKEN") {
+            flagEnviarPIN = true;
+        } else {
+            flagEnviarPIN = false;
+        }
+    } catch (error) {
+        // Handle the error
+        console.error(error);
+        localStorage.setItem("error", "1");
+        flagEnviarPIN = false;
+    }
+}
+
+
+async function validarPIN(){
+    const correo = document.querySelector("#txt-documento").value;
+    const token_ingresado = document.querySelector("#txt-PIN").value;
+    const informacion = JSON.stringify([correo, token_ingresado]);
+    const url = GLOBAL_URL + '/usuario/verificarToken?informacion=' + informacion;
+
+    try {
+        const response = await fetch(url);
+        const element = await response.json();
+
+        if (element) { //el PIN ingresado coincide con el enviado
+            flagValidarPIN = true;
+        } else { //el PIN ingresado coincide con el enviado
+            alert("El PIN ingresado no coincide")
+            flagValidarPIN = false;
+        }
+    } catch (error) {
+        console.error(error);
+        localStorage.setItem("error", "1");
+        flagRegistro= false;
+    }
+}
+function guardar(){
 
 }

@@ -1,13 +1,11 @@
-
-
 var stage = 0;
 
 var placa = localStorage.getItem("placa");
 var tipoDocumento = localStorage.getItem("tipoDocumento");
 var numeroDocumento = localStorage.getItem("documento");
 
-localStorage.setItem("idCliente", 0);
-localStorage.setItem("idVehiculo", 0);
+localStorage.setItem("idCliente", null);
+localStorage.setItem("idVehiculo", null);
 
 window.onload = function () {
     if (localStorage.getItem("placa") == null || localStorage.getItem("tipoDocumento") == null || localStorage.getItem("documento") == null) {
@@ -59,7 +57,7 @@ document.querySelector("#btn-advance").addEventListener("click", function () {
 
 document.querySelector("#btn-previous").addEventListener("click", function () {
 
-    if (stage == 0) {
+    if (stage === 0) {
         if (confirm("Deseas cancelar el proceso?")) {
             window.location.href = "/SOAT";
             return;
@@ -121,7 +119,7 @@ function changeStage() {
             break;
         case 3:
             guardar();
-            if (localStorage.getItem("error")==1){
+            if (localStorage.getItem("error")==="1"){
                 return;
             }
 
@@ -197,17 +195,19 @@ function loadPlans() {
 }
 
 function loadResumen() {
-    document.querySelector("#txt-res-nombre").innerText = document.querySelector("#txt-nombres").value + ", " + document.querySelector("#txt-apdPaterno").value + " " + document.querySelector("#txt-apdMaterno").value;
-    document.querySelector("#txt-res-placa").innerText = localStorage.getItem("placa");
+    let placa = localStorage.getItem("placa");
+    let nuevaPlaca = placa.substring(0, 3) + "-" + placa.substring(3);
+    document.querySelector("#txt-res-nombre").innerText = document.querySelector("#txt-nombres").value + document.querySelector("#txt-apdPaterno").value + " " + document.querySelector("#txt-apdMaterno").value;
+    document.querySelector("#txt-res-placa").innerText = nuevaPlaca
     document.querySelector("#txt-res-plan").innerText = localStorage.getItem("nombrePlan");
-    document.querySelector("#txt-res-total").innerText = localStorage.getItem("precioPlan");
+    document.querySelector("#txt-res-total").innerText = "S/." + localStorage.getItem("precioPlan");
     const datePickerInput = document.querySelector("#date-picker");
     const dateValue = datePickerInput.value; // Assuming the input value is a valid date string
 
     const currentDate = new Date(dateValue);
     currentDate.setFullYear(currentDate.getFullYear() + 1);
 
-    document.querySelector("#txt-res-periodo").innerText = document.querySelector("#date-picker").value + " - " + currentDate.toISOString().slice(0, 10);
+    document.querySelector("#txt-res-periodo").innerText = "Desde " + document.querySelector("#date-picker").value + " hasta " + currentDate.toISOString().slice(0, 10);
 
     localStorage.removeItem("placa");
     localStorage.removeItem("tipoDocumento");
@@ -420,7 +420,7 @@ async function guardar() {
                 "fidTipoDocumento": {
                     "id": localStorage.getItem("tipoDocumento")
                 },
-                "fechaCreacion": formattedDate
+                "fechaCreacion": new Date().toISOString().slice(0, 10)
             },
 
             "vehiculo": {
@@ -441,7 +441,7 @@ async function guardar() {
                 "correo": email,
                 "numeroTarjeta": numTarjeta,
                 "cvv": cvv,
-                "fechaVencimiento": date,
+                "fechaVencimiento": date
             },
             "poliza": {
                 "fidMoneda": {
@@ -449,24 +449,24 @@ async function guardar() {
                 },
                 "precioBase": localStorage.getItem("precioPlan"),
                 "fechaVigenciaDesde": formattedDate,
-                "fechaVigenciaFin": `${parseInt(yyyy) + 1}-${mm}-${dd}`,
+                "fechaVigenciaFin": `${parseInt(yyyy) + 1}-${mm}-${dd}`
             },
             "soat": {
                 "fidPlanSoat": {
                     "id": localStorage.getItem("idPlan")
                 },
                 "fechaDeEmision": new Date().toISOString().slice(0, 10),
-                "montoPrima": localStorage.getItem("precioPlan"),
+                "montoPrima": localStorage.getItem("precioPlan")
             }
         };
 
         const idCliente = localStorage.getItem("idCliente");
-        if (idCliente && idCliente != 0) {
+        if (idCliente) {
             data.cliente.id = idCliente;
         }
 
         const idVehiculo = localStorage.getItem("idVehiculo");
-        if (idVehiculo && idVehiculo != 0) {
+        if (idVehiculo) {
             data.vehiculo.id = idVehiculo;
         }
 
@@ -483,261 +483,16 @@ async function guardar() {
             localStorage.setItem("idCliente", data);
           })
 
-          .catch((error) => {
-            // Handle the error
-            console.error(error);
-            localStorage.setItem("error", 1);
-          });
+            .catch(error => {
+                // Handle the error
+                console.error(error);
+                localStorage.setItem("error", 1);
+            });
     } catch (error) {
         console.error('Error:', error);
     }
-
-    // try {
-    //   let response = await insertarCliente();
-    //   console.log(response);
-    //   response = await insertarVehiculo();
-    //   console.log(response);
-    //   response = await insertarMetodDePago();
-    //   console.log(response);
-    //   response = await insertarPoliza();
-    //   console.log(response);
-    //   response = await insertarSOAT();
-    //   console.log(response);
-
-    //   localStorage.clear();
-    // } catch (error) {
-    //   console.error('Error:', error);
-    //   // Handle any errors that occurred during the insert operations
-    // }
   }
-  
 
-async function insertarCliente() {
-    const apdPaterno = document.querySelector("#txt-apdPaterno").value;
-    const apdMaterno = document.querySelector("#txt-apdMaterno").value;
-    const nombres = document.querySelector("#txt-nombres").value;
-    const fecha = document.querySelector("#date-picker").value;
-    const dateParts = fecha.split('-');
-    const yyyy = dateParts[0];
-    const mm = dateParts[1];
-    const dd = dateParts[2];
-    const formattedDate = `${yyyy}-${mm}-${dd}`;
-
-
-    if (localStorage.getItem('idCliente') == 0) {
-        const infoCliente = {
-            "nombre": nombres,
-            "apellidoPaterno": apdPaterno,
-            "apellidoMaterno": apdMaterno,
-            "numeroDocumento": localStorage.getItem("documento"),
-            "fechaNacimiento": null,
-            "telefono": "",
-            "direccion": "",
-            "activo": true,
-            "fidTipoDocumento": {
-                "id": localStorage.getItem("tipoDocumento")
-            },
-            "email": "",
-            "contrasena":"",
-            "fechaCreacion": formattedDate,
-            "activoUsuario": true,
-            "activoPersona": true,
-            "baneado": false,
-            "fidRoles": {
-                "idRole": 1,
-                "fidPermisos": {
-                    "id": 1
-                }
-            }
-        };
-        console.log(JSON.stringify(infoCliente));
-        fetch(GLOBAL_URL + '/cliente/insertar', {
-            method: 'POST',
-            body: JSON.stringify(infoCliente),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        })
-            .then(response => response.json())
-            .then(data => {
-                    localStorage.setItem("idCliente", data);
-            })
-
-            .catch(error => {
-                // Handle the error
-                console.error(error);
-                localStorage.setItem("error", 1);
-            });
-
-    }
-}
-
-async function insertarVehiculo() {
-    const marca = document.querySelector("#select-marca").value;
-    const modelo = document.querySelector("#select-modelo").value;
-    const anio = document.querySelector("#txt-anio").value;
-    const uso = document.querySelector("#select-uso").value;
-    const numAsiento = document.querySelector("#txt-asientos").value;
-    const numSerie = document.querySelector("#txt-serie").value;
-
-    if (localStorage.getItem('idVehiculo') == 0) {
-        const infoVehiculo = {
-            "fidTipoUso": {
-                "idTipoUso": uso
-            },
-            "fidModelo": {
-                "id": modelo
-            },
-            "fidPersona": {
-                "id": localStorage.getItem('idCliente')
-            },
-            "anhoFabricacion": anio + "-01-01",
-            "numeroAsientos": numAsiento,
-            "placa": this.placa,
-            "serie": numSerie,
-            "activo": true
-        }
-        console.log(JSON.stringify(infoVehiculo));
-        fetch(GLOBAL_URL + '/vehiculo/insertar', {
-            method: 'POST',
-            body: JSON.stringify(infoVehiculo),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        })
-            .then(response => response.json())
-            .then(data => {
-                localStorage.setItem("idVehiculo", data);
-            })
-            .catch(error => {
-                // Handle the error
-                localStorage.setItem("error", 1);
-                console.error(error);
-            });
-    }
-}
-
-async function insertarMetodDePago() {
-    const numTarjeta = document.querySelector("#txt-num-tarjeta").value;
-    const cvv = document.querySelector("#txt-CVV").value;
-    const fechaVencimiento = document.querySelector("#txt-fecha-venc").value;
-    const nombreTitular = document.querySelector("#txt-tarjeta-nombre").value;
-    const email = document.querySelector("#txt-email").value;
-    const [month, year] = fechaVencimiento.split('/');
-    const date = `${20 + year}-${month}-01`;
-
-    const infoTarejta = {
-        "nombreMetodo": "VISA",
-        "nombreTitular": nombreTitular,
-        "correo": email,
-        "numeroTarjeta": numTarjeta,
-        "cvv": cvv,
-        "fechaVencimiento": date,
-        "activo": true
-    }
-    console.log(JSON.stringify(infoTarejta));
-    fetch(GLOBAL_URL + '/metodoDePago/insertar', {
-        method: 'POST',
-        body: JSON.stringify(infoTarejta),
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-        .then(response => response.json())
-        .then(data => {
-                localStorage.setItem("idMetodo", data);
-        })
-        .catch(error => {
-            // Handle the error
-            alert("No se ha podido guardar metodo de pago");
-            console.error(error);
-            localStorage.setItem("error", 1);
-        });
-
-}
-
-async function insertarPoliza() {
-    const fecha = document.querySelector("#date-picker").value;
-    const dateParts = fecha.split('-');
-    const yyyy = dateParts[0];
-    const mm = dateParts[1];
-    const dd = dateParts[2];
-    const formattedDate = `${yyyy}-${mm}-${dd}`;
-    const moneda = document.querySelector("#select-moneda").value;
-
-    const infoPoliza = {
-        "fidMoneda": {
-            "id": moneda
-        },
-        "fidMetodo": {
-            "id": localStorage.getItem("idMetodo")
-        },
-        "fidVehiculo": {
-            "id": localStorage.getItem("idVehiculo")
-        },
-        "fidCliente": {
-            "id": localStorage.getItem("idCliente")
-        },
-        "precioBase": localStorage.getItem("precioPlan"),
-        "fechaVigenciaDesde": formattedDate,
-        "fechaVigenciaFin": `${parseInt(yyyy) + 1}-${mm}-${dd}`,
-        "activo": true
-    }
-    console.log(JSON.stringify(infoPoliza));
-    fetch(GLOBAL_URL + '/poliza/insertar', {
-        method: 'POST',
-        body: JSON.stringify(infoPoliza),
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-        .then(response => response.json())
-        .then(element => {
-                console.log(JSON.stringify(element));
-                localStorage.setItem("idPoliza", element);
-                
-        })
-        .catch(error => {
-            // Handle the error
-            localStorage.setItem("error", 1);
-            console.error(error);
-            alert("No se ha podido generar poliza");
-        });
-
-
-}
-
-async function insertarSOAT() {
-    const soat = {
-        "fidPlanSoat": {
-            "id": localStorage.getItem("idPlan"),
-        },
-        "fidPoliza": {
-            "id": localStorage.getItem("idPoliza")
-        },
-        "fechaDeEmision": new Date().toISOString().slice(0, 10),
-        "montoPrima": localStorage.getItem("precioPlan"),
-        "activo": true
-    }
-    console.log(JSON.stringify(soat));
-    fetch(GLOBAL_URL + '/SOAT/insertar', {
-        method: 'POST',
-        body: JSON.stringify(soat),
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-        .then(response => response.json())
-        .then(element => {
-        })
-        .catch(error => {
-            // Handle the error
-            localStorage.setItem("error", 1);
-            console.error(error);
-            alert("No se ha podido cumplir con la operacion");
-        });
-
-}
 
 
 async function inicializar() {
