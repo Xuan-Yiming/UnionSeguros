@@ -5,6 +5,7 @@ import com.pucp.unionseguros.repository.SOATRepository.SOATRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -34,4 +35,9 @@ public class SOATService {
         return soatRepository.saveAndFlush(soat);
     }
 
+    public List<SOAT> BuscarSOATParametro(String busqueda){
+        List<SOAT> lista = new ArrayList<>();
+        lista = soatRepository.findSOATParametros(busqueda);
+        return  lista;
+    }
 }
