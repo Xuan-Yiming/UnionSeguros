@@ -24,7 +24,7 @@ public class MarcaVehiculo {
     @Column(name = "id_marca_vehiculo", nullable = false)
     private Integer id;
 
-    @Column(name = "marca", length = 30)
+    @Column(name = "marca", length = 300)
     private String marca;
 
     @Column(name = "activo")

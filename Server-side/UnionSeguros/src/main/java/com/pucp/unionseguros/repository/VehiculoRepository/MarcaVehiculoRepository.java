@@ -5,6 +5,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,8 +22,12 @@ public interface MarcaVehiculoRepository extends JpaRepository<MarcaVehiculo,Int
     public List<MarcaVehiculo> buscarMarcasVehiculosPorParametro(String busqueda);
 
 
-    @Modifying
-    @Query("DELETE FROM MarcaVehiculo m WHERE m.id NOT IN" +
-            "(SELECT MIN(m2.id) FROM MarcaVehiculo m2 GROUP BY m2.marca)")
-    void eliminarMarcasDuplicadas();
+
+    @Procedure(procedureName = "cargaMarca")
+    void cargaMarca();
+
+//    @Modifying
+//    @Query("DELETE FROM MarcaVehiculo m WHERE m.id NOT IN" +
+//            "(SELECT MIN(m2.id) FROM MarcaVehiculo m2 GROUP BY m2.marca)")
+//    void eliminarMarcasDuplicadas();
 }

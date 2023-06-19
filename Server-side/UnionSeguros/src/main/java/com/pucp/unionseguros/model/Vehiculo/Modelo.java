@@ -32,7 +32,7 @@ public class Modelo {
     @JoinColumn(name = "fid_tipo_vehiculo")
     private TipoVehiculo fidTipoVehiculo;
 
-    @Column(name = "modelo", length = 30)
+    @Column(name = "modelo", length = 300)
     private String modelo;
 
     @Column(name = "activo")

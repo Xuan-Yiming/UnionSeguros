@@ -49,6 +49,7 @@ public class CalculoPrimaService {
             List<CalculoPrima> ListaParacalculoPrima = new ArrayList<>();
             List<MarcaVehiculo> listaMarcas = new ArrayList<>();
             List<Modelo> listaModelos = new ArrayList<>();
+            br.readLine();
             while((line=br.readLine())!=null){
                 String[] data = line.split(getSeparator(line));
                 CalculoPrima prima = new CalculoPrima();
@@ -65,11 +66,11 @@ public class CalculoPrimaService {
                 modelo.setActivo(true);
 
                 prima.setMoneda(data[2]);
-                prima.setAnioFabricacion(Integer.parseInt(data[3]));
-                prima.setValor_1(Double.parseDouble(data[4]));
-                prima.setValor_2(Double.parseDouble(data[5]));
-                prima.setValor_3(Double.parseDouble(data[6]));
-                prima.setIndiceSiniestralidad(Double.parseDouble(data[7]));
+                //prima.setAnioFabricacion(Integer.parseInt(data[3]));
+                prima.setValor_1(Double.parseDouble(data[3].replace(" ","")));
+                prima.setValor_2(Double.parseDouble(data[4].replace(" ","")));
+                prima.setValor_3(Double.parseDouble(data[5].replace(" ","")));
+                prima.setIndiceSiniestralidad(Double.parseDouble(data[6]));
 
 
 //                if(buscarMarcaSiExiste(listaMarcas,marca)){
@@ -80,12 +81,14 @@ public class CalculoPrimaService {
                 ListaParacalculoPrima.add(prima);
             }
 
-            marcaVehiculoRepository.saveAllAndFlush(listaMarcas);
-            marcaVehiculoRepository.eliminarMarcasDuplicadas();
+            //marcaVehiculoRepository.saveAllAndFlush(listaMarcas);
             calculoPrimaRepository.saveAllAndFlush(ListaParacalculoPrima);
             //colocar los ids de las marcas en donde deberian ir
-            procesarModeloDeVehiculo(listaModelos);
-            modeloRepository.eliminarModelosDuplicadas();
+
+            //procesarModeloDeVehiculo(listaModelos);
+            marcaVehiculoRepository.cargaMarca();
+            modeloRepository.cargaModelos();
+
             return "Archivo CSV cargado exitosamente";
         } catch (IOException e) {
             return "Error al cargar el archivo csv: "+ e.getMessage();

@@ -47,7 +47,7 @@ public class Poliza {
     @JoinColumn(name = "fid_cliente")
     private Cliente fidCliente;
 
-    @Column(name = "precio_base", precision = 10, scale = 2)
+    @Column(name = "precio_base", precision = 10)
     private double precioBase;
 
     @Column(name = "fecha_vigencia_desde")

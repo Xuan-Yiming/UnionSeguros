@@ -40,7 +40,7 @@ public class Cotizacion {
     @Column(name = "fecha_cotizacion")
     private LocalDate fechaCotizacion;
 
-    @Column(name = "monto_estimado", precision = 10, scale = 2)
+    @Column(name = "monto_estimado", precision = 10)
     private double montoEstimado;
 
     @Column(name = "activo")

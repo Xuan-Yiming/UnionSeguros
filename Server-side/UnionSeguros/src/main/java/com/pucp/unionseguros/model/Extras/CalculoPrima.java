@@ -19,13 +19,13 @@ public class CalculoPrima {
     @Column(name = "id_calculo_prima", nullable = false)
     private Integer idCaluloPrima;
 
-    @Column(name = "marca", length = 30)
+    @Column(name = "marca", length = 300)
     private String marca;
 
-    @Column(name = "modelo", length = 30)
+    @Column(name = "modelo", length = 300)
     private String modelo;
 
-    @Column(name = "moneda", length = 3)
+    @Column(name = "moneda", length = 100)
     private String moneda;
 
     @Column(name = "anio_fabricacion")
