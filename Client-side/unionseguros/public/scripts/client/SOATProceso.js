@@ -545,17 +545,9 @@ async function guardar() {
       .then((response) => {
         if (!response.ok) {
           throw new Error(response.status + " " + response.statusText);
-        } else {
-          try {
-            return response.json();
-          } catch (error) {
-            return null;
-          }
         }
       })
       .then((data) => {
-        // localStorage.setItem("idCliente", data);
-
         document.querySelector(".form-vehiculo ").style.display = "none";
         document.querySelector(".form-plans").style.display = "none";
         document.querySelector(".form-payment").style.display = "none";
@@ -563,12 +555,9 @@ async function guardar() {
         document.querySelector("#btn-descargar-constancia").style.display =
           "block";
         document.querySelector("#btn-previous").style.display = "none";
-
         loadResumen();
       })
-
       .catch((error) => {
-        alert("Ha ocurrido un error de comunicación con el servidor");
         console.error(error);
         localStorage.setItem("error", 1);
       });
