@@ -14,7 +14,7 @@ window.onload = function () {
         .then((response) => response.json())
         .then((element) => {
           if (element != null) {
-            localStorage.setItem("user", JSON.stringify(element));
+            localStorage.setItem("userCliente", JSON.stringify(element));
             window.location.href = "/usuario";
           } else {
             alert("Usuario o contraseña incorrectos");
