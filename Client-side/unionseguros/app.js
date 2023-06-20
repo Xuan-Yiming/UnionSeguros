@@ -79,6 +79,14 @@ app.use('/admin/detalleUsuario', adminDetalleUsuarioRouter);
 // var adminAuditoriaRouter = require('./routes/admin/adminAuditoria');
 // app.use('/admin/auditoria', adminAuditoriaRouter);
 
+// //pagina de usuarioMiCuenta
+var usuarioMiCuentaRouter = require('./routes/client/usuarioMiCuenta');
+app.use('/usuarioMiCuenta', usuarioMiCuentaRouter);
+
+var usuarioMiCuentaEditarRouter = require('./routes/client/usuarioMiCuentaEditar');
+app.use('/usuarioMiCuentaEditar', usuarioMiCuentaEditarRouter);
+
+
 // //pagina de cliente
 var adminClientesRouter = require('./routes/admin/adminCliente');
 app.use('/admin/cliente', adminClientesRouter);
