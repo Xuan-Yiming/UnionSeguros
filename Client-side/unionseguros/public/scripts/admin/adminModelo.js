@@ -192,10 +192,10 @@ function crearLaTabla(data) {
     tipoVehiculo.innerText = modelo.fidTipoVehiculo.nombreTipoVehiculo;
     tableRow.appendChild(tipoVehiculo);
 
-    const valor = document.createElement("td");
-    valor.classList.add("td-valor");
-    valor.innerText = 0;
-    tableRow.appendChild(valor);
+    // const valor = document.createElement("td");
+    // valor.classList.add("td-valor");
+    // valor.innerText = 0;
+    // tableRow.appendChild(valor);
 
     //add edit button
     const button = document.createElement("td");
