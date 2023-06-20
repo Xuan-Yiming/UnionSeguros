@@ -7,9 +7,8 @@
 .content-container-item.bottom {
   display: flex;
   margin-top: 10px;
-  gap: 80px;
+  gap: 30px;
 }
-
 
 #tituloCuenta{
   color: #C8102E;
@@ -26,5 +25,5 @@
 }
 
 #content-container-item-regresar{
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
