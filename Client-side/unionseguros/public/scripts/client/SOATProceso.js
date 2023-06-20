@@ -213,15 +213,15 @@ function loadResumen() {
   let placa = localStorage.getItem("placa");
   let nuevaPlaca = placa.substring(0, 3) + "-" + placa.substring(3);
   document.querySelector("#txt-res-nombre").innerText =
-    document.querySelector("#txt-nombres").value +
-    document.querySelector("#txt-apdPaterno").value +
-    " " +
-    document.querySelector("#txt-apdMaterno").value;
+      document.querySelector("#txt-nombres").value + " " +
+      document.querySelector("#txt-apdPaterno").value +
+      " " +
+      document.querySelector("#txt-apdMaterno").value;
   document.querySelector("#txt-res-placa").innerText = nuevaPlaca;
   document.querySelector("#txt-res-plan").innerText =
-    localStorage.getItem("nombrePlan");
+      localStorage.getItem("nombrePlan");
   document.querySelector("#txt-res-total").innerText =
-    "S/." + localStorage.getItem("precioPlan");
+      "S/." + localStorage.getItem("precioPlan");
   const datePickerInput = document.querySelector("#date-picker");
   const dateValue = datePickerInput.value; // Assuming the input value is a valid date string
 
@@ -229,10 +229,10 @@ function loadResumen() {
   currentDate.setFullYear(currentDate.getFullYear() + 1);
 
   document.querySelector("#txt-res-periodo").innerText =
-    "Desde " +
-    document.querySelector("#date-picker").value +
-    " hasta " +
-    currentDate.toISOString().slice(0, 10);
+      "Desde " +
+      document.querySelector("#date-picker").value +
+      " hasta " +
+      currentDate.toISOString().slice(0, 10);
 
   localStorage.removeItem("placa");
   localStorage.removeItem("tipoDocumento");
@@ -329,7 +329,7 @@ function verificacion() {
           cont++;
         }
       });
-      if (cont == 0) {
+      if (cont === 0) {
         alert("Debe seleccionar un plan");
         return false;
       }
@@ -342,7 +342,7 @@ function verificacion() {
       const fechaVencimiento = document.querySelector("#txt-fecha-venc").value;
       const nombreTitular = document.querySelector("#txt-tarjeta-nombre").value;
       const email = document.querySelector("#txt-email").value;
-      const moneda = document.querySelector("#select-moneda").value;
+      const moneda = 1;
 
       if (
         numTarjeta == "" ||
@@ -456,7 +456,7 @@ async function guardar() {
   const [month, year] = fechaVencimiento.split("/");
   const date = `${20 + year}-${month}-01`;
 
-  const moneda = document.querySelector("#select-moneda").value;
+  const moneda = 1;
 
   try {
     let data = {
