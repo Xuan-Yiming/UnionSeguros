@@ -14,7 +14,17 @@ window.onload = function () {
     });
 
   fetch(GLOBAL_URL + "/tipoDocumento/listarActivos")
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status + " " + response.statusText);
+      } else {
+        try {
+          return response.json();
+        } catch (error) {
+          return null;
+        }
+      }
+    })
     .then((data) => {
       document.querySelector("#select-documento").innerHTML = "";
       data.forEach((tipoDocumento) => {

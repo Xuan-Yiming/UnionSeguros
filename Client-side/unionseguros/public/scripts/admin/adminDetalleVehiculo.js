@@ -29,21 +29,20 @@ window.onload = function () {
     }
     if (document.querySelector("#id").innerHTML == "") {
       const data = {
-        "fidTipoUso": {
-            "idTipoUso": document.querySelector("#select-uso").value,
+        fidTipoUso: {
+          idTipoUso: document.querySelector("#select-uso").value,
         },
-        "fidModelo": {
-            "id": document.querySelector("#select-modelo").value,
+        fidModelo: {
+          id: document.querySelector("#select-modelo").value,
         },
-        "fidPersona": {
-            "id": document.querySelector("#txt-dueno").value,
+        fidPersona: {
+          id: document.querySelector("#txt-dueno").value,
         },
-        "anhoFabricacion": document.querySelector("#txt-anio").value,
-        "numeroAsientos": document.querySelector("#txt-asientos").value,
-        "placa": document.querySelector("#txt-placa").value,
-        "serie": document.querySelector("#txt-serie").value,
-        "activo": true
-    
+        anhoFabricacion: document.querySelector("#txt-anio").value,
+        numeroAsientos: document.querySelector("#txt-asientos").value,
+        placa: document.querySelector("#txt-placa").value,
+        serie: document.querySelector("#txt-serie").value,
+        activo: true,
       };
       fetch(GLOBAL_URL + "/Vehiculo/insertar", {
         method: "POST",
@@ -56,7 +55,11 @@ window.onload = function () {
           if (!response.ok) {
             throw new Error(response.status + " " + response.statusText);
           } else {
-            return response.json();
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
           }
         })
         .then((element) => {
@@ -92,7 +95,11 @@ window.onload = function () {
           if (!response.ok) {
             throw new Error(response.status + " " + response.statusText);
           } else {
-            return response.json();
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
           }
         })
         .then((element) => {
@@ -112,37 +119,37 @@ window.onload = function () {
   });
 
   function verificarCampos() {
-  //   let cobertura = document.querySelector("#txt-cobertura").value;
-  //   let precio = document.querySelector("#txt-precio").value;
-  //   let nombre = document.querySelector("#txt-nombre").value;
+    //   let cobertura = document.querySelector("#txt-cobertura").value;
+    //   let precio = document.querySelector("#txt-precio").value;
+    //   let nombre = document.querySelector("#txt-nombre").value;
 
-  //   if (cobertura == "") {
-  //     document.querySelector("#txt-cobertura").focus();
-  //     alert("Debe ingresar la cobertura");
-  //     return false;
-  //   }
-  //   if (precio == "") {
-  //     document.querySelector("#txt-precio").focus();
-  //     alert("Debe ingresar el precio");
-  //     return false;
-  //   }
-  //   if (nombre == "") {
-  //     document.querySelector("#txt-nombre").focus();
-  //     alert("Debe ingresar el nombre");
-  //     return false;
-  //   }
+    //   if (cobertura == "") {
+    //     document.querySelector("#txt-cobertura").focus();
+    //     alert("Debe ingresar la cobertura");
+    //     return false;
+    //   }
+    //   if (precio == "") {
+    //     document.querySelector("#txt-precio").focus();
+    //     alert("Debe ingresar el precio");
+    //     return false;
+    //   }
+    //   if (nombre == "") {
+    //     document.querySelector("#txt-nombre").focus();
+    //     alert("Debe ingresar el nombre");
+    //     return false;
+    //   }
 
-  //   if (!/^[0-9]+./.test(precio)) {
-  //     document.querySelector("#txt-precio").focus();
-  //     alert("El precio debe ser un número");
-  //     return false;
-  //   }
+    //   if (!/^[0-9]+./.test(precio)) {
+    //     document.querySelector("#txt-precio").focus();
+    //     alert("El precio debe ser un número");
+    //     return false;
+    //   }
 
-  //   if (!/^[0-9]+./.test(cobertura)) {
-  //     document.querySelector("#txt-cobertura").focus();
-  //     alert("La cobertura debe ser un número");
-  //     return false;
-  //   }
+    //   if (!/^[0-9]+./.test(cobertura)) {
+    //     document.querySelector("#txt-cobertura").focus();
+    //     alert("La cobertura debe ser un número");
+    //     return false;
+    //   }
 
     return true;
   }
@@ -160,7 +167,11 @@ async function cargarMarcas() {
       if (!response.ok) {
         throw new Error(response.status + " " + response.statusText);
       } else {
-        return response.json();
+        try {
+          return response.json();
+        } catch (error) {
+          return null;
+        }
       }
     })
     .then((data) => {
@@ -188,7 +199,11 @@ async function cargarMarcas() {
           if (!response.ok) {
             throw new Error(response.status + " " + response.statusText);
           } else {
-            return response.json();
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
           }
         })
         .then((data) => {
@@ -231,7 +246,11 @@ async function cargarModelos() {
           if (!response.ok) {
             throw new Error(response.status + " " + response.statusText);
           } else {
-            return response.json();
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
           }
         })
         .then((data) => {
@@ -247,4 +266,4 @@ async function cargarModelos() {
           console.error(error);
         });
     });
-  };
+}

@@ -5,7 +5,17 @@ window.onload = function () {
     window.location.href = "/admin/login";
   }
   fetch(GLOBAL_URL + "/administrador/listarTodosActivos")
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status + " " + response.statusText);
+      } else {
+        try {
+          return response.json();
+        } catch (error) {
+          return null;
+        }
+      }
+    })
     .then((data) => {
       this.usuarios = data;
       crearLaTabla(data);
@@ -30,7 +40,17 @@ window.onload = function () {
       );
 
       fetch(url)
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
+          }
+        })
         .then((data) => {
           this.usuarios = data;
           crearLaTabla(data);
@@ -138,7 +158,17 @@ function crearLaTabla(data) {
           "Content-Type": "application/json",
         },
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
+          }
+        })
         .then((element) => {
           if (element) {
             alert("Se ha guardado correctamente");

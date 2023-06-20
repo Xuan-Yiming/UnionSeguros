@@ -11,7 +11,17 @@ window.onload = function () {
 
       let url = new URL(GLOBAL_URL + "/usuario/login?" + params.toString());
       fetch(url)
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
+          }
+        })
         .then((element) => {
           if (element != null) {
             localStorage.setItem("userCliente", JSON.stringify(element));

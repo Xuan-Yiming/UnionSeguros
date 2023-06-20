@@ -7,7 +7,11 @@ window.onload = function () {
       if (!response.ok) {
         throw new Error(response.status + " " + response.statusText);
       } else {
-        return response.json();
+        try {
+          return response.json();
+        } catch (error) {
+          return null;
+        }
       }
     })
     .then((data) => {
@@ -38,7 +42,11 @@ window.onload = function () {
           if (!response.ok) {
             throw new Error(response.status + " " + response.statusText);
           } else {
-            return response.json();
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
           }
         })
         .then((data) => {
@@ -86,7 +94,11 @@ function crearLaTabla(data) {
           if (!response.ok) {
             throw new Error(response.status + " " + response.statusText);
           } else {
-            return response.json();
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
           }
         })
         .then((data) => {
@@ -100,7 +112,6 @@ function crearLaTabla(data) {
     });
 
     tableRow.appendChild(buttonEliminar);
-
 
     table.appendChild(tableRow);
   });

@@ -17,7 +17,11 @@ window.onload = function () {
           if (!response.ok) {
             throw new Error(response.status + " " + response.statusText);
           } else {
-            return response.json();
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
           }
         })
         .then((data) => {
