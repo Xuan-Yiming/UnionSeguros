@@ -6,13 +6,19 @@ window.onload = function () {
     window.location.href = "/admin/login";
   }
   fetch(GLOBAL_URL + "/cliente/listarClientesActivos?busqueda=")
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status + " " + response.statusText);
+      } else {
+        return response.json();
+      }
+    })
     .then((data) => {
       this.usuarios = data;
       crearLaTabla(data);
     })
     .catch((error) => {
-      // Handle the error
+      alert("Ha ocurrido un error de comunicación con el servidor");
       console.error(error);
     });
 
@@ -29,13 +35,19 @@ window.onload = function () {
       );
 
       fetch(url)
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            return response.json();
+          }
+        })
         .then((data) => {
           this.usuarios = data;
           crearLaTabla(data);
         })
         .catch((error) => {
-          // Handle the error
+          alert("Ha ocurrido un error de comunicación con el servidor");
           console.error(error);
         });
     }, 500);
@@ -62,17 +74,22 @@ window.onload = function () {
     fetch("/marcaVehiculo/insertarMasivo", {
       method: "POST",
       body: formData,
+      headers: {
+        "content-type": "multipart/form-data",
+      },
     })
       .then((response) => {
-        if (response.ok) {
-          // File upload successful
-          console.log("File uploaded successfully");
-        } else {
-          // File upload failed
-          console.error("File upload failed");
-        }
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            return response.json();
+          }
+      })
+      .then((data) => {
+        window.location.reload();
       })
       .catch((error) => {
+        alert("Ha ocurrido un error de comunicación con el servidor");
         console.error("Error:", error);
       });
   }
@@ -174,7 +191,13 @@ function crearLaTabla(data) {
           "Content-Type": "application/json",
         },
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            return response.json();
+          }
+        })
         .then((element) => {
           if (element) {
             alert("Se ha guardado correctamente");
@@ -184,7 +207,7 @@ function crearLaTabla(data) {
           }
         })
         .catch((error) => {
-          // Handle the error
+          alert("Ha ocurrido un error de comunicación con el servidor");
           console.error(error);
         });
     });

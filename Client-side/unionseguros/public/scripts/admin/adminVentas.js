@@ -1,14 +1,21 @@
 var ventas;
 var searchTimer;
+
 window.onload = function () {
   fetch(GLOBAL_URL + "/BoletaDeVenta/listarTodas")
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status + " " + response.statusText);
+      } else {
+        return response.json();
+      }
+    })
     .then((data) => {
       this.ventas = data;
       crearLaTabla(data);
     })
     .catch((error) => {
-      // Handle the error
+      alert("Ha ocurrido un error de comunicación con el servidor");
       console.error(error);
     });
 
@@ -27,18 +34,23 @@ window.onload = function () {
       );
 
       fetch(url)
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            return response.json();
+          }
+        })
         .then((data) => {
           this.ventas = data;
           crearLaTabla(data);
         })
         .catch((error) => {
-          // Handle the error
+          alert("Ha ocurrido un error de comunicación con el servidor");
           console.error(error);
         });
     }, 500);
   });
-
 };
 
 function crearLaTabla(data) {
@@ -52,7 +64,44 @@ function crearLaTabla(data) {
     placa.classList.add("td-placa");
     placa.innerText = vehiculo.placa;
     tableRow.appendChild(placa);
-      
+
+        const buttonEliminar = document.createElement("button");
+        buttonEliminar.classList.add("button");
+        buttonEliminar.classList.add("button-eliminar");
+        buttonEliminar.innerText = "Eliminar";
+        buttonEliminar.setAttribute("data-id", venta.id);
+        buttonEliminar.addEventListener("click", function () {
+          if (
+            confirm("¿Está seguro que desea eliminar esta cotizacion?") == false
+          ) {
+            return;
+          }
+
+          const dataId = event.target.getAttribute("data-id");
+          const url =
+            GLOBAL_URL + "/BoletaDeVenta/eliminar?id=" + dataId;
+          fetch(url, {
+            method: "DELETE",
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(response.status + " " + response.statusText);
+              } else {
+                return response.json();
+              }
+            })
+            .then((data) => {
+              alert("Boleta eliminada exitosamente");
+              window.location.reload();
+            })
+            .catch((error) => {
+              alert("Ha ocurrido un error de comunicación con el servidor");
+              console.error(error);
+            });
+        });
+
+        tableRow.appendChild(buttonEliminar);
+
     table.appendChild(tableRow);
   });
 }
