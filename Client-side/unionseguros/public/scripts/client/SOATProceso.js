@@ -34,6 +34,13 @@ document.querySelector("#btn-advance").addEventListener("click", function () {
     window.location.href = "/SOAT";
   }
 
+  if(stage===2){
+    if (confirm("¿Deseas confirmar tu pago?")){
+    } else {
+      return;
+    }
+  }
+
   if (!verificacion()) {
     return;
   }
@@ -119,6 +126,7 @@ async function changeStage() {
       loadPlans();
       break;
     case 2:
+      document.getElementById("btn-advance").textContent = "Confirmar pago";
       document.querySelector(".form-vehiculo ").style.display = "none";
       document.querySelector(".form-plans").style.display = "none";
       document.querySelector(".form-payment").style.display = "block";
@@ -210,6 +218,7 @@ function loadPlans() {
 }
 
 function loadResumen() {
+  document.getElementById("btn-advance").textContent = "Finalizar";
   let placa = localStorage.getItem("placa");
   let nuevaPlaca = placa.substring(0, 3) + "-" + placa.substring(3);
   document.querySelector("#txt-res-nombre").innerText =
@@ -548,6 +557,8 @@ async function guardar() {
         }
       })
       .then((data) => {
+        alert("Se realizo la compra correctamente");
+        loadResumen();
         document.querySelector(".form-vehiculo ").style.display = "none";
         document.querySelector(".form-plans").style.display = "none";
         document.querySelector(".form-payment").style.display = "none";
@@ -555,7 +566,6 @@ async function guardar() {
         document.querySelector("#btn-descargar-constancia").style.display =
           "block";
         document.querySelector("#btn-previous").style.display = "none";
-        loadResumen();
       })
       .catch((error) => {
         console.error(error);
