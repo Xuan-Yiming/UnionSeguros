@@ -43,5 +43,9 @@ public class BoletaDeVentaController {
     public List<BoletaDeVenta> buscarBoletaDeVentaParametro(@RequestParam(name = "busqueda") String busqueda){
         return boletaDeVentaService.BuscarBoletasDeVentaParametro(busqueda);
     }
+    @PutMapping("/eliminar")
+    public BoletaDeVenta eliminarBoleta(@RequestBody BoletaDeVenta boleta){
+        return boletaDeVentaService.eliminarBoleta(boleta);
+    }
 
 }

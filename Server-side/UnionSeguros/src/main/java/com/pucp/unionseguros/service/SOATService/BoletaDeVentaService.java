@@ -37,6 +37,11 @@ public class BoletaDeVentaService {
         lista = boletaDeVentaRepository.findPagos(busqueda);
         return  lista;
     }
+
+    public  BoletaDeVenta eliminarBoleta(BoletaDeVenta boleta){
+        boleta.setActivo(false);
+        return boletaDeVentaRepository.save(boleta);
+    }
 //    public BoletaDeVenta updateBoletaDeVenta(BoletaDeVenta boletaDeVenta){
 //        BoletaDeVenta foundBoleta = boletaDeVentaRepository.findBoletaDeVentaByIdAndActivoIsTrue(boletaDeVenta.getId());
 //        foundBoleta.setId(boletaDeVenta.getId());
