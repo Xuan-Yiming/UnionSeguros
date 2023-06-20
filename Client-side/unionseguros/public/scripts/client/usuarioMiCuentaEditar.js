@@ -1,104 +1,97 @@
-window.onload = function() {
-    
+window.onload = function () {
+    let data = JSON.parse(localStorage.getItem("userCliente"));
+    document.querySelector("#txt-nombre").value = data.nombre;
+    document.querySelector("#txt-apellido-paterno").value =
+        data.apellidoPaterno;
+    document.querySelector("#txt-apellido-materno").value =
+        data.apellidoMaterno;
+    document.querySelector("#txt-celular").value = data.telefono;
+    document.querySelector("#txt-correo").value = data.email;
+    document.querySelector("#txt-direccion").value = data.direccion;
+    document.querySelector("#txt-documento").value = data.numeroDocumento;
 
-    
-
-    
-}
-
-
-document.querySelector("#btn-cancelar").addEventListener("click", function() {
-        
-        
-    if (confirm("Deseas cancelar la actualización?")) {
-
+    document.querySelector("#regresar").addEventListener("click", function () {
+        alert("No se ha aplicado ningún cambio");
         window.location.href = "/usuarioMiCuenta";
-        return;
-    } else {
-        return;
-    }
+    });
 
-});
-document.querySelector("#btn-guardar").addEventListener("click", function() {
-    
-
-    if (confirm("Confirmas la actualización de los datos?")) {
-        window.location.href = "/usuarioMiCuenta";
-        return;
-    } else {
-        return;
-    }
-
-});
-
-document.querySelector("#regresar").addEventListener("click", function() {
-        
-
-    if (confirm("Deseas cancelar la actualización?")) {
-
-        window.location.href = "/usuarioMiCuenta";
-        return;
-    } else {
-        return;
-    }
-    
-
-});
-
-//Q&A
-
-function toggleAnswer(answerId) {
-    var answer = document.getElementById('answer' + answerId);
-    var toggleIcon = document.getElementById('toggle-icon' + answerId);
-    if (answer.style.display === 'block') {
-        answer.style.display = 'none';
-        toggleIcon.classList.remove('active');
-    } else {
-        answer.style.display = 'block';
-        toggleIcon.classList.add('active');
-    }
-}
-
-function verificacion() {
-    var placa = document.querySelector("#txt-placa").value;
-    var documento = document.querySelector("#txt-documento").value;
-    var tipoDocumento = document.querySelector("#select-documento").value;
-
-    if(tipoDocumento === "0"){
-
-        alert("Por favor ingrese el documento correcto.");
-        return true;
-    }else if (tipoDocumento === "5") {
-        if((documento.length !== 11 || !/^[0-9]+$/.test(documento)) || (documento.substring(0, 2) !== "10" && documento.substring(0, 2) !== "20")){
-            document.querySelector("#txt-documento").focus();
-            alert("Por favor ingrese un RUC correcto.");
-            return true;
+    document.querySelector("#btn-guardar").addEventListener("click", function () {
+        if (!verificarCampos()) {
+            return;
         }
-    }else if (tipoDocumento === "1") {
-        if (documento.length !== 8 || !/^[0-9]+$/.test(documento)) {
-            document.querySelector("#txt-documento").focus();
-            alert("Por favor ingrese un DNI correcto.");
-            return true;
+        const usuario = {
+            id: data.id,
+            nombre: document.querySelector("#txt-nombre").value,
+            apellidoPaterno: document.querySelector("#txt-apellido-paterno").value,
+            apellidoMaterno: document.querySelector("#txt-apellido-materno").value,
+            fechaNacimiento: data.fechaNacimiento,
+            telefono: document.querySelector("#txt-celular").value,
+            direccion: document.querySelector("#txt-direccion").value,
+            numeroDocumento: data.numeroDocumento,
+            activoPersona: true,
+            fidTipoDocumento: data.fidTipoDocumento.id,
+            email: data.email,
+            contrasena: data.contrasena,
+            fechaCreacion: data.fechaCreacion,
+            activoUsuario: true,
+            activo: true,
+            baneado: data.baneado,
+            fidRoles: {
+                idRole: 1,
+                fidPermisos: {
+                    id: 1,
+                },
+            },
+        };
+        console.log(JSON.stringify(usuario));
+
+        fetch(GLOBAL_URL + "/cliente/modificar", {
+            method: "PUT",
+            body: JSON.stringify(usuario),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then((response) => response.json())
+            .then((element) => {
+                if (element) {
+                    alert("Se ha guardado correctamente");
+                    localStorage.setItem("userCliente", JSON.stringify(usuario));
+                    window.location.href = "/usuarioMiCuenta";
+                } else {
+                    alert("Ha ocurrido un error");
+                }
+            })
+            .catch((error) => {
+                alert("Ha ocurrido un error de comunicación con el servidor");
+                console.error(error);
+            });
+    });
+
+    function verificarCampos() {
+        const numCelular = document.querySelector("#txt-celular").value;
+        const email = document.querySelector("#txt-correo").value;
+
+        if(numCelular!==""){
+            if (!/^[0-9]+$/.test(numCelular)) {
+                document.querySelector("#txt-celular").focus();
+                alert("El número celular debe ser numérico");
+                return false;
+            }
+            if (numCelular.length !== 9) {
+                document.querySelector("#txt-celular").focus();
+                alert("El número celular debe tener 9 caracteres");
+                return false;
+            }
         }
-    }else if (tipoDocumento === "2") {
-        if (documento.length !== 9 || !/^[0-9]+$/.test(documento)){
-            document.querySelector("#txt-documento").focus();
-            alert("Por favor ingrese un CE correcto.");
-            return true;
+        if(email!==""){
+            if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+                alert("El correo electrónico no es válido");
+                return false;
+            }
         }
-    }else if (tipoDocumento === "3") {
-        document.querySelector("#txt-documento").focus();
-        if ( !/^[A-Z0-9]+$/.test(documento) ){
-            alert("Por favor ingrese un pasaporte correcto.");
-            return true;
-        }
-    }
-    if (placa === "" || placa.length !== 6 || !/^[A-Za-z0-9]+$/.test(placa)) {
-        document.querySelector("#txt-placa").focus();
-        alert("Por favor ingrese la placa correcta.");
+
         return true;
     }
 
-    return false
-}
-
+};

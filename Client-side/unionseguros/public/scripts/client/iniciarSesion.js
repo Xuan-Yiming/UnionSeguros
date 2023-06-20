@@ -13,8 +13,8 @@ window.onload = function () {
       fetch(url)
         .then((response) => response.json())
         .then((element) => {
-          if (parseInt(element) > 0) {
-            localStorage.setItem("user", JSON.stringify(element));
+          if (element != null) {
+            localStorage.setItem("userCliente", JSON.stringify(element));
             window.location.href = "/usuario";
           } else {
             alert("Usuario o contraseña incorrectos");
@@ -22,7 +22,7 @@ window.onload = function () {
           }
         })
         .catch((error) => {
-          alert("Ha ocurrido un error de comunicación con el servidor");
+          alert("Usuario o contraseña incorrectos");
           console.error(error);
         });
     });

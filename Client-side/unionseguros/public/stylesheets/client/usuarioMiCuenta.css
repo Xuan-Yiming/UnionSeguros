@@ -1,115 +1,30 @@
-.user-info-container{
-    width: 80vw;
-    margin: 140px auto;
-    justify-content: center;
-    align-items: center
-}
-
-
 .content-container{
-    width: 80vw;
-    margin: 140px auto;
-    justify-content: center;
+  width: 80vw;
+  margin: 140px auto;
+  justify-content: center;
+}
+
+.content-container-item.bottom {
+  display: flex;
+  margin-top: 10px;
+  gap: 80px;
 }
 
 
-
-.info-vehi-form h2{
-    margin-left: 20px;
+#tituloCuenta{
+  color: #C8102E;
+  font-size: 35px;
 }
 
-.form-item{
-    margin-left: 90px;
-}
-
-
-
-
-
-
-.content-container-item bottom{
-    position: absolute;
-    bottom: 0;
-    right: 0;
+#subtituloCuenta{
+  font-size: 20px;
+  margin-bottom: 40px;
 }
 
 .info-vehi-form h2{
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 #content-container-item-regresar{
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
-
-
-
-  
-  h2 {
-    color: #C8102E;
-    font-size: 40px;
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  p {
-    color: #041E42;
-    font-size: 25px;
-    text-align: center;
-    margin-top: 10px;
-  }
-  
-  h3 {
-    color: gray;
-    font-size: 20px;
-    margin-top: 20px;
-    margin-right: 30px;
-    text-align: left;
-  }
-  .form-item{
-    text-align: center;
-
-  }  
-  .textbox {
-    border: 1px solid #808080;
-    color: #808080;
-    background-color: transparent;
-    border-radius: 5px;
-    padding: 10px;
-    width: 200px;
-    margin-bottom: 10px;
-    margin-right: 30px;
-    text-align: center;
-  }
-  .textbox-right {
-    float: left;
-    margin-right: 20px;
-  }
-  .content-container-item-bottom{
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    
-  }
-
-  
-  
-  .button-red {
-    align-items: center;
-    text-align: center;
-    display: inline-block;
-
-    justify-content: center;
-    border: none;
-    color: white;
-    background-color: #C8102E;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 20px;
-    margin-right: 10px;
-  }
-  
-  .button-red:hover {
-    background-color: #C8102E;
-  }
