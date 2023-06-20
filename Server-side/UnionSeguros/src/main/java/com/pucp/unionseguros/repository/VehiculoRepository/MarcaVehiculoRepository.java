@@ -18,6 +18,7 @@ public interface MarcaVehiculoRepository extends JpaRepository<MarcaVehiculo,Int
 
     public MarcaVehiculo findMarcaVehiculoByMarca(String nombreMarca);
 
+    public MarcaVehiculo findMarcaVehiculoByIdAndActivoIsTrue(Integer idIngresado);
     @Query("SELECT d FROM MarcaVehiculo d WHERE d.activo = true AND CONCAT(d.marca,d.id) LIKE  CONCAT('%',?1,'%') ")
     public List<MarcaVehiculo> buscarMarcasVehiculosPorParametro(String busqueda);
 
