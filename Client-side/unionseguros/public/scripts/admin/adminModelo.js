@@ -160,13 +160,11 @@ window.onload = function () {
 };
 
 function configurarModal() {
-  if (localStorage.getItem("data-plan")) {
-    const data = JSON.parse(localStorage.getItem("data-plan"));
-    document.querySelector("#txt-beneficio").value = data.beneficio;
-    document.querySelector("#txt-monto").value = data.monto;
+  if (localStorage.getItem("data-modelo")) {
+    const data = JSON.parse(localStorage.getItem("data-modelo"));
+    document.querySelector("#txt-modelo").value = data.modelo;
   } else {
-    document.querySelector("#txt-beneficio").value = "";
-    document.querySelector("#txt-monto").value = "";
+    document.querySelector("#txt-modelo").value = "";
   }
 }
 
