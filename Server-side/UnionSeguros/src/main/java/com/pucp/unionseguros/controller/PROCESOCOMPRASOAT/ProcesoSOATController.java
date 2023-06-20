@@ -14,6 +14,8 @@ import com.pucp.unionseguros.model.SOAT.SOAT;
 import com.pucp.unionseguros.model.Vehiculo.Modelo;
 import com.pucp.unionseguros.model.Vehiculo.TipoUso;
 import com.pucp.unionseguros.model.Vehiculo.Vehiculo;
+import com.pucp.unionseguros.repository.PersonasRepository.ClienteRepository;
+import com.pucp.unionseguros.repository.VehiculoRepository.VehiculoRepository;
 import com.pucp.unionseguros.service.PersonasService.ClienteService;
 import com.pucp.unionseguros.service.SOATService.MetodoDePagoService;
 import com.pucp.unionseguros.service.SOATService.PolizaService;
@@ -35,15 +37,19 @@ import java.time.LocalDate;
 public class ProcesoSOATController {
 
     private final ClienteService clienteService;
+    private final ClienteRepository clienteRepository;
     private final VehiculoService vehiculoService;
+    private final VehiculoRepository vehiculoRepository;
     private final MetodoDePagoService metodoDePagoService;
     private  final PolizaService polizaService;
     private final SOATService soatService;
 
     @Autowired
-    public ProcesoSOATController(ClienteService clienteService, VehiculoService vehiculoService, MetodoDePagoService metodoDePagoService, PolizaService polizaService, SOATService soatService) {
+    public ProcesoSOATController(ClienteService clienteService, ClienteRepository clienteRepository, VehiculoService vehiculoService, VehiculoRepository vehiculoRepository, MetodoDePagoService metodoDePagoService, PolizaService polizaService, SOATService soatService) {
         this.clienteService = clienteService;
+        this.clienteRepository = clienteRepository;
         this.vehiculoService = vehiculoService;
+        this.vehiculoRepository = vehiculoRepository;
         this.metodoDePagoService = metodoDePagoService;
         this.polizaService = polizaService;
         this.soatService = soatService;
@@ -94,8 +100,7 @@ public class ProcesoSOATController {
                 cliente.setActivo(true);
                 cliente.setActivoPersona(true);
                 cliente.setActivoUsuario(true);
-                idRecibidoPorIngresarAlCliente = clienteService.ingresarCliente(cliente);
-                cliente.setId(idRecibidoPorIngresarAlCliente);
+                clienteRepository.saveAndFlush(cliente);
 
             }
             errorNombre="insertoPersona";
@@ -128,8 +133,9 @@ public class ProcesoSOATController {
                 int idRecibidoPorIngresarVehiculo;
                 vehiculo.setFidPersona(new Persona());
                 vehiculo.getFidPersona().setId(cliente.getId());// registrar el id con la persona que me están nadando
-                idRecibidoPorIngresarVehiculo = vehiculoService.insertarVehiculo(vehiculo);
-                vehiculo.setId(idRecibidoPorIngresarVehiculo);
+                //idRecibidoPorIngresarVehiculo = vehiculoService.insertarVehiculo(vehiculo);
+//                vehiculo.setId(idRecibidoPorIngresarVehiculo);
+                vehiculoRepository.saveAndFlush(vehiculo);
             }
             errorNombre="insertoVehiculo";
 
@@ -181,6 +187,7 @@ public class ProcesoSOATController {
                 soat.getFidPlanSoat().setId(fidPlanSoatNode.get("id").asInt());
             soat.setFechaDeEmision(LocalDate.parse(SoatNode.get("fechaDeEmision").asText()));
             soat.setMontoPrima(SoatNode.get("montoPrima").asDouble());
+            soat.setActivo(true);
                 //POLIZA INGRESADA
                 soat.setFidPoliza(poliza);
 
