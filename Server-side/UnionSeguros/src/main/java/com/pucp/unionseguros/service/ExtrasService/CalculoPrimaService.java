@@ -118,8 +118,14 @@ public class CalculoPrimaService {
 
     public double calcularMontoPrimaVerificando(String marcaIngresada, String modeloIngresado,Integer anhoIngresado){
         CalculoPrima calculoPrima = null;
-        calculoPrima = calculoPrimaRepository.findCalculoPrimaByMarcaAndModeloAndAndAnioFabricacion(marcaIngresada,modeloIngresado,anhoIngresado);
+        MarcaVehiculo marca = new MarcaVehiculo();
+        Modelo modelo= new Modelo();
+        marca = marcaVehiculoRepository.findMarcaVehiculoByIdAndActivoIsTrue(Integer.valueOf(marcaIngresada));
+        modelo = modeloRepository.findModeloByIdAndActivoIsTrue(Integer.valueOf(modeloIngresado));
+
+        calculoPrima = calculoPrimaRepository.findCalculoPrimaByMarcaAndModeloAndAndAnioFabricacion(marca.getMarca(),modelo.getModelo(),anhoIngresado);
         double valorAretornar=0;
+
         if(calculoPrima!=null){//SE ENCONTRO UNA MARCA UWU
             //VALOR 1 2022 VALOR 2021 VALOR 20
             if(anhoIngresado==2022){
