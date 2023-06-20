@@ -6,14 +6,21 @@ window.onload = function () {
   }
 
   fetch(GLOBAL_URL + "/detalleCotizacion/listarTodosActivos")
-    .then((response) => response.json())
+            .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            return response.json();
+          }
+        })
     .then((data) => {
       this.beneficios = data;
       crearLaTabla(data);
     })
     .catch((error) => {
-      // Handle the error
-      console.error(error);
+
+                  alert("Ha ocurrido un error de comunicación con el servidor");
+            console.error(error);
     });
 
 //   document.querySelector("#txt-buscar").addEventListener("input", function () {
@@ -29,14 +36,21 @@ window.onload = function () {
 //       );
 
 //       fetch(url)
-//         .then((response) => response.json())
+//                 .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            return response.json();
+          }
+        })
 //         .then((data) => {
 //           this.beneficios = data;
 //           crearLaTabla(data);
 //         })
 //         .catch((error) => {
-//           // Handle the error
-//           console.error(error);
+//     
+//                       alert("Ha ocurrido un error de comunicación con el servidor");
+            console.error(error);
 //         });
 //     }, 500);
 //   });
@@ -67,7 +81,13 @@ window.onload = function () {
                   "Content-Type": "application/json",
                 },
               })
-                .then((response) => response.json())
+                        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            return response.json();
+          }
+        })
                 .then((element) => {
                   if (element) {
                     alert("Se ha actualizado correctamente");
@@ -79,8 +99,9 @@ window.onload = function () {
                   }
                 })
                 .catch((error) => {
-                  // Handle the error
-                  console.error(error);
+            
+                              alert("Ha ocurrido un error de comunicación con el servidor");
+            console.error(error);
                 });
             } else {
               fetch(GLOBAL_URL + "/detalleCotizacion/insertar", {
@@ -90,7 +111,13 @@ window.onload = function () {
                   "Content-Type": "application/json",
                 },
               })
-                .then((response) => response.json())
+                        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            return response.json();
+          }
+        })
                 .then((element) => {
                   if (element) {
                     alert("Se ha insertado correctamente");
@@ -103,8 +130,9 @@ window.onload = function () {
                   }
                 })
                 .catch((error) => {
-                  // Handle the error
-                  console.error(error);
+            
+                              alert("Ha ocurrido un error de comunicación con el servidor");
+            console.error(error);
                 });
             }
         });
@@ -183,7 +211,13 @@ function crearLaTabla(data) {
         fetch(GLOBAL_URL + "/detalleCotizacion/eliminar?idIngresado=" + dataId, {
           method: "PUT",
         })
-          .then((response) => response.json())
+                  .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            return response.json();
+          }
+        })
           .then((element) => {
             if (element) {
               alert("Se ha eliminado correctamente");
@@ -194,7 +228,8 @@ function crearLaTabla(data) {
             }
           })
           .catch((error) => {
-            // Handle the error
+      
+                        alert("Ha ocurrido un error de comunicación con el servidor");
             console.error(error);
           });
       }

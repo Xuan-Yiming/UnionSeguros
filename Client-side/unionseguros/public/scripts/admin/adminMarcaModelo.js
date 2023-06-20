@@ -6,13 +6,19 @@ window.onload = function () {
   }
 
   fetch(GLOBAL_URL + "/marcaVehiculo/listarTodas")
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status + " " + response.statusText);
+      } else {
+        return response.json();
+      }
+    })
     .then((data) => {
       this.marcas = data;
       crearLaTabla(data);
     })
     .catch((error) => {
-      // Handle the error
+      alert("Ha ocurrido un error de comunicación con el servidor");
       console.error(error);
     });
 
@@ -29,13 +35,19 @@ window.onload = function () {
       );
 
       fetch(url)
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            return response.json();
+          }
+        })
         .then((data) => {
           this.beneficios = data;
           crearLaTabla(data);
         })
         .catch((error) => {
-          // Handle the error
+          alert("Ha ocurrido un error de comunicación con el servidor");
           console.error(error);
         });
     }, 500);
@@ -97,7 +109,13 @@ window.onload = function () {
               "Content-Type": "application/json",
             },
           })
-            .then((response) => response.json())
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(response.status + " " + response.statusText);
+              } else {
+                return response.json();
+              }
+            })
             .then((element) => {
               if (element) {
                 alert("Se ha actualizado correctamente");
@@ -109,7 +127,7 @@ window.onload = function () {
               }
             })
             .catch((error) => {
-              // Handle the error
+              alert("Ha ocurrido un error de comunicación con el servidor");
               console.error(error);
             });
         } else {
@@ -120,7 +138,13 @@ window.onload = function () {
               "Content-Type": "application/json",
             },
           })
-            .then((response) => response.json())
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(response.status + " " + response.statusText);
+              } else {
+                return response.json();
+              }
+            })
             .then((element) => {
               if (element) {
                 alert("Se ha insertado correctamente");
@@ -133,7 +157,7 @@ window.onload = function () {
               }
             })
             .catch((error) => {
-              // Handle the error
+              alert("Ha ocurrido un error de comunicación con el servidor");
               console.error(error);
             });
         }
@@ -211,7 +235,13 @@ function crearLaTabla(data) {
             method: "PUT",
           }
         )
-          .then((response) => response.json())
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(response.status + " " + response.statusText);
+            } else {
+              return response.json();
+            }
+          })
           .then((element) => {
             if (element) {
               alert("Se ha eliminado correctamente");
@@ -222,7 +252,7 @@ function crearLaTabla(data) {
             }
           })
           .catch((error) => {
-            // Handle the error
+            alert("Ha ocurrido un error de comunicación con el servidor");
             console.error(error);
           });
       }

@@ -11,12 +11,11 @@ window.onload = function () {
 
     document.querySelector("#id").innerHTML = data.id;
     document.querySelector("#txt-placa").value = data.placa;
-    document.querySelector("#txt-anio").value = data.anhoFabricacion
-      .toString();
+    document.querySelector("#txt-anio").value = data.anhoFabricacion.toString();
     document.querySelector("#txt-serie").value = data.serie;
-      document.querySelector("#select-uso").value = data.fidTipoUso.idTipoUso;
-      document.querySelector("#txt-asientos").value = data.numeroAsientos;
-        document.querySelector("#txt-dueno").value = data.fidPersona.id;
+    document.querySelector("#select-uso").value = data.fidTipoUso.idTipoUso;
+    document.querySelector("#txt-asientos").value = data.numeroAsientos;
+    document.querySelector("#txt-dueno").value = data.fidPersona.id;
   }
 
   document.querySelector("#regresar").addEventListener("click", function () {
@@ -42,7 +41,13 @@ window.onload = function () {
           "Content-Type": "application/json",
         },
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            return response.json();
+          }
+        })
         .then((element) => {
           if (element) {
             alert("Se ha guardado correctamente");
@@ -53,7 +58,7 @@ window.onload = function () {
           }
         })
         .catch((error) => {
-          // Handle the error
+          alert("Ha ocurrido un error de comunicación con el servidor");
           console.error(error);
         });
     } else {
@@ -72,7 +77,13 @@ window.onload = function () {
           "Content-Type": "application/json",
         },
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            return response.json();
+          }
+        })
         .then((element) => {
           if (element) {
             alert("Se ha guardado correctamente");
@@ -83,7 +94,7 @@ window.onload = function () {
           }
         })
         .catch((error) => {
-          // Handle the error
+          alert("Ha ocurrido un error de comunicación con el servidor");
           console.error(error);
         });
     }
@@ -132,9 +143,15 @@ async function inicializar() {
 }
 
 async function cargarMarcas() {
-    document.querySelector("#select-marca").innerHTML = "";
+  document.querySelector("#select-marca").innerHTML = "";
   fetch(GLOBAL_URL + "/marcaVehiculo/listarTodas")
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status + " " + response.statusText);
+      } else {
+        return response.json();
+      }
+    })
     .then((data) => {
       data.forEach((element) => {
         var _option = document.createElement("option");
@@ -142,41 +159,48 @@ async function cargarMarcas() {
         _option.text = element.marca;
         document.querySelector("#select-marca").appendChild(_option);
       });
-        
-        if (localStorage.getItem("data-vehiculo")) {
-            document.querySelector("#select-marca").value = JSON.parse(
-              localStorage.getItem("data-vehiculo")
-            ).fidModelo.fidMarcaVehiculo.id;
-        };
 
-        document.querySelector("#select-modelo").innerHTML = "";
-        const params = new URLSearchParams();
-        params.append("idMarca", document.querySelector("#select-marca").value);
+      if (localStorage.getItem("data-vehiculo")) {
+        document.querySelector("#select-marca").value = JSON.parse(
+          localStorage.getItem("data-vehiculo")
+        ).fidModelo.fidMarcaVehiculo.id;
+      }
 
-        const url =
-          GLOBAL_URL + "/modelo/listarModelosPorIdMarca?" + params.toString();
-        fetch(url)
-          .then((response) => response.json())
-          .then((data) => {
-            data.forEach((element) => {
-              var _option = document.createElement("option");
-              _option.value = element.id;
-              _option.text = element.modelo;
-              document.querySelector("#select-modelo").appendChild(_option);
-            });
+      document.querySelector("#select-modelo").innerHTML = "";
+      const params = new URLSearchParams();
+      params.append("idMarca", document.querySelector("#select-marca").value);
 
-            if (localStorage.getItem("data-vehiculo")) {
-              document.querySelector("#select-modelo").value = JSON.parse(
-                localStorage.getItem("data-vehiculo")
-              ).fidModelo.id;
-            }
-          })
-          .catch((error) => {
-            // Handle the error
-            console.error(error);
+      const url =
+        GLOBAL_URL + "/modelo/listarModelosPorIdMarca?" + params.toString();
+      fetch(url)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            return response.json();
+          }
+        })
+        .then((data) => {
+          data.forEach((element) => {
+            var _option = document.createElement("option");
+            _option.value = element.id;
+            _option.text = element.modelo;
+            document.querySelector("#select-modelo").appendChild(_option);
           });
+
+          if (localStorage.getItem("data-vehiculo")) {
+            document.querySelector("#select-modelo").value = JSON.parse(
+              localStorage.getItem("data-vehiculo")
+            ).fidModelo.id;
+          }
+        })
+        .catch((error) => {
+          alert("Ha ocurrido un error de comunicación con el servidor");
+          console.error(error);
+        });
     })
     .catch((error) => {
+      alert("Ha ocurrido un error de comunicación con el servidor");
       console.error(error);
     });
 }
@@ -192,7 +216,13 @@ async function cargarModelos() {
       const url =
         GLOBAL_URL + "/modelo/listarModelosPorIdMarca?" + params.toString();
       fetch(url)
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            return response.json();
+          }
+        })
         .then((data) => {
           data.forEach((element) => {
             var _option = document.createElement("option");
@@ -200,13 +230,10 @@ async function cargarModelos() {
             _option.text = element.modelo;
             document.querySelector("#select-modelo").appendChild(_option);
           });
-            
         })
         .catch((error) => {
-          // Handle the error
+          alert("Ha ocurrido un error de comunicación con el servidor");
           console.error(error);
         });
     });
 }
-
-

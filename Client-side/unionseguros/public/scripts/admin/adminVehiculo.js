@@ -2,13 +2,19 @@ var vehiculos;
 var searchTimer;
 window.onload = function () {
   fetch(GLOBAL_URL + "/vehiculo/buscarVehiculoParametros?busqueda=")
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status + " " + response.statusText);
+      } else {
+        return response.json();
+      }
+    })
     .then((data) => {
       this.vehiculos = data;
       crearLaTabla(data);
     })
     .catch((error) => {
-      // Handle the error
+      alert("Ha ocurrido un error de comunicación con el servidor");
       console.error(error);
     });
 
@@ -25,13 +31,19 @@ window.onload = function () {
       );
 
       fetch(url)
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            return response.json();
+          }
+        })
         .then((data) => {
           this.vehiculos = data;
           crearLaTabla(data);
         })
         .catch((error) => {
-          // Handle the error
+          alert("Ha ocurrido un error de comunicación con el servidor");
           console.error(error);
         });
     }, 500);
@@ -87,12 +99,11 @@ function crearLaTabla(data) {
     editButton.setAttribute("data-id", vehiculo.id);
     editButton.addEventListener("click", () => {
       const dataId = event.target.getAttribute("data-id");
-        localStorage.setItem(
-            "data-vehiculo",
-            JSON.stringify(vehiculos.find((vehiculo) => vehiculo.id == dataId))
-
+      localStorage.setItem(
+        "data-vehiculo",
+        JSON.stringify(vehiculos.find((vehiculo) => vehiculo.id == dataId))
       );
-        window.location.href = "/admin/detalleVehiculo";
+      window.location.href = "/admin/detalleVehiculo";
     });
     button.appendChild(editButton);
 
@@ -109,7 +120,13 @@ function crearLaTabla(data) {
       fetch(GLOBAL_URL + "/vehiculo/eliminar2" + params.toString(), {
         method: "PUT",
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            return response.json();
+          }
+        })
         .then((element) => {
           if (element) {
             alert("Se ha guardado correctamente");
@@ -119,7 +136,7 @@ function crearLaTabla(data) {
           }
         })
         .catch((error) => {
-          // Handle the error
+          alert("Ha ocurrido un error de comunicación con el servidor");
           console.error(error);
         });
     });
