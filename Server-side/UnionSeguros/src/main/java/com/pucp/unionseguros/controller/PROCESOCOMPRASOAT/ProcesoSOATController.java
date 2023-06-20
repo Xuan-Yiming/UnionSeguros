@@ -80,9 +80,9 @@ public class ProcesoSOATController {
             cliente.setFechaCreacion(LocalDate.parse(clienteNode.get("fechaCreacion").asText()));
 
             //correo de creado manualmente
-            if(!clienteNode.has("id")){ //CLIENTE NUEVO SE LE ASIGNA UN CORREO HASTA QUE QUIERA ASIGNAR SU CUENTA
-                cliente.setEmail(cliente.getNumeroDocumento().toString()+"UnionSeguros.pe.com");
-            }
+//            if(!clienteNode.has("id")){ //CLIENTE NUEVO SE LE ASIGNA UN CORREO HASTA QUE QUIERA ASIGNAR SU CUENTA
+//                cliente.setEmail(cliente.getNumeroDocumento().toString()+"UnionSeguros.pe.com");
+//            }
 
 
 

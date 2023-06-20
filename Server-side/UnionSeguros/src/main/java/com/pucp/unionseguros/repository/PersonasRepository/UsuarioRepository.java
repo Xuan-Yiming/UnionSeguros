@@ -45,4 +45,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     @Query("SELECT usu FROM Usuario  usu WHERE usu.email=:correoIngresado AND usu.token=:tokenIngresado")
     public Usuario verificarTokenIngresado(String correoIngresado, String tokenIngresado);
+
+    public Usuario findUsuarioByEmailAndContrasena(String emailIngresado,String contrasenaIngresada);
 }

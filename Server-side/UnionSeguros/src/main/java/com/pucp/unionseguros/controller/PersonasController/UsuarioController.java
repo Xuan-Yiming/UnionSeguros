@@ -37,7 +37,7 @@ public class UsuarioController {
         return usuarioService.buscarUsuario(busqueda);
     }
     @GetMapping(path ="/login")
-    public int login(@RequestParam(name = "email") String email,@RequestParam(name = "contrasena") String contrasena){
+    public Usuario login(@RequestParam(name = "email") String email,@RequestParam(name = "contrasena") String contrasena){
         return usuarioService.login(email, contrasena);
     }
 

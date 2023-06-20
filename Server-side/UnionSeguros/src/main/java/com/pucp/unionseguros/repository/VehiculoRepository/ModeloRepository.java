@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.stereotype.Repository;
 
+import java.beans.IntrospectionException;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +21,7 @@ public interface ModeloRepository extends JpaRepository<Modelo,Integer> {
     @Query("select m from Modelo m inner join MarcaVehiculo mar where m.fidMarcaVehiculo.id = mar.id and m.activo=true and concat(mar.marca, m.modelo, m.id) like concat('%',?1,'%') ")
     List<Modelo> buscarModelosPorNombreIdMarca(String busqueda);
 
-
+    Modelo findModeloByIdAndActivoIsTrue(Integer idIngresado);
     @Procedure(procedureName = "cargaModelos")
     void cargaModelos();
 //    @Modifying
