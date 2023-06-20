@@ -82,6 +82,12 @@ window.onload = function () {
       closeModal(function () {
         const nombre = document.querySelector("#txt-modelo").value;
         const data = {
+          fidMarcaVehiculo: {
+            id: JSON.parse(localStorage.getItem("data-marca")).id,
+          },
+          fidTipoVehiculo: {
+            idTipoVehiculo: 1,
+          },
           modelo: nombre,
           activo: true,
         };
