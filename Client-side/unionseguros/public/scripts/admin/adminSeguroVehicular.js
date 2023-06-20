@@ -37,12 +37,12 @@ window.onload = function () {
 
 //       fetch(url)
 //                 .then((response) => {
-          if (!response.ok) {
-            throw new Error(response.status + " " + response.statusText);
-          } else {
-            return response.json();
-          }
-        })
+        //   if (!response.ok) {
+        //     throw new Error(response.status + " " + response.statusText);
+        //   } else {
+        //     return response.json();
+        //   }
+        // })
 //         .then((data) => {
 //           this.beneficios = data;
 //           crearLaTabla(data);
