@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,119 +15,106 @@
 </head>
 
 <body class="container">
-    <%- include('../layouts/headerUsuario'); %>
-        <main>
-            <section class="user-index-section-info">
-                <div class="user-section-info-contacto">
-                    <h1>Contáctese con nosotros 24/7</h1>
-                    <img id="imagen-contacto" src="/public/resources/images/atencion.png" alt="Imagen del cuadro de contacto">
-                    <a href="https://api.whatsapp.com/send?phone=51951538566" target="_blank">
-                        <div class="info-contacto-whatsapp-container">
-                            <img id="whatsapp-icon" src="/public/resources/icons/WhatsApp_icon.png" alt="Botón de WhatsApp contacto">
-                            <div id="whatsapp-numero">
-                                +51 999000099
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="user-section-info-productos">
-                    <div class="user-index-texto-inicial">
-                        <h1>Manténte informado y gestiona tus productos</h1>
-                        <p>Mis seguros</p>
-                    </div>
-                    <div class="info-productos-wrapper">
-                        <i id="left" class="fa-solid fa-angle-left"></i>
-                        <div class="info-productos-wrapper-carousel">
-                            <div class="wrapper-carousel-item">
-                                <h2>SOAT A</h2>
-                                <p>Placa: ACB-123</p>
-                                <p>Vigencia hasta 12/06/2023</p>
-                                <button class="button-red">Ver detalle</button>
-                            </div>
-                            <div class="wrapper-carousel-item">
-                                <h2>SOAT B</h2>
-                                <p>Placa: XYZ-456</p>
-                                <p>Vigencia hasta 15/09/2024</p>
-                                <button class="button-red">Ver detalle</button>
-                            </div>
-                            <div class="wrapper-carousel-item">
-                                <h2>SOAT C</h2>
-                                <p>Placa: DEF-789</p>
-                                <p>Vigencia hasta 01/09/2025</p>
-                                <button class="button-red">Ver detalle</button>
-                            </div>
-                            <div class="wrapper-carousel-item">
-                                <h2>SOAT D</h2>
-                                <p>Placa: DXF-759</p>
-                                <p>Vigencia hasta 25/10/2024</p>
-                                <button class="button-red">Ver detalle</button>
-                            </div>
-                        </div>
-                        <i id="right" class="fa-solid fa-angle-right"></i>
-                    </div>
-                    <div class="user-index-texto-inicial">
-                        <p>Mis pagos</p>
-                    </div>
-                    <div class="info-pagos-wrapper">
-                        <div class="info-pagos-left-side">
-                            <div class="info-pagos-wrapper-descripcion">
-                                <p>Ten acceso a tu historial de pagos y verifica si existen cuotas por pagar.</p>
-                            </div>
-                            <button onclick="window.location.href='/pagos'" class ="button-red" id = "btn-cotizar"> Mis pagos</button>
-                        </div>
-                        <img src="/public/resources/images/control-pagos.png" alt="Imagen del cuadro de Seguro Vehicular">
-
+<%- include('../layouts/headerUsuario'); %>
+<main>
+    <section class="user-index-section-info">
+        <div class="user-section-info-contacto">
+            <h1>Contáctese con nosotros 24/7</h1>
+            <img id="imagen-contacto" src="/public/resources/images/atencion.png" alt="Imagen del cuadro de contacto">
+            <a href="https://api.whatsapp.com/send?phone=51951538566" target="_blank">
+                <div class="info-contacto-whatsapp-container">
+                    <img id="whatsapp-icon" src="/public/resources/icons/WhatsApp_icon.png" alt="Botón de WhatsApp contacto">
+                    <div id="whatsapp-numero">
+                        +51 999000099
                     </div>
                 </div>
-            </section>
-            <hr>
-            <section class="user-section-seguros">
-                <div class="user-texto-inicial">
-                    <h1>Pensado en tu bienestar</h1>
-                    <p>Conoce los seguros que tenemos para ofrecerte:</p>
-                </div>
-                <div class="user-section-seguros-container">
-                    <div class="user-div-seguro">
-                        <img src="/public/resources/images/soatBox.png" alt="Imagen del cuadro de SOAT">
-                        <div class="user-div-seguro-text">
-                            <div class="user-div-seguro-nombre">
-                                <p>SOAT ELECTRÓNICO</p>
-                            </div>
-                            <div class="user-div-seguro-titulo">
-                                <p>Consigue fácil y en minutos tu SOAT electrónico desde S/. 50 al año.</p>
-                            </div>
-                            <div class="user-div-seguro-descripcion">
-                                <p>Además de protegerte obtendrás descuentos en más de 70 establecimientos afiliados y los mejores planes de renovación.</p>
-                            </div>
-
-                        </div>
-                        <button onclick="window.location.href='/soat'" class ="button-red" id = "btn-cotizar"> Cotizar </button>
-
+            </a>
+        </div>
+        <div class="user-section-info-productos">
+            <div class="user-index-texto-inicial">
+                <h1>Mantente informado y gestiona tus productos</h1>
+                <p>Mis seguros</p>
+            </div>
+            <div class="info-productos-wrapper">
+                <i id="left" class="fa-solid fa-angle-left"></i>
+                <div class="info-productos-wrapper-carousel">
+                    <div class="wrapper-carousel-item">
+                        <h2>SOAT A</h2>
+                        <p>Placa: ACB-123</p>
+                        <p>Vigencia hasta 12/06/2023</p>
+                        <button class="button-red">Ver detalle</button>
                     </div>
-                    <div class="user-div-seguro">
-                        <img src="/public/resources/images/seguroVehicularBox.png" alt="Imagen del cuadro de Seguro Vehicular">
-                        <div class="user-div-seguro-text">
-                            <div class="user-div-seguro-nombre">
-                                <p>SEGURO VEHÍCULAR</p>
-                            </div>
-                            <div class="user-div-seguro-titulo">
-                                <p>Protege tu auto y ahorra pagando desde 25$ mensuales.</p>
-                            </div>
-                            <div class="user-div-seguro-descripcion">
-                                <p>Aseguramos tu tranquilidad ante cualquier accidente o robo que sufra tu vehículo.
-                                    Además, podras aprovechar múltiples descuentos y beneficios.</p>
-                            </div>
-                        </div>
-                        <button onclick="window.location.href='/segurovehicular'" class ="button-red" id = "btn-cotizar"> Cotizar </button>
+                    <div class="wrapper-carousel-item">
+                        <h2>SOAT B</h2>
+                        <p>Placa: XYZ-456</p>
+                        <p>Vigencia hasta 15/09/2024</p>
+                        <button class="button-red">Ver detalle</button>
+                    </div>
+                    <div class="wrapper-carousel-item">
+                        <h2>SOAT C</h2>
+                        <p>Placa: DEF-789</p>
+                        <p>Vigencia hasta 01/09/2025</p>
+                        <button class="button-red">Ver detalle</button>
+                    </div>
+                    <div class="wrapper-carousel-item">
+                        <h2>SOAT D</h2>
+                        <p>Placa: DXF-759</p>
+                        <p>Vigencia hasta 25/10/2024</p>
+                        <button class="button-red">Ver detalle</button>
                     </div>
                 </div>
-            </section>
-        </main>
+                <i id="right" class="fa-solid fa-angle-right"></i>
+            </div>
+        </div>
+    </section>
+    <hr>
+    <section class="user-section-seguros">
+        <div class="user-texto-inicial">
+            <h1>Pensado en tu bienestar</h1>
+            <p>Conoce los seguros que tenemos para ofrecerte:</p>
+        </div>
+        <div class="user-section-seguros-container">
+            <div class="user-div-seguro">
+                <img src="/public/resources/images/soatBox.png" alt="Imagen del cuadro de SOAT">
+                <div class="user-div-seguro-text">
+                    <div class="user-div-seguro-nombre">
+                        <p>SOAT ELECTRÓNICO</p>
+                    </div>
+                    <div class="user-div-seguro-titulo">
+                        <p>Consigue fácil y en minutos tu SOAT electrónico desde S/. 50 al año.</p>
+                    </div>
+                    <div class="user-div-seguro-descripcion">
+                        <p>Además de protegerte obtendrás descuentos en más de 70 establecimientos afiliados y los mejores planes de renovación.</p>
+                    </div>
 
-        <%- include('../layouts/footer'); %>
-    <script type="text/javascript" src="../public/scripts/client/usuario.js"></script>
-    <script type="text/javascript" src="../public/scripts/client/headerUsuario.js"></script>
-    
+                </div>
+                <button onclick="window.location.href='/soat'" class ="button-red" id = "btn-cotizar"> Cotizar </button>
+
+            </div>
+            <div class="user-div-seguro">
+                <img src="/public/resources/images/seguroVehicularBox.png" alt="Imagen del cuadro de Seguro Vehicular">
+                <div class="user-div-seguro-text">
+                    <div class="user-div-seguro-nombre">
+                        <p>SEGURO VEHÍCULAR</p>
+                    </div>
+                    <div class="user-div-seguro-titulo">
+                        <p>Protege tu auto y ahorra pagando desde 25$ mensuales.</p>
+                    </div>
+                    <div class="user-div-seguro-descripcion">
+                        <p>Aseguramos tu tranquilidad ante cualquier accidente o robo que sufra tu vehículo.
+                            Además, podras aprovechar múltiples descuentos y beneficios.</p>
+                    </div>
+                </div>
+                <button onclick="window.location.href='/segurovehicular'" class ="button-red" id = "btn-cotizar"> Cotizar </button>
+            </div>
+        </div>
+    </section>
+</main>
+
+<%- include('../layouts/footer'); %>
+<script type="text/javascript" src="../public/scripts/client/usuario.js"></script>
+<script type="text/javascript" src="../public/scripts/client/headerUsuario.js"></script>
+
 </body>
 
 </html>
