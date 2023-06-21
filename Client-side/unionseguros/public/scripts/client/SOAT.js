@@ -1,3 +1,4 @@
+
 window.onload = function () {
   document
     .getElementById("select-documento")
@@ -38,22 +39,32 @@ window.onload = function () {
       console.error(error);
     });
 
-  document.querySelector("#btn-cotizar").addEventListener("click", function () {
+  document.querySelector("#btn-cotizar").addEventListener("click", async function () {
     if (verificacion()) {
       return;
     }
 
-    localStorage.setItem("placa", document.querySelector("#txt-placa").value);
-    localStorage.setItem(
-      "documento",
-      document.querySelector("#txt-documento").value
-    );
-    localStorage.setItem(
-      "tipoDocumento",
-      document.querySelector("#select-documento").value
-    );
+    const placa = document.querySelector("#txt-placa").value;
+    const documento = document.querySelector("#txt-documento").value;
+    const tipoDocumento = document.querySelector("#select-documento").value;
 
-    window.location.href = "/SOATProceso";
+    try {
+      const vehiculoEncontrado = await comprobarPlaca(placa);
+      if (vehiculoEncontrado) {
+        alert("El vehiculo ya cuenta con seguro SOAT.");
+        // No guarda los datos ni redirecciona
+        return;
+      }else{
+        localStorage.setItem("placa", placa);
+        localStorage.setItem("documento", documento);
+        localStorage.setItem("tipoDocumento", tipoDocumento);
+        window.location.href = "/SOATProceso";
+      }
+
+    } catch (error) {
+      alert("Ha ocurrido un error de comunicación con el servidor");
+      console.error(error);
+    }
   });
 };
 
@@ -114,4 +125,33 @@ function verificacion() {
   }
 
   return false;
+}
+
+
+
+async function comprobarPlaca(placa) {
+  return new Promise((resolve, reject) => {
+    const params = new URLSearchParams();
+    params.append("placaIngresada", placa);
+    const url = GLOBAL_URL + "/vehiculo/buscarVehiculoPorPlaca?" + params.toString();
+
+    fetch(url)
+        .then((response) => {
+          if (!response.ok) {
+            return null;
+          }
+          return response.text();
+        })
+        .then((data) => {
+          try {
+            const jsonData = JSON.parse(data);
+            resolve(jsonData != null);
+          } catch (error) {
+            resolve(null);
+          }
+        })
+        .catch((error) => {
+          reject(error);
+        });
+  });
 }

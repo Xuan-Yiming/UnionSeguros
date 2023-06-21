@@ -34,6 +34,13 @@ document.querySelector("#btn-advance").addEventListener("click", function () {
     window.location.href = "/SOAT";
   }
 
+  if(stage===2){
+    if (confirm("¿Deseas confirmar tu pago?")){
+    } else {
+      return;
+    }
+  }
+
   if (!verificacion()) {
     return;
   }
@@ -119,6 +126,7 @@ async function changeStage() {
       loadPlans();
       break;
     case 2:
+      document.getElementById("btn-advance").textContent = "Confirmar pago";
       document.querySelector(".form-vehiculo ").style.display = "none";
       document.querySelector(".form-plans").style.display = "none";
       document.querySelector(".form-payment").style.display = "block";
@@ -204,24 +212,25 @@ function loadPlans() {
       });
     })
     .catch((error) => {
-      alert("Ha ocurrido un error de comunicación con el servidor");
+      alert("Ha ocurrido un error de comunicación con el servidor 1");
       console.error(error);
     });
 }
 
 function loadResumen() {
+  document.getElementById("btn-advance").textContent = "Finalizar";
   let placa = localStorage.getItem("placa");
   let nuevaPlaca = placa.substring(0, 3) + "-" + placa.substring(3);
   document.querySelector("#txt-res-nombre").innerText =
-    document.querySelector("#txt-nombres").value +
-    document.querySelector("#txt-apdPaterno").value +
-    " " +
-    document.querySelector("#txt-apdMaterno").value;
+      document.querySelector("#txt-nombres").value + " " +
+      document.querySelector("#txt-apdPaterno").value +
+      " " +
+      document.querySelector("#txt-apdMaterno").value;
   document.querySelector("#txt-res-placa").innerText = nuevaPlaca;
   document.querySelector("#txt-res-plan").innerText =
-    localStorage.getItem("nombrePlan");
+      localStorage.getItem("nombrePlan");
   document.querySelector("#txt-res-total").innerText =
-    "S/." + localStorage.getItem("precioPlan");
+      "S/." + localStorage.getItem("precioPlan");
   const datePickerInput = document.querySelector("#date-picker");
   const dateValue = datePickerInput.value; // Assuming the input value is a valid date string
 
@@ -229,10 +238,10 @@ function loadResumen() {
   currentDate.setFullYear(currentDate.getFullYear() + 1);
 
   document.querySelector("#txt-res-periodo").innerText =
-    "Desde " +
-    document.querySelector("#date-picker").value +
-    " hasta " +
-    currentDate.toISOString().slice(0, 10);
+      "Desde " +
+      document.querySelector("#date-picker").value +
+      " hasta " +
+      currentDate.toISOString().slice(0, 10);
 
   localStorage.removeItem("placa");
   localStorage.removeItem("tipoDocumento");
@@ -329,7 +338,7 @@ function verificacion() {
           cont++;
         }
       });
-      if (cont == 0) {
+      if (cont === 0) {
         alert("Debe seleccionar un plan");
         return false;
       }
@@ -342,7 +351,7 @@ function verificacion() {
       const fechaVencimiento = document.querySelector("#txt-fecha-venc").value;
       const nombreTitular = document.querySelector("#txt-tarjeta-nombre").value;
       const email = document.querySelector("#txt-email").value;
-      const moneda = document.querySelector("#select-moneda").value;
+      const moneda = 1;
 
       if (
         numTarjeta == "" ||
@@ -456,7 +465,7 @@ async function guardar() {
   const [month, year] = fechaVencimiento.split("/");
   const date = `${20 + year}-${month}-01`;
 
-  const moneda = document.querySelector("#select-moneda").value;
+  const moneda = 1;
 
   try {
     let data = {
@@ -548,6 +557,8 @@ async function guardar() {
         }
       })
       .then((data) => {
+        alert("Se realizo la compra correctamente");
+        loadResumen();
         document.querySelector(".form-vehiculo ").style.display = "none";
         document.querySelector(".form-plans").style.display = "none";
         document.querySelector(".form-payment").style.display = "none";
@@ -555,7 +566,6 @@ async function guardar() {
         document.querySelector("#btn-descargar-constancia").style.display =
           "block";
         document.querySelector("#btn-previous").style.display = "none";
-        loadResumen();
       })
       .catch((error) => {
         console.error(error);
@@ -599,7 +609,7 @@ async function cargarMarcas() {
       }
     })
     .catch((error) => {
-      alert("Ha ocurrido un error de comunicación con el servidor");
+      alert("Ha ocurrido un error de comunicación con el servidor 2");
       console.error(error);
     });
 }
@@ -636,7 +646,7 @@ async function cargarModelos() {
           });
         })
         .catch((error) => {
-          alert("Ha ocurrido un error de comunicación con el servidor");
+          alert("Ha ocurrido un error de comunicación con el servidor 3");
           console.error(error);
         });
     });
@@ -668,6 +678,7 @@ async function cargarPersona() {
         document.querySelector("#txt-apdPaterno").value = data.apellidoPaterno;
         document.querySelector("#txt-apdMaterno").value = data.apellidoMaterno;
         document.querySelector("#txt-nombres").value = data.nombre;
+        document.querySelector("#txt-email").value = data.email;
 
         if (data.apellidoMaterno == "") {
           document.querySelector("#txt-apdMaterno").value = "-";
@@ -677,6 +688,7 @@ async function cargarPersona() {
           document.querySelector("#txt-nombres").disabled = true;
           document.querySelector("#txt-apdPaterno").disabled = true;
           document.querySelector("#txt-apdMaterno").disabled = true;
+          document.querySelector("#txt-email").disabled = true;
         }
       }
     })
@@ -684,7 +696,7 @@ async function cargarPersona() {
       if (error.message === "Unexpected end of JSON input") {
         return;
       }
-      alert("Ha ocurrido un error de comunicación con el servidor");
+      alert("Ha ocurrido un error de comunicación con el servidor 4");
       console.error(error);
     });
 }
@@ -752,7 +764,7 @@ async function cargarVehiculo() {
             }
           })
           .catch((error) => {
-            alert("Ha ocurrido un error de comunicación con el servidor");
+            alert("Ha ocurrido un error de comunicación con el servidor 5");
             console.error(error);
           });
 
@@ -783,7 +795,7 @@ async function cargarVehiculo() {
       if (error.message === "Unexpected end of JSON input") {
         return;
       }
-      alert("Ha ocurrido un error de comunicación con el servidor");
+      alert("Ha ocurrido un error de comunicación con el servidor 6");
       console.error(error);
     });
 }

@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78b6ce57-e96d-4dcd-9cdb-1c45ea2c6930" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/client/usuarioMiCuentaEditar.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/headerUsuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/headerUsuario.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/usuarioMiCuenta.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/usuarioMiCuenta.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/usuarioMiCuentaEditar.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/usuarioMiCuentaEditar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/client/usuarioMiCuenta.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/client/usuarioMiCuenta.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/layouts/headerUsuario.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/layouts/headerUsuario.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/usuario.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/usuario.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/usuarioMiCuenta.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/usuarioMiCuenta.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/usuarioMiCuentaEditar.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/usuarioMiCuentaEditar.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/SOATProceso.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/SOATProceso.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +28,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;client-side-omar-v3&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;client-side-omar-V4&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/omar/Documents/GitHub/UnionSeguros/Client-side/unionseguros/public/stylesheets/client&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -65,6 +56,7 @@
       <workItem from="1687235107400" duration="8360000" />
       <workItem from="1687244532597" duration="2863000" />
       <workItem from="1687247491023" duration="1852000" />
+      <workItem from="1687308107108" duration="1983000" />
     </task>
     <servers />
   </component>
