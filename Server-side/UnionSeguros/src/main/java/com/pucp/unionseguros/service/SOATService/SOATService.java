@@ -40,4 +40,10 @@ public class SOATService {
         lista = soatRepository.findSOATParametros(busqueda);
         return  lista;
     }
+
+    public List<SOAT> listarSoatPorPlan(String busqueda){
+        List<SOAT> lista = new ArrayList<>();
+        lista = soatRepository.listarSoatPorPlan(busqueda);
+        return  lista;
+    }
 }

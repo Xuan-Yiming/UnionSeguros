@@ -50,4 +50,9 @@ public class SOATController {
     public List<SOAT> BuscarSOATParametro(@RequestParam(name = "busqueda") String busqueda){
         return soatService.BuscarSOATParametro(busqueda);
     }
+
+    @GetMapping(params = "busqueda",path ="/listarSoatPorPlan")
+    public List<SOAT> listarSoatPorPlan(@RequestParam(name = "busqueda") String busqueda){
+        return soatService.listarSoatPorPlan(busqueda);
+    }
 }

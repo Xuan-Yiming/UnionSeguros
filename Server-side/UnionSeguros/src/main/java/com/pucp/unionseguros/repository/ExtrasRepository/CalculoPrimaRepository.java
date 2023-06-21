@@ -35,5 +35,9 @@ public interface CalculoPrimaRepository extends JpaRepository<CalculoPrima,Integ
 //            "on A.marca=B.marca" +
 //            "where Modelo not in (select distinct modelo from UnionSeguros.modelo )")
 //    int insertarModelosConCalculoPrima();
-
+    @Query("SELECT c FROM CalculoPrima c " +
+            "WHERE CONCAT(c.modelo, c.marca) " +
+            "LIKE CONCAT('%', ?1, '%') " +
+            "ORDER BY c.marca ASC ")
+    public List<CalculoPrima> findCalculoPrimaParametros(String busqueda);
 }
