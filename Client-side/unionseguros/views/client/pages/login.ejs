@@ -39,13 +39,13 @@
                         <svg class="ProgressBar-icon">
                             <use xlink:href="/public/resources/icons/checkmark.circle.svg" />
                         </svg>
-                        <span class="ProgressBar-stepLabel">Ingresar Contraseña</span>
+                        <span class="ProgressBar-stepLabel">Validar Correo</span>
                     </li>
                     <li class="ProgressBar-step">
                         <svg class="ProgressBar-icon">
                             <use xlink:href="/public/resources/icons/checkmark.circle.svg" />
                         </svg>
-                        <span class="ProgressBar-stepLabel">Validar Correo</span>
+                        <span class="ProgressBar-stepLabel">Ingresar Contraseña</span>
                     </li>
                     <li class="ProgressBar-step">
                         <svg class="ProgressBar-icon">
@@ -94,26 +94,27 @@
                 <div class="content">
                     <h1>Ingresar información</h1>
                     <div class="form-inputs">
-                        <div class="form-item">
-                            <h3>Nombres</h3>
-                            <input id="txt-nombres" placeholder="Ingrese nombres"></input>
+                        <div class="form-line">
+                            <div class="form-item">
+                                <h3>Nombres</h3>
+                                <input id="txt-nombres" placeholder="Ingrese nombres" oninput="this.value = this.value.toUpperCase()"></input>
+                            </div>
                         </div>
                         <div class="form-line">
                             <div class="form-item">
                                 <h3>Apellido Paterno</h3>
-                                <input id="txt-apdPaterno" placeholder="Ingrese apellido"></input>
+                                <input id="txt-apdPaterno" placeholder="Ingrese apellido" oninput="this.value = this.value.toUpperCase()"></input>
                             </div>
                             <div class="form-item">
                                 <h3>Apellido Materno</h3>
-                                <input id="txt-apdMaterno" placeholder="Ingrese apellido"></input>
+                                <input id="txt-apdMaterno" placeholder="Ingrese apellido" oninput="this.value = this.value.toUpperCase()"></input>
                             </div>
                         </div>
                         <div class="form-line">
                             <div class="form-item">
                                 <h3>Correo electrónico</h3>
-                                <input placeholder="Ingrese correo" id = "txt-correo"></input>
+                                <input placeholder="Ingrese correo" id = "txt-correo" oninput="this.value = this.value.toLowerCase()"></input>
                             </div>
-    
                         </div>
     
                     </div>
@@ -147,7 +148,7 @@
                         <div class="form-line">
                             <div class="form-item">
                                 <h3>Contraseña</h3>
-                                <input placeholder="Ingrese contraseña" id = "txt-contrasena"></input>
+                                <input type="password" placeholder="Ingrese contraseña" id = "txt-contrasena"></input>
                             </div>
     
                         </div>

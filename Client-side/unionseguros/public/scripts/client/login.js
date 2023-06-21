@@ -1,9 +1,7 @@
 var stage = 0;
-localStorage.setItem("idCliente", null);
-localStorage.setItem("idVehiculo", null);
-document.getElementById("txt-documento").maxLength = "8";
-var flagRegistro = false;
 var flagCorreo = false;
+document.getElementById("txt-documento").maxLength = "8";
+
 var flagEnviarPIN = false;
 var flagValidarPIN = false;
 
@@ -33,11 +31,6 @@ window.onload = function () {
       alert("Ha ocurrido un error de comunicación con el servidor 1");
       console.error(error);
     });
-  document.querySelector("#dpFecha").value = new Date()
-    .toISOString()
-    .split("T")[0];
-  const today = new Date();
-  document.querySelector("#dpFecha").min = today.toISOString().split("T")[0];
 };
 
 document
@@ -55,8 +48,6 @@ document
     }else if (document.querySelector("#select-documento").value == "4") {
       document.getElementById("txt-documento").maxLength = "16";
     }
-
-
   });
 
 document.querySelector("#btn-advance").addEventListener("click", async function () {
@@ -80,7 +71,7 @@ document.querySelector("#btn-advance").addEventListener("click", async function 
             document.querySelector("#txt-apdPaterno").value = personaEncontrada.apellidoPaterno;
             document.querySelector("#txt-apdMaterno").value = personaEncontrada.apellidoMaterno;
             document.querySelector("#txt-correo").value = personaEncontrada.email;
-
+            flagCorreo = true; //indica que el correo ya existe pero es correcto que avance
             document.querySelector("#txt-nombres").disabled = true;
             document.querySelector("#txt-apdPaterno").disabled = true;
             document.querySelector("#txt-apdMaterno").disabled = true;
@@ -90,27 +81,49 @@ document.querySelector("#btn-advance").addEventListener("click", async function 
           alert("Puede continuar");
         }
       } catch (error) {
-        alert("Ha ocurrido un error de comunicación con el servidor 0");
+        alert("Ha ocurrido un error al validar número de documento");
         console.error(error);
       }
     }
 
-    if (stage === 1) {
-      await validacionCorreo();
-      if (!flagCorreo) {
-        return;
-      } else {
-        await enviarPIN();
-        if (!flagEnviarPIN) {
+    if (stage === 1) { //si se autocompletaron datos no necesita verificar correo
+      try {
+        const correoEncontrado = await validacionCorreo(); //devuelve TRUE si no se ha encontrado ningun correo
+        if (!correoEncontrado && flagCorreo===false) {
+          //el correo ya se encuentra registrado
+          alert("El correo ingresado ya se encuentra registrado");
           return;
+        }else{
+          //aca debe MANDAR PIN
+          /*
+          try {
+            const respuestaPIN = await enviarPIN();
+            alert(respuestaPIN);
+            if (respuestaPIN !== "SE ENVIO EL TOKEN") {
+              alert("No se pudo enviar el token a tu correo.");
+              return;
+            }
+            if (respuestaPIN === "SE ENVIO EL TOKEN"){
+              alert("Se envio un token a tu correo.");
+            }
+          } catch (error) {
+            alert("Ha ocurrido un error al mandar el PIN");
+            console.error(error);
+          }
+          */
         }
+      } catch (error) {
+        alert("Ha ocurrido un error al validar el correo");
+        console.error(error);
       }
     }
     if (stage === 2) {
+      /*
       await validarPIN();
       if (!flagValidarPIN) {
         return;
       }
+       */
     }
     if (stage === 4) {
       window.location.href = "/";
@@ -157,7 +170,7 @@ document.querySelector("#btn-previous").addEventListener("click", function () {
     document.querySelector("#txt-apdPaterno").value = "";
     document.querySelector("#txt-apdMaterno").value = "";
     document.querySelector("#txt-correo").value = "";
-
+    flagCorreo = false;
     document.querySelector("#txt-nombres").disabled = false;
     document.querySelector("#txt-apdPaterno").disabled = false;
     document.querySelector("#txt-apdMaterno").disabled = false;
@@ -347,8 +360,8 @@ function verificacion() {
 async function validacionRegistro() {
   return new Promise((resolve, reject) => {
     const params = new URLSearchParams();
-    numero_documento = document.querySelector("#txt-documento").value;
-    id_tipo_documento = document.querySelector("#select-documento").value;
+    const numero_documento = document.querySelector("#txt-documento").value;
+    const id_tipo_documento = document.querySelector("#select-documento").value;
     params.append("numDocumento", numero_documento);
     params.append("tipoDocumento", id_tipo_documento);
     const url = GLOBAL_URL + "/usuario/verificarExistenciaDeCliente?" + params.toString();
@@ -371,57 +384,56 @@ async function validacionRegistro() {
 }
 
 async function validacionCorreo() {
-  const email = document.querySelector("#txt-correo").value;
+  return new Promise((resolve, reject) => {
+    const params = new URLSearchParams();
+    const email = document.querySelector("#txt-correo").value;
+    params.append("correoIngresado", email);
+    const url = GLOBAL_URL + "/usuario/verificarEmailIngresadoDisponible?" + params.toString();
 
-  try {
-    const response = await fetch(
-      GLOBAL_URL +
-        "/usuario/verificarEmailIngresadoDisponible?correoIngresado=" +
-        email
-    );
-    const data = await response.json();
-
-    if (!data) {
-      flagCorreo = false;
-      alert("El correo ingresado ya esta en uso. Ingrese otro.");
-    } else {
-      flagCorreo = true;
-    }
-  } catch (error) {
-    alert("Ha ocurrido un error de comunicación con el servidor 3");
-    console.error(error);
-    flagCorreo = false;
-  }
+    fetch(url)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          resolve(data);
+        })
+        .catch((error) => {
+          console.error(error);
+          resolve(null);
+        });
+  });
 }
 
 async function enviarPIN() {
-  const email = document.querySelector("#txt-correo").value;
+  return new Promise((resolve, reject) => {
+    const email = document.querySelector("#txt-correo").value;
+    const entry = [email];
+    console.log(JSON.stringify(entry));
 
-  try {
-    const data = [email];
-    console.log(JSON.stringify(data));
-    const response = await fetch(GLOBAL_URL + "/email/generarToken", {
+    fetch(GLOBAL_URL + "/email/generarToken", {
       method: "POST",
-      body: JSON.stringify(data),
+      body: JSON.stringify(entry),
       headers: {
         "Content-Type": "application/json",
       },
-    });
-    const responseData = await response.text();
-
-    alert(responseData);
-    if (responseData === "SE ENVIO EL TOKEN") {
-      flagEnviarPIN = true;
-    } else {
-      flagEnviarPIN = false;
-    }
-  } catch (error) {
-    // Handle the error
-    alert("Ha ocurrido un error de comunicación con el servidor 4");
-    console.error(error);
-    localStorage.setItem("error", "1");
-    flagEnviarPIN = false;
-  }
+    })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          }
+          return response.text();
+        })
+        .then((data) => {
+          resolve(data);
+        })
+        .catch((error) => {
+          console.error(error);
+          resolve(null);
+        });
+  });
 }
 
 async function validarPIN() {
