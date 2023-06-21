@@ -5,7 +5,21 @@ window.onload = function () {
   fetch(GLOBAL_URL + "/BoletaDeVenta/listarTodas")
     .then((response) => {
       if (!response.ok) {
-        throw new Error(response.status + " " + response.statusText);
+          if (response.status < 500 && response.status >= 400) {
+            throw new Error(
+              "Error del cliente: " +
+                response.status +
+                " " +
+                response.statusText
+            );
+          } else {
+            throw new Error(
+              "Error del servidor: " +
+                response.status +
+                " " +
+                response.statusText
+            );
+          }
       } else {
         try {
           return response.json();
@@ -40,7 +54,21 @@ window.onload = function () {
       fetch(url)
         .then((response) => {
           if (!response.ok) {
-            throw new Error(response.status + " " + response.statusText);
+             if (response.status < 500 && response.status >= 400) {
+               throw new Error(
+                 "Error del cliente: " +
+                   response.status +
+                   " " +
+                   response.statusText
+               );
+             } else {
+               throw new Error(
+                 "Error del servidor: " +
+                   response.status +
+                   " " +
+                   response.statusText
+               );
+             }
           } else {
             try {
               return response.json();
@@ -54,7 +82,7 @@ window.onload = function () {
           crearLaTabla(data);
         })
         .catch((error) => {
-          alert("Ha ocurrido un error de comunicación con el servidor");
+          alert(error);
           console.error(error);
         });
     }, 500);
@@ -68,10 +96,32 @@ function crearLaTabla(data) {
     const tableRow = document.createElement("tr");
     tableRow.classList.add("table-row");
 
-    const placa = document.createElement("td");
-    placa.classList.add("td-placa");
-    placa.innerText = vehiculo.placa;
-    tableRow.appendChild(placa);
+    const plan = document.createElement("td");
+    plan.classList.add("td-soat");
+    plan.innerText = venta.fidSoat.fidPlanSoat.nombrePlan;
+    tableRow.appendChild(plan);
+
+    const monto = document.createElement("td");
+    monto.classList.add("td-monto");
+    monto.innerText = venta.fidSoat.fidPlanSoat.precio;
+    tableRow.appendChild(monto);
+
+    const cliente = document.createElement("td");
+    cliente.classList.add("td-cliente");
+    cliente.innerText =
+      venta.fidSoat.fidPoliza.fidCliente.id +
+      " - " +
+      venta.fidSoat.fidPoliza.fidCliente.nombre +
+      ", " +
+      venta.fidSoat.fidPoliza.fidCliente.apellidoPaterno +
+      " " +
+      venta.fidSoat.fidPoliza.fidCliente.apellidoMaterno;
+    tableRow.appendChild(cliente);
+
+    const fecha = document.createElement("td");
+    fecha.classList.add("td-fecha");
+    fecha.innerText = venta.fechaEmision;
+    tableRow.appendChild(fecha);
 
     const buttonEliminar = document.createElement("button");
     buttonEliminar.classList.add("button");
@@ -86,13 +136,38 @@ function crearLaTabla(data) {
       }
 
       const dataId = event.target.getAttribute("data-id");
-      const url = GLOBAL_URL + "/BoletaDeVenta/eliminar?id=" + dataId;
+      var data = {
+        id: dataId,
+        fidSoat: {},
+        fechaEmision: null,
+        monto: null,
+        activo: false,
+      };
+      const url = GLOBAL_URL + "/BoletaDeVenta/eliminar";
       fetch(url, {
-        method: "DELETE",
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
         .then((response) => {
           if (!response.ok) {
-            throw new Error(response.status + " " + response.statusText);
+            if (response.status < 500 && response.status >= 400) {
+              throw new Error(
+                "Error del cliente: " +
+                  response.status +
+                  " " +
+                  response.statusText
+              );
+            } else {
+              throw new Error(
+                "Error del servidor: " +
+                  response.status +
+                  " " +
+                  response.statusText
+              );
+            }
           } else {
             try {
               return response.json();
@@ -106,7 +181,7 @@ function crearLaTabla(data) {
           window.location.reload();
         })
         .catch((error) => {
-          alert("Ha ocurrido un error de comunicación con el servidor");
+          alert(error);
           console.error(error);
         });
     });

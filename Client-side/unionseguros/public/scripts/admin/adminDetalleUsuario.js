@@ -57,7 +57,6 @@ window.onload = function () {
     document.querySelector("#txt-celular").value = data.telefono;
     document.querySelector("#txt-correo").value = data.email;
     document.querySelector("#txt-contrasena").value = data.contrasena;
-    document.querySelector("#select-estado").value = data.activo;
     document.querySelector("#txt-direccion").value = data.direccion;
     document.querySelector("#dp-fecha-nacimiento").value = data.fechaNacimiento;
     document.querySelector("#txt-documento").value = data.numeroDocumento;
