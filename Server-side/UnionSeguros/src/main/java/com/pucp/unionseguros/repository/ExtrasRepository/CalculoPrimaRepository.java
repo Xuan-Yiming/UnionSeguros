@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public interface CalculoPrimaRepository extends JpaRepository<CalculoPrima,Integer> {
 
-    CalculoPrima findCalculoPrimaByMarcaAndModeloAndAndAnioFabricacion(String marcaIngresada, String modeloIngresado, Integer anhoIngresado);
+    CalculoPrima findCalculoPrimaByMarcaAndModelo(String marcaIngresada, String modeloIngresado);
 
 
 
