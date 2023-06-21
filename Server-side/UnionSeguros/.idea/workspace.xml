@@ -14,6 +14,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
@@ -74,7 +81,7 @@
       <workItem from="1686840437837" duration="14986000" />
       <workItem from="1687201429788" duration="4291000" />
       <workItem from="1687220544934" duration="2489000" />
-      <workItem from="1687361841381" duration="9284000" />
+      <workItem from="1687328629283" duration="2095000" />
     </task>
     <servers />
   </component>
@@ -112,11 +119,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/ExtrasService/CalculoPrimaService.java</url>
           <line>74</line>
           <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/PROCESOCOMPRASOAT/ProcesoSOATController.java</url>
-          <line>62</line>
-          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

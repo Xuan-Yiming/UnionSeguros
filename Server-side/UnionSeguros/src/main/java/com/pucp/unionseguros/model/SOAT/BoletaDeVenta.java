@@ -35,8 +35,8 @@ public class BoletaDeVenta{
     @Column(name = "fecha_emision")
     private LocalDate fechaEmision;
 
-    @Column(name = "monto", precision = 10, scale = 2)
-    private BigDecimal monto;
+    @Column(name = "monto", precision = 10)
+    private double monto;
 
     @Column(name = "activo")
     private boolean activo;

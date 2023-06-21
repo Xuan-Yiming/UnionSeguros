@@ -28,6 +28,7 @@ public interface ClienteRepository extends JpaRepository<Cliente,Integer> {
             "ORDER BY a.nombre ASC, a.apellidoPaterno ASC,a.apellidoMaterno ASC")
     public List<Cliente> listCliente(String busqueda);
 
+    Cliente findClienteByNumeroDocumentoAndFidTipoDocumentoAndBaneadoIsTrue(String numDocumentoIngresado, TipoDocumento tipoDocIngresado);
 
     //public Cliente findClienteByNumeroDocumentoAndFidTipoDocumentoAndContrasenaIsEmptyOrContrasenaIsNull(String numDocumentoIngresado, TipoDocumento TipoDocumento);
 }

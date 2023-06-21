@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface TipoDocumentoRepository extends JpaRepository<TipoDocumento, Integer> {
     public List<TipoDocumento> findTipoDocumentoByActivoIsTrue();
+    TipoDocumento findTipoDocumentoByNombre(String nombreIngresado);
 }

@@ -76,12 +76,22 @@ window.onload = function () {
           console.error(error);
         });
     } else {
-      const plan = {
+      const data = {
         id: document.querySelector("#id").innerHTML,
-        cobertura: document.querySelector("#txt-cobertura").value,
-        precio: document.querySelector("#txt-precio").value,
-        nombrePlan: document.querySelector("#txt-nombre").value,
-        activo: document.querySelector("#select-estado").value ? true : false,
+        fidTipoUso: {
+          idTipoUso: document.querySelector("#select-uso").value,
+        },
+        fidModelo: {
+          id: document.querySelector("#select-modelo").value,
+        },
+        fidPersona: {
+          id: document.querySelector("#txt-dueno").value,
+        },
+        anhoFabricacion: document.querySelector("#txt-anio").value,
+        numeroAsientos: document.querySelector("#txt-asientos").value,
+        placa: document.querySelector("#txt-placa").value,
+        serie: document.querySelector("#txt-serie").value,
+        activo: true,
       };
 
       fetch(GLOBAL_URL + "/Vehiculo/modificar", {
