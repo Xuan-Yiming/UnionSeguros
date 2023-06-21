@@ -678,6 +678,7 @@ async function cargarPersona() {
         document.querySelector("#txt-apdPaterno").value = data.apellidoPaterno;
         document.querySelector("#txt-apdMaterno").value = data.apellidoMaterno;
         document.querySelector("#txt-nombres").value = data.nombre;
+        document.querySelector("#txt-email").value = data.correo;
 
         if (data.apellidoMaterno == "") {
           document.querySelector("#txt-apdMaterno").value = "-";
@@ -687,6 +688,7 @@ async function cargarPersona() {
           document.querySelector("#txt-nombres").disabled = true;
           document.querySelector("#txt-apdPaterno").disabled = true;
           document.querySelector("#txt-apdMaterno").disabled = true;
+          document.querySelector("#txt-email").disabled = true;
         }
       }
     })
