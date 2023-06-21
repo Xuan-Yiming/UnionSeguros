@@ -6,7 +6,17 @@ window.onload = function () {
   }
 
   fetch(GLOBAL_URL + "/planSOAT/listarActivos")
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status + " " + response.statusText);
+      } else {
+        try {
+          return response.json();
+        } catch (error) {
+          return null;
+        }
+      }
+    })
     .then((data) => {
       this.planes = data;
       crearLaTabla(data);
@@ -29,7 +39,17 @@ window.onload = function () {
       );
 
       fetch(url)
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
+          }
+        })
         .then((data) => {
           this.planes = data;
           crearLaTabla(data);
@@ -119,7 +139,17 @@ function crearLaTabla(data) {
             "Content-Type": "application/json",
           },
         })
-          .then((response) => response.json())
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(response.status + " " + response.statusText);
+            } else {
+              try {
+                return response.json();
+              } catch (error) {
+                return null;
+              }
+            }
+          })
           .then((element) => {
             if (element) {
               alert("Se ha eliminado correctamente");

@@ -1,4 +1,3 @@
-
 .user-index-section-info{
   display: flex;
   flex-direction: row;
@@ -88,11 +87,12 @@
 }
 .user-index-texto-inicial h1{
   font-size: 38px;
+  margin-bottom: 35px;
 }
 
 .user-index-texto-inicial p{
   font-size: 26px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 
 /*------------------------------------------------------------------*/
@@ -183,54 +183,6 @@
   margin-top: 20px;
   margin-bottom: 10px;
 
-}
-
-/********************************************************/
-.info-pagos-wrapper{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: #041E42;
-  height: auto;
-  width: 500px;
-  justify-content: center;
-  border-radius: 25px;
-  box-shadow: rgba(0,0,0,0.2) 10px 10px 20px 5px;
-}
-
-.info-pagos-left-side{
-  display: flex;
-  text-align: justify-all;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px 30px;
-  width: 40%;
-}
-
-.info-pagos-wrapper img{
-  width: 60%;
-  height: auto;
-  border-radius: 0 25px 25px 0;
-}
-
-
-.info-pagos-wrapper-descripcion *{
-  display: block;
-  align-content: center;
-  height: 100px;
-  color: #ffffff;
-  font-size: 18px;
-  margin-bottom: 15px;
-  margin-top: 15px;
-}
-
-@media(max-width: 1300px){
-  .info-productos-wrapper{
-    display: flex;
-    flex-direction: column;
-    max-width: 480px;
-    position: relative;
-  }
 }
 
 /****************************************************************************************************/

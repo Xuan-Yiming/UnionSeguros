@@ -3,92 +3,77 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Mi Cuenta</title>
+    <title>Seguros</title>
+    <link rel="icon" type="image/x-icon" href="../public/resources/icons/page-icon.png">
 
-    <link rel="stylesheet" href="/public/stylesheets/style.css">
-    <link rel="stylesheet" href="/public/stylesheets/client/usuarioMiCuenta.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+    <link rel="stylesheet" href="../public/stylesheets/client/form.css">
+    <link rel="stylesheet" href="../public/stylesheets/client/usuarioMiCuenta.css">
     <script type="text/javascript" src="../public/scripts/conection.js"></script>
-
 
 </head>
 
 <body class="container">
-    <%-include('../layouts/headerUsuario'); %>
-        <main>
-            <section class="user-info-container">
-            <div class="content-container">
-                <div id="content-container-item-regresar" class="content-container-item">
-                    <button id="regresar" class="button-previous">Regresar</button>
+<%- include('../layouts/headerUsuario'); %>
+<main>
+    <div class="content-container">
+        <h2 id="tituloCuenta">Mi Cuenta</h2>
+        <p id="subtituloCuenta"> Mantén actualizada tu información</p>
+
+        <div class="form-inputs">
+            <div class="form-line">
+                <div class="form-item">
+                    <h3>Nombres</h3>
+                    <input id="txt-nombre" type="text" placeholder="Ingresar nombres" disabled></input>
                 </div>
-
-                <div class="form-inputs">
-                    <h2>Mi cuenta</h2>
-                    <p >Mantén tu información actualizada...</p>
-                    <div class="form-line">
-                        <div class="form-item">
-                            <h3>Nombres y Apellidos</h3>
-                            <input id="txt-nombre" type="text" placeholder="Nombre de usuario" readonly></input>
-                        </div>
-                        <div class="form-item">
-                            <h3>Fecha de Nacimiento</h3>
-                            <input id="txt-fecha-nacimiento" type="text" placeholder="dd/mm/aaaa" readonly></input>
-                        </div>
-                    </div>
-                    <div class="form-line">
-                        <div class="form-item">
-                            <h3>Correo Electrónico</h3>
-                            <input id="txt-correo" type="text" placeholder="Correo de usuario" readonly></input>
-                        </div>
-                        <div class="form-item">
-                            <h3>Teléfono</h3>
-                            <input id="txt-telefono" type="text" placeholder="Teléfono usuario" readonly></input>
-                        </div>
-                    </div>
-                    <div class="form-line">
-                        <div class="form-item">
-                            <h3>Dirección Domiciliaria</h3>
-                            <input id="txt-departamento" type="text" placeholder="Departamento" readonly></input>
-                        </div>
-                        <div class="form-item">
-                            <h3>   </h3>
-                            <input id="txt-provincia" type="text" placeholder="Provincia" readonly></input>
-                        </div>
-                        <div class="form-item">
-                            <h3>   </h3>
-                            <input id="txt-distrito" type="text" placeholder="Distrito" readonly></input>
-                        </div>
-                        <div class="form-item">
-                            <h3>   </h3>
-                            <input id="txt-dirección" type="text" placeholder="Dirección usuario" readonly></input>
-                        </div>
-                    </div>
-                    
-                   
-
-                </div>
-
-                <div class="form-line">
-                    <div class="content-container-item-bottom">
-                        <button id="btn-cambiarContrasena" class="button-red">Cambiar Contraseña</button>
-                        <button id="btn-actualizar" class="button-red">Actualizar Datos</button>
-                    </div>
-                    
-                </div>
-
-                
-
             </div>
+            <div class="form-line">
+                <div class="form-item">
+                    <h3>Apellido paterno</h3>
+                    <input id="txt-apellido-paterno" type="text" placeholder="Ingrese apellido paterno" disabled></input>
+                </div>
+                <div class="form-item">
+                    <h3>Apellido Materno</h3>
+                    <input id="txt-apellido-materno" type="text" placeholder="Ingrese apellido materno" disabled></input>
+                </div>
+            </div>
+            <div class="form-line">
+                <div class="form-item">
+                    <h3>Número de documento</h3>
+                    <input placeholder="Ingresar número" id="txt-documento" disabled></input>
+                </div>
+            </div>
+            <div class="form-line">
+                <div class="form-item">
+                    <h3>Correo Electronico</h3>
+                    <input id="txt-correo" type="text" placeholder="Ingresar correo electronico" disabled></input>
+                </div>
+            </div>
+            <div class="form-line">
+                <div class="form-item">
+                    <h3>Numero celular</h3>
+                    <input id="txt-celular" type="text" placeholder="Ingrese número celular" disabled></input>
+                </div>
+            </div>
+            <div class="form-line">
+                <div class="form-item">
+                    <h3>Direccion</h3>
+                    <input id="txt-direccion" type="text" placeholder="Ingrese direccion" disabled></input>
+                </div>
+            </div>
+        </div>
 
+        <div class="content-container-item bottom">
+            <button onclick="window.location.href='/cambiarContrasena'" class="button-red-transparente-red-border">Cambiar Contraseña</button>
+            <button onclick="window.location.href='/usuarioMiCuentaEditar'" class="button-red">Editar Información</button>
+        </div>
 
+    </div>
+</main>
+<%- include('../layouts/footer'); %>
 
-
-            </section>
-
-        </main>
-        <%- include('../layouts/footer'); %>
-    <script type="text/javascript" src="../public/scripts/client/usuarioMiCuenta.js"></script>
-    <script type="text/javascript" src="../public/scripts/client/headerUsuario.js"></script>
+<script type="text/javascript" src="../public/scripts/client/usuarioMiCuenta.js"></script>
+<script type="text/javascript" src="../public/scripts/client/headerUsuario.js"></script>
 
 </body>
 </html>

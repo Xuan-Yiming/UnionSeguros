@@ -170,7 +170,17 @@ function changeStage() {
 
 function loadPlans() {
   fetch(GLOBAL_URL + "/detalleCotizacion/listarTodosActivos")
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status + " " + response.statusText);
+      } else {
+        try {
+          return response.json();
+        } catch (error) {
+          return null;
+        }
+      }
+    })
     .then((data) => {
       const planContainer = document.querySelector(".content-plan");
       planContainer.innerHTML = "";
@@ -403,7 +413,17 @@ async function inicializar() {
 
 async function cargarMarcas() {
   fetch(GLOBAL_URL + "/marcaVehiculo/listarTodas")
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status + " " + response.statusText);
+      } else {
+        try {
+          return response.json();
+        } catch (error) {
+          return null;
+        }
+      }
+    })
     .then((data) => {
       data.forEach((element) => {
         var _option = document.createElement("option");
@@ -429,7 +449,17 @@ async function cargarModelos() {
       const url =
         GLOBAL_URL + "/modelo/listarModelosPorIdMarca?" + params.toString();
       fetch(url)
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
+          }
+        })
         .then((data) => {
           data.forEach((element) => {
             var _option = document.createElement("option");
@@ -451,7 +481,17 @@ async function cargarPersona() {
       "/cliente/buscarClientePorNumDocumento?numDocumentoIngresado=" +
       localStorage.getItem("documento")
   )
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status + " " + response.statusText);
+      } else {
+        try {
+          return response.json();
+        } catch (error) {
+          return null;
+        }
+      }
+    })
     .then((data) => {
       if (data != null) {
         localStorage.setItem("idCliente", data.id);
@@ -485,7 +525,17 @@ async function cargarVehiculo() {
 
   //datos del vehiculo
   fetch(url)
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status + " " + response.statusText);
+      } else {
+        try {
+          return response.json();
+        } catch (error) {
+          return null;
+        }
+      }
+    })
     .then((data) => {
       if (data != null) {
         localStorage.setItem("idVehiculo", data.id);
@@ -504,7 +554,17 @@ async function cargarVehiculo() {
           GLOBAL_URL + "/modelo/listarModelosPorIdMarca?" + params.toString();
 
         fetch(url)
-          .then((response) => response.json())
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(response.status + " " + response.statusText);
+            } else {
+              try {
+                return response.json();
+              } catch (error) {
+                return null;
+              }
+            }
+          })
           .then((data) => {
             data.forEach((element) => {
               var _option = document.createElement("option");
@@ -555,7 +615,17 @@ async function cargarVehiculo() {
 
 async function cargarDepartamento() {
   fetch(GLOBAL_URL + "/Departamento/listarDepartamentos")
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status + " " + response.statusText);
+      } else {
+        try {
+          return response.json();
+        } catch (error) {
+          return null;
+        }
+      }
+    })
     .then((data) => {
       data.forEach((element) => {
         var _option = document.createElement("option");
@@ -586,7 +656,17 @@ async function cargarProvincia() {
         "/Provincia/listarProvinciasPorDepartamento?" +
         params.toString();
       fetch(url)
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
+          }
+        })
         .then((data) => {
           data.forEach((element) => {
             var _option = document.createElement("option");
@@ -618,7 +698,17 @@ async function cargarDistrito() {
         "/Distrito/listarDistritosPorProvincia?" +
         params.toString();
       fetch(url)
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
+          }
+        })
         .then((data) => {
           data.forEach((element) => {
             var _option = document.createElement("option");
@@ -726,7 +816,17 @@ async function guardar() {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(response.status + " " + response.statusText);
+        } else {
+          try {
+            return response.json();
+          } catch (error) {
+            return null;
+          }
+        }
+      })
       .then((data) => {
         localStorage.setItem("idCotizacion", data);
       })
@@ -761,7 +861,17 @@ async function guardar() {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(response.status + " " + response.statusText);
+        } else {
+          try {
+            return response.json();
+          } catch (error) {
+            return null;
+          }
+        }
+      })
       .then((data) => {
         //supuestamente devuelve la lista
       })

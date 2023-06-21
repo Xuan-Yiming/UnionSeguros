@@ -28,7 +28,11 @@ window.onload = function () {
       if (!response.ok) {
         throw new Error(response.status + " " + response.statusText);
       } else {
-        return response.json();
+        try {
+          return response.json();
+        } catch (error) {
+          return null;
+        }
       }
     })
     .then((data) => {
@@ -57,7 +61,11 @@ window.onload = function () {
           if (!response.ok) {
             throw new Error(response.status + " " + response.statusText);
           } else {
-            return response.json();
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
           }
         })
         .then((data) => {
@@ -82,6 +90,12 @@ window.onload = function () {
       closeModal(function () {
         const nombre = document.querySelector("#txt-modelo").value;
         const data = {
+          fidMarcaVehiculo: {
+            id: JSON.parse(localStorage.getItem("data-marca")).id,
+          },
+          fidTipoVehiculo: {
+            idTipoVehiculo: 1,
+          },
           modelo: nombre,
           activo: true,
         };
@@ -99,7 +113,11 @@ window.onload = function () {
               if (!response.ok) {
                 throw new Error(response.status + " " + response.statusText);
               } else {
-                return response.json();
+                try {
+                  return response.json();
+                } catch (error) {
+                  return null;
+                }
               }
             })
             .then((element) => {
@@ -128,7 +146,11 @@ window.onload = function () {
               if (!response.ok) {
                 throw new Error(response.status + " " + response.statusText);
               } else {
-                return response.json();
+                try {
+                  return response.json();
+                } catch (error) {
+                  return null;
+                }
               }
             })
             .then((element) => {
@@ -160,13 +182,11 @@ window.onload = function () {
 };
 
 function configurarModal() {
-  if (localStorage.getItem("data-plan")) {
-    const data = JSON.parse(localStorage.getItem("data-plan"));
-    document.querySelector("#txt-beneficio").value = data.beneficio;
-    document.querySelector("#txt-monto").value = data.monto;
+  if (localStorage.getItem("data-modelo")) {
+    const data = JSON.parse(localStorage.getItem("data-modelo"));
+    document.querySelector("#txt-modelo").value = data.modelo;
   } else {
-    document.querySelector("#txt-beneficio").value = "";
-    document.querySelector("#txt-monto").value = "";
+    document.querySelector("#txt-modelo").value = "";
   }
 }
 
@@ -192,10 +212,10 @@ function crearLaTabla(data) {
     tipoVehiculo.innerText = modelo.fidTipoVehiculo.nombreTipoVehiculo;
     tableRow.appendChild(tipoVehiculo);
 
-    const valor = document.createElement("td");
-    valor.classList.add("td-valor");
-    valor.innerText = 0;
-    tableRow.appendChild(valor);
+    // const valor = document.createElement("td");
+    // valor.classList.add("td-valor");
+    // valor.innerText = 0;
+    // tableRow.appendChild(valor);
 
     //add edit button
     const button = document.createElement("td");
@@ -232,7 +252,11 @@ function crearLaTabla(data) {
             if (!response.ok) {
               throw new Error(response.status + " " + response.statusText);
             } else {
-              return response.json();
+              try {
+                return response.json();
+              } catch (error) {
+                return null;
+              }
             }
           })
           .then((element) => {

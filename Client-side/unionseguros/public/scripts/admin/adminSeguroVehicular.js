@@ -6,145 +6,159 @@ window.onload = function () {
   }
 
   fetch(GLOBAL_URL + "/detalleCotizacion/listarTodosActivos")
-            .then((response) => {
-          if (!response.ok) {
-            throw new Error(response.status + " " + response.statusText);
-          } else {
-            return response.json();
-          }
-        })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status + " " + response.statusText);
+      } else {
+        try {
+          return response.json();
+        } catch (error) {
+          return null;
+        }
+      }
+    })
     .then((data) => {
       this.beneficios = data;
       crearLaTabla(data);
     })
     .catch((error) => {
-
-                  alert("Ha ocurrido un error de comunicación con el servidor");
-            console.error(error);
+      alert("Ha ocurrido un error de comunicación con el servidor");
+      console.error(error);
     });
 
-//   document.querySelector("#txt-buscar").addEventListener("input", function () {
-//     clearTimeout(searchTimer);
-//     searchTimer = setTimeout(function () {
-//       const query = document.querySelector("#txt-buscar").value.toLowerCase();
+  //   document.querySelector("#txt-buscar").addEventListener("input", function () {
+  //     clearTimeout(searchTimer);
+  //     searchTimer = setTimeout(function () {
+  //       const query = document.querySelector("#txt-buscar").value.toLowerCase();
 
-//       let params = new URLSearchParams();
-//       params.append("busqueda", query);
+  //       let params = new URLSearchParams();
+  //       params.append("busqueda", query);
 
-//       let url = new URL(
-//         GLOBAL_URL + "/planSOAT/buscarbeneficiosSOAT?" + params.toString()
-//       );
+  //       let url = new URL(
+  //         GLOBAL_URL + "/planSOAT/buscarbeneficiosSOAT?" + params.toString()
+  //       );
 
-//       fetch(url)
-//                 .then((response) => {
-          if (!response.ok) {
-            throw new Error(response.status + " " + response.statusText);
-          } else {
-            return response.json();
-          }
-        })
-//         .then((data) => {
-//           this.beneficios = data;
-//           crearLaTabla(data);
-//         })
-//         .catch((error) => {
-//     
-//                       alert("Ha ocurrido un error de comunicación con el servidor");
-            console.error(error);
-//         });
-//     }, 500);
-//   });
+  //       fetch(url)
+  //                 .then((response) => {
+  //   if (!response.ok) {
+  //     throw new Error(response.status + " " + response.statusText);
+  //   } else {
+  //     try {
+          return response.json();
+        } catch (error) {
+          return null;
+        }
+
+  //   }
+  // })
+  //         .then((data) => {
+  //           this.beneficios = data;
+  //           crearLaTabla(data);
+  //         })
+  //         .catch((error) => {
+  //
+  //                       alert("Ha ocurrido un error de comunicación con el servidor");
+  // console.error(error);
+  //         });
+  //     }, 500);
+  //   });
 
   document.querySelector("#btn-nuevo").addEventListener("click", function () {
     localStorage.removeItem("data-beneficio");
     openModal(configurarModal());
   });
-    
-    document.querySelector("#btn-modal-guardar").addEventListener("click", function () {
-        closeModal(function () {
-            const beneficio = document.querySelector("#txt-beneficio").value;
-            const monto = document.querySelector("#txt-monto").value;
-            const data = {
-                beneficio: beneficio,
-                monto: monto,
-                activo: true
-            };
-            if (localStorage.getItem("data-beneficio")) {
-              const dataId = JSON.parse(
-                localStorage.getItem("data-beneficio")
-              ).id;
-              data.id = dataId;
-              fetch(GLOBAL_URL + "/detalleCotizacion/modificar", {
-                method: "PUT",
-                body: JSON.stringify(data),
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              })
-                        .then((response) => {
-          if (!response.ok) {
-            throw new Error(response.status + " " + response.statusText);
-          } else {
-            return response.json();
-          }
-        })
-                .then((element) => {
-                  if (element) {
-                    alert("Se ha actualizado correctamente");
-                    location.reload();
-                    return true;
-                  } else {
-                    alert("No se ha podido actualizar");
-                    return false;
-                  }
-                })
-                .catch((error) => {
-            
-                              alert("Ha ocurrido un error de comunicación con el servidor");
-            console.error(error);
-                });
-            } else {
-              fetch(GLOBAL_URL + "/detalleCotizacion/insertar", {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              })
-                        .then((response) => {
-          if (!response.ok) {
-            throw new Error(response.status + " " + response.statusText);
-          } else {
-            return response.json();
-          }
-        })
-                .then((element) => {
-                  if (element) {
-                    alert("Se ha insertado correctamente");
-                    location.reload();
-                    return true;
-                  } else {
-                    alert("No se ha podido insertar");
 
-                    return false;
-                  }
-                })
-                .catch((error) => {
-            
-                              alert("Ha ocurrido un error de comunicación con el servidor");
-            console.error(error);
-                });
-            }
-        });
+  document
+    .querySelector("#btn-modal-guardar")
+    .addEventListener("click", function () {
+      closeModal(function () {
+        const beneficio = document.querySelector("#txt-beneficio").value;
+        const monto = document.querySelector("#txt-monto").value;
+        const data = {
+          beneficio: beneficio,
+          monto: monto,
+          activo: true,
+        };
+        if (localStorage.getItem("data-beneficio")) {
+          const dataId = JSON.parse(localStorage.getItem("data-beneficio")).id;
+          data.id = dataId;
+          fetch(GLOBAL_URL + "/detalleCotizacion/modificar", {
+            method: "PUT",
+            body: JSON.stringify(data),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(response.status + " " + response.statusText);
+              } else {
+                try {
+          return response.json();
+        } catch (error) {
+          return null;
+        }
+              }
+            })
+            .then((element) => {
+              if (element) {
+                alert("Se ha actualizado correctamente");
+                location.reload();
+                return true;
+              } else {
+                alert("No se ha podido actualizar");
+                return false;
+              }
+            })
+            .catch((error) => {
+              alert("Ha ocurrido un error de comunicación con el servidor");
+              console.error(error);
+            });
+        } else {
+          fetch(GLOBAL_URL + "/detalleCotizacion/insertar", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(response.status + " " + response.statusText);
+              } else {
+                try {
+          return response.json();
+        } catch (error) {
+          return null;
+        }
+              }
+            })
+            .then((element) => {
+              if (element) {
+                alert("Se ha insertado correctamente");
+                location.reload();
+                return true;
+              } else {
+                alert("No se ha podido insertar");
+
+                return false;
+              }
+            })
+            .catch((error) => {
+              alert("Ha ocurrido un error de comunicación con el servidor");
+              console.error(error);
+            });
+        }
+      });
     });
 
-    document
-      .querySelector("#btn-modal-cancelar")
-      .addEventListener("click", function () {
-        closeModal(function () {
-          return true;
-        });
+  document
+    .querySelector("#btn-modal-cancelar")
+    .addEventListener("click", function () {
+      closeModal(function () {
+        return true;
       });
+    });
 };
 
 function configurarModal() {
@@ -208,16 +222,23 @@ function crearLaTabla(data) {
           "¿Está seguro que desea eliminar el plan SOAT con ID: " + dataId + "?"
         )
       ) {
-        fetch(GLOBAL_URL + "/detalleCotizacion/eliminar?idIngresado=" + dataId, {
-          method: "PUT",
-        })
-                  .then((response) => {
-          if (!response.ok) {
-            throw new Error(response.status + " " + response.statusText);
-          } else {
-            return response.json();
+        fetch(
+          GLOBAL_URL + "/detalleCotizacion/eliminar?idIngresado=" + dataId,
+          {
+            method: "PUT",
           }
-        })
+        )
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(response.status + " " + response.statusText);
+            } else {
+              try {
+          return response.json();
+        } catch (error) {
+          return null;
+        }
+            }
+          })
           .then((element) => {
             if (element) {
               alert("Se ha eliminado correctamente");
@@ -228,8 +249,7 @@ function crearLaTabla(data) {
             }
           })
           .catch((error) => {
-      
-                        alert("Ha ocurrido un error de comunicación con el servidor");
+            alert("Ha ocurrido un error de comunicación con el servidor");
             console.error(error);
           });
       }
@@ -237,7 +257,6 @@ function crearLaTabla(data) {
     button.appendChild(deleteButton);
     tableRow.appendChild(button);
 
-    
     table.appendChild(tableRow);
   });
 }

@@ -28,15 +28,25 @@ window.onload = function () {
       return;
     }
     if (document.querySelector("#id").innerHTML == "") {
-      const plan = {
-        cobertura: document.querySelector("#txt-cobertura").value,
-        precio: document.querySelector("#txt-precio").value,
-        nombrePlan: document.querySelector("#txt-nombre").value,
-        activo: document.querySelector("#select-estado").value ? true : false,
+      const data = {
+        fidTipoUso: {
+          idTipoUso: document.querySelector("#select-uso").value,
+        },
+        fidModelo: {
+          id: document.querySelector("#select-modelo").value,
+        },
+        fidPersona: {
+          id: document.querySelector("#txt-dueno").value,
+        },
+        anhoFabricacion: document.querySelector("#txt-anio").value,
+        numeroAsientos: document.querySelector("#txt-asientos").value,
+        placa: document.querySelector("#txt-placa").value,
+        serie: document.querySelector("#txt-serie").value,
+        activo: true,
       };
-      fetch(GLOBAL_URL + "/planSOAT/insertar", {
+      fetch(GLOBAL_URL + "/Vehiculo/insertar", {
         method: "POST",
-        body: JSON.stringify(plan),
+        body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",
         },
@@ -45,7 +55,11 @@ window.onload = function () {
           if (!response.ok) {
             throw new Error(response.status + " " + response.statusText);
           } else {
-            return response.json();
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
           }
         })
         .then((element) => {
@@ -70,9 +84,9 @@ window.onload = function () {
         activo: document.querySelector("#select-estado").value ? true : false,
       };
 
-      fetch(GLOBAL_URL + "/planSOAT/modificar", {
+      fetch(GLOBAL_URL + "/Vehiculo/modificar", {
         method: "PUT",
-        body: JSON.stringify(plan),
+        body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",
         },
@@ -81,13 +95,17 @@ window.onload = function () {
           if (!response.ok) {
             throw new Error(response.status + " " + response.statusText);
           } else {
-            return response.json();
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
           }
         })
         .then((element) => {
           if (element) {
             alert("Se ha guardado correctamente");
-            window.location.href = "/admin/PlanSOAT";
+            window.location.href = "/admin/vehiculo";
           } else {
             alert("No se ha podido guardar");
             return;
@@ -101,37 +119,37 @@ window.onload = function () {
   });
 
   function verificarCampos() {
-    let cobertura = document.querySelector("#txt-cobertura").value;
-    let precio = document.querySelector("#txt-precio").value;
-    let nombre = document.querySelector("#txt-nombre").value;
+    //   let cobertura = document.querySelector("#txt-cobertura").value;
+    //   let precio = document.querySelector("#txt-precio").value;
+    //   let nombre = document.querySelector("#txt-nombre").value;
 
-    if (cobertura == "") {
-      document.querySelector("#txt-cobertura").focus();
-      alert("Debe ingresar la cobertura");
-      return false;
-    }
-    if (precio == "") {
-      document.querySelector("#txt-precio").focus();
-      alert("Debe ingresar el precio");
-      return false;
-    }
-    if (nombre == "") {
-      document.querySelector("#txt-nombre").focus();
-      alert("Debe ingresar el nombre");
-      return false;
-    }
+    //   if (cobertura == "") {
+    //     document.querySelector("#txt-cobertura").focus();
+    //     alert("Debe ingresar la cobertura");
+    //     return false;
+    //   }
+    //   if (precio == "") {
+    //     document.querySelector("#txt-precio").focus();
+    //     alert("Debe ingresar el precio");
+    //     return false;
+    //   }
+    //   if (nombre == "") {
+    //     document.querySelector("#txt-nombre").focus();
+    //     alert("Debe ingresar el nombre");
+    //     return false;
+    //   }
 
-    if (!/^[0-9]+./.test(precio)) {
-      document.querySelector("#txt-precio").focus();
-      alert("El precio debe ser un número");
-      return false;
-    }
+    //   if (!/^[0-9]+./.test(precio)) {
+    //     document.querySelector("#txt-precio").focus();
+    //     alert("El precio debe ser un número");
+    //     return false;
+    //   }
 
-    if (!/^[0-9]+./.test(cobertura)) {
-      document.querySelector("#txt-cobertura").focus();
-      alert("La cobertura debe ser un número");
-      return false;
-    }
+    //   if (!/^[0-9]+./.test(cobertura)) {
+    //     document.querySelector("#txt-cobertura").focus();
+    //     alert("La cobertura debe ser un número");
+    //     return false;
+    //   }
 
     return true;
   }
@@ -149,7 +167,11 @@ async function cargarMarcas() {
       if (!response.ok) {
         throw new Error(response.status + " " + response.statusText);
       } else {
-        return response.json();
+        try {
+          return response.json();
+        } catch (error) {
+          return null;
+        }
       }
     })
     .then((data) => {
@@ -177,7 +199,11 @@ async function cargarMarcas() {
           if (!response.ok) {
             throw new Error(response.status + " " + response.statusText);
           } else {
-            return response.json();
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
           }
         })
         .then((data) => {
@@ -220,7 +246,11 @@ async function cargarModelos() {
           if (!response.ok) {
             throw new Error(response.status + " " + response.statusText);
           } else {
-            return response.json();
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
           }
         })
         .then((data) => {

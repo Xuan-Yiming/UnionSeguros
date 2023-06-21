@@ -10,7 +10,11 @@ window.onload = function () {
       if (!response.ok) {
         throw new Error(response.status + " " + response.statusText);
       } else {
-        return response.json();
+        try {
+          return response.json();
+        } catch (error) {
+          return null;
+        }
       }
     })
     .then((data) => {
@@ -39,7 +43,11 @@ window.onload = function () {
           if (!response.ok) {
             throw new Error(response.status + " " + response.statusText);
           } else {
-            return response.json();
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
           }
         })
         .then((data) => {
@@ -79,11 +87,15 @@ window.onload = function () {
       },
     })
       .then((response) => {
-          if (!response.ok) {
-            throw new Error(response.status + " " + response.statusText);
-          } else {
+        if (!response.ok) {
+          throw new Error(response.status + " " + response.statusText);
+        } else {
+          try {
             return response.json();
+          } catch (error) {
+            return null;
           }
+        }
       })
       .then((data) => {
         window.location.reload();
@@ -195,7 +207,11 @@ function crearLaTabla(data) {
           if (!response.ok) {
             throw new Error(response.status + " " + response.statusText);
           } else {
-            return response.json();
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
           }
         })
         .then((element) => {

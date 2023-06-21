@@ -34,6 +34,13 @@ document.querySelector("#btn-advance").addEventListener("click", function () {
     window.location.href = "/SOAT";
   }
 
+  if(stage===2){
+    if (confirm("¿Deseas confirmar tu pago?")){
+    } else {
+      return;
+    }
+  }
+
   if (!verificacion()) {
     return;
   }
@@ -97,7 +104,7 @@ document.querySelector("#btn-previous").addEventListener("click", function () {
   changeStage();
 });
 
-function changeStage() {
+async function changeStage() {
   switch (stage) {
     case 0:
       document.querySelector(".form-vehiculo ").style.display = "block";
@@ -119,6 +126,7 @@ function changeStage() {
       loadPlans();
       break;
     case 2:
+      document.getElementById("btn-advance").textContent = "Confirmar pago";
       document.querySelector(".form-vehiculo ").style.display = "none";
       document.querySelector(".form-plans").style.display = "none";
       document.querySelector(".form-payment").style.display = "block";
@@ -129,27 +137,24 @@ function changeStage() {
       loadTarjeta();
       break;
     case 3:
-      guardar();
-      if (localStorage.getItem("error") === "1") {
-        return;
-      }
-
-      document.querySelector(".form-vehiculo ").style.display = "none";
-      document.querySelector(".form-plans").style.display = "none";
-      document.querySelector(".form-payment").style.display = "none";
-      document.querySelector(".form-result").style.display = "block";
-      document.querySelector("#btn-descargar-constancia").style.display =
-        "block";
-      document.querySelector("#btn-previous").style.display = "none";
-
-      loadResumen();
+      await guardar();
       break;
   }
 }
 
 function loadPlans() {
   fetch(GLOBAL_URL + "/planSOAT/listarActivos")
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status + " " + response.statusText);
+      } else {
+        try {
+          return response.json();
+        } catch (error) {
+          return null;
+        }
+      }
+    })
     .then((data) => {
       const planContainer = document.querySelector(".content-planes");
       planContainer.innerHTML = "";
@@ -207,24 +212,25 @@ function loadPlans() {
       });
     })
     .catch((error) => {
-      alert("Ha ocurrido un error de comunicación con el servidor");
+      alert("Ha ocurrido un error de comunicación con el servidor 1");
       console.error(error);
     });
 }
 
 function loadResumen() {
+  document.getElementById("btn-advance").textContent = "Finalizar";
   let placa = localStorage.getItem("placa");
   let nuevaPlaca = placa.substring(0, 3) + "-" + placa.substring(3);
   document.querySelector("#txt-res-nombre").innerText =
-    document.querySelector("#txt-nombres").value +
-    document.querySelector("#txt-apdPaterno").value +
-    " " +
-    document.querySelector("#txt-apdMaterno").value;
+      document.querySelector("#txt-nombres").value + " " +
+      document.querySelector("#txt-apdPaterno").value +
+      " " +
+      document.querySelector("#txt-apdMaterno").value;
   document.querySelector("#txt-res-placa").innerText = nuevaPlaca;
   document.querySelector("#txt-res-plan").innerText =
-    localStorage.getItem("nombrePlan");
+      localStorage.getItem("nombrePlan");
   document.querySelector("#txt-res-total").innerText =
-    "S/." + localStorage.getItem("precioPlan");
+      "S/." + localStorage.getItem("precioPlan");
   const datePickerInput = document.querySelector("#date-picker");
   const dateValue = datePickerInput.value; // Assuming the input value is a valid date string
 
@@ -232,10 +238,10 @@ function loadResumen() {
   currentDate.setFullYear(currentDate.getFullYear() + 1);
 
   document.querySelector("#txt-res-periodo").innerText =
-    "Desde " +
-    document.querySelector("#date-picker").value +
-    " hasta " +
-    currentDate.toISOString().slice(0, 10);
+      "Desde " +
+      document.querySelector("#date-picker").value +
+      " hasta " +
+      currentDate.toISOString().slice(0, 10);
 
   localStorage.removeItem("placa");
   localStorage.removeItem("tipoDocumento");
@@ -332,7 +338,7 @@ function verificacion() {
           cont++;
         }
       });
-      if (cont == 0) {
+      if (cont === 0) {
         alert("Debe seleccionar un plan");
         return false;
       }
@@ -345,7 +351,7 @@ function verificacion() {
       const fechaVencimiento = document.querySelector("#txt-fecha-venc").value;
       const nombreTitular = document.querySelector("#txt-tarjeta-nombre").value;
       const email = document.querySelector("#txt-email").value;
-      const moneda = document.querySelector("#select-moneda").value;
+      const moneda = 1;
 
       if (
         numTarjeta == "" ||
@@ -459,7 +465,7 @@ async function guardar() {
   const [month, year] = fechaVencimiento.split("/");
   const date = `${20 + year}-${month}-01`;
 
-  const moneda = document.querySelector("#select-moneda").value;
+  const moneda = 1;
 
   try {
     let data = {
@@ -516,12 +522,24 @@ async function guardar() {
     };
 
     const idCliente = localStorage.getItem("idCliente");
-    if (idCliente) {
+    if (
+      idCliente != null &&
+      idCliente != "null" &&
+      idCliente != "" &&
+      idCliente != undefined &&
+      idCliente != 0
+    ) {
       data.cliente.id = idCliente;
     }
 
     const idVehiculo = localStorage.getItem("idVehiculo");
-    if (idVehiculo) {
+    if (
+      idVehiculo != null &&
+      idVehiculo != "null" &&
+      idVehiculo != "" &&
+      idVehiculo != undefined &&
+      idVehiculo != 0
+    ) {
       data.vehiculo.id = idVehiculo;
     }
 
@@ -536,21 +554,27 @@ async function guardar() {
       .then((response) => {
         if (!response.ok) {
           throw new Error(response.status + " " + response.statusText);
-        } else {
-          return response.json();
         }
       })
       .then((data) => {
-        localStorage.setItem("idCliente", data);
+        alert("Se realizo la compra correctamente");
+        loadResumen();
+        document.querySelector(".form-vehiculo ").style.display = "none";
+        document.querySelector(".form-plans").style.display = "none";
+        document.querySelector(".form-payment").style.display = "none";
+        document.querySelector(".form-result").style.display = "block";
+        document.querySelector("#btn-descargar-constancia").style.display =
+          "block";
+        document.querySelector("#btn-previous").style.display = "none";
       })
-
       .catch((error) => {
-        alert("Ha ocurrido un error de comunicación con el servidor");
         console.error(error);
         localStorage.setItem("error", 1);
       });
   } catch (error) {
+    localStorage.setItem("error", 1);
     console.error("Error:", error);
+    stage--;
   }
 }
 
@@ -563,17 +587,29 @@ async function inicializar() {
 
 async function cargarMarcas() {
   fetch(GLOBAL_URL + "/marcaVehiculo/listarTodas")
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status + " " + response.statusText);
+      } else {
+        try {
+          return response.json();
+        } catch (error) {
+          return null;
+        }
+      }
+    })
     .then((data) => {
-      data.forEach((element) => {
-        var _option = document.createElement("option");
-        _option.value = element.id;
-        _option.text = element.marca;
-        document.querySelector("#select-marca").appendChild(_option);
-      });
+      if (data != null) {
+        data.forEach((element) => {
+          var _option = document.createElement("option");
+          _option.value = element.id;
+          _option.text = element.marca;
+          document.querySelector("#select-marca").appendChild(_option);
+        });
+      }
     })
     .catch((error) => {
-      alert("Ha ocurrido un error de comunicación con el servidor");
+      alert("Ha ocurrido un error de comunicación con el servidor 2");
       console.error(error);
     });
 }
@@ -588,8 +624,19 @@ async function cargarModelos() {
 
       const url =
         GLOBAL_URL + "/modelo/listarModelosPorIdMarca?" + params.toString();
+      console.log(url);
       fetch(url)
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
+          }
+        })
         .then((data) => {
           data.forEach((element) => {
             var _option = document.createElement("option");
@@ -599,19 +646,31 @@ async function cargarModelos() {
           });
         })
         .catch((error) => {
-          alert("Ha ocurrido un error de comunicación con el servidor");
+          alert("Ha ocurrido un error de comunicación con el servidor 3");
           console.error(error);
         });
     });
 }
 
 async function cargarPersona() {
-  fetch(
+  const url =
     GLOBAL_URL +
-      "/cliente/buscarClientePorNumDocumento?numDocumentoIngresado=" +
-      localStorage.getItem("documento")
-  )
-    .then((response) => response.json())
+    "/cliente/buscarClientePorNumDocumento?numDocumentoIngresado=" +
+    localStorage.getItem("documento");
+  console.log(url);
+
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status + " " + response.statusText);
+      } else {
+        try {
+          return response.json();
+        } catch (error) {
+          return null;
+        }
+      }
+    })
     .then((data) => {
       if (data != null) {
         localStorage.setItem("idCliente", data.id);
@@ -619,6 +678,7 @@ async function cargarPersona() {
         document.querySelector("#txt-apdPaterno").value = data.apellidoPaterno;
         document.querySelector("#txt-apdMaterno").value = data.apellidoMaterno;
         document.querySelector("#txt-nombres").value = data.nombre;
+        document.querySelector("#txt-email").value = data.email;
 
         if (data.apellidoMaterno == "") {
           document.querySelector("#txt-apdMaterno").value = "-";
@@ -628,11 +688,15 @@ async function cargarPersona() {
           document.querySelector("#txt-nombres").disabled = true;
           document.querySelector("#txt-apdPaterno").disabled = true;
           document.querySelector("#txt-apdMaterno").disabled = true;
+          document.querySelector("#txt-email").disabled = true;
         }
       }
     })
     .catch((error) => {
-      alert("Ha ocurrido un error de comunicación con el servidor");
+      if (error.message === "Unexpected end of JSON input") {
+        return;
+      }
+      alert("Ha ocurrido un error de comunicación con el servidor 4");
       console.error(error);
     });
 }
@@ -642,10 +706,20 @@ async function cargarVehiculo() {
   params.append("placaIngresada", localStorage.getItem("placa"));
   const url =
     GLOBAL_URL + "/vehiculo/buscarVehiculoPorPlaca?" + params.toString();
-
+  console.log(url);
   //datos del vehiculo
   fetch(url)
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status + " " + response.statusText);
+      } else {
+        try {
+          return response.json();
+        } catch (error) {
+          return null;
+        }
+      }
+    })
     .then((data) => {
       if (data != null) {
         localStorage.setItem("idVehiculo", data.id);
@@ -662,9 +736,19 @@ async function cargarVehiculo() {
         params.append("idMarca", data.fidModelo.fidMarcaVehiculo.id);
         const url =
           GLOBAL_URL + "/modelo/listarModelosPorIdMarca?" + params.toString();
-
+        console.log(url);
         fetch(url)
-          .then((response) => response.json())
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(response.status + " " + response.statusText);
+            } else {
+              try {
+                return response.json();
+              } catch (error) {
+                return null;
+              }
+            }
+          })
           .then((data) => {
             data.forEach((element) => {
               var _option = document.createElement("option");
@@ -680,7 +764,7 @@ async function cargarVehiculo() {
             }
           })
           .catch((error) => {
-            alert("Ha ocurrido un error de comunicación con el servidor");
+            alert("Ha ocurrido un error de comunicación con el servidor 5");
             console.error(error);
           });
 
@@ -708,7 +792,10 @@ async function cargarVehiculo() {
       }
     })
     .catch((error) => {
-      alert("Ha ocurrido un error de comunicación con el servidor");
+      if (error.message === "Unexpected end of JSON input") {
+        return;
+      }
+      alert("Ha ocurrido un error de comunicación con el servidor 6");
       console.error(error);
     });
 }
