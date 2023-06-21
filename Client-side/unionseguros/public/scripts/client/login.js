@@ -67,6 +67,7 @@ document.querySelector("#btn-advance").addEventListener("click", async function 
       try {
         const personaEncontrada = await validacionRegistro();
         if (personaEncontrada) {
+          alert(personaEncontrada.nombre + " " + personaEncontrada.contrasena);
           //la persona ya esta en la BD
           if(personaEncontrada.contrasena!=="" && personaEncontrada.contrasena!==null){
             //la persona ya tiene contrasena
