@@ -7,7 +7,6 @@ window.onload = function () {
   document.querySelector("#txt-correo").value = data.email;
   document.querySelector("#txt-direccion").value = data.direccion;
   document.querySelector("#txt-documento").value = data.numeroDocumento;
-
   document.querySelector("#regresar").addEventListener("click", function () {
     alert("No se ha aplicado ningún cambio");
     window.location.href = "/usuarioMiCuenta";
@@ -27,7 +26,9 @@ window.onload = function () {
       direccion: document.querySelector("#txt-direccion").value,
       numeroDocumento: data.numeroDocumento,
       activoPersona: true,
-      fidTipoDocumento: data.fidTipoDocumento.id,
+      fidTipoDocumento: {
+        id: data.fidTipoDocumento.id
+      },
       email: data.email,
       contrasena: data.contrasena,
       fechaCreacion: data.fechaCreacion,

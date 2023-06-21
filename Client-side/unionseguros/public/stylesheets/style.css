@@ -203,3 +203,21 @@ h4{
   margin-left: 10px;
   cursor: pointer;
 }
+
+.btn-delete{
+  margin: 3px 20px;
+  background-color: rgb(253, 199, 199);
+  border: 1px solid #c8102e;
+  padding: 3px;
+  border-radius: 4px;
+  color: #C8102E;
+}
+
+.btn-edit{
+  margin: 3px 20px;
+  background-color: rgb(243, 244, 252);
+  border: 1px solid #122757;
+  padding: 3px 6px;
+  border-radius: 4px;
+  color: #122757;
+}
