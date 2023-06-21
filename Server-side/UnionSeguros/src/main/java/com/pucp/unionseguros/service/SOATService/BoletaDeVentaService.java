@@ -29,7 +29,7 @@ public class BoletaDeVentaService {
 
     public List<BoletaDeVenta> listarBoletasDeVentaActivas(){
         List<BoletaDeVenta> lista = new ArrayList<>();
-        lista= boletaDeVentaRepository.findBoletaDeVentaByActivoIsTrue();
+        lista= boletaDeVentaRepository.findBoletaDeVentasByActivoIsTrue();
         return lista;
     }
     public List<BoletaDeVenta> BuscarBoletasDeVentaParametro(String busqueda){

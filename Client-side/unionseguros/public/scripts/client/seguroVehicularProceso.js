@@ -728,7 +728,7 @@ async function guardar() {
   const apdPaterno = document.querySelector("#txt-apdPaterno").value;
   const apdMaterno = document.querySelector("#txt-apdMaterno").value;
   const nombres = document.querySelector("#txt-nombres").value;
-  const email = document.querySelector("#txt-email").value;
+  const email = document.querySelector("#txt-correo").value;
   const fecha = document.querySelector("#date-picker").value; // FECHA DEL INICIO DE SEGURO VEHICULAR
   const dateParts = fecha.split("-");
   const yyyy = dateParts[0];
@@ -948,13 +948,13 @@ async function validacionMonto() {
 
   try {
     let params = new URLSearchParams();
-    params.append("nombreMarca", marca);
-    params.append("nombreModelo", modelo);
-    params.append("anhoFabricacion", anhoFabricacion);
+    params.append("marcaIngresada", marca);
+    params.append("modeloIngresado", modelo);
+    params.append("anhoIngresado", anhoFabricacion);
 
     let url = new URL(
       GLOBAL_URL +
-        "/vehiculo/verificarInformacionVehicularParaCalcularPrima?" +
+        "/calculoPrima/ObtenerCalculoPrima?" +
         params.toString()
     );
     const response = await fetch(url);

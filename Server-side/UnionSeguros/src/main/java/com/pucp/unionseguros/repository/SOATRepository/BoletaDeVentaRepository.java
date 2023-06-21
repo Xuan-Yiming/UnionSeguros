@@ -11,7 +11,7 @@ import java.util.List;
 public interface BoletaDeVentaRepository extends JpaRepository<BoletaDeVenta, Integer> {
 
 
-    public List<BoletaDeVenta> findBoletaDeVentaByActivoIsTrue();
+    public List<BoletaDeVenta> findBoletaDeVentasByActivoIsTrue();
 
     public BoletaDeVenta findBoletaDeVentaByIdAndActivoIsTrue(Integer idBoleta);
 

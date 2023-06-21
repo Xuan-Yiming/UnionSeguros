@@ -123,8 +123,10 @@ public class CalculoPrimaService {
         marca = marcaVehiculoRepository.findMarcaVehiculoByIdAndActivoIsTrue(Integer.valueOf(marcaIngresada));
         modelo = modeloRepository.findModeloByIdAndActivoIsTrue(Integer.valueOf(modeloIngresado));
 
-        calculoPrima = calculoPrimaRepository.findCalculoPrimaByMarcaAndModeloAndAndAnioFabricacion(marca.getMarca(),modelo.getModelo(),anhoIngresado);
+        calculoPrima = calculoPrimaRepository.findCalculoPrimaByMarcaAndModelo(marca.getMarca(),modelo.getModelo());
         double valorAretornar=0;
+
+
 
         if(calculoPrima!=null){//SE ENCONTRO UNA MARCA UWU
             //VALOR 1 2022 VALOR 2021 VALOR 20
