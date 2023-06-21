@@ -38,9 +38,10 @@ public class BoletaDeVentaService {
         return  lista;
     }
 
-    public  BoletaDeVenta eliminarBoleta(BoletaDeVenta boleta){
-        boleta.setActivo(false);
-        return boletaDeVentaRepository.save(boleta);
+    public  BoletaDeVenta eliminarBoleta(Integer idBoletaDeVenta){
+        BoletaDeVenta boletaDeVenta = boletaDeVentaRepository.findBoletaDeVentaById(idBoletaDeVenta);
+        boletaDeVenta.setActivo(false);
+        return boletaDeVentaRepository.save(boletaDeVenta);
     }
 //    public BoletaDeVenta updateBoletaDeVenta(BoletaDeVenta boletaDeVenta){
 //        BoletaDeVenta foundBoleta = boletaDeVentaRepository.findBoletaDeVentaByIdAndActivoIsTrue(boletaDeVenta.getId());

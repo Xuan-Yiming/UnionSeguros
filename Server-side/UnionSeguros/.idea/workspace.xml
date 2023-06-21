@@ -5,6 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c533adc8-9480-47e7-ba91-492753cd2c4a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/CorreosController/EmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/CorreosController/EmailController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/SOATController/BoletaDeVentaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/SOATController/BoletaDeVentaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/VehiculoController/VehiculoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/VehiculoController/VehiculoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/SOATRepository/BoletaDeVentaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/SOATRepository/BoletaDeVentaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/VehiculoRepository/VehiculoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/VehiculoRepository/VehiculoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/SOATService/BoletaDeVentaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/SOATService/BoletaDeVentaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/VehiculoService/VehiculoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/VehiculoService/VehiculoService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +87,9 @@
       <workItem from="1687201429788" duration="4291000" />
       <workItem from="1687220544934" duration="2489000" />
       <workItem from="1687328629283" duration="2095000" />
+      <workItem from="1687376436341" duration="19000" />
+      <workItem from="1687376511835" duration="19000" />
+      <workItem from="1687376613580" duration="1334000" />
     </task>
     <servers />
   </component>

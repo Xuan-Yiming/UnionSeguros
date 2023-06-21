@@ -69,10 +69,11 @@ public class EmailController {
     }
 
     @GetMapping("/verificarToken")
-    boolean verificarToken(@RequestBody List<String> informacion){
+    boolean verificarToken(@RequestParam(name = "correoIngresado")String correoIngresado,
+                           @RequestParam(name = "tokenIngrsado") String tokenIngresado){
         boolean success = false;
         Integer id;
-        id = usuarioRepository.verificarInformacionDeTokquen(informacion.get(0),informacion.get(1));
+        id = usuarioRepository.verificarInformacionDeTokquen(correoIngresado,tokenIngresado);
         if(id!=null){
             success = true;
         }

@@ -13,6 +13,8 @@ public interface BoletaDeVentaRepository extends JpaRepository<BoletaDeVenta, In
 
     public List<BoletaDeVenta> findBoletaDeVentasByActivoIsTrue();
 
+    BoletaDeVenta findBoletaDeVentaById(Integer idBoleta);
+
     public BoletaDeVenta findBoletaDeVentaByIdAndActivoIsTrue(Integer idBoleta);
 
     @Query("SELECT b FROM BoletaDeVenta b INNER JOIN SOAT s INNER JOIN Poliza po INNER JOIN Vehiculo v " +
