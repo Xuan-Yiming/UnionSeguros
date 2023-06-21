@@ -212,7 +212,7 @@ function loadPlans() {
       });
     })
     .catch((error) => {
-      alert("Ha ocurrido un error de comunicación con el servidor");
+      alert("Ha ocurrido un error de comunicación con el servidor 1");
       console.error(error);
     });
 }
@@ -609,7 +609,7 @@ async function cargarMarcas() {
       }
     })
     .catch((error) => {
-      alert("Ha ocurrido un error de comunicación con el servidor");
+      alert("Ha ocurrido un error de comunicación con el servidor 2");
       console.error(error);
     });
 }
@@ -646,7 +646,7 @@ async function cargarModelos() {
           });
         })
         .catch((error) => {
-          alert("Ha ocurrido un error de comunicación con el servidor");
+          alert("Ha ocurrido un error de comunicación con el servidor 3");
           console.error(error);
         });
     });
@@ -694,7 +694,7 @@ async function cargarPersona() {
       if (error.message === "Unexpected end of JSON input") {
         return;
       }
-      alert("Ha ocurrido un error de comunicación con el servidor");
+      alert("Ha ocurrido un error de comunicación con el servidor 4");
       console.error(error);
     });
 }
@@ -762,7 +762,7 @@ async function cargarVehiculo() {
             }
           })
           .catch((error) => {
-            alert("Ha ocurrido un error de comunicación con el servidor");
+            alert("Ha ocurrido un error de comunicación con el servidor 5");
             console.error(error);
           });
 
@@ -793,7 +793,7 @@ async function cargarVehiculo() {
       if (error.message === "Unexpected end of JSON input") {
         return;
       }
-      alert("Ha ocurrido un error de comunicación con el servidor");
+      alert("Ha ocurrido un error de comunicación con el servidor 6");
       console.error(error);
     });
 }
