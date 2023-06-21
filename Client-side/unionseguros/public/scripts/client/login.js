@@ -95,7 +95,7 @@ document.querySelector("#btn-advance").addEventListener("click", async function 
           return;
         }else{
           //aca debe MANDAR PIN
-          /*
+
           try {
             const respuestaPIN = await enviarPIN();
             alert(respuestaPIN);
@@ -110,7 +110,7 @@ document.querySelector("#btn-advance").addEventListener("click", async function 
             alert("Ha ocurrido un error al mandar el PIN");
             console.error(error);
           }
-          */
+
         }
       } catch (error) {
         alert("Ha ocurrido un error al validar el correo");
