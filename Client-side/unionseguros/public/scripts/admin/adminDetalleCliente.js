@@ -129,7 +129,7 @@ window.onload = function () {
             window.location.href = "/admin/cliente";
           } else {
             if (parseInt(element) > 0 == 0) {
-              alert("Numero de documento repetido");
+              alert("Número de documento repetido");
             } else if (parseInt(element) > 0 == -1) {
               alert("Correo repetido");
             } else {
