@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="78b6ce57-e96d-4dcd-9cdb-1c45ea2c6930" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/SOAT.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/SOAT.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/login.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +58,7 @@
       <workItem from="1687244532597" duration="2863000" />
       <workItem from="1687247491023" duration="1852000" />
       <workItem from="1687308107108" duration="6318000" />
-      <workItem from="1687361686921" duration="6268000" />
+      <workItem from="1687361686921" duration="6511000" />
     </task>
     <servers />
   </component>

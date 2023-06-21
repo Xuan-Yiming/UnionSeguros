@@ -235,10 +235,6 @@ function changeStage() {
   }
 }
 
-function validateNumericInput(input) {
-  input.value = input.value.replace(/\D/g, ""); // Eliminar caracteres que no sean números
-}
-
 function verificacion() {
   const apdPaterno = document.querySelector("#txt-apdPaterno").value;
   const apdMaterno = document.querySelector("#txt-apdMaterno").value;
