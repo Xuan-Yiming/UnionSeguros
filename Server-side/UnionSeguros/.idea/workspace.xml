@@ -6,7 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="c533adc8-9480-47e7-ba91-492753cd2c4a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/SOAT.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/SOAT.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/admin/adminDetalleCliente.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/admin/adminDetalleCliente.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/admin/adminDetalleUsuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/admin/adminDetalleUsuario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/usuarioMiCuentaEditar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/usuarioMiCuentaEditar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/stylesheets/client/form.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/stylesheets/client/form.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/stylesheets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/stylesheets/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/views/admin/pages/detalleCliente.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/views/admin/pages/detalleCliente.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/views/admin/pages/detalleUsuario.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/views/admin/pages/detalleUsuario.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/views/admin/pages/detalleVehiculo.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/views/admin/pages/detalleVehiculo.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/views/client/pages/SOATProceso.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/views/client/pages/SOATProceso.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/views/client/pages/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/views/client/pages/login.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/views/client/pages/seguroVehicularProceso.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/views/client/pages/seguroVehicularProceso.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/views/client/pages/usuarioMiCuenta.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/views/client/pages/usuarioMiCuenta.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/views/client/pages/usuarioMiCuentaEditar.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/views/client/pages/usuarioMiCuentaEditar.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

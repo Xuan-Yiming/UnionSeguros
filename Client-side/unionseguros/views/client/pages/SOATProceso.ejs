@@ -58,6 +58,7 @@
                     <div class="form-vehiculo form-content-item">
                         <div class="content">
                             <h1>Necesitamos más información</h1>
+
                             <div class="form-inputs">
                                 <div class="form-line">
                                     <div class="form-item">
@@ -84,39 +85,44 @@
                                         <input placeholder="Ingrese año" id="txt-anio" maxlength="4"></input>
                                     </div>
                                 </div>
-
-                                <div class="form-item">
-                                    <h3>Serie</h3>
-                                    <input placeholder="Ingrese Serie" id="txt-serie" maxlength="17" oninput="this.value = this.value.toUpperCase()"></input>
-                                </div>
-                                <div class="form-item">
-                                    <h3>Uso</h3>
-                                    <select id="select-uso">
-                                        <option value="" disabled selected>Seleccione uno</option>
-                                        <option value="1">Particular</option>
-                                        <option value="2">Taxi</option>
-                                        <option value="5">Carga</option>
-                                    </select>
+                                <div class="form-line">
+                                    <div class="form-item">
+                                        <h3>Serie</h3>
+                                        <input placeholder="Ingrese Serie" id="txt-serie" maxlength="17" oninput="this.value = this.value.toUpperCase()"></input>
+                                    </div>
                                 </div>
                                 <div class="form-line">
                                     <div class="form-item">
-                                        <h3>Apellido paterno</h3>
+                                        <h3>Uso</h3>
+                                        <select id="select-uso">
+                                            <option value="" disabled selected>Seleccione uno</option>
+                                            <option value="1">Particular</option>
+                                            <option value="2">Taxi</option>
+                                            <option value="5">Carga</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-line">
+                                    <div class="form-item">
+                                        <h3>Apellido Paterno</h3>
                                         <input id="txt-apdPaterno" placeholder="Ingrese apellido" oninput="this.value = this.value.toUpperCase()"></input>
                                     </div>
                                     <div class="form-item">
-                                        <h3>Apellido materno</h3>
+                                        <h3>Apellido Materno</h3>
                                         <input id="txt-apdMaterno" placeholder="Ingrese apellido" oninput="this.value = this.value.toUpperCase()"></input>
                                     </div>
                                 </div>
-                                <div class="form-item">
-                                    <h3>Nombres</h3>
-                                    <input id="txt-nombres" placeholder="Ingrese nombres" oninput="this.value = this.value.toUpperCase()"></input>
+                                <div class="form-line">
+                                    <div class="form-item">
+                                        <h3>Nombres</h3>
+                                        <input id="txt-nombres" placeholder="Ingrese nombres" oninput="this.value = this.value.toUpperCase()"></input>
+                                    </div>
                                 </div>
-                                <div class="form-item">
-
-                                    <h3>Fecha de inicio del SOAT</h3>
-                                    <input id="date-picker" type="date"></input>
-
+                                <div class="form-line">
+                                    <div class="form-item">
+                                        <h3>Fecha de inicio del SOAT</h3>
+                                        <input id="date-picker" type="date"></input>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -148,31 +154,35 @@
 
                         <div class="client-soat-proceso-form">
                             <h2 id="total-a-pagar">Total: S/.100</h2>
-                            <div class="form-item">
-
-                            <h3>Número de tarjeta</h3>
-                            <input id = "txt-num-tarjeta" type="text" placeholder="1234-5678-1234-5678"
-                                maxlength="16" ></input>
+                            <div class="form-line">
+                                <div class="form-item">
+                                    <h3>Número de tarjeta</h3>
+                                    <input id = "txt-num-tarjeta" type="text" placeholder="1234-5678-1234-5678"
+                                           maxlength="16" ></input>
+                                </div>
                             </div>
                             <div class="form-line">
                                 <div class="form-item">
                                     <h3>Fecha Vencimiento</h3>
                                     <input id="txt-fecha-venc" type="text" placeholder="MM/YY" maxlength="5"></input>
                                 </div>
-
                                 <div class="form-item">
                                     <h3>CVV</h3>
                                     <input id="txt-CVV" type="text" placeholder="CVV" maxlength="3"></input>
                                 </div>
                             </div>
-                            <div class="form-item">
-                            <h3>Nombre</h3>
-                            <input id = "txt-tarjeta-nombre" type="text" placeholder="Ingrese nombre completo" oninput="this.value = this.value.toUpperCase()">
-                                </input>
+                            <div class="form-line">
+                                <div class="form-item">
+                                    <h3>Nombre</h3>
+                                    <input id = "txt-tarjeta-nombre" type="text" placeholder="Ingrese nombre completo" oninput="this.value = this.value.toUpperCase()">
+                                    </input>
+                                </div>
                             </div>
-                            <div class="form-item">
-                            <h3>Email del dueño del auto</h3>
-                            <input id = "txt-email" type="text" placeholder="Ingrese correo" oninput="this.value = this.value.toLowerCase()"></input>
+                            <div class="form-line">
+                                <div class="form-item">
+                                    <h3>Email del dueño del auto</h3>
+                                    <input id = "txt-email" type="text" placeholder="Ingrese correo" oninput="this.value = this.value.toLowerCase()"></input>
+                                </div>
                             </div>
                         </div>
                     </div>
