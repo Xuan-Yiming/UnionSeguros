@@ -141,4 +141,16 @@ public class CalculoPrimaService {
         return valorAretornar;
     }
 
+    public List<CalculoPrima> listarCalculoPrima(){
+        List<CalculoPrima> lista = null ;
+        lista = calculoPrimaRepository.findAll();
+        return lista;
+    }
+
+    public List<CalculoPrima> BuscarCalculoPrimaParametro(String busqueda){
+        List<CalculoPrima> lista = new ArrayList<>();
+        lista = calculoPrimaRepository.findCalculoPrimaParametros(busqueda);
+        return  lista;
+    }
+
 }

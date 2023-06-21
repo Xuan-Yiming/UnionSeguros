@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SoatVigenteRepository extends JpaRepository<SoatVigente, Integer> {
+
+    SoatVigente findSoatVigenteByPlaca(String placaIngresada);
 }
