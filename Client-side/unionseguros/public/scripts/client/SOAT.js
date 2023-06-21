@@ -1,17 +1,21 @@
-
+document.getElementById("txt-documento").maxLength = "8";
 window.onload = function () {
   document
-    .getElementById("select-documento")
-    .addEventListener("change", function () {
-      document.getElementById("txt-documento").disabled = false;
-      if (document.querySelector("#select-documento").value == "1") {
-        document.getElementById("txt-documento").maxLength = "8";
-      } else if (document.querySelector("#select-documento").value == "2") {
-        document.getElementById("txt-documento").maxLength = "9";
-      } else if (document.querySelector("#select-documento").value == "5") {
-        document.getElementById("txt-documento").maxLength = "11";
-      }
-    });
+      .getElementById("select-documento")
+      .addEventListener("change", function () {
+        const selectedValue = this.value;
+        document.getElementById("txt-documento").value = "";
+        document.getElementById("txt-documento").disabled = false;
+        if (document.querySelector("#select-documento").value == "1") {
+          document.getElementById("txt-documento").maxLength = "8";
+        } else if (document.querySelector("#select-documento").value == "2") {
+          document.getElementById("txt-documento").maxLength = "9";
+        } else if (document.querySelector("#select-documento").value == "3") {
+          document.getElementById("txt-documento").maxLength = "11";
+        }else if (document.querySelector("#select-documento").value == "4") {
+          document.getElementById("txt-documento").maxLength = "16";
+        }
+      });
 
   fetch(GLOBAL_URL + "/tipoDocumento/listarActivos")
     .then((response) => {
@@ -89,11 +93,12 @@ function verificacion() {
   if (tipoDocumento === "0") {
     alert("Por favor ingrese el documento correcto.");
     return true;
-  } else if (tipoDocumento === "5") {
+  } else if (tipoDocumento === "3") {
     if (
-      documento.length !== 11 ||
-      !/^[0-9]+$/.test(documento) ||
-      (documento.substring(0, 2) !== "10" && documento.substring(0, 2) !== "20")
+        documento.length !== 11 ||
+        !/^[0-9]+$/.test(documento) ||
+        (documento.substring(0, 2) !== "10" &&
+            documento.substring(0, 2) !== "20")
     ) {
       document.querySelector("#txt-documento").focus();
       alert("Por favor ingrese un RUC correcto.");
@@ -111,9 +116,9 @@ function verificacion() {
       alert("Por favor ingrese un CE correcto.");
       return true;
     }
-  } else if (tipoDocumento === "3") {
+  } else if (tipoDocumento === "4") {
     document.querySelector("#txt-documento").focus();
-    if (!/^[A-Z0-9]+$/.test(documento)) {
+    if (documento.length < 8 ||!/^[A-Z0-9]+$/.test(documento)) {
       alert("Por favor ingrese un pasaporte correcto.");
       return true;
     }
