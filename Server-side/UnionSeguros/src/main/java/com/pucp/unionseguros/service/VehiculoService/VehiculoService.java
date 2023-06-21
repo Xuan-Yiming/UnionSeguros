@@ -57,7 +57,8 @@ public class VehiculoService {
         return vehiculoRepository.save(vehiculo);
     }
 
-    public Vehiculo deleteVehiculo(Vehiculo vehiculo){
+    public Vehiculo deleteVehiculo(Integer idVehiculo){
+        Vehiculo vehiculo = vehiculoRepository.findVehiculoById(idVehiculo);
         vehiculo.setActivo(false);
         return vehiculoRepository.save(vehiculo);
     }

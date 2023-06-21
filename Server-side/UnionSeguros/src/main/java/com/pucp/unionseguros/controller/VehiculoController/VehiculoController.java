@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
@@ -64,8 +65,8 @@ public class VehiculoController {
     }
 
     @PutMapping("/eliminar")
-    public Vehiculo eliminarVehiculo(@RequestBody Vehiculo vehiculo){
-        return vehiculoService.deleteVehiculo(vehiculo);
+    public Vehiculo eliminarVehiculo(@RequestParam(name = "idIngresado")Integer idIngresado){
+        return vehiculoService.deleteVehiculo(idIngresado);
     }
 
     @PutMapping(params = "eliminar",path ="/eliminar2")

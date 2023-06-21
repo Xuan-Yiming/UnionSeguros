@@ -25,4 +25,6 @@ public interface VehiculoRepository extends JpaRepository<Vehiculo,Integer> {
     @Modifying
     @Query("UPDATE Vehiculo v SET v.activo = false WHERE v.id = ?1")
     void eliminarVehiculo(Integer id);
+
+    Vehiculo findVehiculoById(Integer idIngresado);
 }
