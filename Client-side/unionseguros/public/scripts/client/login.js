@@ -1,7 +1,7 @@
 var stage = 0;
 localStorage.setItem("idCliente", null);
 localStorage.setItem("idVehiculo", null);
-
+document.getElementById("txt-documento").maxLength = "8";
 var flagRegistro = false;
 var flagCorreo = false;
 var flagEnviarPIN = false;
@@ -30,7 +30,7 @@ window.onload = function () {
       });
     })
     .catch((error) => {
-      alert("Ha ocurrido un error de comunicación con el servidor");
+      alert("Ha ocurrido un error de comunicación con el servidor 1");
       console.error(error);
     });
   document.querySelector("#dpFecha").value = new Date()
@@ -44,6 +44,7 @@ document
   .getElementById("select-documento")
   .addEventListener("change", function () {
     const selectedValue = this.value;
+    document.getElementById("txt-documento").value = "";
     document.getElementById("txt-documento").disabled = false;
     if (document.querySelector("#select-documento").value == "1") {
       document.getElementById("txt-documento").maxLength = "8";
@@ -51,22 +52,48 @@ document
       document.getElementById("txt-documento").maxLength = "9";
     } else if (document.querySelector("#select-documento").value == "3") {
       document.getElementById("txt-documento").maxLength = "11";
+    }else if (document.querySelector("#select-documento").value == "4") {
+      document.getElementById("txt-documento").maxLength = "16";
     }
+
+
   });
 
-document
-  .querySelector("#btn-advance")
-  .addEventListener("click", async function () {
+document.querySelector("#btn-advance").addEventListener("click", async function () {
     if (verificacion()) {
       return;
     }
     if (stage === 0) {
-      await validacionRegistro();
-      if (!flagRegistro) {
-        alert("Ya existe una cuenta con tal documento");
-        return;
+      try {
+        const personaEncontrada = await validacionRegistro();
+        if (personaEncontrada) {
+          //la persona ya esta en la BD
+          if(personaEncontrada.contrasena!=="" && personaEncontrada.contrasena!==null){
+            //la persona ya tiene contrasena
+            alert("La persona ya se encuentra registrada");
+            return;
+          }else{
+            // no tiene contraseña
+            alert("La persona ya se encuentra registrada pero NO tiene contrasena");
+            document.querySelector("#txt-nombres").value = personaEncontrada.nombre;
+            document.querySelector("#txt-apdPaterno").value = personaEncontrada.apellidoPaterno;
+            document.querySelector("#txt-apdMaterno").value = personaEncontrada.apellidoMaterno;
+            document.querySelector("#txt-correo").value = personaEncontrada.email;
+
+            document.querySelector("#txt-nombres").disabled = true;
+            document.querySelector("#txt-apdPaterno").disabled = true;
+            document.querySelector("#txt-apdMaterno").disabled = true;
+            document.querySelector("#txt-correo").disabled = true;
+          }
+        }else{
+          alert("Puede continuar");
+        }
+      } catch (error) {
+        alert("Ha ocurrido un error de comunicación con el servidor 0");
+        console.error(error);
       }
     }
+
     if (stage === 1) {
       await validacionCorreo();
       if (!flagCorreo) {
@@ -123,6 +150,17 @@ document.querySelector("#btn-previous").addEventListener("click", function () {
     } else {
       return;
     }
+  }
+  if (stage === 1) {
+    document.querySelector("#txt-nombres").value = "";
+    document.querySelector("#txt-apdPaterno").value = "";
+    document.querySelector("#txt-apdMaterno").value = "";
+    document.querySelector("#txt-correo").value = "";
+
+    document.querySelector("#txt-nombres").disabled = false;
+    document.querySelector("#txt-apdPaterno").disabled = false;
+    document.querySelector("#txt-apdMaterno").disabled = false;
+    document.querySelector("#txt-correo").disabled = false;
   }
 
   const bar = document.querySelector(".ProgressBar");
@@ -214,7 +252,7 @@ function verificacion() {
       if (tipoDocumento === "0") {
         alert("Por favor ingrese el documento correcto.");
         return true;
-      } else if (tipoDocumento === "5") {
+      } else if (tipoDocumento === "3") {
         if (
           documento.length !== 11 ||
           !/^[0-9]+$/.test(documento) ||
@@ -237,16 +275,16 @@ function verificacion() {
           alert("Por favor ingrese un CE correcto.");
           return true;
         }
-      } else if (tipoDocumento === "3") {
+      } else if (tipoDocumento === "4") {
         document.querySelector("#txt-documento").focus();
-        if (!/^[A-Z0-9]+$/.test(documento)) {
+        if (documento.length < 8 ||!/^[A-Z0-9]+$/.test(documento)) {
           alert("Por favor ingrese un pasaporte correcto.");
           return true;
         }
       }
       return false;
-
       break;
+
     case 1:
       const email = document.querySelector("#txt-correo").value;
       if (email === "" || apdPaterno === "" || nombres === "") {
@@ -310,50 +348,29 @@ function verificacion() {
 
 /****APIS****/
 async function validacionRegistro() {
-  const numero_documento = document.querySelector("#txt-documento").value;
-  const id_tipo_documento = document.querySelector("#select-documento").value;
-  const informacion = JSON.stringify([numero_documento, id_tipo_documento]);
-  const url =
-    GLOBAL_URL +
-    "/usuario/verificarEmailIngresadoDisponible?informacion=" +
-    informacion;
+  return new Promise((resolve, reject) => {
+    const params = new URLSearchParams();
+    numero_documento = document.querySelector("#txt-documento").value;
+    id_tipo_documento = document.querySelector("#select-documento").value;
+    params.append("numDocumento", numero_documento);
+    params.append("tipoDocumento", id_tipo_documento);
+    const url = GLOBAL_URL + "/usuario/verificarExistenciaDeCliente?" + params.toString();
 
-  try {
-    const response = await fetch(url);
-    const element = await response.json();
+    fetch(url)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          resolve(data);
+        })
+        .catch((error) => {
+          resolve(null);
+        });
+  });
 
-    if (element !== null) {
-      // ya está registrado
-      const contrasena = element.contrasena;
-      if (contrasena === "") {
-        // no tiene contraseña
-        document.querySelector("#txt-nombres").value = element.nombre;
-        document.querySelector("#txt-apdPaterno").value =
-          element.apellidoPaterno;
-        document.querySelector("#txt-apdMaterno").value =
-          element.apellidoMaterno;
-        document.querySelector("#txt-correo").value = element.email;
-
-        document.querySelector("#txt-nombres").disabled = true;
-        document.querySelector("#txt-apdPaterno").disabled = true;
-        document.querySelector("#txt-apdMaterno").disabled = true;
-        document.querySelector("#txt-correo").disabled = true;
-
-        flagRegistro = true;
-      } else {
-        // ya tiene contraseña, está listo
-        flagRegistro = false;
-      }
-    } else {
-      // no está registrado
-      flagRegistro = true;
-    }
-  } catch (error) {
-    alert("Ha ocurrido un error de comunicación con el servidor");
-    console.error(error);
-    localStorage.setItem("error", "1");
-    flagRegistro = false;
-  }
 }
 
 async function validacionCorreo() {
@@ -374,7 +391,7 @@ async function validacionCorreo() {
       flagCorreo = true;
     }
   } catch (error) {
-    alert("Ha ocurrido un error de comunicación con el servidor");
+    alert("Ha ocurrido un error de comunicación con el servidor 3");
     console.error(error);
     flagCorreo = false;
   }
@@ -403,7 +420,7 @@ async function enviarPIN() {
     }
   } catch (error) {
     // Handle the error
-    alert("Ha ocurrido un error de comunicación con el servidor");
+    alert("Ha ocurrido un error de comunicación con el servidor 4");
     console.error(error);
     localStorage.setItem("error", "1");
     flagEnviarPIN = false;
@@ -429,7 +446,7 @@ async function validarPIN() {
       flagValidarPIN = false;
     }
   } catch (error) {
-    alert("Ha ocurrido un error de comunicación con el servidor");
+    alert("Ha ocurrido un error de comunicación con el servidor 5");
     console.error(error);
     localStorage.setItem("error", "1");
     flagRegistro = false;
