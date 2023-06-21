@@ -26,42 +26,44 @@ window.onload = function () {
       console.error(error);
     });
 
-  //   document.querySelector("#txt-buscar").addEventListener("input", function () {
-  //     clearTimeout(searchTimer);
-  //     searchTimer = setTimeout(function () {
-  //       const query = document.querySelector("#txt-buscar").value.toLowerCase();
+    document.querySelector("#txt-buscar").addEventListener("input", function () {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(function () {
+        const query = document.querySelector("#txt-buscar").value.toLowerCase();
 
-  //       let params = new URLSearchParams();
-  //       params.append("busqueda", query);
+        let params = new URLSearchParams();
+        params.append("busqueda", query);
 
-  //       let url = new URL(
-  //         GLOBAL_URL + "/planSOAT/buscarbeneficiosSOAT?" + params.toString()
-  //       );
+        let url = new URL(
+          GLOBAL_URL +
+            "/detalleCotizacion/buscarPorParametros?" +
+            params.toString()
+        );
 
-  //       fetch(url)
-  //                 .then((response) => {
-  //   if (!response.ok) {
-  //     throw new Error(response.status + " " + response.statusText);
-  //   } else {
-  //     try {
+        fetch(url)
+                  .then((response) => {
+    if (!response.ok) {
+      throw new Error(response.status + " " + response.statusText);
+    } else {
+      try {
           return response.json();
         } catch (error) {
           return null;
         }
 
-  //   }
-  // })
-  //         .then((data) => {
-  //           this.beneficios = data;
-  //           crearLaTabla(data);
-  //         })
-  //         .catch((error) => {
-  //
-  //                       alert("Ha ocurrido un error de comunicación con el servidor");
-  // console.error(error);
-  //         });
-  //     }, 500);
-  //   });
+    }
+  })
+          .then((data) => {
+            this.beneficios = data;
+            crearLaTabla(data);
+          })
+          .catch((error) => {
+  
+                        alert("Ha ocurrido un error de comunicación con el servidor");
+  console.error(error);
+          });
+      }, 500);
+    });
 
   document.querySelector("#btn-nuevo").addEventListener("click", function () {
     localStorage.removeItem("data-beneficio");
