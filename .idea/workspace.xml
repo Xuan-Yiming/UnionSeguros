@@ -6,20 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="78b6ce57-e96d-4dcd-9cdb-1c45ea2c6930" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/login.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/usuarioMiCuentaEditar.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/usuarioMiCuentaEditar.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/src/main/java/com/pucp/unionseguros/controller/CorreosController/EmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/src/main/java/com/pucp/unionseguros/controller/CorreosController/EmailController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/src/main/java/com/pucp/unionseguros/repository/PersonasRepository/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/src/main/java/com/pucp/unionseguros/repository/PersonasRepository/UsuarioRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/target/classes/com/pucp/unionseguros/controller/CorreosController/EmailController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/target/classes/com/pucp/unionseguros/controller/CorreosController/EmailController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/target/classes/com/pucp/unionseguros/controller/SOATController/BoletaDeVentaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/target/classes/com/pucp/unionseguros/controller/SOATController/BoletaDeVentaController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/target/classes/com/pucp/unionseguros/controller/VehiculoController/VehiculoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/target/classes/com/pucp/unionseguros/controller/VehiculoController/VehiculoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/target/classes/com/pucp/unionseguros/repository/PersonasRepository/UsuarioRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/target/classes/com/pucp/unionseguros/repository/PersonasRepository/UsuarioRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/target/classes/com/pucp/unionseguros/repository/SOATRepository/BoletaDeVentaRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/target/classes/com/pucp/unionseguros/repository/SOATRepository/BoletaDeVentaRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/target/classes/com/pucp/unionseguros/repository/VehiculoRepository/VehiculoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/target/classes/com/pucp/unionseguros/repository/VehiculoRepository/VehiculoRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/target/classes/com/pucp/unionseguros/service/SOATService/BoletaDeVentaService.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/target/classes/com/pucp/unionseguros/service/SOATService/BoletaDeVentaService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/target/classes/com/pucp/unionseguros/service/VehiculoService/VehiculoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/target/classes/com/pucp/unionseguros/service/VehiculoService/VehiculoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminDetalleCliente.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminDetalleCliente.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +59,7 @@
       <workItem from="1687308107108" duration="6318000" />
       <workItem from="1687361686921" duration="14280000" />
       <workItem from="1687393051735" duration="6793000" />
-      <workItem from="1687400105770" duration="2329000" />
+      <workItem from="1687400105770" duration="3830000" />
     </task>
     <servers />
   </component>
