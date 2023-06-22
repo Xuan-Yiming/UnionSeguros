@@ -36,8 +36,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     public Usuario findUsuarioByEmail(String emailIngresado);
 
-    @Query("SELECT usu FROM Usuario usu WHERE usu.numeroDocumento=:numDocumentIngresado AND " +
-            "usu.fidTipoDocumento=:fidTipoDocIngresado AND  (usu.contrasena IS NULL OR usu.contrasena = '') ")
+    @Query("SELECT usu FROM Usuario usu WHERE usu.numeroDocumento=:numDocumentIngresado AND usu.fidTipoDocumento=:fidTipoDocIngresado")
     public Usuario verificarExistenciaDeCliente(String numDocumentIngresado, TipoDocumento fidTipoDocIngresado);
 
     @Query("SELECT usu FROM Usuario  usu WHERE usu.email=:correoIngresado")

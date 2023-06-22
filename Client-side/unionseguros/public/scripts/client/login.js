@@ -1,9 +1,16 @@
 var stage = 0;
-var flagCorreo = false;
+var flagClienteExiste = false;
 document.getElementById("txt-documento").maxLength = "8";
+const  inputFechaNacimiento = document.querySelector("#dp-fecha-nacimiento");
 
-var flagEnviarPIN = false;
-var flagValidarPIN = false;
+// La fecha mínima permitida (hace 18 años)
+const fechaMinima = new Date();
+fechaMinima.setFullYear(fechaMinima.getFullYear() - 18);
+
+// No deja poner otras fechas posteriores a esta
+inputFechaNacimiento.max = fechaMinima.toISOString().split("T")[0];
+
+
 
 window.onload = function () {
   fetch(GLOBAL_URL + "/tipoDocumento/listarActivos")
@@ -57,8 +64,8 @@ document.querySelector("#btn-advance").addEventListener("click", async function 
     if (stage === 0) {
       try {
         const personaEncontrada = await validacionRegistro();
+
         if (personaEncontrada) {
-          alert(personaEncontrada.nombre + " " + personaEncontrada.contrasena);
           //la persona ya esta en la BD
           if(personaEncontrada.contrasena!=="" && personaEncontrada.contrasena!==null){
             //la persona ya tiene contrasena
@@ -66,19 +73,19 @@ document.querySelector("#btn-advance").addEventListener("click", async function 
             return;
           }else{
             // no tiene contraseña
-            alert("La persona ya se encuentra registrada pero NO tiene contrasena");
+            alert("Necesitas crear una contraseña para iniciar sesión.");
             document.querySelector("#txt-nombres").value = personaEncontrada.nombre;
             document.querySelector("#txt-apdPaterno").value = personaEncontrada.apellidoPaterno;
             document.querySelector("#txt-apdMaterno").value = personaEncontrada.apellidoMaterno;
             document.querySelector("#txt-correo").value = personaEncontrada.email;
-            flagCorreo = true; //indica que el correo ya existe pero es correcto que avance
+            flagClienteExiste = true; //indica que el correo ya existe pero es correcto que avance
             document.querySelector("#txt-nombres").disabled = true;
             document.querySelector("#txt-apdPaterno").disabled = true;
             document.querySelector("#txt-apdMaterno").disabled = true;
             document.querySelector("#txt-correo").disabled = true;
+            localStorage.setItem("dataCliente", JSON.stringify(personaEncontrada));
           }
         }else{
-          alert("Puede continuar");
         }
       } catch (error) {
         alert("Ha ocurrido un error al validar número de documento");
@@ -89,13 +96,13 @@ document.querySelector("#btn-advance").addEventListener("click", async function 
     if (stage === 1) { //si se autocompletaron datos no necesita verificar correo
       try {
         const correoEncontrado = await validacionCorreo(); //devuelve TRUE si no se ha encontrado ningun correo
-        if (!correoEncontrado && flagCorreo===false) {
+        if (!correoEncontrado && flagClienteExiste===false) {
           //el correo ya se encuentra registrado
-          alert("El correo ingresado ya se encuentra registrado");
+          alert("El correo ingresado ya se encuentra registrado.");
           return;
         }else{
           //aca debe MANDAR PIN
-
+          
           try {
             const respuestaPIN = await enviarPIN();
             alert(respuestaPIN);
@@ -110,7 +117,7 @@ document.querySelector("#btn-advance").addEventListener("click", async function 
             alert("Ha ocurrido un error al mandar el PIN");
             console.error(error);
           }
-
+          
         }
       } catch (error) {
         alert("Ha ocurrido un error al validar el correo");
@@ -118,43 +125,197 @@ document.querySelector("#btn-advance").addEventListener("click", async function 
       }
     }
     if (stage === 2) {
-      /*
-      await validarPIN();
-      if (!flagValidarPIN) {
-        return;
+      document.getElementById("btn-advance").textContent = "Finalizar";
+      
+      try {
+        const flagPIN = await validacionPIN(); //devuelve TRUE si no se ha encontrado ningun correo
+        alert(flagPIN);
+        if (!flagPIN) {
+          //el PIN no es correcto
+          alert("El PIN ingresado es incorrecto.");
+          return;
+        }else{
+          //el PIN es correcto
+        }
+      } catch (error) {
+        alert("Ha ocurrido un error al verificar el PIN");
+        console.error(error);
       }
-       */
-    }
-    if (stage === 4) {
-      window.location.href = "/";
+      
     }
 
-    var bar = document.querySelector(".ProgressBar");
-    if (bar.querySelectorAll(".is-current").length > 0) {
-      const progressBar = document.querySelector(".ProgressBar");
-      const currentSteps = progressBar.querySelectorAll(".is-current");
-      currentSteps.forEach((step) => {
-        step.classList.remove("is-current");
-        step.classList.add("is-complete");
-      });
-      const firstIncompleteStep = progressBar.querySelector(
-        ".ProgressBar-step:not(.is-complete)"
-      );
-      if (firstIncompleteStep) {
-        firstIncompleteStep.classList.add("is-current");
-      }
+  if (stage === 3) {
+    if (!flagClienteExiste) {
+      //cliente no existe
+      const usuario = {
+        nombre: document.querySelector("#txt-nombres").value,
+        apellidoPaterno: document.querySelector("#txt-apdPaterno").value,
+        apellidoMaterno: document.querySelector("#txt-apdMaterno").value,
+        fechaNacimiento: new Date(
+            document.querySelector("#dp-fecha-nacimiento").value
+        )
+            .toISOString()
+            .slice(0, 10),
+        telefono: "",
+        direccion: "",
+        numeroDocumento: document.querySelector("#txt-documento").value,
+        activoPersona: true,
+        fidTipoDocumento: {
+          id: document.querySelector("#select-documento").value,
+        },
+        email: document.querySelector("#txt-correo").value,
+        contrasena: document.querySelector("#txt-contrasena").value,
+        fechaCreacion: new Date().toISOString().slice(0, 10),
+        activoUsuario: true,
+        activo: true,
+        baneado: false,
+        fidRoles: {
+          idRole: 1,
+          fidPermisos: {
+            id: 1,
+          },
+        },
+      };
+      console.log(JSON.stringify(usuario));
+      fetch(GLOBAL_URL + "/cliente/insertar", {
+        method: "POST",
+        body: JSON.stringify(usuario),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(response.status + " " + response.statusText);
+            } else {
+              try {
+                return response.json();
+              } catch (error) {
+                return null;
+              }
+            }
+          })
+          .then((element) => {
+            if (parseInt(element) > 0) {
+              alert("Tu cuenta fue registrada con éxito. Ya puedes iniciar sesión con tus credenciales.");
+              window.location.href = "/iniciarSesion";
+            } else {
+              if (parseInt(element)>0 == 0) {
+                alert("Número de documento repetido");
+              } else if (parseInt(element) > 0 == -1) {
+                alert("Correo repetido");
+              } else {
+                alert("Ha ocurrido un error");
+              }
+              return;
+            }
+          })
+          .catch((error) => {
+            alert("Ha ocurrido un error de comunicación con el servidor");
+            console.error(error);
+          });
     } else {
-      const firstStep = bar.querySelector(".ProgressBar-step");
-      if (firstStep) {
-        firstStep.classList.add("is-current");
-      }
+      //se modifica la contrasena
+      let data = JSON.parse(localStorage.getItem("dataCliente"));
+      const usuario = {
+        id: data.id,
+        nombre: document.querySelector("#txt-nombres").value,
+        apellidoPaterno: document.querySelector("#txt-apdPaterno").value,
+        apellidoMaterno: document.querySelector("#txt-apdMaterno").value,
+        fechaNacimiento: new Date(
+            document.querySelector("#dp-fecha-nacimiento").value
+        )
+            .toISOString()
+            .slice(0, 10),
+        telefono: data.telefono,
+        direccion: data.direccion,
+        numeroDocumento: document.querySelector("#txt-documento").value,
+        activoPersona: true,
+        fidTipoDocumento: {
+          id: document.querySelector("#select-documento").value,
+        },
+        email: document.querySelector("#txt-correo").value,
+        contrasena: document.querySelector("#txt-contrasena").value,
+        fechaCreacion: data.fechaCreacion,
+        activoUsuario: true,
+        activo: true,
+        baneado: data.baneado,
+        fidRoles: {
+          idRole: 1,
+          fidPermisos: {
+            id: 1,
+          },
+        },
+      };
+      console.log(JSON.stringify(usuario));
+
+      fetch(GLOBAL_URL + "/cliente/modificar", {
+        method: "PUT",
+        body: JSON.stringify(usuario),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(response.status + " " + response.statusText);
+            } else {
+              try {
+                return response.json();
+              } catch (error) {
+                return null;
+              }
+            }
+          })
+          .then((element) => {
+            if (element) {
+              alert("Tu cuenta fue actualizada exitosamente. Ya puedes iniciar sesión con tus credenciales.");
+              window.location.href = "/iniciarSesion";
+            } else {
+              alert("Ha ocurrido un error");
+            }
+          })
+          .catch((error) => {
+            alert("Ha ocurrido un error de comunicación con el servidor");
+            console.error(error);
+          });
     }
 
-    stage = stage + 1;
-    console.log(stage);
 
-    changeStage();
-  });
+
+
+
+
+
+
+  }
+
+  var bar = document.querySelector(".ProgressBar");
+  if (bar.querySelectorAll(".is-current").length > 0) {
+    const progressBar = document.querySelector(".ProgressBar");
+    const currentSteps = progressBar.querySelectorAll(".is-current");
+    currentSteps.forEach((step) => {
+      step.classList.remove("is-current");
+      step.classList.add("is-complete");
+    });
+    const firstIncompleteStep = progressBar.querySelector(
+        ".ProgressBar-step:not(.is-complete)"
+    );
+    if (firstIncompleteStep) {
+      firstIncompleteStep.classList.add("is-current");
+    }
+  } else {
+    const firstStep = bar.querySelector(".ProgressBar-step");
+    if (firstStep) {
+      firstStep.classList.add("is-current");
+    }
+  }
+
+  stage = stage + 1;
+  console.log(stage);
+
+  changeStage();
+});
 
 document.querySelector("#btn-previous").addEventListener("click", function () {
   if (stage === 0) {
@@ -170,11 +331,12 @@ document.querySelector("#btn-previous").addEventListener("click", function () {
     document.querySelector("#txt-apdPaterno").value = "";
     document.querySelector("#txt-apdMaterno").value = "";
     document.querySelector("#txt-correo").value = "";
-    flagCorreo = false;
+    flagClienteExiste = false;
     document.querySelector("#txt-nombres").disabled = false;
     document.querySelector("#txt-apdPaterno").disabled = false;
     document.querySelector("#txt-apdMaterno").disabled = false;
     document.querySelector("#txt-correo").disabled = false;
+    localStorage.removeItem("dataCliente");
   }
 
   const bar = document.querySelector(".ProgressBar");
@@ -207,7 +369,6 @@ function changeStage() {
       document.querySelector(".form-correo").style.display = "none";
       document.querySelector(".form-validacion").style.display = "none";
       document.querySelector(".form-contrasena").style.display = "none";
-      document.querySelector(".form-result").style.display = "none";
       document.querySelector("#btn-previous").style.display = "block";
       break;
     case 1:
@@ -215,7 +376,6 @@ function changeStage() {
       document.querySelector(".form-correo").style.display = "block";
       document.querySelector(".form-validacion").style.display = "none";
       document.querySelector(".form-contrasena").style.display = "none";
-      document.querySelector(".form-result").style.display = "none";
       document.querySelector("#btn-previous").style.display = "block";
       break;
     case 2:
@@ -223,7 +383,6 @@ function changeStage() {
       document.querySelector(".form-correo").style.display = "none";
       document.querySelector(".form-validacion").style.display = "block";
       document.querySelector(".form-contrasena").style.display = "none";
-      document.querySelector(".form-result").style.display = "none";
       document.querySelector("#btn-previous").style.display = "block";
       break;
     case 3:
@@ -231,20 +390,7 @@ function changeStage() {
       document.querySelector(".form-correo").style.display = "none";
       document.querySelector(".form-validacion").style.display = "none";
       document.querySelector(".form-contrasena").style.display = "block";
-      document.querySelector(".form-result").style.display = "none";
       document.querySelector("#btn-previous").style.display = "block";
-      break;
-    case 4:
-      document.querySelector(".form-registro").style.display = "none";
-      document.querySelector(".form-correo").style.display = "none";
-      document.querySelector(".form-validacion").style.display = "none";
-      document.querySelector(".form-contrasena").style.display = "none";
-      document.querySelector(".form-result").style.display = "block";
-      document.querySelector("#btn-previous").style.display = "none";
-      guardar();
-      if (localStorage.getItem("error") === "1") {
-        return;
-      }
       break;
   }
 }
@@ -296,12 +442,16 @@ function verificacion() {
       break;
 
     case 1:
+      const  inputFechaNacimiento = document.querySelector("#dp-fecha-nacimiento");
+      if(new Date(inputFechaNacimiento.value) > fechaMinima){
+        alert("Debes ser mayor de 18 años.");
+        return true;
+      }
       const email = document.querySelector("#txt-correo").value;
-      if (email === "" || apdPaterno === "" || nombres === "") {
+      if (email === "" || apdPaterno === "" || nombres === "" || inputFechaNacimiento.value === "") {
         alert("Falta completar campos");
         return true;
       }
-
       if (
         !/^[A-Za-z]+$/.test(apdPaterno) ||
         !/^[A-Za-z]+$/.test(apdMaterno) ||
@@ -343,10 +493,21 @@ function verificacion() {
       break;
     case 3:
       const contrasena = document.querySelector("#txt-contrasena").value;
+      const contrasenaConfirm = document.querySelector("#txt-contrasena-confirm").value;
+
       if (contrasena === "") {
-        alert("Falta completar el campo");
+        alert("Ingrese una contraseña.");
         return true;
       }
+      if (contrasena !== "" && contrasenaConfirm === "") {
+        alert("Confirme su contraseña por favor.");
+        return true;
+      }
+      if (contrasena !== contrasenaConfirm) {
+        alert("Las contraseñas no coinciden.");
+        return true;
+      }
+
       return false;
       break;
 
@@ -436,29 +597,32 @@ async function enviarPIN() {
   });
 }
 
-async function validarPIN() {
-  const correo = document.querySelector("#txt-documento").value;
-  const token_ingresado = document.querySelector("#txt-PIN").value;
-  const informacion = JSON.stringify([correo, token_ingresado]);
-  const url = GLOBAL_URL + "/usuario/verificarToken?informacion=" + informacion;
+async function validacionPIN() {
+  return new Promise((resolve, reject) => {
+    const params = new URLSearchParams();
+    const email = document.querySelector("#txt-correo").value;
+    const token_ingresado = document.querySelector("#txt-PIN").value;
+    params.append("correoIngresado", email);
+    params.append("tokenIngresado", token_ingresado);
+    const url = GLOBAL_URL + "/email/verificarToken?" + params.toString();
 
-  try {
-    const response = await fetch(url);
-    const element = await response.json();
-
-    if (element) {
-      //el PIN ingresado coincide con el enviado
-      flagValidarPIN = true;
-    } else {
-      //el PIN ingresado coincide con el enviado
-      alert("El PIN ingresado no coincide");
-      flagValidarPIN = false;
-    }
-  } catch (error) {
-    alert("Ha ocurrido un error de comunicación con el servidor 5");
-    console.error(error);
-    localStorage.setItem("error", "1");
-    flagRegistro = false;
-  }
+    fetch(url)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          resolve(data);
+        })
+        .catch((error) => {
+          console.error(error);
+          resolve(null);
+        });
+  });
 }
-function guardar() {}
+
+
+
+

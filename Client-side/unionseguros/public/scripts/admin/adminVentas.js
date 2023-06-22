@@ -2,24 +2,18 @@ var ventas;
 var searchTimer;
 
 window.onload = function () {
-  fetch(GLOBAL_URL + "/BoletaDeVenta/listarTodas")
+  fetch(GLOBAL_URL + "/BoletaDeVenta/listarTodasActivas")
     .then((response) => {
       if (!response.ok) {
-          if (response.status < 500 && response.status >= 400) {
-            throw new Error(
-              "Error del cliente: " +
-                response.status +
-                " " +
-                response.statusText
-            );
-          } else {
-            throw new Error(
-              "Error del servidor: " +
-                response.status +
-                " " +
-                response.statusText
-            );
-          }
+        if (response.status < 500 && response.status >= 400) {
+          throw new Error(
+            "Error del cliente: " + response.status + " " + response.statusText
+          );
+        } else {
+          throw new Error(
+            "Error del servidor: " + response.status + " " + response.statusText
+          );
+        }
       } else {
         try {
           return response.json();
@@ -122,7 +116,7 @@ function crearLaTabla(data) {
     fecha.classList.add("td-fecha");
     fecha.innerText = venta.fechaEmision;
     tableRow.appendChild(fecha);
-
+    const button = document.createElement("td");
     const buttonEliminar = document.createElement("button");
     buttonEliminar.classList.add("button");
     buttonEliminar.classList.add("button-eliminar");
@@ -136,19 +130,14 @@ function crearLaTabla(data) {
       }
 
       const dataId = event.target.getAttribute("data-id");
-      var data = {
-        id: dataId,
-        fidSoat: {},
-        fechaEmision: null,
-        monto: null,
-        activo: false,
-      };
-      const url = GLOBAL_URL + "/BoletaDeVenta/eliminar";
+
+      const url = GLOBAL_URL + "/BoletaDeVenta/eliminar?idBoleta=" + dataId;
+      console.log(url);
       fetch(url, {
         method: "PUT",
-        body: JSON.stringify(data),
+        body: dataId,
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
         },
       })
         .then((response) => {
@@ -170,15 +159,15 @@ function crearLaTabla(data) {
             }
           } else {
             try {
-              return response.json();
+              alert("Boleta eliminada exitosamente");
+              window.location.reload();
             } catch (error) {
               return null;
             }
           }
         })
         .then((data) => {
-          alert("Boleta eliminada exitosamente");
-          window.location.reload();
+          
         })
         .catch((error) => {
           alert(error);
@@ -186,7 +175,8 @@ function crearLaTabla(data) {
         });
     });
 
-    tableRow.appendChild(buttonEliminar);
+    button.appendChild(buttonEliminar);
+    tableRow.appendChild(button);
 
     table.appendChild(tableRow);
   });
