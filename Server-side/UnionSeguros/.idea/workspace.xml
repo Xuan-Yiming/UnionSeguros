@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c533adc8-9480-47e7-ba91-492753cd2c4a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/usuario.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/views/client/pages/usuario.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/views/client/pages/usuario.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/seguroVehicularProceso.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/seguroVehicularProceso.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/CorreosController/EmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/CorreosController/EmailController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/CorreosController/EmailController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/CorreosController/EmailController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +62,10 @@
     ]
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.UnionSegurosApplication">
+    <configuration name="All in generated-requests" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http">
+      <method v="2" />
+    </configuration>
     <configuration name="UnionSegurosApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="UnionSeguros" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.pucp.unionseguros.UnionSegurosApplication" />
@@ -68,6 +73,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="HTTP Request.All in generated-requests" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -88,6 +98,7 @@
       <workItem from="1687376613580" duration="1334000" />
       <workItem from="1687388863050" duration="8061000" />
       <workItem from="1687452665646" duration="1332000" />
+      <workItem from="1687460751538" duration="5518000" />
     </task>
     <servers />
   </component>
@@ -125,6 +136,16 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/ExtrasService/CalculoPrimaService.java</url>
           <line>74</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/CorreosController/EmailController.java</url>
+          <line>57</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/CorreosController/EmailController.java</url>
+          <line>60</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

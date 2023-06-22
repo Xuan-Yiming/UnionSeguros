@@ -105,12 +105,10 @@ document.querySelector("#btn-advance").addEventListener("click", async function 
           
           try {
             const respuestaPIN = await enviarPIN();
-            alert(respuestaPIN);
-            if (respuestaPIN !== "SE ENVIO EL TOKEN") {
+            if (!respuestaPIN) {
               alert("No se pudo enviar el token a tu correo.");
               return;
-            }
-            if (respuestaPIN === "SE ENVIO EL TOKEN"){
+            } else {
               alert("Se envio un token a tu correo.");
             }
           } catch (error) {
@@ -280,14 +278,6 @@ document.querySelector("#btn-advance").addEventListener("click", async function 
             console.error(error);
           });
     }
-
-
-
-
-
-
-
-
   }
 
   var bar = document.querySelector(".ProgressBar");
@@ -570,31 +560,97 @@ async function validacionCorreo() {
 
 async function enviarPIN() {
   return new Promise((resolve, reject) => {
-    const email = document.querySelector("#txt-correo").value;
-    const entry = [email];
-    console.log(JSON.stringify(entry));
 
-    fetch(GLOBAL_URL + "/email/generarToken", {
-      method: "POST",
-      body: JSON.stringify(entry),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    if (document.querySelector("#id").innerHTML == "") {
+      const usuario = {
+        nombre: document.querySelector("#txt-nombre").value,
+        apellidoPaterno: document.querySelector("#txt-apdPaterno").value,
+        apellidoMaterno: document.querySelector("#txt-apdMaterno").value,
+        fechaNacimiento: new Date(
+          document.querySelector("#dp-fecha-nacimiento").value
+        )
+          .toISOString()
+          .slice(0, 10),
+        // telefono: null,
+        // direccion: document.querySelector("#txt-direccion").value,
+        numeroDocumento: document.querySelector("#txt-documento").value,
+        activoPersona: true,
+        fidTipoDocumento: {
+          id: document.querySelector("#select-documento").value,
+        },
+        email: document.querySelector("#txt-correo").value,
+        contrasena: null,//document.querySelector("#txt-contrasena").value,
+        fechaCreacion: new Date().toISOString().slice(0, 10),
+        activoUsuario: true,
+        activo: true,
+        baneado: false,
+        fidRoles: {
+          idRole: 1,
+          fidPermisos: {
+            id: 1,
+          },
+        },
+      };
+      console.log(JSON.stringify(usuario));
+      fetch(GLOBAL_URL + "/cliente/insertar", {
+        method: "POST",
+        body: JSON.stringify(usuario),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
+          }
+        })
+        .then((element) => {
+          localStorage.setItem("id", element);
+      
+          if (parseInt(element) > 0) {
+                const email = document.querySelector("#txt-correo").value;
+    var params = new URLSearchParams();
+    params.append("correo", email);
+    let url = new URL(GLOBAL_URL + "/email/generarToken" + "?" + params.toString());
+    console.log(url);
+
+    fetch(url)
         .then((response) => {
           if (!response.ok) {
             throw new Error(response.status + " " + response.statusText);
           }
           return response.text();
         })
-        .then((data) => {
-          resolve(data);
+      .then((data) => {
+        resolve(data);
         })
         .catch((error) => {
           console.error(error);
           resolve(null);
         });
-  });
+          } else {
+            if (parseInt(element) > 0 == 0) {
+              alert("Número de documento repetido");
+            } else if (parseInt(element) > 0 == -1) {
+              alert("Correo repetido");
+            } else {
+              alert("Ha ocurrido un error");
+            }
+            return;
+          }
+        })
+        .catch((error) => {
+          alert("Ha ocurrido un error de comunicación con el servidor");
+          console.error(error);
+        });
+//=======================================================================================================
+
 }
 
 async function validacionPIN() {

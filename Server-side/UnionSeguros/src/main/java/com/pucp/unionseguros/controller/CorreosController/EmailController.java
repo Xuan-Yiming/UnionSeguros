@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/email")
+@RequestMapping("api/v1/email")
 @CrossOrigin
 public class EmailController {
 
@@ -36,10 +36,10 @@ public class EmailController {
 
         return success;
     }
-
-
-    @RequestMapping(value = "/generarToken",method = RequestMethod.POST)
-    String generarTokenParaCliente(@RequestBody List<String> correo) throws  AuthenticationException{
+//    @RequestMapping(value = "/generarToken",method = RequestMethod.POST)
+//    String generarTokenParaCliente(@RequestBody List<String> correo) throws  AuthenticationException{
+    @GetMapping("/generarToken")
+        boolean generarTokenParaCliente(@RequestParam(name = "correo") String correo) throws  AuthenticationException{
         Random random = new Random();
         boolean success = false;
         Usuario foundUsuario = null;
@@ -52,10 +52,10 @@ public class EmailController {
         try{
 
             success = emailService.sendEmailTool("El token para validar su correo es: "+ sb.toString() +"\nAtentamente Union Seguros.",
-                                                correo.get(0),
+                                                correo,
                                                 "Token de validación de cuenta - UnionSeguros");
             if(success){
-                foundUsuario = usuarioRepository.findUsuarioByEmail(correo.get(0));
+                foundUsuario = usuarioRepository.findUsuarioByEmail(correo);
                 //tendría toda la información del usuario y ahora solo tengo que setear el token
                 //y actualizarlo
                 foundUsuario.setToken(sb.toString());
@@ -63,9 +63,9 @@ public class EmailController {
             }
 
         }catch (Exception ex){
-            return "NO SE PUDO ENVIAR EL TOKEN VERIFICAR INFORMACION";
+            return false;
         }
-        return "SE ENVIO EL TOKEN";
+        return true;
     }
 
     @GetMapping("/verificarToken")

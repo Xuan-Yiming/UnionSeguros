@@ -602,7 +602,7 @@ async function cargarVehiculo() {
           document.querySelector("#txt-asientos").disabled = true;
         }
         // anio
-        if (data.anhoFabricacion.substring(0, 4) != "") {
+        if (data.anhoFabricacion != "") {
           document.querySelector("#txt-anio").value =
             data.anhoFabricacion.substring(0, 4);
           document.querySelector("#txt-anio").disabled = true;
@@ -766,8 +766,6 @@ async function guardar() {
   const numAsiento = document.querySelector("#txt-asientos").value;
   const numSerie = document.querySelector("#txt-serie").value;
 
-  const moneda = document.querySelector("#select-moneda").value;
-
   const distrito = document.querySelector("#select-distrito").value;
   const valorAgregado = calcularValorAgregado();
 
@@ -844,51 +842,50 @@ async function guardar() {
       })
       .then((data) => {
         localStorage.setItem("idCotizacion", data);
-      })
-      .catch((error) => {
-        alert("Ha ocurrido un error de comunicación con el servidor");
-        console.error(error);
-        localStorage.setItem("error", "1");
-      });
-  } catch (error) {
-    console.error("Error:", error);
-  }
-
-  var listaCotizacionXDetalle = [];
-  for (var i = 0; i < selectedPlans.length; i++) {
-    var plan = selectedPlans[i];
-    var cotizacionXDetalle = {
-      fidCotizacion: localStorage.getItem("idCotizacion"),
-      fidDetalleCotizacion: plan.id,
-    };
-    listaCotizacionXDetalle.push(cotizacionXDetalle);
-  }
-
-  try {
-    let data = {
-      listaInsertada: listaCotizacionXDetalle,
-    };
-    console.log(JSON.stringify(data));
-    fetch(GLOBAL_URL + "/cotizacionXDetalleCotizacion/insertar", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(response.status + " " + response.statusText);
-        } else {
-          try {
-            return response.json();
-          } catch (error) {
-            return null;
+          var listaCotizacionXDetalle = [];
+          for (var i = 0; i < selectedPlans.length; i++) {
+            var plan = selectedPlans[i];
+            var cotizacionXDetalle = {
+              fidCotizacion: localStorage.getItem("idCotizacion"),
+              fidDetalleCotizacion: plan.id,
+            };
+            listaCotizacionXDetalle.push(cotizacionXDetalle);
           }
-        }
-      })
-      .then((data) => {
-        //supuestamente devuelve la lista
+
+          try {
+            let data = {
+              listaInsertada: listaCotizacionXDetalle,
+            };
+            console.log(JSON.stringify(data));
+            fetch(GLOBAL_URL + "/cotizacionXDetalleCotizacion/insertar", {
+              method: "POST",
+              body: JSON.stringify(data),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            })
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error(response.status + " " + response.statusText);
+                } else {
+                  try {
+                    return response.json();
+                  } catch (error) {
+                    return null;
+                  }
+                }
+              })
+              .then((data) => {
+                //supuestamente devuelve la lista
+              })
+              .catch((error) => {
+                alert("Ha ocurrido un error de comunicación con el servidor");
+                console.error(error);
+                localStorage.setItem("error", "1");
+              });
+          } catch (error) {
+            console.error("Error:", error);
+          }
       })
       .catch((error) => {
         alert("Ha ocurrido un error de comunicación con el servidor");
@@ -898,6 +895,8 @@ async function guardar() {
   } catch (error) {
     console.error("Error:", error);
   }
+
+
 }
 /*---------------------LA FORMA ANIDADA SI NO FUNCIONA LA ANTERIOR------------------------------*/
 
