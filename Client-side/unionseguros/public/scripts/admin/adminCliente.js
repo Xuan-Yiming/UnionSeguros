@@ -5,6 +5,13 @@ window.onload = function () {
   if (localStorage.getItem("user") == null) {
     window.location.href = "/admin/login";
   }
+
+    document
+      .querySelector("#btn-carga-masiva")
+      .addEventListener("click", function () {
+        document.querySelector("#btn-masiva").click();
+      });
+
   fetch(GLOBAL_URL + "/cliente/listarClientesActivos?busqueda=")
     .then((response) => {
       if (!response.ok) {
@@ -151,7 +158,7 @@ function crearLaTabla(data) {
     });
     auditoria.appendChild(buttonAuditoria);
     tableRow.appendChild(auditoria);
-    
+
     //add edit button
     const button = document.createElement("td");
     const editButton = document.createElement("button");

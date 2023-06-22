@@ -5,6 +5,10 @@ window.onload = function () {
     window.location.href = "/admin/login";
   }
 
+  document.querySelector("#btn-carga-masiva").addEventListener("click", function () {
+    document.querySelector("#btn-masiva").click();
+  });
+
   fetch(GLOBAL_URL + "/marcaVehiculo/listarTodasActivas")
     .then((response) => {
       if (!response.ok) {
