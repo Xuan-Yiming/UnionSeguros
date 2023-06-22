@@ -3,6 +3,30 @@ window.onload = function () {
     window.location.href = "/admin/login";
   }
 
+  document
+      .getElementById("select-documento")
+      .addEventListener("change", function () {
+        const selectedValue = this.value;
+        //document.getElementById("txt-documento").value = "";
+        //document.getElementById("txt-documento").disabled = false;
+        if (document.querySelector("#select-documento").value == "1") {
+          document.getElementById("txt-documento").maxLength = "8";
+        } else if (document.querySelector("#select-documento").value == "2") {
+          document.getElementById("txt-documento").maxLength = "9";
+        } else if (document.querySelector("#select-documento").value == "3") {
+          document.getElementById("txt-documento").maxLength = "11";
+        }else if (document.querySelector("#select-documento").value == "4") {
+          document.getElementById("txt-documento").maxLength = "16";
+        }
+      });
+
+
+
+
+
+
+
+
   fetch(GLOBAL_URL + "/tipoDocumento/listarActivos")
     .then((response) => {
       if (!response.ok) {
@@ -209,51 +233,39 @@ window.onload = function () {
   });
 
   function verificarCampos() {
-    return true;
-    let cobertura = document.querySelector("#txt-cobertura").value;
-    let precio = document.querySelector("#txt-precio").value;
-    let nombre = document.querySelector("#txt-nombre").value;
-
-    if (cobertura == "") {
-      document.querySelector("#txt-cobertura").focus();
-      alert("Debe ingresar la cobertura");
-      return false;
-    }
-    if (precio == "") {
-      document.querySelector("#txt-precio").focus();
-      alert("Debe ingresar el precio");
-      return false;
-    }
-    if (nombre == "") {
-      document.querySelector("#txt-nombre").focus();
-      alert("Debe ingresar el nombre");
-      return false;
-    }
-
-    if (!/^[0-9]+./.test(precio)) {
-      document.querySelector("#txt-precio").focus();
-      alert("El precio debe ser un número");
-      return false;
-    }
-
-    if (!/^[0-9]+./.test(cobertura)) {
-      document.querySelector("#txt-cobertura").focus();
-      alert("La cobertura debe ser un número");
-      return false;
-    }
-
+    
     var documento = document.querySelector("#txt-documento").value;
     var tipoDocumento = document.querySelector("#select-documento").value;
+    var apdPaterno = document.querySelector("#txt-apellido-paterno").value;
+    var apdMaterno = document.querySelector("#txt-apellido-materno").value;
+    var nombres = document.querySelector("#txt-nombre").value;
+    var email = document.querySelector("#txt-correo").value;
+    var contrasena = document.querySelector("#txt-contrasena").value;
+    var numCelular = document.querySelector("#txt-celular").value;
+
+
+    if (numCelular !== "") {
+      if (!/^[0-9]+$/.test(numCelular)) {
+        document.querySelector("#txt-celular").focus();
+        alert("El número celular debe ser numérico");
+        return false;
+      }
+      if (numCelular.length !== 9) {
+        document.querySelector("#txt-celular").focus();
+        alert("El número celular debe tener 9 caracteres");
+        return false;
+      }
+    }
 
     if (tipoDocumento === "0") {
       alert("Por favor ingrese el documento correcto.");
       return false;
-    } else if (tipoDocumento === "5") {
+    } else if (tipoDocumento === "3") {
       if (
-        documento.length !== 11 ||
-        !/^[0-9]+$/.test(documento) ||
-        (documento.substring(0, 2) !== "10" &&
-          documento.substring(0, 2) !== "20")
+          documento.length !== 11 ||
+          !/^[0-9]+$/.test(documento) ||
+          (documento.substring(0, 2) !== "10" &&
+              documento.substring(0, 2) !== "20")
       ) {
         document.querySelector("#txt-documento").focus();
         alert("Por favor ingrese un RUC correcto.");
@@ -271,18 +283,63 @@ window.onload = function () {
         alert("Por favor ingrese un CE correcto.");
         return false;
       }
-    } else if (tipoDocumento === "3") {
+    } else if (tipoDocumento === "4") {
       document.querySelector("#txt-documento").focus();
-      if (!/^[A-Z0-9]+$/.test(documento)) {
+      if (documento.length < 8 ||!/^[A-Z0-9]+$/.test(documento)) {
         alert("Por favor ingrese un pasaporte correcto.");
         return false;
       }
     }
-    if (placa == "" || placa.length !== 6 || !/^[A-Za-z0-9]+$/.test(placa)) {
-      document.querySelector("#txt-placa").focus();
-      alert("Por favor ingrese la placa correcta.");
+
+    var  inputFechaNacimiento = document.querySelector("#dp-fecha-nacimiento");
+    if(new Date(inputFechaNacimiento.value) > fechaMinima){
+      alert("El cliente debe ser mayor de 18 años.");
       return false;
     }
+    if (inputFechaNacimiento.value === "") {
+      alert("Debe ingresar fecha de nacimiento");
+      return false;
+    }
+
+    if (email !== "") {
+      if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+        alert("El correo electrónico no es válido");
+        return false;
+      }
+    }
+
+    if (email == "") {
+      alert("Debe ingresar un correo");
+      return false;
+    }
+    if (apdPaterno == "") {
+      alert("Debe ingresar un apellido paterno");
+      return false;
+    }
+    if (nombres == "") {
+      alert("Debe ingresar un nombre");
+      return false;
+    }
+
+    if (contrasena == "") {
+      alert("Debe ingresar una contraseña");
+      return false;
+    }
+
+    if (
+      !/^[A-Za-z]+$/.test(apdPaterno) ||
+      !/^[A-Za-z]+$/.test(apdMaterno) ||
+      !/^[A-Za-z ]+$/.test(nombres)
+    ) {
+      if (apdMaterno !== "-") {
+        document.querySelector("#txt-apellido-paterno").focus();
+        alert(
+          "Los nombres y apellidos no deben contener caracteres especiales"
+        );
+        return false;
+      }
+    }
+
 
     return true;
   }

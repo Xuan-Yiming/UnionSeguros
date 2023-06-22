@@ -129,37 +129,83 @@ window.onload = function () {
   });
 
   function verificarCampos() {
-    //   let cobertura = document.querySelector("#txt-cobertura").value;
-    //   let precio = document.querySelector("#txt-precio").value;
-    //   let nombre = document.querySelector("#txt-nombre").value;
+    var marca = document.querySelector("#select-marca").value;
+    var modelo = document.querySelector("#select-modelo").value;
+    var anio = document.querySelector("#txt-anio").value;
+    var numAsiento = document.querySelector("#txt-asientos").value;
+    var uso = document.querySelector("#select-uso").value;
+    var numSerie = document.querySelector("#txt-serie").value;
+    var placa = document.querySelector("#txt-placa").value;
+    var dueño = document.querySelector("#txt-dueno").value;
 
-    //   if (cobertura == "") {
-    //     document.querySelector("#txt-cobertura").focus();
-    //     alert("Debe ingresar la cobertura");
-    //     return false;
-    //   }
-    //   if (precio == "") {
-    //     document.querySelector("#txt-precio").focus();
-    //     alert("Debe ingresar el precio");
-    //     return false;
-    //   }
-    //   if (nombre == "") {
-    //     document.querySelector("#txt-nombre").focus();
-    //     alert("Debe ingresar el nombre");
-    //     return false;
-    //   }
+    if (placa === "" || placa.length !== 6 || !/^[A-Za-z0-9]+$/.test(placa)) {
+      document.querySelector("#txt-placa").focus();
+      alert("Ingresar placa correcta.");
+      return true;
+    }
 
-    //   if (!/^[0-9]+./.test(precio)) {
-    //     document.querySelector("#txt-precio").focus();
-    //     alert("El precio debe ser un número");
-    //     return false;
-    //   }
+    if (placa == "") {
+      alert("Debe ingresar la placa");
+      return false;
+    }
 
-    //   if (!/^[0-9]+./.test(cobertura)) {
-    //     document.querySelector("#txt-cobertura").focus();
-    //     alert("La cobertura debe ser un número");
-    //     return false;
-    //   }
+    if (numAsiento == "") {
+      alert("Debe ingresar el número de asientos");
+      return false;
+    }
+
+    if (anio == "") {
+      alert("Debe ingresar el año");
+      return false;
+    }
+    if (marca == "") {
+      alert("Debe seleccionar la marca");
+      return false;
+    }
+    if (modelo == "") {
+      alert("Debe seleccionar el modelo");
+      return false;
+    }
+    if (uso =="") {
+      alert("Debe seleccionar el tipo de uso");
+      return false;
+    }
+
+    if (numSerie == "") {
+      alert("Debe ingresar el número de serie");
+      return false;
+    }
+
+    if (!/^[0-9]+$/.test(numAsiento)) {
+      document.querySelector("#txt-asientos").focus();
+      alert("El número de asientos debe ser numérico");
+      return false;
+    }
+
+    if (numAsiento < 1 || numAsiento > 20) {
+      document.querySelector("#txt-asientos").focus();
+      alert("El número de asientos debe estar entre 1 y 20");
+      return false;
+    }
+
+    if (!/^[0-9]+$/.test(anio)) {
+      document.querySelector("#txt-anio").focus();
+      alert("El año debe ser numérico");
+      return false;
+    }
+
+    if (anio < 2000 || anio > new Date().getFullYear()) {
+      document.querySelector("#txt-anio").focus();
+      alert("El año debe estar entre 2000 y " + new Date().getFullYear());
+      return false;
+    }
+
+    if (numSerie.length !== 17) {
+      document.querySelector("#txt-serie").focus();
+      alert("El número de serie debe tener 17 caracteres");
+      return false;
+    }
+
 
     return true;
   }
