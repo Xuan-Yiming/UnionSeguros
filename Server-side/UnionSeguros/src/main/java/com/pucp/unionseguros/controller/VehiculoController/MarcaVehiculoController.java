@@ -8,6 +8,7 @@ package com.pucp.unionseguros.controller.VehiculoController;
 
 import com.pucp.unionseguros.model.Vehiculo.MarcaVehiculo;
 import com.pucp.unionseguros.service.VehiculoService.MarcaVehiculoService;
+import com.pucp.unionseguros.service.VehiculoService.ModeloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -49,5 +50,15 @@ public class MarcaVehiculoController {
     @GetMapping(params = "busqueda",path = "/buscaquedaDeMarcas")
     public List<MarcaVehiculo> busquedaDeMarcasPorParametro(@RequestParam(name = "busqueda") String busqueda){
         return marcaVehiculoService.busquedaDeMarcasPorParametro(busqueda);
+    }
+
+    @PutMapping("/modificar")
+    public MarcaVehiculo modificarMarcaVehiculo(@RequestBody MarcaVehiculo marcaVehiculo){
+        return marcaVehiculoService.modificar(marcaVehiculo);
+    }
+
+    @PutMapping("/eliminar")
+    public MarcaVehiculo eliminarModelo(@RequestParam(name ="idIngresado" ) Integer idIngresado){
+        return marcaVehiculoService.eliminarMarcaVehiculo(idIngresado);
     }
 }
