@@ -5,107 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c533adc8-9480-47e7-ba91-492753cd2c4a" name="Changes" comment="">
-<<<<<<< Updated upstream
-=======
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/VehiculoController/MarcaVehiculoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/VehiculoController/MarcaVehiculoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/VehiculoController/ModeloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/VehiculoController/ModeloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/VehiculoRepository/ModeloRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/VehiculoRepository/ModeloRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/VehiculoService/MarcaVehiculoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/VehiculoService/MarcaVehiculoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/VehiculoService/ModeloService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/VehiculoService/ModeloService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/UnionSegurosApplication$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/UnionSegurosApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/CotizacionController/CotizacionXDetalleCotizacionController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/CotizacionController/DetalleCotizacionController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/CotizacionController/MonedaController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/DistritosController/DepartamentoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/DistritosController/DistritoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/DistritosController/ProvinciaController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/ExtrasController/ListaNegraController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/PROCESOCOMPRASOAT/ProcesoSOATController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/PROCESOCOTIZACIONSEGURO/ProcesoCotizacionVehicularController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/PersonasController/AdministradorController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/PersonasController/ClienteController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/PersonasController/PermisosController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/PersonasController/PersonaController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/PersonasController/RolesController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/PersonasController/TipoDocumentoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/PersonasController/UsuarioController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/SOATController/BoletaDeVentaController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/SOATController/MetodoDePagoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/SOATController/PlanSOATController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/SOATController/PolizaController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/SOATController/SOATController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/VehiculoController/MarcaVehiculoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/VehiculoController/ModeloController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/VehiculoController/TipoUsoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/VehiculoController/TipoVehiculoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/VehiculoController/VehiculoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/model/Cotizacion/CotizacionXDetalleCotizacion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/model/Cotizacion/DetalleCotizacion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/model/Distritos/Departamento.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/model/Distritos/Provincia.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/model/Extras/ListaNegra.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/model/Extras/SoatVigente.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/model/Personas/Administrador.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/model/Personas/Permisos.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/model/SOAT/BoletaDeVenta.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/model/SOAT/MetodoDePago.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/model/SOAT/PlanSOAT.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/model/SOAT/Poliza.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/model/SOAT/SOAT.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/CotizacionRepository/CotizacionRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/CotizacionRepository/CotizacionXDetalleCotizacionRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/CotizacionRepository/DetalleCotizacionRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/CotizacionRepository/MonedaRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/DistritosRepository/DepartamentoRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/DistritosRepository/DistritoRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/DistritosRepository/ProvinciaRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/ExtrasRepository/ListaNegraRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/ExtrasRepository/SoatVigenteRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/PersonasRepository/AdministradorRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/PersonasRepository/ClienteRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/PersonasRepository/PermisosRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/PersonasRepository/PersonasRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/PersonasRepository/RolesRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/PersonasRepository/TipoDocumentoRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/SOATRepository/BoletaDeVentaRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/SOATRepository/MetodoDePagoRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/SOATRepository/PlanSOATRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/SOATRepository/PolizaRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/SOATRepository/SOATRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/VehiculoRepository/MarcaVehiculoRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/VehiculoRepository/ModeloRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/VehiculoRepository/TipoUsoRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/VehiculoRepository/TipoVehiculoRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/VehiculoRepository/VehiculoRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/CotizacionService/CotizacionXDetalleCorizacionService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/CotizacionService/DetalleCotizacionService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/CotizacionService/MonedaService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/DistritoService/DepartamentoService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/DistritoService/DistritoService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/DistritoService/ProvinciaService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/ExtrasService/ListaNegraService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/ExtrasService/SoatVigenteService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/PersonasService/AdministradorService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/PersonasService/ClienteService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/PersonasService/PermisosService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/PersonasService/PersonaService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/PersonasService/RolesService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/PersonasService/TipoDocumentoService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/PersonasService/UsuarioService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/SOATService/BoletaDeVentaService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/SOATService/MetodoDePagoService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/SOATService/PlanSOATService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/SOATService/PolizaService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/SOATService/SOATService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/VehiculoService/MarcaVehiculoService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/VehiculoService/ModeloService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/VehiculoService/TipoUsoService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/VehiculoService/TipoVehiculoService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/VehiculoService/VehiculoService.class" beforeDir="false" />
->>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,12 +82,7 @@
       <workItem from="1687376436341" duration="19000" />
       <workItem from="1687376511835" duration="19000" />
       <workItem from="1687376613580" duration="1334000" />
-<<<<<<< Updated upstream
-=======
-      <workItem from="1687388863050" duration="8061000" />
-      <workItem from="1687448764448" duration="43000" />
-      <workItem from="1687448817208" duration="4679000" />
->>>>>>> Stashed changes
+
     </task>
     <servers />
   </component>

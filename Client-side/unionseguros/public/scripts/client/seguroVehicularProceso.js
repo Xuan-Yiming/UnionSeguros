@@ -313,11 +313,11 @@ function verificacion() {
 
   switch (stage) {
     case 0:
-      /*if (apdPaterno == "" || nombres == "" || marca == "" || modelo == "" || anio == "" || uso == "" || numAsiento == "" || numSerie == "" || fecha == ""
-                || fecha2 == "" || numCelular == "" || departamento == "" || provincia == "" || distrito == "" || direccion == "") {
+      if ( marca == "" || modelo == "" || anio == "" || uso == "" || numAsiento == "" || numSerie == "" || fecha == ""
+                ) {
                 alert("Falta completar campos");
                 return false;
-            }*/
+            }
 
       if (!/^[0-9]+$/.test(numAsiento)) {
         document.querySelector("#txt-asientos").focus();
@@ -357,6 +357,11 @@ function verificacion() {
 
       break;
     case 1:
+      if ( nombres == "" || apdMaterno == "" || apdMaterno == "" || fecha2 == "" || numCelular == "" || departamento == "" || provincia == ""
+            || distrito=="" || direccion =="" || email==""    ) {
+                alert("Falta completar campos");
+                return false;
+            }
       if (!/^[0-9]+$/.test(numCelular)) {
         document.querySelector("#txt-numCelular").focus();
         alert("El número celular debe ser numérico");
@@ -476,11 +481,13 @@ async function cargarModelos() {
 }
 
 async function cargarPersona() {
-  fetch(
+  const url =
     GLOBAL_URL +
-      "/cliente/buscarClientePorNumDocumento?numDocumentoIngresado=" +
-      localStorage.getItem("documento")
-  )
+    "/cliente/buscarClientePorNumDocumento?numDocumentoIngresado=" +
+    localStorage.getItem("documento");
+  console.log(url);
+
+  fetch(url)
     .then((response) => {
       if (!response.ok) {
         throw new Error(response.status + " " + response.statusText);
@@ -499,20 +506,25 @@ async function cargarPersona() {
         document.querySelector("#txt-apdPaterno").value = data.apellidoPaterno;
         document.querySelector("#txt-apdMaterno").value = data.apellidoMaterno;
         document.querySelector("#txt-nombres").value = data.nombre;
+        document.querySelector("#txt-correo").value = data.email;
 
-        if (data.apellidoMaterno === "") {
+        if (data.apellidoMaterno == "") {
           document.querySelector("#txt-apdMaterno").value = "-";
         }
 
-        if (data.serie !== "") {
+        if (data.serie != "") {
           document.querySelector("#txt-nombres").disabled = true;
           document.querySelector("#txt-apdPaterno").disabled = true;
           document.querySelector("#txt-apdMaterno").disabled = true;
+          document.querySelector("#txt-correo").disabled = true;
         }
       }
     })
     .catch((error) => {
-      alert("Ha ocurrido un error de comunicación con el servidor");
+      if (error.message === "Unexpected end of JSON input") {
+        return;
+      }
+      alert("Ha ocurrido un error de comunicación con el servidor 4");
       console.error(error);
     });
 }
@@ -522,7 +534,7 @@ async function cargarVehiculo() {
   params.append("placaIngresada", localStorage.getItem("placa"));
   const url =
     GLOBAL_URL + "/vehiculo/buscarVehiculoPorPlaca?" + params.toString();
-
+  console.log(url);
   //datos del vehiculo
   fetch(url)
     .then((response) => {
@@ -552,7 +564,7 @@ async function cargarVehiculo() {
         params.append("idMarca", data.fidModelo.fidMarcaVehiculo.id);
         const url =
           GLOBAL_URL + "/modelo/listarModelosPorIdMarca?" + params.toString();
-
+        console.log(url);
         fetch(url)
           .then((response) => {
             if (!response.ok) {
@@ -580,7 +592,7 @@ async function cargarVehiculo() {
             }
           })
           .catch((error) => {
-            alert("Ha ocurrido un error de comunicación con el servidor");
+            alert("Ha ocurrido un error de comunicación con el servidor 5");
             console.error(error);
           });
 
@@ -608,7 +620,10 @@ async function cargarVehiculo() {
       }
     })
     .catch((error) => {
-      alert("Ha ocurrido un error de comunicación con el servidor");
+      if (error.message === "Unexpected end of JSON input") {
+        return;
+      }
+      alert("Ha ocurrido un error de comunicación con el servidor 6");
       console.error(error);
     });
 }

@@ -110,6 +110,7 @@ window.onload = function () {
         if (localStorage.getItem("data-marca")) {
           const dataId = JSON.parse(localStorage.getItem("data-marca")).id;
           data.id = dataId;
+          console.log(JSON.stringify(data));
           fetch(GLOBAL_URL + "/marcaVehiculo/modificar", {
             method: "PUT",
             body: JSON.stringify(data),
@@ -190,13 +191,11 @@ window.onload = function () {
 };
 
 function configurarModal() {
-  if (localStorage.getItem("data-plan")) {
-    const data = JSON.parse(localStorage.getItem("data-plan"));
-    document.querySelector("#txt-beneficio").value = data.beneficio;
-    document.querySelector("#txt-monto").value = data.monto;
+  if (localStorage.getItem("data-marca")) {
+    const data = JSON.parse(localStorage.getItem("data-marca"));
+    document.querySelector("#txt-marca").value = data.marca;
   } else {
-    document.querySelector("#txt-beneficio").value = "";
-    document.querySelector("#txt-monto").value = "";
+    document.querySelector("#txt-marca").value = "";
   }
 }
 
@@ -245,12 +244,9 @@ function crearLaTabla(data) {
           "¿Está seguro que desea eliminar el plan SOAT con ID: " + dataId + "?"
         )
       ) {
-        fetch(
-          GLOBAL_URL + "/detalleCotizacion/eliminar?idIngresado=" + dataId,
-          {
-            method: "PUT",
-          }
-        )
+        fetch(GLOBAL_URL + "/marcaVehiculo/eliminar?idIngresado=" + dataId, {
+          method: "PUT",
+        })
           .then((response) => {
             if (!response.ok) {
               throw new Error(response.status + " " + response.statusText);
