@@ -275,3 +275,8 @@ hr {
   font-size: 16px;
   margin-top: 5px;
 }
+
+#textoNoTieneSeguro{
+  font-size: 20px;
+  margin: 0 50px;
+}

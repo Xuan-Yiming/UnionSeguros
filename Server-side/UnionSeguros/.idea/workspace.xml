@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c533adc8-9480-47e7-ba91-492753cd2c4a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/seguroVehicularProceso.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/seguroVehicularProceso.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/CorreosController/EmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/CorreosController/EmailController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/CorreosController/EmailController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/CorreosController/EmailController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/stylesheets/modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/stylesheets/modal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/views/admin/pages/detallePlanSOAT.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/views/admin/pages/detallePlanSOAT.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/views/admin/pages/seguroVehicular.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/views/admin/pages/seguroVehicular.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
