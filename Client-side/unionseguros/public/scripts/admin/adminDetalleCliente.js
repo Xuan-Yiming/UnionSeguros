@@ -1,4 +1,11 @@
 window.onload = function () {
+  const  fechaNac = document.querySelector("#dp-fecha-nacimiento");
+// La fecha mínima permitida (hace 18 años)
+  const fechaMinima = new Date();
+  fechaMinima.setFullYear(fechaMinima.getFullYear() - 18);
+// No deja poner otras fechas posteriores a esta
+  fechaNac.max = fechaMinima.toISOString().split("T")[0];
+
   if (localStorage.getItem("user") == null) {
     window.location.href = "/admin/login";
   }
@@ -210,50 +217,19 @@ window.onload = function () {
   });
 
   function verificarCampos() {
-    return true;
-    let cobertura = document.querySelector("#txt-cobertura").value;
-    let precio = document.querySelector("#txt-precio").value;
-    let nombre = document.querySelector("#txt-nombre").value;
 
-    if (cobertura == "") {
-      document.querySelector("#txt-cobertura").focus();
-      alert("Debe ingresar la cobertura");
-      return false;
-    }
-    if (precio == "") {
-      document.querySelector("#txt-precio").focus();
-      alert("Debe ingresar el precio");
-      return false;
-    }
-    if (nombre == "") {
-      document.querySelector("#txt-nombre").focus();
-      alert("Debe ingresar el nombre");
-      return false;
-    }
-
-    if (!/^[0-9]+./.test(precio)) {
-      document.querySelector("#txt-precio").focus();
-      alert("El precio debe ser un número");
-      return false;
-    }
-
-    if (!/^[0-9]+./.test(cobertura)) {
-      document.querySelector("#txt-cobertura").focus();
-      alert("La cobertura debe ser un número");
-      return false;
-    }
     var documento = document.querySelector("#txt-documento").value;
     var tipoDocumento = document.querySelector("#select-documento").value;
 
     if (tipoDocumento === "0") {
       alert("Por favor ingrese el documento correcto.");
       return false;
-    } else if (tipoDocumento === "5") {
+    } else if (tipoDocumento === "3") {
       if (
-        documento.length !== 11 ||
-        !/^[0-9]+$/.test(documento) ||
-        (documento.substring(0, 2) !== "10" &&
-          documento.substring(0, 2) !== "20")
+          documento.length !== 11 ||
+          !/^[0-9]+$/.test(documento) ||
+          (documento.substring(0, 2) !== "10" &&
+              documento.substring(0, 2) !== "20")
       ) {
         document.querySelector("#txt-documento").focus();
         alert("Por favor ingrese un RUC correcto.");
@@ -271,18 +247,27 @@ window.onload = function () {
         alert("Por favor ingrese un CE correcto.");
         return false;
       }
-    } else if (tipoDocumento === "3") {
+    } else if (tipoDocumento === "4") {
       document.querySelector("#txt-documento").focus();
-      if (!/^[A-Z0-9]+$/.test(documento)) {
+      if (documento.length < 8 ||!/^[A-Z0-9]+$/.test(documento)) {
         alert("Por favor ingrese un pasaporte correcto.");
         return false;
       }
     }
-    if (placa == "" || placa.length !== 6 || !/^[A-Za-z0-9]+$/.test(placa)) {
-      document.querySelector("#txt-placa").focus();
-      alert("Por favor ingrese la placa correcta.");
+
+    var  inputFechaNacimiento = document.querySelector("#dp-fecha-nacimiento");
+    if(new Date(inputFechaNacimiento.value) > fechaMinima){
+      alert("El cliente debe ser mayor de 18 años.");
       return false;
     }
+    if (inputFechaNacimiento.value === "") {
+      alert("Debe ingresar fecha de nacimiento");
+      return false;
+    }
+
+
+
+
     return true;
   }
 };
