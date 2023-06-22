@@ -69,42 +69,39 @@ window.onload = function () {
 
   // Add event listener for file selection
   fileInput.addEventListener("change", handleFileUpload);
+};
 
-  // Handle file upload event
-  function handleFileUpload(event) {
-    const file = event.target.files[0];
+// Handle file upload event
+function handleFileUpload(event) {
+  const file = event.target.files[0];
 
-    // Create a FormData object
-    const formData = new FormData();
-    formData.append("file", file);
+  // Create a FormData object
+  const formData = new FormData();
+  formData.append("file", file, file.name);
 
-    // Send the file to the server
-    fetch("/marcaVehiculo/insertarMasivo", {
-      method: "POST",
-      body: formData,
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(response.status + " " + response.statusText);
-        } else {
-          try {
-            return response.json();
-          } catch (error) {
-            return null;
-          }
+  // Send the file to the server
+  fetch("/marcaVehiculo/insertarMasivo", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status + " " + response.statusText);
+      } else {
+        try {
+          return response.json();
+        } catch (error) {
+          return null;
         }
-      })
-      .then((data) => {
-        window.location.reload();
-      })
-      .catch((error) => {
-        alert("Ha ocurrido un error de comunicación con el servidor");
-        console.error("Error:", error);
-      });
-  }
+      }
+    })
+    .then((data) => {
+      window.location.reload();
+    })
+    .catch((error) => {
+      alert("Ha ocurrido un error de comunicación con el servidor");
+      console.error("Error:", error);
+    });
 };
 
 function crearLaTabla(data) {

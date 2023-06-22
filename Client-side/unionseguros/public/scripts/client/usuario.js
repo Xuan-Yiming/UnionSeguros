@@ -25,34 +25,37 @@ function loadPlans() {
             const soatContainer = document.querySelector(".info-productos-wrapper-carousel");
             soatContainer.innerHTML = "";
             data.forEach((soat) => {
-                const soatDiv = document.createElement("div");
-                soatDiv.classList.add("wrapper-carousel-item");
+                if(soat.activo){
+                    const soatDiv = document.createElement("div");
+                    soatDiv.classList.add("wrapper-carousel-item");
+                    let placaInicial = soat.fidPoliza.fidVehiculo.placa;
+                    let placaFormateada = placaInicial.substring(0, 3) + "-" + placaInicial.substring(3);
+                    const nombreSoat = document.createElement("h2");
+                    nombreSoat.innerText = `${soat.fidPlanSoat.nombrePlan}`;
+                    soatDiv.appendChild(nombreSoat);
 
-                const nombreSoat = document.createElement("h2");
-                nombreSoat.innerText = `${soat.NOMBRESOAT}`;
-                soatDiv.appendChild(nombreSoat);
+                    const placaSoat = document.createElement("p");
+                    placaSoat.innerText = `Placa: ${placaFormateada}`;
+                    soatDiv.appendChild(placaSoat);
 
-                const placaSoat = document.createElement("p");
-                placaSoat.innerText = `${soat.PLACA}`;
-                soatDiv.appendChild(placaSoat);
+                    const vigenciaSoat = document.createElement("p");
+                    vigenciaSoat.innerText = `Vigencia hasta ${soat.fidPoliza.fechaVigenciaFin}`;
+                    soatDiv.appendChild(vigenciaSoat);
 
-                const vigenciaSoat = document.createElement("p");
-                vigenciaSoat.innerText = `Vigencia hasta ${soat.VIGENCIA}`;
-                soatDiv.appendChild(vigenciaSoat);
+                    const descargarButton = document.createElement("button");
+                    descargarButton.type = "button";
+                    descargarButton.classList.add("button-red");
+                    descargarButton.textContent = "Descargar";
+                    descargarButton.setAttribute("dataSoat", JSON.stringify(soat));
 
-                const descargarButton = document.createElement("button");
-                descargarButton.type = "button";
-                descargarButton.classList.add("button-red");
-                descargarButton.textContent = "Descargar";
-                descargarButton.setAttribute("dataSoat", JSON.stringify(soat));
+                    descargarButton.addEventListener("click", function (event) {
+                        // const soatData = JSON.parse(event.target.getAttribute("data-soat"));
+                        // generarPDF(soatData);
+                    });
+                    soatDiv.appendChild(descargarButton);
 
-                descargarButton.addEventListener("click", function (event) {
-                    // const soatData = JSON.parse(event.target.getAttribute("data-soat"));
-                    // generarPDF(soatData);
-                });
-                soatDiv.appendChild(descargarButton);
-
-                soatContainer.appendChild(soatDiv);
+                    soatContainer.appendChild(soatDiv);
+                }
             });
         })
         .catch((error) => {
@@ -69,7 +72,6 @@ const carousel = document.querySelector(".info-productos-wrapper-carousel"),
 let isDragStart = false, isDragging = false, prevPageX, prevScrollLeft, positionDiff;
 
 const showHideIcons = () => {
-
     let scrollWidth = carousel.scrollWidth - carousel.clientWidth;
     arrowIcons[0].style.display = carousel.scrollLeft == 0 ? "none" : "block";
     arrowIcons[1].style.display = carousel.scrollLeft == scrollWidth ? "none" : "block";
