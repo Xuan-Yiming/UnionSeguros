@@ -43,7 +43,8 @@ public class ModeloService {
 
     }
 
-    public Modelo eliminarModelo(Modelo modelo){
+    public Modelo eliminarModelo(Integer idIngresado){
+        Modelo modelo = modeloRepository.findModeloById(idIngresado);
         modelo.setActivo(false);
         return modeloRepository.save(modelo);
     }
