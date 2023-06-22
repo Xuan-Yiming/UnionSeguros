@@ -1,3 +1,33 @@
+const usuarioJSON = localStorage.getItem("userCliente");
+const usuario = JSON.parse(usuarioJSON);
+loadPlans();
+function loadPlans() {
+    let params = new URLSearchParams(location.search);
+    params.append("busqueda", usuario.id);
+    fetch(GLOBAL_URL + "/SOAT/listarSoatPorPlan?" + params.toString())
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(response.status + " " + response.statusText);
+            } else {
+                try {
+                    return response.json();
+                } catch (error) {
+                    return null;
+                }
+            }
+        })
+        .then((data) => {
+            data.forEach((soat) => {
+                alert(soat.fidPoliza.fidVehiculo.placa);
+            });
+        })
+        .catch((error) => {
+            alert("Ha ocurrido un error de comunicación con el servidor listar SOAT");
+            console.error(error);
+        });
+}
+
+
 const carousel = document.querySelector(".info-productos-wrapper-carousel"),
     firstitem = carousel.querySelectorAll(".wrapper-carousel-item")[0],
     arrowIcons = document.querySelectorAll(".info-productos-wrapper i");
@@ -5,46 +35,46 @@ const carousel = document.querySelector(".info-productos-wrapper-carousel"),
 let isDragStart = false, isDragging = false, prevPageX, prevScrollLeft, positionDiff;
 
 const showHideIcons = () => {
-    // showing and hiding prev/next icon according to carousel scroll left value
-    let scrollWidth = carousel.scrollWidth - carousel.clientWidth; // getting max scrollable width
+
+    let scrollWidth = carousel.scrollWidth - carousel.clientWidth;
     arrowIcons[0].style.display = carousel.scrollLeft == 0 ? "none" : "block";
     arrowIcons[1].style.display = carousel.scrollLeft == scrollWidth ? "none" : "block";
 }
 
 arrowIcons.forEach(icon => {
     icon.addEventListener("click", () => {
-        let firstitemWidth = firstitem.clientWidth + 14; // getting first item width & adding 14 margin value
-        // if clicked icon is left, reduce width value from the carousel scroll left else add to it
+        let firstitemWidth = firstitem.clientWidth + 14;
+
         carousel.scrollLeft += icon.id == "left" ? -firstitemWidth : firstitemWidth;
-        setTimeout(() => showHideIcons(), 60); // calling showHideIcons after 60ms
+        setTimeout(() => showHideIcons(), 60);
     });
 });
 
 const autoSlide = () => {
-    // if there is no item left to scroll then return from here
+    // si no hay itema  la izquierda termina
     if(carousel.scrollLeft - (carousel.scrollWidth - carousel.clientWidth) > -1 || carousel.scrollLeft <= 0) return;
 
-    positionDiff = Math.abs(positionDiff); // making positionDiff value to positive
+    positionDiff = Math.abs(positionDiff); // haciendo la diferencia de posicion positiva
     let firstitemWidth = firstitem.clientWidth + 14;
-    // getting difference value that needs to add or reduce from carousel left to take middle item center
+    // la diferencia de valor
     let valDifference = firstitemWidth - positionDiff;
 
-    if(carousel.scrollLeft > prevScrollLeft) { // if user is scrolling to the right
+    if(carousel.scrollLeft > prevScrollLeft) { // si el usuario hace scroll a la derecha
         return carousel.scrollLeft += positionDiff > firstitemWidth / 3 ? valDifference : -positionDiff;
     }
-    // if user is scrolling to the left
+    // si el usuario hace scroll a la izquierda
     carousel.scrollLeft -= positionDiff > firstitemWidth / 3 ? valDifference : -positionDiff;
 }
 
 const dragStart = (e) => {
-    // updatating global variables value on mouse down event
+    // actualiza variables globales
     isDragStart = true;
     prevPageX = e.pageX || e.touches[0].pageX;
     prevScrollLeft = carousel.scrollLeft;
 }
 
 const dragging = (e) => {
-    // scrolling itemes/carousel to left according to mouse pointer
+    // hace el scroll
     if(!isDragStart) return;
     e.preventDefault();
     isDragging = true;
