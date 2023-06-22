@@ -151,7 +151,11 @@ document.querySelector("#btn-advance").addEventListener("click", async function 
         nombre: document.querySelector("#txt-nombres").value,
         apellidoPaterno: document.querySelector("#txt-apdPaterno").value,
         apellidoMaterno: document.querySelector("#txt-apdMaterno").value,
-        fechaNacimiento: new Date("2000-01-01").toISOString().slice(0, 10),
+        fechaNacimiento: new Date(
+            document.querySelector("#dp-fecha-nacimiento").value
+        )
+            .toISOString()
+            .slice(0, 10),
         telefono: "",
         direccion: "",
         numeroDocumento: document.querySelector("#txt-documento").value,
@@ -218,7 +222,11 @@ document.querySelector("#btn-advance").addEventListener("click", async function 
         nombre: document.querySelector("#txt-nombres").value,
         apellidoPaterno: document.querySelector("#txt-apdPaterno").value,
         apellidoMaterno: document.querySelector("#txt-apdMaterno").value,
-        fechaNacimiento: new Date("2000-01-01").toISOString().slice(0, 10), //data.fechaNacimiento, deberia ser en realidad
+        fechaNacimiento: new Date(
+            document.querySelector("#dp-fecha-nacimiento").value
+        )
+            .toISOString()
+            .slice(0, 10),
         telefono: data.telefono,
         direccion: data.direccion,
         numeroDocumento: document.querySelector("#txt-documento").value,
@@ -261,7 +269,7 @@ document.querySelector("#btn-advance").addEventListener("click", async function 
           })
           .then((element) => {
             if (element) {
-              alert("Tu contraseña implementada correctamente. Ya puedes iniciar sesión con tus credenciales.");
+              alert("Tu cuenta fue actualizada exitosamente. Ya puedes iniciar sesión con tus credenciales.");
               window.location.href = "/iniciarSesion";
             } else {
               alert("Ha ocurrido un error");
