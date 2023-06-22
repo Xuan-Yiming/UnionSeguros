@@ -39,4 +39,13 @@ public class MarcaVehiculoService {
         return lista;
 
     }
+
+    public MarcaVehiculo modificar(MarcaVehiculo marcaVehiculo){
+        return marcaVehiculoRepository.save(marcaVehiculo);
+    }
+
+    public MarcaVehiculo eliminarMarcaVehiculo(Integer idIngresado){
+        MarcaVehiculo marcaVehiculo = marcaVehiculoRepository.findMarcaVehiculoById(idIngresado);
+        return marcaVehiculoRepository.save(marcaVehiculo);
+    }
 }

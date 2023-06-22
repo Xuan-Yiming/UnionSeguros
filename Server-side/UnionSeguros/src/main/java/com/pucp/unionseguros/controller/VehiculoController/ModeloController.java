@@ -53,8 +53,8 @@ public class ModeloController {
     }
 
     @PutMapping("/eliminar")
-    public Modelo eliminarModelo(@RequestBody Modelo modelo){
-        return modeloService.eliminarModelo(modelo);
+    public Modelo eliminarModelo(@RequestParam(name = "idIngresado")Integer idIngresado) {
+        return modeloService.eliminarModelo(idIngresado);
     }
 
     @GetMapping(params = "busqueda",path = "/buscarModelosPorParametros")
