@@ -213,6 +213,15 @@ h4{
   color: #C8102E;
 }
 
+.button-eliminar{
+  margin: 3px 20px;
+  background-color: rgb(253, 199, 199);
+  border: 1px solid #c8102e;
+  padding: 3px;
+  border-radius: 4px;
+  color: #C8102E;
+}
+
 .btn-edit{
   margin: 3px 20px;
   background-color: rgb(243, 244, 252);
