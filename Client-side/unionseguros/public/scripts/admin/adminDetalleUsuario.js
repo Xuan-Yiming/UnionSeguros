@@ -188,8 +188,7 @@ window.onload = function () {
         contrasena: document.querySelector("#txt-contrasena").value,
         fechaCreacion: data.fechaCreacion,
         activoUsuario: true,
-        activo:
-          document.querySelector("#select-estado").value == 1 ? true : false,
+        activo: true,
         fidRoles: {
           idRole: 2,
           fidPermisos: {
@@ -291,8 +290,17 @@ window.onload = function () {
       }
     }
 
-    var  inputFechaNacimiento = document.querySelector("#dp-fecha-nacimiento");
-    if(new Date(inputFechaNacimiento.value) > fechaMinima){
+    var inputFechaNacimiento = document.querySelector("#dp-fecha-nacimiento");
+    let today = new Date();
+
+    // Subtract 18 years from today's date
+    let fechaMinima = new Date(
+      today.getFullYear() - 18,
+      today.getMonth(),
+      today.getDate()
+    );
+
+    if(new Date(inputFechaNacimiento.value) < fechaMinima){
       alert("El cliente debe ser mayor de 18 años.");
       return false;
     }

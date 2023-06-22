@@ -18,8 +18,9 @@ function loadPlans() {
         })
         .then((data) => {
             data.forEach((soat) => {
-                alert(soat.fidPoliza.fidVehiculo.placa);
+                console.log(soat.fidPoliza.fidVehiculo.placa);
             });
+            crearPlanes(data);
         })
         .catch((error) => {
             alert("Ha ocurrido un error de comunicación con el servidor listar SOAT");
@@ -105,7 +106,9 @@ carousel.addEventListener("touchend", dragStop);
 /*--------------------------------------------------------------------------------------------------------*/
 
 
+function crearPlanes(data){
 
+}
 
 
 

@@ -125,27 +125,29 @@ function crearLaTabla(data) {
       var params = new URLSearchParams();
       params.append("eliminar", dataId);
 
-      fetch(GLOBAL_URL + "/vehiculo/eliminar2" + params.toString(), {
+      var url = new URL(GLOBAL_URL + "/vehiculo/eliminar2"+ "?" + params.toString());
+      console.log(url);
+      fetch(url, {
         method: "PUT",
+        body: params,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
       })
         .then((response) => {
           if (!response.ok) {
             throw new Error(response.status + " " + response.statusText);
           } else {
             try {
-              return response.json();
+              return response;
             } catch (error) {
               return null;
             }
           }
         })
         .then((element) => {
-          if (element) {
             alert("Se ha guardado correctamente");
             window.location.href = "/admin/vehiculo";
-          } else {
-            alert("Ha ocurrido un error");
-          }
         })
         .catch((error) => {
           alert("Ha ocurrido un error de comunicación con el servidor");

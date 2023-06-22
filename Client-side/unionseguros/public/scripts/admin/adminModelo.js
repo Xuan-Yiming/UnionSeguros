@@ -242,11 +242,17 @@ function crearLaTabla(data) {
       const dataId = event.target.getAttribute("data-id");
       if (
         confirm(
-          "¿Está seguro que desea eliminar el plan SOAT con ID: " + dataId + "?"
+          "¿Está seguro que desea eliminar el Modelo con ID: " + dataId + "?"
         )
       ) {
-        fetch(GLOBAL_URL + "/modelo/eliminar?idIngresado=" + dataId, {
+        let url = new URL(GLOBAL_URL + "/modelo/eliminar?" + "idIngresado=" + dataId);
+        console.log(url);
+        fetch(url, {
           method: "PUT",
+          body: dataId,
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
         })
           .then((response) => {
             if (!response.ok) {

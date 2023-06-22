@@ -44,7 +44,8 @@ window.onload = function () {
         serie: document.querySelector("#txt-serie").value,
         activo: true,
       };
-      fetch(GLOBAL_URL + "/Vehiculo/insertar", {
+      console.log(JSON.stringify(data));
+      fetch(GLOBAL_URL + "/vehiculo/insertar", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -65,7 +66,7 @@ window.onload = function () {
         .then((element) => {
           if (element) {
             alert("Se ha guardado correctamente");
-            window.location.href = "/admin/PlanSOAT";
+            window.location.href = "/admin/vehiculo";
           } else {
             alert("No se ha podido guardar");
             return;
@@ -93,8 +94,8 @@ window.onload = function () {
         serie: document.querySelector("#txt-serie").value,
         activo: true,
       };
-
-      fetch(GLOBAL_URL + "/Vehiculo/modificar", {
+      console.log(JSON.stringify(data));
+      fetch(GLOBAL_URL + "/vehiculo/modificar", {
         method: "PUT",
         body: JSON.stringify(data),
         headers: {
