@@ -23,38 +23,46 @@ function loadPlans() {
         .then((data) => {
             const soatContainer = document.querySelector(".info-productos-wrapper-carousel");
             soatContainer.innerHTML = "";
-            data.forEach((soat) => {
-                if(soat.activo){
-                    const soatDiv = document.createElement("div");
-                    soatDiv.classList.add("wrapper-carousel-item");
-                    let placaInicial = soat.fidPoliza.fidVehiculo.placa;
-                    let placaFormateada = placaInicial.substring(0, 3) + "-" + placaInicial.substring(3);
-                    const nombreSoat = document.createElement("h2");
-                    nombreSoat.innerText = `${soat.fidPlanSoat.nombrePlan}`;
-                    soatDiv.appendChild(nombreSoat);
 
-                    const placaSoat = document.createElement("p");
-                    placaSoat.innerText = `Placa: ${placaFormateada}`;
-                    soatDiv.appendChild(placaSoat);
+            if(data.length === 0){
+                document.querySelector(".info-productos-wrapper").style.display = "none";
+                document.querySelector("#textoNoTieneSeguro").style.display = "block";
+            }else{
+                document.querySelector(".info-productos-wrapper").style.display = "block";
+                document.querySelector("#textoNoTieneSeguro").style.display = "none";
+                data.forEach((soat) => {
+                    if(soat.activo){
+                        const soatDiv = document.createElement("div");
+                        soatDiv.classList.add("wrapper-carousel-item");
+                        let placaInicial = soat.fidPoliza.fidVehiculo.placa;
+                        let placaFormateada = placaInicial.substring(0, 3) + "-" + placaInicial.substring(3);
+                        const nombreSoat = document.createElement("h2");
+                        nombreSoat.innerText = `${soat.fidPlanSoat.nombrePlan}`;
+                        soatDiv.appendChild(nombreSoat);
 
-                    const vigenciaSoat = document.createElement("p");
-                    vigenciaSoat.innerText = `Vigencia hasta ${soat.fidPoliza.fechaVigenciaFin}`;
-                    soatDiv.appendChild(vigenciaSoat);
+                        const placaSoat = document.createElement("p");
+                        placaSoat.innerText = `Placa: ${placaFormateada}`;
+                        soatDiv.appendChild(placaSoat);
 
-                    const descargarButton = document.createElement("button");
-                    descargarButton.type = "button";
-                    descargarButton.classList.add("button-red");
-                    descargarButton.textContent = "Descargar";
-                    descargarButton.setAttribute("dataSoat", JSON.stringify(soat));
+                        const vigenciaSoat = document.createElement("p");
+                        vigenciaSoat.innerText = `Vigencia hasta ${soat.fidPoliza.fechaVigenciaFin}`;
+                        soatDiv.appendChild(vigenciaSoat);
 
-                    descargarButton.addEventListener("click", function (event) {
-                         const soatData = JSON.parse(event.target.getAttribute("dataSoat"));
-                         generarPDF(soatData);
-                    });
-                    soatDiv.appendChild(descargarButton);
-                    soatContainer.appendChild(soatDiv);
-                }
-            });
+                        const descargarButton = document.createElement("button");
+                        descargarButton.type = "button";
+                        descargarButton.classList.add("button-red");
+                        descargarButton.textContent = "Descargar";
+                        descargarButton.setAttribute("dataSoat", JSON.stringify(soat));
+
+                        descargarButton.addEventListener("click", function (event) {
+                            const soatData = JSON.parse(event.target.getAttribute("dataSoat"));
+                            generarPDF(soatData);
+                        });
+                        soatDiv.appendChild(descargarButton);
+                        soatContainer.appendChild(soatDiv);
+                    }
+                });
+            }
         })
         .catch((error) => {
             alert("Ha ocurrido un error de comunicación con el servidor listar SOAT");
