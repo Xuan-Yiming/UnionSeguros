@@ -102,7 +102,7 @@ function handleFileUpload(event) {
       alert("Ha ocurrido un error de comunicación con el servidor");
       console.error("Error:", error);
     });
-};
+}
 
 function crearLaTabla(data) {
   const table = document.querySelector("#table-body");
@@ -137,10 +137,21 @@ function crearLaTabla(data) {
     tableRow.appendChild(baneado);
 
     const auditoria = document.createElement("td");
-    auditoria.classList.add("td-auditoria");
-    auditoria.innerText = "Auditoria";
+    const buttonAuditoria = document.createElement("button");
+    buttonAuditoria.classList.add("btn-edit");
+    buttonAuditoria.innerText = "Auditoria";
+    buttonAuditoria.setAttribute("data-id", usaurio.id);
+    buttonAuditoria.addEventListener("click", () => {
+      const dataId = event.target.getAttribute("data-id");
+      localStorage.setItem(
+        "data-cliente",
+        JSON.stringify(this.usuarios.find((usuario) => usuario.id == dataId))
+      );
+      window.location.href = "/admin/auditoria";
+    });
+    auditoria.appendChild(buttonAuditoria);
     tableRow.appendChild(auditoria);
-
+    
     //add edit button
     const button = document.createElement("td");
     const editButton = document.createElement("button");

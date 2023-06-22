@@ -76,8 +76,9 @@ var adminUsuariosRouter = require('./routes/admin/adminUsuario');
 app.use('/admin/usuario', adminUsuariosRouter);
 var adminDetalleUsuarioRouter = require('./routes/admin/adminDetalleUsuario');
 app.use('/admin/detalleUsuario', adminDetalleUsuarioRouter);
-// var adminAuditoriaRouter = require('./routes/admin/adminAuditoria');
-// app.use('/admin/auditoria', adminAuditoriaRouter);
+
+var adminAuditoriaRouter = require('./routes/admin/adminAuditoria');
+app.use('/admin/auditoria', adminAuditoriaRouter);
 
 // //pagina de usuarioMiCuenta
 var usuarioMiCuentaRouter = require('./routes/client/usuarioMiCuenta');
