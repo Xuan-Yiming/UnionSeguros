@@ -1,5 +1,10 @@
 const usuarioJSON = localStorage.getItem("userCliente");
 const usuario = JSON.parse(usuarioJSON);
+/*
+const pdfMake = require('pdfmake/build/pdfmake');
+const pdfFonts = require('pdfmake/build/vfs_fonts');
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+*/
 loadPlans();
 function loadPlans() {
     let params = new URLSearchParams(location.search);
@@ -17,10 +22,38 @@ function loadPlans() {
             }
         })
         .then((data) => {
+            const soatContainer = document.querySelector(".info-productos-wrapper-carousel");
+            soatContainer.innerHTML = "";
             data.forEach((soat) => {
-                console.log(soat.fidPoliza.fidVehiculo.placa);
+                const soatDiv = document.createElement("div");
+                soatDiv.classList.add("wrapper-carousel-item");
+
+                const nombreSoat = document.createElement("h2");
+                nombreSoat.innerText = `${soat.NOMBRESOAT}`;
+                soatDiv.appendChild(nombreSoat);
+
+                const placaSoat = document.createElement("p");
+                placaSoat.innerText = `${soat.PLACA}`;
+                soatDiv.appendChild(placaSoat);
+
+                const vigenciaSoat = document.createElement("p");
+                vigenciaSoat.innerText = `Vigencia hasta ${soat.VIGENCIA}`;
+                soatDiv.appendChild(vigenciaSoat);
+
+                const descargarButton = document.createElement("button");
+                descargarButton.type = "button";
+                descargarButton.classList.add("button-red");
+                descargarButton.textContent = "Descargar";
+                descargarButton.setAttribute("dataSoat", JSON.stringify(soat));
+
+                descargarButton.addEventListener("click", function (event) {
+                    // const soatData = JSON.parse(event.target.getAttribute("data-soat"));
+                    // generarPDF(soatData);
+                });
+                soatDiv.appendChild(descargarButton);
+
+                soatContainer.appendChild(soatDiv);
             });
-            crearPlanes(data);
         })
         .catch((error) => {
             alert("Ha ocurrido un error de comunicación con el servidor listar SOAT");
@@ -105,9 +138,123 @@ carousel.addEventListener("touchend", dragStop);
 
 /*--------------------------------------------------------------------------------------------------------*/
 
+function generarPDF(soatData) {
+    // Extraigo datos necesarios para el pdf
+    const {
+        fidPlanSoat: { cobertura, precio, nombrePlan },
+        fidPoliza: {
+            fidMoneda: { abreviatura },
+            fidVehiculo: {
+                fidTipoUso: { nombreTipoUso },
+                fidModelo: {
+                    fidMarcaVehiculo: {marca},
+                    modelo,
+                },
+                fidPersona: {
+                    nombre,
+                    apellidoPaterno,
+                    apellidoMaterno,
+                    numeroDocumento,
+                    fidTipoDocumento: {nombre: nombreTipoDocumento},
+                    email,
+                },
+                placa,
+                serie,
+            },
+            precioBase,
+            fechaVigenciaDesde,
+            fechaVigenciaFin,
+        },
+    } = soatData;
 
-function crearPlanes(data){
+    let placaFormateada = placa.substring(0, 3) + "-" + placa.substring(3);
 
+
+
+    // contenido del PDF
+    const content = [
+        // Título
+        { text: 'SOAT', style: 'header' },
+
+        // Compañía de seguros
+        { text: 'Compañía de seguros: Union Seguros', margin: [0, 20, 0, 10] },
+
+        // Separación notable
+        { text: '', margin: [0, 0, 0, 20] },
+
+        // VIGENCIA DE LA PÓLIZA
+        { text: 'VIGENCIA DE LA PÓLIZA', style: 'subheader' },
+        { text: 'Desde', style: 'subsubtitle' },
+        { text: fechaVigenciaDesde },
+        { text: 'Hasta', style: 'subsubtitle' },
+        { text: fechaVigenciaFin, margin: [0, 0, 0, 20] },
+
+        // PLAN SOAT
+        { text: 'PLAN SOAT', style: 'subheader' },
+        { text: 'Plan Escogido', style: 'subtitle' },
+        { text: nombrePlan },
+        { text: 'Precio', style: 'subtitle' },
+        { text: `${precio}${abreviatura}` },
+        { text: 'Cobertura', style: 'subtitle' },
+        { text: cobertura, margin: [0, 0, 0, 20] },
+
+        // VEHÍCULO ASEGURADO
+        { text: 'VEHÍCULO ASEGURADO', style: 'subheader' },
+        { text: 'Marca', style: 'subtitle' },
+        { text: marca },
+        { text: 'Modelo', style: 'subtitle' },
+        { text: modelo },
+        { text: 'Placa', style: 'subtitle' },
+        { text: placaFormateada },
+        { text: 'Serie', style: 'subtitle' },
+        { text: serie },
+        { text: 'Uso', style: 'subtitle' },
+        { text: nombreTipoUso, margin: [0, 0, 0, 20] },
+
+        // CONTRATANTE/ASEGURADO
+        { text: 'CONTRATANTE/ASEGURADO', style: 'subheader' },
+        { text: 'Nombre', style: 'subtitle' },
+        { text: nombre },
+        { text: 'Apellidos', style: 'subtitle' },
+        { text: `${apellidoPaterno} ${apellidoMaterno}` },
+        { text: 'Documento', style: 'subtitle' },
+        { text: `${nombreTipoDocumento} ${numeroDocumento}` },
+    ];
+
+    // Definir los estilos del PDF
+    const styles = {
+        header: {
+            fontSize: 18,
+            bold: true,
+            alignment: 'center',
+            margin: [0, 0, 0, 10],
+        },
+        subheader: {
+            fontSize: 14,
+            bold: true,
+            margin: [0, 10, 0, 5],
+        },
+        subtitle: {
+            fontSize: 12,
+            bold: true,
+            margin: [0, 0, 0, 3],
+        },
+        subsubtitle: {
+            fontSize: 10,
+            bold: true,
+            margin: [0, 0, 0, 2],
+        },
+    };
+
+    // Definir el documento PDF
+    const docDefinition = {
+        content,
+        styles,
+    };
+
+    // Genero el PDF
+    const nombreArchivo = `${serie}_SOAT.pdf`;
+    pdfMake.createPdf(docDefinition).download(nombreArchivo);
 }
 
 
