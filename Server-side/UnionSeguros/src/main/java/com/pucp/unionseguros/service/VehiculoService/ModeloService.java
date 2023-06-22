@@ -29,7 +29,7 @@ public class ModeloService {
     }
     public List<Modelo> listarModelosPorMarcas(Integer idMarca){
         MarcaVehiculo marcaVehiculo = new MarcaVehiculo();
-        marcaVehiculo =  marcaVehiculoRepository.findMarcaVehiculoById(idMarca);
+        marcaVehiculo =  marcaVehiculoRepository.findMarcaVehiculoByIdAndActivoIsTrue(idMarca);
         return modeloRepository.findModelosByFidMarcaVehiculo(marcaVehiculo);
     }
 
