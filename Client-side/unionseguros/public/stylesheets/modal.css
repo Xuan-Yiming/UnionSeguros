@@ -1,21 +1,99 @@
-  .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    display: none;
+}
 
-      display: none;
-  }
+.modal-main {
+    background-color: #fff;
+    width: 300px; /* Ancho de 5 unidades */
+    height:  370px;/* Alto de 3 unidades */
+    padding: 50px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
 
-  .modal-main {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 4px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
+.modal-main h2 {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-size: 28px;
+}
+
+.modal-main label{
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.modal-main input{
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+#btn-modal-guardar, #btn-modal-cancelar{
+    margin-top: 25px;
+}
+
+#btn-modal-guardar{
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    background-color: #C8102E;
+    color: white;
+    height: fit-content;
+    width: fit-content;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+#btn-modal-guardar:active{
+    font-size: 14px;
+    border: 1px solid #C8102E;
+    border-radius: 5px;
+    background-color: rgba(200, 16, 46, 0.27);
+    color: #C8102E;
+    height: fit-content;
+    width: fit-content;
+    padding: 7px 15px;
+    cursor: pointer;
+}
+
+#btn-modal-cancelar{
+    font-size: 14px;
+    background-color: white;
+    color: #C8102E;
+    border: 1px solid #C8102E;
+    padding: 7px 15px;
+    border-radius: 5px;
+    width: fit-content;
+    height: fit-content;
+    cursor: pointer;
+}
+#btn-modal-cancelar:active{
+    font-size: 14px;
+    background-color: rgba(200, 16, 46, 0.27);
+    color: #c8102e;
+    border: 1px solid #C8102E;
+    padding: 7px 15px;
+    border-radius: 5px;
+    width: fit-content;
+    height: fit-content;
+    cursor: pointer;
+}
+
+
+
+.modal-buttons {
+    display: flex;
+    gap: 25px;
+    margin: 0 auto;
+}
