@@ -1,11 +1,10 @@
 const usuarioJSON = localStorage.getItem("userCliente");
 const usuario = JSON.parse(usuarioJSON);
-/*
-const pdfMake = require('pdfmake/build/pdfmake');
-const pdfFonts = require('pdfmake/build/vfs_fonts');
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
-*/
-loadPlans();
+
+window.onload = function(){
+    loadPlans();
+};
+
 function loadPlans() {
     let params = new URLSearchParams(location.search);
     params.append("busqueda", usuario.id);
@@ -49,11 +48,10 @@ function loadPlans() {
                     descargarButton.setAttribute("dataSoat", JSON.stringify(soat));
 
                     descargarButton.addEventListener("click", function (event) {
-                        // const soatData = JSON.parse(event.target.getAttribute("data-soat"));
-                        // generarPDF(soatData);
+                         const soatData = JSON.parse(event.target.getAttribute("dataSoat"));
+                         generarPDF(soatData);
                     });
                     soatDiv.appendChild(descargarButton);
-
                     soatContainer.appendChild(soatDiv);
                 }
             });
@@ -64,6 +62,7 @@ function loadPlans() {
         });
 }
 
+/*---------------------------------------------------------------------------------------------------------CAROUSEL-*/
 
 const carousel = document.querySelector(".info-productos-wrapper-carousel"),
     firstitem = carousel.querySelectorAll(".wrapper-carousel-item")[0],
@@ -72,45 +71,46 @@ const carousel = document.querySelector(".info-productos-wrapper-carousel"),
 let isDragStart = false, isDragging = false, prevPageX, prevScrollLeft, positionDiff;
 
 const showHideIcons = () => {
-    let scrollWidth = carousel.scrollWidth - carousel.clientWidth;
+    // showing and hiding prev/next icon according to carousel scroll left value
+    let scrollWidth = carousel.scrollWidth - carousel.clientWidth; // getting max scrollable width
     arrowIcons[0].style.display = carousel.scrollLeft == 0 ? "none" : "block";
     arrowIcons[1].style.display = carousel.scrollLeft == scrollWidth ? "none" : "block";
 }
 
 arrowIcons.forEach(icon => {
     icon.addEventListener("click", () => {
-        let firstitemWidth = firstitem.clientWidth + 14;
-
+        let firstitemWidth = firstitem.clientWidth + 14; // getting first item width & adding 14 margin value
+        // if clicked icon is left, reduce width value from the carousel scroll left else add to it
         carousel.scrollLeft += icon.id == "left" ? -firstitemWidth : firstitemWidth;
-        setTimeout(() => showHideIcons(), 60);
+        setTimeout(() => showHideIcons(), 60); // calling showHideIcons after 60ms
     });
 });
 
 const autoSlide = () => {
-    // si no hay itema  la izquierda termina
+    // if there is no item left to scroll then return from here
     if(carousel.scrollLeft - (carousel.scrollWidth - carousel.clientWidth) > -1 || carousel.scrollLeft <= 0) return;
 
-    positionDiff = Math.abs(positionDiff); // haciendo la diferencia de posicion positiva
+    positionDiff = Math.abs(positionDiff); // making positionDiff value to positive
     let firstitemWidth = firstitem.clientWidth + 14;
-    // la diferencia de valor
+    // getting difference value that needs to add or reduce from carousel left to take middle item center
     let valDifference = firstitemWidth - positionDiff;
 
-    if(carousel.scrollLeft > prevScrollLeft) { // si el usuario hace scroll a la derecha
+    if(carousel.scrollLeft > prevScrollLeft) { // if user is scrolling to the right
         return carousel.scrollLeft += positionDiff > firstitemWidth / 3 ? valDifference : -positionDiff;
     }
-    // si el usuario hace scroll a la izquierda
+    // if user is scrolling to the left
     carousel.scrollLeft -= positionDiff > firstitemWidth / 3 ? valDifference : -positionDiff;
 }
 
 const dragStart = (e) => {
-    // actualiza variables globales
+    // updatating global variables value on mouse down event
     isDragStart = true;
     prevPageX = e.pageX || e.touches[0].pageX;
     prevScrollLeft = carousel.scrollLeft;
 }
 
 const dragging = (e) => {
-    // hace el scroll
+    // scrolling itemes/carousel to left according to mouse pointer
     if(!isDragStart) return;
     e.preventDefault();
     isDragging = true;
@@ -138,9 +138,9 @@ carousel.addEventListener("touchmove", dragging);
 document.addEventListener("mouseup", dragStop);
 carousel.addEventListener("touchend", dragStop);
 
-/*--------------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------------GENERAR PDF-*/
 
-function generarPDF(soatData) {
+async function generarPDF(soatData) {
     // Extraigo datos necesarios para el pdf
     const {
         fidPlanSoat: { cobertura, precio, nombrePlan },
@@ -170,35 +170,39 @@ function generarPDF(soatData) {
     } = soatData;
 
     let placaFormateada = placa.substring(0, 3) + "-" + placa.substring(3);
-
-
+    const imageURL = 'public/resources/logos/logo-transparent-back.png';
+    const imageDataURL = await getImageDataURL(imageURL);
+    const fechaVigenciaDesdeConvertida = new Date(fechaVigenciaDesde).toLocaleDateString('es-ES');
+    const fechaVigenciaFinConvertida = new Date(fechaVigenciaFin).toLocaleDateString('es-ES');
 
     // contenido del PDF
     const content = [
-        // Título
-        { text: 'SOAT', style: 'header' },
 
-        // Compañía de seguros
-        { text: 'Compañía de seguros: Union Seguros', margin: [0, 20, 0, 10] },
+        // Título
+        { text: 'Detalle SOAT', style: 'header' },
+
+        // Logo
+        { image: imageDataURL, width: 140, alignment: 'center',
+            margin: [5, 5] },
 
         // Separación notable
         { text: '', margin: [0, 0, 0, 20] },
 
         // VIGENCIA DE LA PÓLIZA
         { text: 'VIGENCIA DE LA PÓLIZA', style: 'subheader' },
-        { text: 'Desde', style: 'subsubtitle' },
-        { text: fechaVigenciaDesde },
-        { text: 'Hasta', style: 'subsubtitle' },
-        { text: fechaVigenciaFin, margin: [0, 0, 0, 20] },
+        { text: 'Desde', style: 'subtitle' },
+        { text: fechaVigenciaDesdeConvertida },
+        { text: 'Hasta', style: 'subtitle' },
+        { text: fechaVigenciaFinConvertida, margin: [0, 0, 0, 20] },
 
         // PLAN SOAT
         { text: 'PLAN SOAT', style: 'subheader' },
         { text: 'Plan Escogido', style: 'subtitle' },
         { text: nombrePlan },
         { text: 'Precio', style: 'subtitle' },
-        { text: `${precio}${abreviatura}` },
+        { text: `${precio} ${abreviatura}` },
         { text: 'Cobertura', style: 'subtitle' },
-        { text: cobertura, margin: [0, 0, 0, 20] },
+        { text: `${cobertura} ${abreviatura}`, margin: [0, 0, 0, 20] },
 
         // VEHÍCULO ASEGURADO
         { text: 'VEHÍCULO ASEGURADO', style: 'subheader' },
@@ -232,19 +236,15 @@ function generarPDF(soatData) {
             margin: [0, 0, 0, 10],
         },
         subheader: {
-            fontSize: 14,
+            fontSize: 15,
             bold: true,
             margin: [0, 10, 0, 5],
+            color: '#122757',
         },
         subtitle: {
-            fontSize: 12,
+            fontSize: 14,
             bold: true,
             margin: [0, 0, 0, 3],
-        },
-        subsubtitle: {
-            fontSize: 10,
-            bold: true,
-            margin: [0, 0, 0, 2],
         },
     };
 
@@ -252,25 +252,28 @@ function generarPDF(soatData) {
     const docDefinition = {
         content,
         styles,
+        pageMargins: [80, 40, 80, 40],
     };
 
     // Genero el PDF
-    const nombreArchivo = `${serie}_SOAT.pdf`;
+    const nombreArchivo = `${placaFormateada}_SOAT.pdf`;
     pdfMake.createPdf(docDefinition).download(nombreArchivo);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function getImageDataURL(url) {
+    return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                resolve(reader.result);
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(xhr.response);
+        };
+        xhr.onerror = reject;
+        xhr.open('GET', url);
+        xhr.responseType = 'blob';
+        xhr.send();
+    });
+}

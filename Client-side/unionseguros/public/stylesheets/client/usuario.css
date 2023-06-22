@@ -108,7 +108,6 @@
   height: 35px;
   width: 35px;
   color: #ffffff;
-  cursor: pointer;
   font-size: 1.15rem;
   position: absolute;
   text-align: center;
@@ -118,12 +117,7 @@
   transform: translateY(-50%);
   transition: transform 0.1s linear;
 }
-.info-productos-wrapper i:active{
-  transform: translateY(-50%) scale(0.9);
-}
-.info-productos-wrapper i:hover{
-  background: rgba(200, 16, 46, 0.29);
-}
+
 .info-productos-wrapper i:first-child{
   left: -22px;
   display: none;
@@ -168,14 +162,15 @@
   box-shadow: rgba(0,0,0,0.2) 2px 2px 4px 1px;
 }
 .info-productos-wrapper-carousel .wrapper-carousel-item h2 {
-  text-align: left;
+  align-self: center;
   margin-bottom: 20px;
   margin-top: 15px;
   font-size: 25px;
 }
 .info-productos-wrapper-carousel .wrapper-carousel-item p {
   text-align: left;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  padding: 0 10px;
   font-size: 16px;
 }
 .info-productos-wrapper-carousel .button-red {
