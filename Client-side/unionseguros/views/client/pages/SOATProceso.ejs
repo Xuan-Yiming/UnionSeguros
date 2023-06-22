@@ -78,11 +78,11 @@
                                 <div class="form-line">
                                     <div class="form-item">
                                         <h3>Número de Asientos</h3>
-                                        <input placeholder="Ingrese número" id="txt-asientos" maxlength="2" ></input>
+                                        <input placeholder="Ingrese número" id="txt-asientos" maxlength="2" oninput="validateNumericInput(this)" ></input>
                                     </div>
                                     <div class="form-item">
                                         <h3>Año</h3>
-                                        <input placeholder="Ingrese año" id="txt-anio" maxlength="4"></input>
+                                        <input placeholder="Ingrese año" id="txt-anio" maxlength="4" oninput="validateNumericInput(this)"></input>
                                     </div>
                                 </div>
                                 <div class="form-line">
@@ -158,7 +158,7 @@
                                 <div class="form-item">
                                     <h3>Número de tarjeta</h3>
                                     <input id = "txt-num-tarjeta" type="text" placeholder="1234-5678-1234-5678"
-                                           maxlength="16" ></input>
+                                           maxlength="16" oninput="validateNumericInput(this)"></input>
                                 </div>
                             </div>
                             <div class="form-line">
@@ -168,7 +168,7 @@
                                 </div>
                                 <div class="form-item">
                                     <h3>CVV</h3>
-                                    <input id="txt-CVV" type="text" placeholder="CVV" maxlength="3"></input>
+                                    <input id="txt-CVV" type="text" placeholder="CVV" maxlength="3" oninput="validateNumericInput(this)"></input>
                                 </div>
                             </div>
                             <div class="form-line">
