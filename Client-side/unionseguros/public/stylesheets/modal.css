@@ -14,8 +14,8 @@
 
 .modal-main {
     background-color: #fff;
-    width: 300px; /* Ancho de 5 unidades */
-    height:  370px;/* Alto de 3 unidades */
+    height: fit-content;
+    width: fit-content;
     padding: 50px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -94,6 +94,7 @@
 
 .modal-buttons {
     display: flex;
-    gap: 25px;
+    flex-direction: row;
+    gap: 20px;
     margin: 0 auto;
 }
