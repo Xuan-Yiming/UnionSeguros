@@ -183,7 +183,7 @@ function handleFileUpload(event) {
   formData.append("file", file, file.name);
 
   // Send the file to the server
-  fetch("/marcaVehiculo/insertarMasivo", {
+  fetch(GLOBAL_URL + "/marcaVehiculo/insertarMasivo", {
     method: "POST",
     body: formData,
   })
@@ -192,13 +192,14 @@ function handleFileUpload(event) {
         throw new Error(response.status + " " + response.statusText);
       } else {
         try {
-          return response.json();
+          return response.text();
         } catch (error) {
           return null;
         }
       }
     })
     .then((data) => {
+      alert(data);
       window.location.reload();
     })
     .catch((error) => {

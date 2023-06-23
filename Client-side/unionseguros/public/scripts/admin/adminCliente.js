@@ -80,29 +80,32 @@ window.onload = function () {
 
 // Handle file upload event
 function handleFileUpload(event) {
-  const file = event.target.files[0];
+  const fileInput = document.querySelector("#btn-masiva");
+  const file = fileInput.files[0];
 
   // Create a FormData object
   const formData = new FormData();
   formData.append("file", file, file.name);
 
   // Send the file to the server
-  fetch("/marcaVehiculo/insertarMasivo", {
+  fetch(GLOBAL_URL + "/listaNegra/cargaMasivaListaNegra", {
     method: "POST",
     body: formData,
+    redirect: "follow",
   })
     .then((response) => {
       if (!response.ok) {
         throw new Error(response.status + " " + response.statusText);
       } else {
         try {
-          return response.json();
+          return response.text();
         } catch (error) {
           return null;
         }
       }
     })
     .then((data) => {
+      alert(data);
       window.location.reload();
     })
     .catch((error) => {
