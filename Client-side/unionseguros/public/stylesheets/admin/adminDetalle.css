@@ -17,3 +17,7 @@
 #content-container-item-regresar{
     margin-bottom: 50px;
 }
+
+#titulo, #id {
+    display: inline-block;
+}
