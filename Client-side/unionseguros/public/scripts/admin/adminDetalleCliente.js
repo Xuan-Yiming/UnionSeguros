@@ -27,10 +27,6 @@ window.onload = function () {
         }
       });
 
-
-
-  
-
   fetch(GLOBAL_URL + "/tipoDocumento/listarActivos")
     .then((response) => {
       if (!response.ok) {
@@ -50,7 +46,11 @@ window.onload = function () {
         option.value = tipoDocumento.id;
         option.innerText = tipoDocumento.nombre;
         document.querySelector("#select-documento").appendChild(option);
+
       });
+        let doc = JSON.parse(localStorage.getItem("data-cliente"));
+        document.querySelector("#select-documento").value =
+          doc.fidTipoDocumento.id;
     })
     .then(() => {
       document

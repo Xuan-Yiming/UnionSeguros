@@ -47,6 +47,9 @@ window.onload = function () {
         option.innerText = tipoDocumento.nombre;
         document.querySelector("#select-documento").appendChild(option);
       });
+              let doc = JSON.parse(localStorage.getItem("data-cliente"));
+              document.querySelector("#select-documento").value =
+                doc.fidTipoDocumento.id;
     })
     .then(() => {
       document
