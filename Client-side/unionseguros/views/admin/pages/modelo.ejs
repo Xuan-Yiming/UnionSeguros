@@ -21,7 +21,7 @@
             <div class="modal-main">
                 <h2>Detalles</h2>
                 <label for="txt-modelo">Modelo</label>
-                <input type="text" id="txt-modelo" placeholder="Nombre Modelo">
+                <input type="text" id="txt-modelo" placeholder="Ingresar modelo" oninput="this.value = this.value.toUpperCase()">
                 <div class="modal-buttons">
                     <button id="btn-modal-cancelar" >Cancelar</button>
                     <button id="btn-modal-guardar">Guardar</button>
@@ -31,7 +31,9 @@
         <%- include('../layouts/header'); %>
 
             <main id="tabla-plan-soat">
-                <button id="btn-regresar">Regresar</button>
+                <div id="content-container-item-regresar" class="content-container-item">
+                    <button id="btn-regresar" class="button-previous">Regresar</button>
+                </div>
                 <h2>Modelo</h2>
                 <div id="control-bar">
                     <div id="control-bar-button">

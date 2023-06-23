@@ -74,17 +74,17 @@
                                 <div class="form-line">
                                     <div class="form-item">
                                         <h3>Número de Asientos</h3>
-                                        <input placeholder="Ingrese número" id="txt-asientos"></input>
+                                        <input placeholder="Ingrese número" id="txt-asientos" maxlength="2" oninput="validateNumericInput(this)" ></input>
                                     </div>
                                     <div class="form-item">
                                         <h3>Año</h3>
-                                        <input placeholder="Ingrese año" id="txt-anio"></input>
+                                        <input placeholder="Ingrese año" id="txt-anio" maxlength="4" oninput="validateNumericInput(this)"></input>
                                     </div>
                                 </div>
 
                                 <div class="form-item">
                                     <h3>Serie</h3>
-                                    <input placeholder="Ingrese Serie" id="txt-serie" maxlength="17"></input>
+                                    <input placeholder="Ingrese Serie" id="txt-serie" maxlength="17" oninput="this.value = this.value.toUpperCase()"></input>
                                 </div>
                                 <div class="form-item">
                                     <h3>Uso</h3>
@@ -112,16 +112,16 @@
                             <div class="form-inputs">
                                 <div class="form-item">
                                     <h3>Nombres</h3>
-                                    <input id="txt-nombres" placeholder="Ingrese nombres"></input>
+                                    <input id="txt-nombres" placeholder="Ingrese nombres" oninput="this.value = this.value.toUpperCase()"></input>
                                 </div>
                                 <div class="form-line">
                                     <div class="form-item">
                                         <h3>Apellido Paterno</h3>
-                                        <input id="txt-apdPaterno" placeholder="Ingrese apellido"></input>
+                                        <input id="txt-apdPaterno" placeholder="Ingrese apellido" oninput="this.value = this.value.toUpperCase()"></input>
                                     </div>
                                     <div class="form-item">
                                         <h3>Apellido Materno</h3>
-                                        <input id="txt-apdMaterno" placeholder="Ingrese apellido"></input>
+                                        <input id="txt-apdMaterno" placeholder="Ingrese apellido" oninput="this.value = this.value.toUpperCase()"></input>
                                     </div>
                                 </div>
                                 <div class="form-line">
@@ -133,7 +133,7 @@
                                     </div>
                                     <div class="form-item">
                                         <h3>Número de celular</h3>
-                                        <input id="txt-numCelular" placeholder="Ingrese número celular" maxlength="9"></input>
+                                        <input id="txt-numCelular" placeholder="Ingrese número celular" maxlength="9" oninput="validateNumericInput(this)"></input>
                                     </div>
                                 </div>
 
@@ -160,11 +160,11 @@
                                 </div>
                                 <div class="form-item">
                                     <h3>Dirección</h3>
-                                    <input id="txt-direccion" placeholder="Ingrese dirección"></input>
+                                    <input id="txt-direccion" placeholder="Ingrese dirección" oninput="this.value = this.value.toUpperCase()"></input>
                                 </div>
                                 <div class="form-item">
                                     <h3>Correo electrónico</h3>
-                                    <input placeholder="Ingrese correo" id = "txt-correo"></input>
+                                    <input placeholder="Ingrese correo" id = "txt-correo" oninput="this.value = this.value.toLowerCase()"></input>
                                 </div>
 
                             </div>

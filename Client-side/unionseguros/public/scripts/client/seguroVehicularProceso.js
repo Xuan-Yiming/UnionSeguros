@@ -97,6 +97,11 @@ document.querySelector("#btn-previous").addEventListener("click", function () {
     }
   }
 
+  if(stage===2){
+    selectedPlans = [];
+    total = 0;
+  }
+
   const bar = document.querySelector(".ProgressBar");
   const currentSteps = bar.querySelectorAll(".is-current");
   if (currentSteps.length > 0) {
@@ -994,4 +999,15 @@ function calcularValorAgregado() {
     total += plan.monto;
   }
   return total;
+}
+
+function validateNumericInput(input) {
+  // Obtener el valor del campo de texto
+  const value = input.value;
+
+  // Eliminar cualquier caracter no numérico del valor
+  const numericValue = value.replace(/\D/g, '');
+
+  // Actualizar el valor del campo de texto con solo caracteres numéricos
+  input.value = numericValue;
 }
