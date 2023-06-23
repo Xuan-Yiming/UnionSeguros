@@ -285,7 +285,7 @@ function crearLaTabla(data) {
 
     const modelButton = document.createElement("button");
     modelButton.classList.add("btn-edit");
-    modelButton.innerText = "Modelos";
+    modelButton.innerText = "Ver Modelos";
     modelButton.setAttribute("data-id", marca.id);
     modelButton.addEventListener("click", () => {
       const dataId = event.target.getAttribute("data-id");
