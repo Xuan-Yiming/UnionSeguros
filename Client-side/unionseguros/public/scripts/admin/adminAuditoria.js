@@ -13,6 +13,7 @@ window.onload = function () {
     return;
     fetch(
       GLOBAL_URL +
+        "/auditoria/listarAuditorias?id=" +
         localStorage.getItem("id-usuario")
     )
       .then((response) => {
