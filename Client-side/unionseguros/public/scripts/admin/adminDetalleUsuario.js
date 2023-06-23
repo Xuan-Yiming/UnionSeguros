@@ -1,4 +1,5 @@
 window.onload = function () {
+  document.getElementById("txt-documento").maxLength = "8";
   if (localStorage.getItem("user") == null) {
     window.location.href = "/admin/login";
   }
@@ -352,3 +353,17 @@ window.onload = function () {
     return true;
   }
 };
+
+
+
+
+function validateNumericInput(input) {
+  // Obtener el valor del campo de texto
+  const value = input.value;
+
+  // Eliminar cualquier caracter no numérico del valor
+  const numericValue = value.replace(/\D/g, '');
+
+  // Actualizar el valor del campo de texto con solo caracteres numéricos
+  input.value = numericValue;
+}

@@ -30,7 +30,7 @@
                         <div class="form-line">
                             <div class="form-item">
                                 <h3>Placa</h3>
-                                <input placeholder="Ingrese placa" id="txt-placa" maxlength="6"></input>
+                                <input placeholder="Ingrese placa" id="txt-placa" maxlength="6" oninput="this.value = this.value.toUpperCase()"></input>
                             </div>
                         </div>
                         <div class="form-line">
@@ -51,17 +51,17 @@
                         <div class="form-line">
                             <div class="form-item">
                                 <h3>Número de Asientos</h3>
-                                <input placeholder="Ingrese número" id="txt-asientos"></input>
+                                <input placeholder="Ingrese número" id="txt-asientos" maxlength="2" oninput="validateNumericInput(this)"></input>
                             </div>
                             <div class="form-item">
                                 <h3>Año</h3>
-                                <input placeholder="Ingrese año" id="txt-anio"></input>
+                                <input placeholder="Ingrese año" id="txt-anio" maxlength="4" oninput="validateNumericInput(this)"></input>
                             </div>
                         </div>
                         <div class="form-line">
                             <div class="form-item">
                                 <h3>Serie</h3>
-                                <input placeholder="Ingrese Serie" id="txt-serie" maxlength="17"></input>
+                                <input placeholder="Ingrese Serie" id="txt-serie" maxlength="17" oninput="this.value = this.value.toUpperCase()"></input>
                             </div>
                         </div>
                         <div class="form-line">
