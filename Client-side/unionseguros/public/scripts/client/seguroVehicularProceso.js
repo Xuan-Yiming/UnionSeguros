@@ -1,9 +1,19 @@
+localStorage.removeItem("data-vehiculo");
 var stage = 0;
 let selectedPlans = [];
 let total = 0;
 var placa = localStorage.getItem("placa");
 var tipoDocumento = localStorage.getItem("tipoDocumento");
 var numeroDocumento = localStorage.getItem("documento");
+
+const inputFechaNacimiento = document.querySelector("#date-picker2");
+
+// La fecha mínima permitida (hace 18 años)
+const fechaMinima = new Date();
+fechaMinima.setFullYear(fechaMinima.getFullYear() - 18);
+
+// No deja poner otras fechas posteriores a esta
+inputFechaNacimiento.max = fechaMinima.toISOString().split("T")[0];
 
 localStorage.setItem("idCliente", null);
 localStorage.setItem("idVehiculo", null);
@@ -31,6 +41,8 @@ window.onload = function () {
     .split("T")[0];
 
   inicializar();
+
+
 };
 
 document
@@ -100,6 +112,7 @@ document.querySelector("#btn-previous").addEventListener("click", function () {
   if(stage===2){
     selectedPlans = [];
     total = 0;
+    updateTotal();
   }
 
   const bar = document.querySelector(".ProgressBar");
@@ -259,9 +272,9 @@ function loadResumen() {
   let nuevaPlaca = placa.substring(0, 3) + "-" + placa.substring(3);
   document.querySelector("#txt-res-nombre").innerText =
     document.querySelector("#txt-nombres").value +
-    document.querySelector("#txt-apdPaterno").value +
+      document.querySelector("#txt-apdPaterno").value +
     " " +
-    document.querySelector("#txt-apdMaterno").value;
+      document.querySelector("#txt-apdMaterno").value;
   document.querySelector("#txt-res-placa").innerText = nuevaPlaca;
   document.querySelector("#txt-res-total").innerText =
     "S/." + localStorage.getItem("total");
@@ -298,11 +311,20 @@ function loadResumen() {
 }
 
 function verificacion() {
-  const apdPaterno = document.querySelector("#txt-apdPaterno").value;
-  const apdMaterno = document.querySelector("#txt-apdMaterno").value;
+  let apdPaterno = document.querySelector("#txt-apdPaterno").value;
+  let apdMaterno = document.querySelector("#txt-apdMaterno").value;
   const nombres = document.querySelector("#txt-nombres").value;
-  const marca = document.querySelector("#select-marca").value;
-  const modelo = document.querySelector("#select-modelo").value;
+  let marca;
+  let modelo;
+  if(localStorage.getItem("data-vehiculo")===null){
+     marca = document.querySelector("#select-marca").value;
+     modelo = document.querySelector("#select-modelo").value;
+  }else{
+    var data = JSON.parse(localStorage.getItem("data-vehiculo"));
+     marca = data.fidModelo.fidMarcaVehiculo.id;
+     modelo = data.fidModelo.id;
+  }
+
   const anio = document.querySelector("#txt-anio").value;
   const numAsiento = document.querySelector("#txt-asientos").value;
   const uso = document.querySelector("#select-uso").value;
@@ -318,89 +340,107 @@ function verificacion() {
 
   switch (stage) {
     case 0:
-      if ( marca == "" || modelo == "" || anio == "" || uso == "" || numAsiento == "" || numSerie == "" || fecha == ""
-                ) {
-                alert("Falta completar campos");
-                return false;
-            }
+      if ( marca == "" || modelo == "" || anio == "" || uso == "" || numAsiento == "" || numSerie == "" || fecha == "") {
+          alert("Falta completar campos");
+          return false;
+      }
 
       if (!/^[0-9]+$/.test(numAsiento)) {
         document.querySelector("#txt-asientos").focus();
         alert("El número de asientos debe ser numérico");
-        return true;
+        return false;
       }
 
       if (numAsiento < 1 || numAsiento > 20) {
         document.querySelector("#txt-asientos").focus();
         alert("El número de asientos debe estar entre 1 y 20");
-        return true;
+        return false;
       }
 
       if (!/^[0-9]+$/.test(anio)) {
         document.querySelector("#txt-anio").focus();
         alert("El año debe ser numérico");
-        return true;
+        return false;
       }
 
       if (anio < 2000 || anio > new Date().getFullYear()) {
         document.querySelector("#txt-anio").focus();
         alert("El año debe estar entre 2000 y " + new Date().getFullYear());
-        return true;
+        return false;
       }
 
       if (numSerie.length != 17) {
         document.querySelector("#txt-serie").focus();
         alert("El número de serie debe tener 17 caracteres");
-        return true;
+        return false;
       }
 
       if (uso === "") {
         document.querySelector("#select-uso").focus();
         alert("Seleccione el uso de su vehículo");
-        return true;
+        return false;
       }
 
       break;
     case 1:
-      if ( nombres == "" || apdMaterno == "" || apdMaterno == "" || fecha2 == "" || numCelular == "" || departamento == "" || provincia == ""
+      const inputFechaNacimiento = document.querySelector(
+          "#date-picker2"
+      );
+      if (new Date(inputFechaNacimiento.value) > fechaMinima) {
+        alert("Debes ser mayor de 18 años.");
+        return false;
+      }
+
+      if (apdPaterno =="" || nombres == "" || fecha2 == "" || numCelular == "" || departamento == "" || provincia == ""
             || distrito=="" || direccion =="" || email==""    ) {
-                alert("Falta completar campos");
-                return false;
-            }
+        alert("Falta completar campos");
+        return false;
+      }
       if (!/^[0-9]+$/.test(numCelular)) {
         document.querySelector("#txt-numCelular").focus();
         alert("El número celular debe ser numérico");
-        return true;
+        return false;
       }
 
       if (numCelular.length !== 9) {
         document.querySelector("#txt-numCelular").focus();
         alert("El número celular debe tener 9 caracteres");
-        return true;
+        return false;
       }
 
-      if (
-        !/^[A-Za-z]+$/.test(apdPaterno) ||
-        !/^[A-Za-z]+$/.test(apdMaterno) ||
-        !/^[A-Za-z ]+$/.test(nombres)
-      ) {
-        if (apdMaterno !== "-") {
-          document.querySelector("#txt-apdPaterno").focus();
-          alert(
+      if(
+          (apdPaterno !== "" && !/^[A-Za-z -]+$/.test(apdPaterno)) ||
+          (apdMaterno !== "" && !/^[A-Za-z -]+$/.test(apdMaterno)) ||
+          !/^[A-Za-z ]+$/.test(nombres)
+      ){
+        document.querySelector("#txt-apdPaterno").focus();
+        alert(
             "Los nombres y apellidos no deben contener caracteres especiales"
-          );
-          return true;
-        }
+        );
+        return false;
+      }
+
+      if(apdMaterno==="" && (tipoDocumento!=="4" && tipoDocumento!=="2" && tipoDocumento!=="3")){
+        alert("Complete su apellido por favor");
+        return false;
+      }else if(apdMaterno==="" && (tipoDocumento==="4" || tipoDocumento==="2" || tipoDocumento==="3")){
+        document.querySelector("#txt-apdMaterno").value = '-';
+      }
+
+      if(tipoDocumento==="3" && numeroDocumento.substring(0, 2) === "20"){
+        document.querySelector("#txt-apdPaterno").value = '-'
+        document.querySelector("#txt-apdMaterno").value = '-'
       }
 
       if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
         alert("El correo electrónico no es válido");
-        return true;
+        return false;
       }
 
       break;
 
     case 2:
+
       break;
 
     case 3:
@@ -410,15 +450,46 @@ function verificacion() {
 }
 
 async function inicializar() {
-  await cargarMarcas();
-  await cargarModelos();
+  document.querySelector(".form-vehiculo ").style.display = "block";
+  document.querySelector(".form-plans").style.display = "none";
+
   await cargarPersona();
   await cargarVehiculo();
+
+
+  if(localStorage.getItem("data-vehiculo")===null){
+    await cargarMarcas();
+    await cargarModelos();
+  }else{
+
+    var data = JSON.parse(localStorage.getItem("data-vehiculo"));
+
+    var selectMarca = document.querySelector("#select-marca");
+    selectMarca.options[0].textContent = data.fidModelo.fidMarcaVehiculo.marca;
+
+    document.querySelector("#select-marca").disabled = true;
+
+    var selectModelo = document.querySelector("#select-modelo");
+    selectModelo.options[0].textContent = data.fidModelo.modelo;
+    document.querySelector("#select-modelo").disabled = true;
+  }
+
   await cargarDepartamento();
   await cargarProvincia();
   await cargarDistrito();
-  document.querySelector(".form-vehiculo ").style.display = "block";
-  document.querySelector(".form-plans").style.display = "none";
+
+
+  if(tipoDocumento==="3" && numeroDocumento.substring(0, 2) === "20"){
+    document.querySelector("#txt-apdPaterno").style.display = "none";
+    document.querySelector("#apPaternoIDText").style.display = "none";
+    document.querySelector("#txt-apdMaterno").style.display = "none";
+    document.querySelector("#apMaternoIDText").style.display = "none";
+
+    document.querySelector("#nombreIDText").innerText = "Nombre completo empresa";
+    document.querySelector("#txt-apdPaterno").value = "-";
+    document.querySelector("#txt-apdMaterno").value = "-";
+  }
+
 }
 
 async function cargarMarcas() {
@@ -537,101 +608,50 @@ async function cargarPersona() {
 async function cargarVehiculo() {
   const params = new URLSearchParams();
   params.append("placaIngresada", localStorage.getItem("placa"));
-  const url =
-    GLOBAL_URL + "/vehiculo/buscarVehiculoPorPlaca?" + params.toString();
+  const url = GLOBAL_URL + "/vehiculo/buscarVehiculoPorPlaca?" + params.toString();
   console.log(url);
-  //datos del vehiculo
-  fetch(url)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(response.status + " " + response.statusText);
-      } else {
-        try {
-          return response.json();
-        } catch (error) {
-          return null;
-        }
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(response.status + " " + response.statusText);
+    }
+
+    const data = await response.json();
+    if (data != null) {
+      localStorage.setItem("data-vehiculo", JSON.stringify(data));
+      localStorage.setItem("idVehiculo", data.id);
+
+      // numero de asientos
+      if (data.numeroAsientos != "") {
+        document.querySelector("#txt-asientos").value = data.numeroAsientos;
+        document.querySelector("#txt-asientos").disabled = true;
       }
-    })
-    .then((data) => {
-      if (data != null) {
-        localStorage.setItem("idVehiculo", data.id);
-
-        // marca
-        if (data.fidModelo.fidMarcaVehiculo != "") {
-          document.querySelector("#select-marca").disabled = true;
-          document.querySelector("#select-marca").value =
-            data.fidModelo.fidMarcaVehiculo.id;
-        }
-        document.querySelector("#select-modelo").innerHTML = "";
-
-        const params = new URLSearchParams();
-        params.append("idMarca", data.fidModelo.fidMarcaVehiculo.id);
-        const url =
-          GLOBAL_URL + "/modelo/listarModelosPorIdMarca?" + params.toString();
-        console.log(url);
-        fetch(url)
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error(response.status + " " + response.statusText);
-            } else {
-              try {
-                return response.json();
-              } catch (error) {
-                return null;
-              }
-            }
-          })
-          .then((data) => {
-            data.forEach((element) => {
-              var _option = document.createElement("option");
-              _option.value = element.id;
-              _option.text = element.modelo;
-              document.querySelector("#select-modelo").appendChild(_option);
-            });
-
-            if (data.fidModelo != "") {
-              document.querySelector("#select-modelo").disabled = true;
-              document.querySelector("#select-modelo").value =
-                data.fidModelo.id;
-            }
-          })
-          .catch((error) => {
-            alert("Ha ocurrido un error de comunicación con el servidor 5");
-            console.error(error);
-          });
-
-        // numero de asientos
-        if (data.numeroAsientos != "") {
-          document.querySelector("#txt-asientos").value = data.numeroAsientos;
-          document.querySelector("#txt-asientos").disabled = true;
-        }
-        // anio
-        if (data.anhoFabricacion != "") {
-          document.querySelector("#txt-anio").value =
-            data.anhoFabricacion.substring(0, 4);
-          document.querySelector("#txt-anio").disabled = true;
-        }
-        //serie
-        if (data.serie != "") {
-          document.querySelector("#txt-serie").value = data.serie;
-          document.querySelector("#txt-serie").disabled = true;
-        }
-        //uso
-        if (data.fidTipoUso != "") {
-          document.querySelector("#select-uso").value =
-            data.fidTipoUso.idTipoUso;
-        }
+      // anio
+      if (data.anhoFabricacion != "") {
+        document.querySelector("#txt-anio").value = data.anhoFabricacion.toString();
+        document.querySelector("#txt-anio").disabled = true;
       }
-    })
-    .catch((error) => {
-      if (error.message === "Unexpected end of JSON input") {
-        return;
+      //serie
+      if (data.serie != "") {
+        document.querySelector("#txt-serie").value = data.serie;
+        document.querySelector("#txt-serie").disabled = true;
       }
-      alert("Ha ocurrido un error de comunicación con el servidor 6");
-      console.error(error);
-    });
+      //uso
+      if (data.fidTipoUso != "") {
+        document.querySelector("#select-uso").value = data.fidTipoUso.idTipoUso;
+        document.querySelector("#select-uso").disabled = true;
+      }
+    }
+  } catch (error) {
+    if (error.message === "Unexpected end of JSON input") {
+      return;
+    }
+    alert("Ha ocurrido un error de comunicación con el servidor 6");
+    console.error(error);
+  }
 }
+
 
 async function cargarDepartamento() {
   fetch(GLOBAL_URL + "/Departamento/listarDepartamentos")
@@ -764,8 +784,17 @@ async function guardar() {
   const direccion = document.querySelector("#txt-direccion").value;
   const numCelular = document.querySelector("#txt-numCelular").value;
 
-  const marca = document.querySelector("#select-marca").value;
-  const modelo = document.querySelector("#select-modelo").value;
+  let marca;
+  let modelo;
+  if(localStorage.getItem("data-vehiculo")===null){
+    marca = document.querySelector("#select-marca").value;
+    modelo = document.querySelector("#select-modelo").value;
+  }else{
+    var data = JSON.parse(localStorage.getItem("data-vehiculo"));
+    marca = data.fidModelo.fidMarcaVehiculo.id;
+    modelo = data.fidModelo.id;
+  }
+
   const anio = document.querySelector("#txt-anio").value;
   const uso = document.querySelector("#select-uso").value;
   const numAsiento = document.querySelector("#txt-asientos").value;
@@ -827,7 +856,72 @@ async function guardar() {
     }
 
     console.log(JSON.stringify(data));
-    fetch(GLOBAL_URL + "/cotizacion/insertar", {
+    fetch(GLOBAL_URL + '/cotizacion/insertar', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+        .then(response => response.json())
+        .then(data => {
+          localStorage.setItem("idCotizacion", data);
+
+          var listaCotizacionXDetalle = [];
+          for (var i = 0; i < selectedPlans.length; i++) {
+            var plan = selectedPlans[i];
+            var cotizacionXDetalle = {
+              fidCotizacion: {
+                id: localStorage.getItem("idCotizacion"),
+              },
+              fidDetalleCotizacion: {
+                id: plan.id,
+              },
+            };
+            listaCotizacionXDetalle.push(cotizacionXDetalle);
+          }
+
+          try {
+            let data = listaCotizacionXDetalle;
+            console.log(JSON.stringify(data));
+            fetch(GLOBAL_URL + "/cotizacionXDetalleCotizacion/insertar", {
+              method: 'POST',
+              body: JSON.stringify(data),
+              headers: {
+                'Content-Type': 'application/json'
+              },
+            })
+                .then(response => response.json())
+                .then(data => {
+                  // Supuestamente devuelve la lista
+                })
+                .catch(error => {
+
+                  alert("Ha ocurrido un error de comunicación con el servidor");
+                  console.error(error);
+                  localStorage.setItem("error", "1");
+                });
+          } catch (error) {
+            console.error('Error:', error);
+            alert("Ha ocurrido un error de comunicación con el servidor");
+          }
+        })
+        .catch(error => {
+
+          alert("Ha ocurrido un error de comunicación con el servidor");
+          console.error(error);
+          localStorage.setItem("error", "1");
+        });
+  } catch (error) {
+    console.error("Error:", error);
+  }
+
+
+}
+/*---------------------MI PRIMER INTENTO------------------------------*/
+
+/*
+fetch(GLOBAL_URL + "/cotizacion/insertar", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -897,15 +991,11 @@ async function guardar() {
         console.error(error);
         localStorage.setItem("error", "1");
       });
-  } catch (error) {
-    console.error("Error:", error);
-  }
-
-
-}
+ */
 /*---------------------LA FORMA ANIDADA SI NO FUNCIONA LA ANTERIOR------------------------------*/
 
-/*fetch(GLOBAL_URL + '/cotizacion/insertar', {
+/*
+fetch(GLOBAL_URL + '/cotizacion/insertar', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -961,8 +1051,17 @@ async function guardar() {
 */
 
 async function validacionMonto() {
-  const marca = document.querySelector("#select-marca").value;
-  const modelo = document.querySelector("#select-modelo").value;
+  let marca;
+  let modelo;
+  if(localStorage.getItem("data-vehiculo")===null){
+    marca = document.querySelector("#select-marca").value;
+    modelo = document.querySelector("#select-modelo").value;
+  }else{
+    var data = JSON.parse(localStorage.getItem("data-vehiculo"));
+    marca = data.fidModelo.fidMarcaVehiculo.id;
+    modelo = data.fidModelo.id;
+  }
+
   const anhoFabricacion = document.querySelector("#txt-anio").value;
 
   try {
@@ -981,6 +1080,7 @@ async function validacionMonto() {
 
     if (prima > 0) {
       montoEstimado = prima;
+      alert(montoEstimado);
       flagMonto = true;
     } else {
       flagMonto = false;

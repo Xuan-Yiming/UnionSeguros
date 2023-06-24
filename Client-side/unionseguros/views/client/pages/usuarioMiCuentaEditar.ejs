@@ -55,13 +55,13 @@
             <div class="form-line">
                 <div class="form-item">
                     <h3>Número celular</h3>
-                    <input id="txt-celular" type="text" placeholder="Ingrese número celular" maxlength="9" ></input>
+                    <input id="txt-celular" type="text" placeholder="Ingrese número celular" maxlength="9" oninput="validateNumericInput(this)" ></input>
                 </div>
             </div>
             <div class="form-line">
                 <div class="form-item">
                     <h3>Dirección</h3>
-                    <input id="txt-direccion" type="text" placeholder="Ingrese direccion" ></input>
+                    <input id="txt-direccion" type="text" placeholder="Ingrese direccion" oninput="this.value = this.value.toUpperCase()"></input>
                 </div>
             </div>
         </div>

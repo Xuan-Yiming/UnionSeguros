@@ -68,10 +68,28 @@ function crearLaTabla(data) {
     const tableRow = document.createElement("tr");
     tableRow.classList.add("table-row");
 
+    const cliente = document.createElement("td");
+    cliente.innerText =
+      cotizacion.fidCliente.id +
+      " - " +
+      cotizacion.fidCliente.nombre +
+      " " +
+      cotizacion.fidCliente.apellidoPaterno + 
+      " " + 
+      cotizacion.fidCliente.apellidoMaterno;
+    tableRow.appendChild(cliente);
+
     const placa = document.createElement("td");
-    placa.classList.add("td-placa");
-    placa.innerText = vehiculo.placa;
+    placa.innerText = cotizacion.fidVehiculo.placa;
     tableRow.appendChild(placa);
+
+    const monto = document.createElement("td");
+    monto.innerText = cotizacion.montoEstimado;;
+    tableRow.appendChild(monto);
+
+    const fecha = document.createElement("td");
+    fecha.innerText = cotizacion.fechaCotizacion;
+    tableRow.appendChild(fecha);
 
     const buttonEliminar = document.createElement("button");
     buttonEliminar.classList.add("button");
@@ -86,16 +104,22 @@ function crearLaTabla(data) {
       }
 
       const dataId = event.target.getAttribute("data-id");
-      const url = GLOBAL_URL + "/cotizacion/eliminarCotizacion?id=" + dataId;
+      var data = {
+        eliminar: dataId,
+      };
+      const url = GLOBAL_URL + "/cotizacion/eliminar?eliminar=" + dataId;
       fetch(url, {
-        method: "DELETE",
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
         .then((response) => {
           if (!response.ok) {
             throw new Error(response.status + " " + response.statusText);
           } else {
             try {
-              return response.json();
             } catch (error) {
               return null;
             }

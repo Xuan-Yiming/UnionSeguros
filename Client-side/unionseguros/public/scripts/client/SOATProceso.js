@@ -4,6 +4,7 @@ var placa = localStorage.getItem("placa");
 var tipoDocumento = localStorage.getItem("tipoDocumento");
 var numeroDocumento = localStorage.getItem("documento");
 
+
 localStorage.setItem("idCliente", null);
 localStorage.setItem("idVehiculo", null);
 
@@ -258,8 +259,8 @@ function loadTarjeta() {
 }
 
 function verificacion() {
-  const apdPaterno = document.querySelector("#txt-apdPaterno").value;
-  const apdMaterno = document.querySelector("#txt-apdMaterno").value;
+  let apdPaterno = document.querySelector("#txt-apdPaterno").value;
+  let apdMaterno = document.querySelector("#txt-apdMaterno").value;
   const nombres = document.querySelector("#txt-nombres").value;
   const marca = document.querySelector("#select-marca").value;
   const modelo = document.querySelector("#select-modelo").value;
@@ -272,7 +273,7 @@ function verificacion() {
   switch (stage) {
     case 0:
       if (
-        apdPaterno == "" ||
+          apdPaterno =="" ||
         nombres == "" ||
         marca == "" ||
         modelo == "" ||
@@ -316,19 +317,30 @@ function verificacion() {
         return false;
       }
 
-      if (
-        !/^[A-Za-z]+$/.test(apdPaterno) ||
-        !/^[A-Za-z]+$/.test(apdMaterno) ||
-        !/^[A-Za-z ]+$/.test(nombres)
-      ) {
-        if (apdMaterno !== "-") {
-          document.querySelector("#txt-apdPaterno").focus();
-          alert(
+      if(
+          (apdPaterno !== "" && !/^[A-Za-z -]+$/.test(apdPaterno)) ||
+          (apdMaterno !== "" && !/^[A-Za-z -]+$/.test(apdMaterno)) ||
+          !/^[A-Za-z ]+$/.test(nombres)
+      ){
+        document.querySelector("#txt-apdPaterno").focus();
+        alert(
             "Los nombres y apellidos no deben contener caracteres especiales"
-          );
-          return false;
-        }
+        );
+        return false;
       }
+
+      if(apdMaterno==="" && (tipoDocumento!=="4" && tipoDocumento!=="2" && tipoDocumento!=="3")){
+        alert("Complete su apellido por favor");
+        return false;
+      }else if(apdMaterno==="" && (tipoDocumento==="4" || tipoDocumento==="2" || tipoDocumento==="3")){
+        document.querySelector("#txt-apdMaterno").value = '-';
+      }
+
+      if(tipoDocumento==="3" && numeroDocumento.substring(0, 2) === "20"){
+        document.querySelector("#txt-apdPaterno").value = '-'
+        document.querySelector("#txt-apdMaterno").value = '-'
+      }
+
       break;
     case 1:
       //verificar que se haya seleccionado un plan
@@ -544,6 +556,7 @@ async function guardar() {
     }
 
     console.log(JSON.stringify(data));
+    localStorage.setItem("soatDataCompleta", JSON.stringify(data));
     fetch(GLOBAL_URL + "/ProcesoSOAT/insertarInfoProceso1", {
       method: "POST",
       body: JSON.stringify(data),
@@ -583,6 +596,17 @@ async function inicializar() {
   await cargarModelos();
   await cargarPersona();
   await cargarVehiculo();
+
+  if(tipoDocumento==="3" && numeroDocumento.substring(0, 2) === "20"){
+    document.querySelector("#txt-apdPaterno").style.display = "none";
+    document.querySelector("#apPaternoIDText").style.display = "none";
+    document.querySelector("#txt-apdMaterno").style.display = "none";
+    document.querySelector("#apMaternoIDText").style.display = "none";
+
+    document.querySelector("#nombreIDText").innerText = "Nombre completo empresa";
+    document.querySelector("#txt-apdPaterno").value = "-";
+    document.querySelector("#txt-apdMaterno").value = "-";
+  }
 }
 
 async function cargarMarcas() {
@@ -811,3 +835,149 @@ function validateNumericInput(input) {
   // Actualizar el valor del campo de texto con solo caracteres numéricos
   input.value = numericValue;
 }
+
+
+document.querySelector("#btn-descargar-constancia").addEventListener("click", function () {
+  const soatDataJSON = localStorage.getItem("soatDataCompleta");
+  const soatData = JSON.parse(soatDataJSON);
+  generarPDF(soatData);
+});
+
+async function generarPDF(soatData) {
+  // Extraigo datos necesarios para el pdf
+  const {
+    fidPlanSoat: { cobertura, precio, nombrePlan },
+    fidPoliza: {
+      fidMoneda: { abreviatura },
+      fidVehiculo: {
+        fidTipoUso: { nombreTipoUso },
+        fidModelo: {
+          fidMarcaVehiculo: {marca},
+          modelo,
+        },
+        fidPersona: {
+          nombre,
+          apellidoPaterno,
+          apellidoMaterno,
+          numeroDocumento,
+          fidTipoDocumento: {nombre: nombreTipoDocumento},
+          email,
+        },
+        placa,
+        serie,
+      },
+      precioBase,
+      fechaVigenciaDesde,
+      fechaVigenciaFin,
+    },
+  } = soatData;
+
+  let placaFormateada = placa.substring(0, 3) + "-" + placa.substring(3);
+  const imageURL = 'public/resources/logos/logo-transparent-back.png';
+  const imageDataURL = await getImageDataURL(imageURL);
+  const fechaVigenciaDesdeConvertida = new Date(fechaVigenciaDesde).toLocaleDateString('es-ES');
+  const fechaVigenciaFinConvertida = new Date(fechaVigenciaFin).toLocaleDateString('es-ES');
+
+  // contenido del PDF
+  const content = [
+
+    // Título
+    { text: 'Detalle SOAT', style: 'header' },
+
+    // Logo
+    { image: imageDataURL, width: 140, alignment: 'center',
+      margin: [5, 5] },
+
+    // Separación notable
+    { text: '', margin: [0, 0, 0, 20] },
+
+    // VIGENCIA DE LA PÓLIZA
+    { text: 'VIGENCIA DE LA PÓLIZA', style: 'subheader' },
+    { text: 'Desde', style: 'subtitle' },
+    { text: fechaVigenciaDesdeConvertida },
+    { text: 'Hasta', style: 'subtitle' },
+    { text: fechaVigenciaFinConvertida, margin: [0, 0, 0, 20] },
+
+    // PLAN SOAT
+    { text: 'PLAN SOAT', style: 'subheader' },
+    { text: 'Plan Escogido', style: 'subtitle' },
+    { text: nombrePlan },
+    { text: 'Precio', style: 'subtitle' },
+    { text: `${precio} ${abreviatura}` },
+    { text: 'Cobertura', style: 'subtitle' },
+    { text: `${cobertura} ${abreviatura}`, margin: [0, 0, 0, 20] },
+
+    // VEHÍCULO ASEGURADO
+    { text: 'VEHÍCULO ASEGURADO', style: 'subheader' },
+    { text: 'Marca', style: 'subtitle' },
+    { text: marca },
+    { text: 'Modelo', style: 'subtitle' },
+    { text: modelo },
+    { text: 'Placa', style: 'subtitle' },
+    { text: placaFormateada },
+    { text: 'Serie', style: 'subtitle' },
+    { text: serie },
+    { text: 'Uso', style: 'subtitle' },
+    { text: nombreTipoUso, margin: [0, 0, 0, 20] },
+
+    // CONTRATANTE/ASEGURADO
+    { text: 'CONTRATANTE/ASEGURADO', style: 'subheader' },
+    { text: 'Nombre', style: 'subtitle' },
+    { text: nombre },
+    { text: 'Apellidos', style: 'subtitle' },
+    { text: `${apellidoPaterno} ${apellidoMaterno}` },
+    { text: 'Documento', style: 'subtitle' },
+    { text: `${nombreTipoDocumento} ${numeroDocumento}` },
+  ];
+
+  // Definir los estilos del PDF
+  const styles = {
+    header: {
+      fontSize: 18,
+      bold: true,
+      alignment: 'center',
+      margin: [0, 0, 0, 10],
+    },
+    subheader: {
+      fontSize: 15,
+      bold: true,
+      margin: [0, 10, 0, 5],
+      color: '#122757',
+    },
+    subtitle: {
+      fontSize: 14,
+      bold: true,
+      margin: [0, 0, 0, 3],
+    },
+  };
+
+  // Definir el documento PDF
+  const docDefinition = {
+    content,
+    styles,
+    pageMargins: [80, 40, 80, 40],
+  };
+
+  // Genero el PDF
+  const nombreArchivo = `${placaFormateada}_SOAT.pdf`;
+  pdfMake.createPdf(docDefinition).download(nombreArchivo);
+}
+
+function getImageDataURL(url) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+      const reader = new FileReader();
+      reader.onloadend = function () {
+        resolve(reader.result);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(xhr.response);
+    };
+    xhr.onerror = reject;
+    xhr.open('GET', url);
+    xhr.responseType = 'blob';
+    xhr.send();
+  });
+}
+
