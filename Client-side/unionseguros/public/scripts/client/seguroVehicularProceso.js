@@ -876,6 +876,7 @@ async function guardar() {
     })
         .then(response => response.json())
         .then(data => {
+          alert(data);
           localStorage.setItem("idCotizacion", data);
 
           var listaCotizacionXDetalle = [];
@@ -886,6 +887,15 @@ async function guardar() {
               fidDetalleCotizacion: plan.id
             };
             listaCotizacionXDetalle.push(cotizacionXDetalle);
+          }
+
+          for (var i = 0; i < listaCotizacionXDetalle.length; i++) {
+            var cotizacionXDetalle = listaCotizacionXDetalle[i];
+            var fidCotizacion = cotizacionXDetalle.fidCotizacion;
+            var fidDetalleCotizacion = cotizacionXDetalle.fidDetalleCotizacion;
+
+            // Haz algo con fidCotizacion y fidDetalleCotizacion
+            alert(fidCotizacion + " " + fidDetalleCotizacion);
           }
 
           try {
