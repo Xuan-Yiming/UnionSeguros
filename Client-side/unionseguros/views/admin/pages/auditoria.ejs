@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Auditoria</title>
+        <link rel="icon" type="image/x-icon" href="../public/resources/icons/page-icon-blue.png">
+
+        <link rel="stylesheet" href="../public/stylesheets/style.css">
+        <link rel="stylesheet" href="../public/stylesheets/admin/adminList.css">
+        <link rel="stylesheet" href="../public/stylesheets/admin/adminAuditoria.css">
+
+        <script type="text/javascript" src="../public/scripts/admin/adminAuditoria.js"></script>
+        <script type="text/javascript" src="../public/scripts/conection.js"></script>
+
+    </head>
+
+    <body class="container">
+        <%- include('../layouts/header'); %>
+            <div class="div-main">
+                <div class="div-header">
+                    <button id="btn-regresar" class="button-blue-transparente-blue-border" onclick="goBack()">< Regresar</button>
+                    <h2>Auditoria</h2>
+                </div>
+                <div class="div-content">
+                    <div class="text-container">Level	Date and Time	Source	Event ID	Task Category
+                        Information	13/04/2023 19:28:59	Outlook	63	None	La solicitud de servicio web de intercambio GetAppManifestssucedió a.
+                        Information	13/04/2023 19:21:04	SecurityCenter	15	None	Updated Windows Defender status successfully to SECURITY_PRODUCT_STATE_ON.
+                        Information	13/04/2023 19:20:51	SecurityCenter	15	None	Updated Windows Defender status successfully to SECURITY_PRODUCT_STATE_ON.
+                        Information	13/04/2023 19:20:51	igccservice	0	None	El servicio ha controlado PowerEvent correctamente.
+                        Information	13/04/2023 19:20:50	DellTechHub	0	None	PowerEvent handled successfully by the service.
+                        Information	13/04/2023 19:20:50	Dell SupportAssist Remediation	0	None	El servicio ha controlado PowerEvent correctamente.
+                        Information	13/04/2023 19:20:46	igccservice	0	None	El servicio ha controlado PowerEvent correctamente.
+                        Information	13/04/2023 19:20:46	Dell SupportAssist Remediation	0	None	El servicio ha controlado PowerEvent correctamente.
+                        Information	13/04/2023 19:20:46	DellTechHub	0	None	PowerEvent handled successfully by the service.
+                        Information	13/04/2023 19:13:39	MSSQL$SQLEXPRESS	17896	(2)	The time stamp counter of CPU on scheduler id 1 is not synchronized with other CPUs.
+                        Information	13/04/2023 19:05:38	MSSQL$SQLEXPRESS	17896	(2)	The time stamp counter of CPU on scheduler id 11 is not synchronized with other CPUs.
+                        Information	13/04/2023 19:01:37	MSSQL$SQLEXPRESS	17896	(2)	The time stamp counter of CPU on scheduler id 6 is not synchronized with other CPUs.
+                        Information	13/04/2023 18:29:33	MSSQL$SQLEXPRESS	17896	(2)	The time stamp counter of CPU on scheduler id 10 is not synchronized with other CPUs.
+                        Information	13/04/2023 18:13:31	MSSQL$SQLEXPRESS	17896	(2)	The time stamp counter of CPU on scheduler id 1 is not synchronized with other CPUs.
+                        Information	13/04/2023 17:51:48	igccservice	0	None	El servicio ha controlado PowerEvent correctamente.
+                        Information	13/04/2023 17:51:48	Dell SupportAssist Remediation	0	None	El servicio ha controlado PowerEvent correctamente.
+                        Information	13/04/2023 17:51:48	DellTechHub	0	None	PowerEvent handled successfully by the service.
+                        Information	13/04/2023 17:50:52	VSS	8224	None	The VSS service is shutting down due to idle timeout.
+                        Information	13/04/2023 17:47:52	MSSQL$SQLEXPRESS	17401	(2)	Server resumed execution after being idle 453 seconds: user activity awakened the server. This is an informational message only. No user action is required.
+                        Error	13/04/2023 17:47:52	VSS	8194	None	"Volume Shadow Copy Service error: Unexpected error querying for the IVssWriterCallback interface.  hr = 0x80070005, Acceso denegado.
+                        . This is often caused by incorrect security settings in either the writer or requestor process.
+
+                        Operación:
+                        Recopilando datos del escritor
+
+                        Contexto:
+                        Id. de clase del escritor: {e8132975-6f93-4464-a53e-1050253ae220}
+                        Nombre del escritor: System Writer
+                        Id. de instancia del escritor: {d5d10d8f-120f-49c6-9f94-079270840124}"
+                        Information	13/04/2023 17:47:52	SDSSnapshotProcess	278	(6)	"The description for Event ID 278 from source SDSSnapshotProcess cannot be found. Either the component that raises this event is not installed on your local computer or the installation is corrupted. You can install or repair the component on the local computer.
+
+                        If the event originated on another computer, the display information had to be saved with the event.
+
+                        The following information was included with the event:
+                        The message resource is present but the message was not found in the message table</div>
+                </div>
+            </div>
+    </body>
+
+</html>

@@ -1,0 +1,166 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Calibri, sans-serif;
+    text-decoration: none;
+    display: block;
+}
+
+.client-header{
+    position: fixed;
+    top:0; left:0; right:0;
+    background: white;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    padding: 0 300px;
+}
+
+@media(max-width: 1150px){
+    .client-header-navbar-item-button{
+        padding: 0 10px;
+    }
+    .client-header{
+        padding: 0 100px;
+    }
+}
+
+.client-header-info-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.client-header-logo {
+    position: relative;
+    height: 100%;
+    float: left;
+}
+
+.client-header-logo img{
+    width: 100px;
+    height: auto;
+}
+
+.client-header-navbar {
+    display: flex;
+    flex-direction: row;
+
+    margin-right: 15%;
+}
+
+.client-header-navbar a {
+    float: left;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.client-header-navbar-item{
+    display: block;
+}
+
+.client-header-navbar-item-button {
+    font-size: 18px;
+    text-align: center;
+    border: none;
+    outline: none;
+    color: black;
+    padding: 25px 40px;
+    background: inherit;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+
+.client-header-navbar  .client-header-navbar-item:hover .client-header-navbar-item-button {
+    background: #C8102E;
+    color: #fff;
+}
+
+.client-header-navbar-item-content {
+    padding: 25px;
+    background: white;
+    border-top: 5px solid #C8102E;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    display: none;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    z-index: 10;
+}
+
+.client-header-navbar-item:hover .client-header-navbar-item-content {
+    display: block;
+}
+
+.client-header-navbar-item-content-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 250px;
+    width: 50%;
+    height: 70px;
+    background: white;
+}
+
+.client-header-navbar-item-content-row a {
+    display: block;
+    margin-bottom: 10px;
+    color: #041E42; /*letra del título de la opción*/
+    font-weight: bold;
+    text-align: left;
+    padding: 0;
+    font-size: 18px;
+}
+
+.client-header-navbar-item-content-row p {
+    display: block;
+    color: #041E42;
+    font-size: 14px;
+}
+
+.client-header-navbar-item-content-row a:hover {
+    color: #C8102E;
+    background: none;
+}
+
+.row:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.client-header-navbar-telefono {
+    float: right;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #C8102E;
+    text-decoration: none;
+}
+
+.client-header-navbar-telefono h3{
+    color: #041E42;
+    font-size: 20px;
+    align-self: center;
+}
+
+.client-header-navbar-telefono img {
+    width: 30px;
+    height: 30px;
+}
+
+@media(max-width: 1550px){
+    .client-header-navbar-telefono h3{
+        display: none;
+    }
+    .client-header-navbar{
+        margin-right: 0;
+    }
+}
+
+.client-header-group-login-tel{
+    display: flex;
+    flex-direction: row;
+}

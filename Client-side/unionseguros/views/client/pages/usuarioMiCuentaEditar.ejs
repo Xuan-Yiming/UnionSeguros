@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Seguros</title>
+    <link rel="icon" type="image/x-icon" href="../public/resources/icons/page-icon.png">
+
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+    <link rel="stylesheet" href="../public/stylesheets/client/form.css">
+    <link rel="stylesheet" href="../public/stylesheets/client/usuarioMiCuentaEditar.css">
+    <script type="text/javascript" src="../public/scripts/conection.js"></script>
+
+</head>
+
+<body class="container">
+<%- include('../layouts/headerUsuario'); %>
+<main>
+    <div class="content-container">
+        <h2 id="tituloCuenta">Mi Cuenta</h2>
+        <p id="subtituloCuenta"> Mantén actualizada tu información</p>
+        <div id="content-container-item-regresar" class="content-container-item">
+            <button id="regresar" class="button-previous">Cancelar</button>
+        </div>
+
+        <div class="form-inputs">
+            <div class="form-line">
+                <div class="form-item">
+                    <h3>Nombres</h3>
+                    <input id="txt-nombre" type="text" placeholder="Ingresar nombres" disabled></input>
+                </div>
+            </div>
+            <div class="form-line">
+                <div class="form-item">
+                    <h3>Apellido paterno</h3>
+                    <input id="txt-apellido-paterno" type="text" placeholder="Ingrese apellido paterno " disabled></input>
+                </div>
+                <div class="form-item">
+                    <h3>Apellido Materno</h3>
+                    <input id="txt-apellido-materno" type="text" placeholder="Ingrese apellido materno" disabled></input>
+                </div>
+            </div>
+            <div class="form-line">
+                <div class="form-item">
+                    <h3>Número de documento</h3>
+                    <input placeholder="Ingresar número" id="txt-documento" disabled></input>
+                </div>
+            </div>
+            <div class="form-line">
+                <div class="form-item">
+                    <h3>Correo Electronico</h3>
+                    <input id="txt-correo" type="text" placeholder="Ingresar correo electronico" disabled></input>
+                </div>
+            </div>
+            <div class="form-line">
+                <div class="form-item">
+                    <h3>Número celular</h3>
+                    <input id="txt-celular" type="text" placeholder="Ingrese número celular" maxlength="9" ></input>
+                </div>
+            </div>
+            <div class="form-line">
+                <div class="form-item">
+                    <h3>Dirección</h3>
+                    <input id="txt-direccion" type="text" placeholder="Ingrese direccion" ></input>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-container-item bottom">
+            <button id="btn-guardar" class="button-red">Guardar</button>
+        </div>
+
+    </div>
+</main>
+<%- include('../layouts/footer'); %>
+<script type="text/javascript" src="../public/scripts/client/usuarioMiCuentaEditar.js"></script>
+<script type="text/javascript" src="../public/scripts/client/headerUsuario.js"></script>
+</body>
+</html>

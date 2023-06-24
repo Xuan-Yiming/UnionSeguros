@@ -1,0 +1,29 @@
+.content-container{
+  width: 80vw;
+  margin: 140px auto;
+  justify-content: center;
+}
+
+.content-container-item.bottom {
+  display: flex;
+  margin-top: 10px;
+  gap: 30px;
+}
+
+#tituloCuenta{
+  color: #C8102E;
+  font-size: 35px;
+}
+
+#subtituloCuenta{
+  font-size: 20px;
+  margin-bottom: 40px;
+}
+
+.info-vehi-form h2{
+  margin-left: 20px;
+}
+
+#content-container-item-regresar{
+  margin-bottom: 30px;
+}

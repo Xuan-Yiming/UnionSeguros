@@ -1,0 +1,94 @@
+#tabla-plan-soat{
+
+    width: 80vw;
+    margin: 140px auto;
+    justify-content: center;
+}
+
+tr{
+    text-align: center;
+    align-items: center;
+    vertical-align: middle;
+}
+#control-bar-button{
+    display: flex;
+    justify-content: center;
+}
+
+#control-bar-button img{
+    height: 1em;
+    width: 1em;
+    margin-right: 5px;
+}
+
+
+
+
+table, th, td{
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+th{
+    background-color: #041E42;
+    color: #fff;
+    font-weight:normal;
+    font-size: 18px;
+}
+
+table{
+    margin-top: 30px;
+}
+
+#tableID tbody tr:nth-child(odd) {
+    background-color: rgba(137, 179, 245, 0.25);
+}
+
+#tableID tbody tr:nth-child(even) {
+    background-color: white;
+}
+
+
+#control-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#control-bar-search{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-items: center;
+}
+
+#control-bar-search img{
+    height: 30px;
+    width: 30px;
+}
+
+#control-bar-button{
+    display: flex;
+    flex-direction: row;
+}
+
+#txt-buscar{
+    border: none;
+    border-bottom: 2px solid #041E42;
+    color: #041E42;
+    background-color: transparent;
+    outline: none;
+    font-size: 16px;
+    margin: 10px;
+}
+
+select{
+    font-size: 12px;
+    margin: 15px;
+}
+
+
+
+.custom-file-input-label{
+    display: none;
+} 

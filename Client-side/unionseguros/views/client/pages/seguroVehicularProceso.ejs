@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Union Seguros - Cotizar Seguro Vehicular</title>
+    <link rel="icon" type="image/x-icon" href="/public/resources/icons/page-icon.png">
+
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <link rel="stylesheet" href="/public/stylesheets/client/seguroVehicularProceso.css">
+    <link rel="stylesheet" href="/public/stylesheets/client/progressBar.css">
+    <link rel="stylesheet" href="/public/stylesheets/client/form.css">
+    <script type="text/javascript" src="../public/scripts/conection.js"></script>
+</head>
+
+<body class="container">
+    <%- include('../layouts/headerSimple'); %>
+
+        <main>
+            <div class="form-container">
+                <div class="form-container-control">
+                    <div class="progress-bar">
+                        <ol class="ProgressBar">
+                            <li class="ProgressBar-step is-current">
+                                <svg class="ProgressBar-icon">
+                                    <use xlink:href="/public/resources/icons/checkmark.circle.svg" />
+                                </svg>
+                                <span class="ProgressBar-stepLabel">Información Vehículo</span>
+                            </li>
+                            <li class="ProgressBar-step">
+                                <svg class="ProgressBar-icon">
+                                    <use xlink:href="/public/resources/icons/checkmark.circle.svg" />
+                                </svg>
+                                <span class="ProgressBar-stepLabel">Información Personal</span>
+                            </li>
+                            <li class="ProgressBar-step">
+                                <svg class="ProgressBar-icon">
+                                    <use xlink:href="/public/resources/icons/checkmark.circle.svg" />
+                                </svg>
+                                <span class="ProgressBar-stepLabel">Elegir Beneficios</span>
+                            </li>
+                            <li class="ProgressBar-step">
+                                <svg class="ProgressBar-icon">
+                                    <use xlink:href="/public/resources/icons/checkmark.circle.svg" />
+                                </svg>
+                                <span class="ProgressBar-stepLabel">Resumen</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="form-container-content">
+                    <div class="form-content-item">
+                        <button id="btn-previous" class="button-previous">Regresar</button>
+                    </div>
+                    <div class="form-vehiculo form-content-item">
+                        <div class="content">
+                            <h1>Necesitamos más información de tu vehículo</h1>
+                            <div class="form-inputs">
+                                <div class="form-line">
+                                    <div class="form-item">
+                                        <h3>Marca</h3>
+                                        <select id="select-marca">
+                                            <option value="" disabled selected>Seleccione una marca</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-item">
+                                        <h3>Modelo</h3>
+                                        <select id="select-modelo">
+                                            <option value="" disabled selected>Seleccione un modelo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-line">
+                                    <div class="form-item">
+                                        <h3>Número de Asientos</h3>
+                                        <input placeholder="Ingrese número" id="txt-asientos" maxlength="2" oninput="validateNumericInput(this)" ></input>
+                                    </div>
+                                    <div class="form-item">
+                                        <h3>Año</h3>
+                                        <input placeholder="Ingrese año" id="txt-anio" maxlength="4" oninput="validateNumericInput(this)"></input>
+                                    </div>
+                                </div>
+
+                                <div class="form-item">
+                                    <h3>Serie</h3>
+                                    <input placeholder="Ingrese Serie" id="txt-serie" maxlength="17" oninput="this.value = this.value.toUpperCase()"></input>
+                                </div>
+                                <div class="form-item">
+                                    <h3>Uso</h3>
+                                    <select id="select-uso">
+                                        <option value="" disabled selected>Seleccione uno</option>
+                                        <option value="1">Particular</option>
+                                        <option value="2">Taxi</option>
+                                        <option value="3">Carga</option>
+                                    </select>
+                                </div>
+                                
+                                
+                                <div class="form-item">
+
+                                    <h3>Fecha de inicio del seguro</h3>
+                                    <input id="date-picker" type="date"></input>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-personal form-content-item">
+                        <div class="content">
+                            <h1>Necesitamos conocerte más </h1>
+                            <div class="form-inputs">
+                                <div class="form-item">
+                                    <h3>Nombres</h3>
+                                    <input id="txt-nombres" placeholder="Ingrese nombres" oninput="this.value = this.value.toUpperCase()"></input>
+                                </div>
+                                <div class="form-line">
+                                    <div class="form-item">
+                                        <h3>Apellido Paterno</h3>
+                                        <input id="txt-apdPaterno" placeholder="Ingrese apellido" oninput="this.value = this.value.toUpperCase()"></input>
+                                    </div>
+                                    <div class="form-item">
+                                        <h3>Apellido Materno</h3>
+                                        <input id="txt-apdMaterno" placeholder="Ingrese apellido" oninput="this.value = this.value.toUpperCase()"></input>
+                                    </div>
+                                </div>
+                                <div class="form-line">
+                                    
+                                    <div class="form-item">
+                                        <h3>Fecha de nacimiento</h3>
+                                        <input id="date-picker2" type="date"></input>
+    
+                                    </div>
+                                    <div class="form-item">
+                                        <h3>Número de celular</h3>
+                                        <input id="txt-numCelular" placeholder="Ingrese número celular" maxlength="9" oninput="validateNumericInput(this)"></input>
+                                    </div>
+                                </div>
+
+                                <div class="form-line">
+                                    <div class="form-item">
+                                        <h3>Departamento</h3>
+                                        <select id="select-departamento">
+                                            <option value="" disabled selected>Seleccione un departamento</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-item">
+                                        <h3>Provincia</h3>
+                                        <select id="select-provincia">
+                                            <option value="" disabled selected>Seleccione una provincia</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-item">
+                                    <h3>Distrito</h3>
+                                    <select id="select-distrito">
+                                        <option value="" disabled selected>Seleccione un distrito</option>
+                                    </select>
+                                </div>
+                                <div class="form-item">
+                                    <h3>Dirección</h3>
+                                    <input id="txt-direccion" placeholder="Ingrese dirección" oninput="this.value = this.value.toUpperCase()"></input>
+                                </div>
+                                <div class="form-item">
+                                    <h3>Correo electrónico</h3>
+                                    <input placeholder="Ingrese correo" id = "txt-correo" oninput="this.value = this.value.toLowerCase()"></input>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-plans form-content-item">
+                        <h1>Escoge los beneficios que desees agregar</h1>
+                        <div class="content-plan">
+                        </div>
+                        <h1 id="total">Total: $0</h1>
+                    </div>
+                    <div class="form-result form-content-item">
+                        <h1>¡Gracias por elegirnos!</h1>
+                        <br>
+                        <h2>Resumen Seguro Vehicular</h2>
+                        <h3>Nombre Completo</h3>
+                        <p id="txt-res-nombre">Jimmy Chan Rojas</p>
+                        <h3>Placa</h3>
+                        <p id="txt-res-placa">ABC-123</p>
+                        <h3>Beneficios escogidos</h3>
+                        <p id="lista-beneficios-escogidos">Seguro Vehicular Básico</p>
+                        <h3>Pago Total</h3>
+                        <p id="txt-res-total">S/. 69.90</p>
+                        <h3>Periodo</h3>
+                        <p id="txt-res-periodo">03/04/2023 - 03/04/2024</p>
+                    </div>
+                    <div class="form-content-item">
+                        <button id="btn-descargar-constancia" class="button-red-white-back">Descargar constancia</button>
+                        <button id="btn-advance" class="button-red">Continuar</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <%- include('../layouts/footer'); %>
+        <script src="/public/scripts/client/seguroVehicularProceso.js"></script>
+</body>
+</html>

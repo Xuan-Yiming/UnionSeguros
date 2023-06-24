@@ -1,0 +1,31 @@
+.client-header-simple {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 100px;
+    color: white;
+
+}
+  
+  .client-header-simple-logo {
+    float: left;
+  }
+  
+  .client-header-simple-logo img {
+      width: 125px;
+      height: auto;
+  }
+  
+  .client-header-simple-telefono{
+    float: right;
+    display: flex;
+    align-items: center;
+    color: #C8102E;
+    text-decoration: none;
+  }
+  
+  .client-header-simple-telefono img {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+  }

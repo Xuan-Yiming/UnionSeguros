@@ -1,0 +1,127 @@
+.form-container{
+    display: flex;
+    height: auto;
+    min-height: 612px;
+    width: 100%;
+    flex-direction: column;
+    padding-bottom: 100px;
+}
+
+.form-container-control{
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    height: fit-content;
+}
+
+
+
+.form-container-content{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: white;
+    height: fit-content;
+    max-width: 1000px;
+    width: fit-content;
+    border-radius: 10px;
+    margin: 0 auto 60px auto;
+    box-shadow: rgba(0,0,0,0.2) 10px 10px 20px 5px;
+}
+
+.content{
+    margin-left: 10px;
+    margin-right: 10px;
+    height: fit-content;
+    width: fit-content;
+}
+
+.form-item{
+    margin: 10px;
+    width: 100%;
+}
+
+.form-item select, .form-item input{
+    font-size: 16px;
+    width: 90%;
+}
+
+.form-line{
+    display: flex;
+    grid-template-columns: 1fr 1fr 1fr;
+    max-width: 1000px;
+}
+
+.form-result-content p{
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.form-result-content{
+    justify-content: center;
+    text-align: center;
+}
+
+
+input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    outline: none;
+    background-color: transparent;
+
+    position: relative;
+
+
+}
+
+input[type="radio"]:before {
+    content: "Seleccionar";
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    color: #C8102E;
+    height: fit-content;
+    width: fit-content;
+    padding: 10px 20px;
+    margin: 10px;
+    position: relative;
+    text-align: center;
+}
+
+input[type="radio"]:checked:before {
+    content: "Seleccionado";
+    border: none;
+    border-radius: 5px;
+    background-color: #C8102E;
+    color: white;
+    height: fit-content;
+    width: fit-content;
+    padding: 10px 20px;
+    margin: 10px;
+    position: relative;
+}
+
+#btn-advance{
+    float: right;
+    position: relative;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
+}
+
+
+.form-item input{
+    width: 100%;
+}
+
+.form-item input{
+    width: 100%;
+
+}
+.form-item select{
+    width: 100%;
+
+}

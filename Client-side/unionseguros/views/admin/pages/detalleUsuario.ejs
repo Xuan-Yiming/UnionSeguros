@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle Usuario</title>
+
+    <link rel="icon" type="image/x-icon" href="../public/resources/icons/page-icon-blue.png">
+
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+    <link rel="stylesheet" href="../public/stylesheets/client/form.css">
+    <link rel="stylesheet" href="../public/stylesheets/admin/adminDetalle.css">
+
+    <script type="text/javascript" src="../public/scripts/admin/adminDetalleUsuario.js"></script>
+    <script type="text/javascript" src="../public/scripts/conection.js"></script>
+    
+</head>
+
+<body class="container">
+    <%-include('../layouts/header'); %>
+        <main>
+            <div class="content-container">
+                <div id="content-container-item-regresar" class="content-container-item">
+                    <button id="regresar" class="button-previous">Regresar</button>
+                </div>
+
+                <div class="form-inputs">
+                    <h2 id="titulo">Detalle Usuario #</h2>
+                    <h2 id="id"></h2>
+                    <div class="form-line">
+                        <div class="form-item">
+                            <h3>Correo Electronico</h3>
+                            <input id="txt-correo" type="text" placeholder="Ingresar correo electronico" oninput="this.value = this.value.toLowerCase()"></input>
+                        </div>
+                        <div class="form-item">
+                            <h3>Contraseña</h3>
+                            <input id="txt-contrasena" type="text" placeholder="Ingresar Contraseña"></input>
+                        </div>
+                    </div>
+                    <div class="form-line">
+                        <div class="form-item">
+                            <h3>Nombres</h3>
+                            <input id="txt-nombre" type="text" placeholder="Ingresar nombres" oninput="this.value = this.value.toUpperCase()"></input>
+                        </div>
+                    </div>
+                    <div class="form-line">
+                        <div class="form-item">
+                            <h3>Apellido Paterno</h3>
+                            <input id="txt-apellido-paterno" type="text" placeholder="Ingrese apellido paterno" oninput="this.value = this.value.toUpperCase()"></input>
+                        </div>
+                        <div class="form-item">
+                            <h3>Apellido Materno</h3>
+                            <input id="txt-apellido-materno" type="text" placeholder="Ingrese apellido materno" oninput="this.value = this.value.toUpperCase()"></input>
+                        </div>
+                    </div>
+                    <div class="form-line">
+                        <div class="form-item">
+                            <h3>Número celular</h3>
+                            <input id="txt-celular" type="text" placeholder="Ingrese número celular"
+                                   oninput="validateNumericInput(this)" maxlength="9"></input>
+                        </div>
+                        <div class="form-item">
+                            <h3>Fecha Nacimiento</h3>
+                            <input id="dp-fecha-nacimiento" type="date"></input>
+                        </div>
+                    </div>
+                    <div class="form-line">
+                        <div class="form-item">
+                            <h3>Dirección</h3>
+                            <input id="txt-direccion" type="text" placeholder="Ingrese direccion" oninput="this.value = this.value.toUpperCase()"></input>
+                        </div>
+                    </div>
+                    <div class="form-line">
+                        <div class="form-item">
+                            <h3>Tipo de documento</h3>
+                                <select id="select-documento">
+                                    <option value="" disabled selected>Seleccione</option>
+                                    <option value="1">DNI</option>
+                                    <option value="2">CE</option>
+                                    <option value="3">RUC</option>
+                                </select>
+                        </div>
+                        <div class="form-item">
+                            <h3>Número de documento</h3>
+                                <input placeholder="Ingresar número" id="txt-documento" oninput="this.value = this.value.toUpperCase()"></input>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="content-container-item bottom">
+                    <button id="btn-guardar" class="button-red">Guardar</button>
+                </div>
+
+            </div>
+        </main>
+</body>
+</html>

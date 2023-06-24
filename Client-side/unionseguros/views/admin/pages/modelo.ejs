@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Modelos</title>
+        <link rel="icon" type="image/x-icon" href="../public/resources/icons/page-icon-blue.png">
+
+        <link rel="stylesheet" href="../public/stylesheets/style.css">
+        <link rel="stylesheet" href="../public/stylesheets/admin/adminList.css">
+        <link rel="stylesheet" href="../public/stylesheets/modal.css">
+
+        <script type="text/javascript" src="../public/scripts/admin/adminModelo.js"></script>
+        <script type="text/javascript" src="../public/scripts/conection.js"></script>
+        <script type="text/javascript" src="../public/scripts/modal.js"></script>
+
+    </head>
+
+    <body class="modal-container">
+        <div class="modal-overlay" id="modalOverlay">
+            <div class="modal-main">
+                <h2>Detalles</h2>
+                <label for="txt-modelo">Modelo</label>
+                <input type="text" id="txt-modelo" placeholder="Ingresar modelo" oninput="this.value = this.value.toUpperCase()">
+                <div class="modal-buttons">
+                    <button id="btn-modal-cancelar" >Cancelar</button>
+                    <button id="btn-modal-guardar">Guardar</button>
+                </div>
+            </div>
+        </div>
+        <%- include('../layouts/header'); %>
+
+            <main id="tabla-plan-soat">
+                <div id="content-container-item-regresar" class="content-container-item">
+                    <button id="btn-regresar" class="button-previous">Regresar</button>
+                </div>
+                <h2>Modelo</h2>
+                <div id="control-bar">
+                    <div id="control-bar-button">
+                        <button class="button-blue-transparente-blue-border" id="btn-nuevo">
+                            + Agregar modelo
+                        </button>
+
+                    </div>
+                    <div id="control-bar-search">
+                        <img src="../public/resources/icons/Accessibility.png" alt="Buscar">
+                        <input id="txt-buscar" type="text" placeholder="Buscar">
+                    </div>
+                </div>
+                <table id="tableID" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Modelo</th>
+                            <th>Tipo Vehiculo</th>
+                            <!-- <th>Valor</th> -->
+                            <th>Herramientas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+
+                    </tbody>
+                </table>
+
+            </main>
+    </body>
+
+</html>

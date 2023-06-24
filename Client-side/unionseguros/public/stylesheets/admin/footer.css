@@ -1,0 +1,21 @@
+.admin-footer {
+    background-color: #041E42;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .admin-footer-logo {
+    text-align: center;
+    margin: 12px auto;
+  }
+
+  .admin-footer-logo img {
+    width: 100px;
+    height: auto;
+  }

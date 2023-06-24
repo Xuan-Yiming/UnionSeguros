@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Union Seguros - Registrarse</title>
+    <link rel="icon" type="image/x-icon" href="/public/resources/icons/page-icon.png">
+
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <link rel="stylesheet" href="/public/stylesheets/client/progressBar.css">
+    <link rel="stylesheet" href="/public/stylesheets/client/login.css">
+    <link rel="stylesheet" href="/public/stylesheets/client/form.css">
+
+    <script type="text/javascript" src="../public/scripts/conection.js"></script>
+
+</head>
+
+<body>
+<%- include('../layouts/headerSimple'); %>
+
+<main>
+    <div class="form-container">
+        <div class="form-container-control">
+            <div class="progress-bar">
+                <ol class="ProgressBar">
+                    <li class="ProgressBar-step is-current">
+                        <svg class="ProgressBar-icon">
+                            <use xlink:href="/public/resources/icons/checkmark.circle.svg" />
+                        </svg>
+                        <span class="ProgressBar-stepLabel">Registrarse</span>
+                    </li>
+                    <li class="ProgressBar-step">
+                        <svg class="ProgressBar-icon">
+                            <use xlink:href="/public/resources/icons/checkmark.circle.svg" />
+                        </svg>
+                        <span class="ProgressBar-stepLabel">Ingresar Información</span>
+                    </li>
+                    <li class="ProgressBar-step">
+                        <svg class="ProgressBar-icon">
+                            <use xlink:href="/public/resources/icons/checkmark.circle.svg" />
+                        </svg>
+                        <span class="ProgressBar-stepLabel">Validar Correo</span>
+                    </li>
+                    <li class="ProgressBar-step">
+                        <svg class="ProgressBar-icon">
+                            <use xlink:href="/public/resources/icons/checkmark.circle.svg" />
+                        </svg>
+                        <span class="ProgressBar-stepLabel">Contraseña</span>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="form-container-content">
+            <div class="form-content-item">
+                <button id="btn-previous" class="button-previous">Regresar</button>
+            </div>
+    
+            <div class="form-registro form-content-item">
+                <div class="content">
+                    <h1>Registrarse</h1>
+                    <div class="form-inputs">
+                        <div class="form-line">
+                            <div class="form-item">
+                                <h3>Tipo de Documento</h3>
+                                <select id = "select-documento">
+                                    <option value="" disabled selected>Seleccione</option>
+                                    <option value="1">DNI</option>
+                                    <option value="2">CE</option>
+                                    <option value="3">RUC</option>
+                                </select>
+                            </div>
+    
+                        </div>
+                        <div class="form-line">
+                            <div class="form-item">
+                                <h3>Número de Documento</h3>
+                                <input placeholder="Ingrese número" id = "txt-documento" oninput="this.value = this.value.toUpperCase()"></input>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+    
+            </div>
+    
+    
+            <div class="form-correo form-content-item">
+                <div class="content">
+                    <h1>Ingresar información</h1>
+                    <div class="form-inputs">
+                        <div class="form-line">
+                            <div class="form-item">
+                                <h3>Nombres</h3>
+                                <input id="txt-nombres" placeholder="Ingrese nombres" oninput="this.value = this.value.toUpperCase()"></input>
+                            </div>
+                        </div>
+                        <div class="form-line">
+                            <div class="form-item">
+                                <h3>Apellido Paterno</h3>
+                                <input id="txt-apdPaterno" placeholder="Ingrese apellido" oninput="this.value = this.value.toUpperCase()"></input>
+                            </div>
+                            <div class="form-item">
+                                <h3>Apellido Materno</h3>
+                                <input id="txt-apdMaterno" placeholder="Ingrese apellido" oninput="this.value = this.value.toUpperCase()"></input>
+                            </div>
+                        </div>
+                        <div class="form-line">
+                            <div class="form-item">
+                                <h3>Fecha Nacimiento</h3>
+                                <input id="dp-fecha-nacimiento" type="date"></input>
+                            </div>
+                        </div>
+                        <div class="form-line">
+                            <div class="form-item">
+                                <h3>Correo electrónico</h3>
+                                <input placeholder="Ingrese correo" id = "txt-correo" oninput="this.value = this.value.toLowerCase()"></input>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+    
+            </div>
+
+            <div class="form-validacion form-content-item">
+                <div class="content">
+                    <h1>Validar correo</h1>
+                    <div class="form-inputs">
+                        <div class="form-line">
+                            <div class="form-item">
+                                <h3>Ingresar PIN</h3>
+                                <input placeholder="Ingrese PIN" id = "txt-PIN" maxlength="6"></input>
+                                <p>Ingrese el PIN de 6 dígitos que enviamos a tu correo.</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="form-contrasena form-content-item">
+                <div class="content">
+                    <h1>Ingresar contraseña</h1>
+                    <div class="form-inputs">
+                        
+                        <div class="form-line">
+                            <div class="form-item">
+                                <h3>Contraseña</h3>
+                                <input type="password" placeholder="Ingrese contraseña" id = "txt-contrasena"></input>
+                            </div>
+                        </div>
+                        <div class="form-line">
+                            <div class="form-item">
+                                <h3>Confirmar contraseña</h3>
+                                <input type="password" placeholder="Ingrese contraseña" id = "txt-contrasena-confirm"></input>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+    
+            </div>
+    
+            <div class="form-content-item">
+                <button id="btn-advance" class="button-red">Continuar</button>
+            </div>
+    
+        </div>
+    </div>
+    <script src="/public/scripts/client/login.js"></script>
+</main>
+
+</body>
+<%- include('../layouts/footer'); %>
+</html>
