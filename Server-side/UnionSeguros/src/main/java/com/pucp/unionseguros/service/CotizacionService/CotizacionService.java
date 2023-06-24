@@ -24,6 +24,7 @@ public class CotizacionService {
 
     public int insertarCotizacion(Cotizacion cotizacion){
         Cotizacion savedCotizacion = cotizacionRepository.saveAndFlush(cotizacion);
+        savedCotizacion.setActivo(true);
         return savedCotizacion.getId();
     }
     public Cotizacion updateCotizacion(Cotizacion cotizacion){

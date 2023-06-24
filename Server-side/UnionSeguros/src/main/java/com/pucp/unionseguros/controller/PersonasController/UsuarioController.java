@@ -51,10 +51,10 @@ public class UsuarioController {
         return usuarioService.CorreoIngresadoDisponible(correoIngresado);
     }
 
-    @GetMapping(path = "/verificarTokenIngresado")
-    public  boolean verificarTokenIngresado(@RequestParam(name = "correoIngresado") String correoIngresado,@RequestParam(name = "tokenIngresado") String tokenIngresado){
-        return usuarioService.verificarTokenIngresado(correoIngresado,tokenIngresado);
-    }
+//    @GetMapping(path = "/verificarTokenIngresado")
+//    public  boolean verificarTokenIngresado(@RequestParam(name = "correoIngresado") String correoIngresado,@RequestParam(name = "tokenIngresado") String tokenIngresado){
+//        return usuarioService.verificarTokenIngresado(correoIngresado,tokenIngresado);
+//    }
 
 
 }
