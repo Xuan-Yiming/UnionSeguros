@@ -871,16 +871,18 @@ async function guardar() {
           for (var i = 0; i < selectedPlans.length; i++) {
             var plan = selectedPlans[i];
             var cotizacionXDetalle = {
-              fidCotizacion: localStorage.getItem("idCotizacion"),
-              fidDetalleCotizacion: plan.id
+              fidCotizacion: {
+                id: localStorage.getItem("idCotizacion"),
+              },
+              fidDetalleCotizacion: {
+                id: plan.id,
+              },
             };
             listaCotizacionXDetalle.push(cotizacionXDetalle);
           }
 
           try {
-            let data = {
-              "listaInsertada": listaCotizacionXDetalle
-            };
+            let data = listaCotizacionXDetalle;
             console.log(JSON.stringify(data));
             fetch(GLOBAL_URL + "/cotizacionXDetalleCotizacion/insertar", {
               method: 'POST',
