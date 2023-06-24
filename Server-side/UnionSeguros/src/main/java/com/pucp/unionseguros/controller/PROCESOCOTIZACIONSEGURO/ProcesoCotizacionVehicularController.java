@@ -60,12 +60,11 @@ public class ProcesoCotizacionVehicularController {
             JsonNode root = objectMapper.readTree(json);
 
             //CLIENTE
+            Cliente savedCliente= new Cliente();
             JsonNode clienteNode = root.get("cliente");
             Cliente cliente = new Cliente();
 
-            if(clienteNode.has("id")){
-                cliente.setId(clienteNode.get("id").asInt());
-            }
+            cliente.setId(clienteNode.get("id").asInt());
             cliente.setNombre(clienteNode.get("nombre").asText());
             cliente.setEmail(clienteNode.get("email").asText());
             cliente.setApellidoPaterno(clienteNode.get("apellidoPaterno").asText());
@@ -85,25 +84,27 @@ public class ProcesoCotizacionVehicularController {
             cliente.setTelefono(clienteNode.get("telefono").asInt());
             cliente.setFechaCreacion(LocalDate.parse(clienteNode.get("fechaCreacion").asText()));
 
-            if(cliente.getId()!=null){// me pasaron un ID -> existe el cliente
+            if(cliente.getId()!=0){// me pasaron un ID -> existe el cliente
+                savedCliente = cliente;
                 //no hago nada
             }else{ // no me pasaron ID debo insertarlo
                 int idRecibidoPorIngresarAlCliente;
                 cliente.setActivo(true);
                 cliente.setActivoPersona(true);
                 cliente.setActivoUsuario(true);
-                clienteRepository.saveAndFlush(cliente);
+                savedCliente=clienteRepository.saveAndFlush(cliente);
 //                cliente.setId(idRecibidoPorIngresarAlCliente);
 
             }
 
 
             //VEHICULO
+            Vehiculo savedVehiculo = new Vehiculo();
             Vehiculo vehiculo = new Vehiculo();
             JsonNode vehiculeNode = root.get("vehiculo");
-            if(vehiculeNode.has("id")){
-                vehiculo.setId(vehiculeNode.get("id").asInt());
-            }
+
+            vehiculo.setId(vehiculeNode.get("id").asInt());
+
             //TIPO USO
             vehiculo.setFidTipoUso(new TipoUso());
             JsonNode fidTipoUsoNode = vehiculeNode.get("fidTipoUso");
@@ -120,13 +121,15 @@ public class ProcesoCotizacionVehicularController {
             vehiculo.setPlaca(vehiculeNode.get("placa").asText());
             vehiculo.setSerie(vehiculeNode.get("serie").asText());
             vehiculo.setActivo(true);
-            if (vehiculo.getId()!=null){ // me pasaron un ID -> vehiculo existe
+
+            if (vehiculo.getId()!=0){ // me pasaron un ID -> vehiculo existe
+                savedVehiculo=vehiculo;
                 //no hago nada
             }else {// tengo que insertarlo para la persona que me estan dando
                 int idRecibidoPorIngresarVehiculo;
-                vehiculo.setFidPersona(new Persona());
-                vehiculo.getFidPersona().setId(cliente.getId());// registrar el id con la persona que me están nadando
-                vehiculoRepository.saveAndFlush(vehiculo);
+                vehiculo.setFidPersona(savedCliente);
+                //vehiculo.getFidPersona().setId(cliente.getId());// registrar el id con la persona que me están nadando
+                savedVehiculo =vehiculoRepository.saveAndFlush(vehiculo);
             }
 
             //MONEDA
@@ -145,9 +148,9 @@ public class ProcesoCotizacionVehicularController {
 
             cotizacion.setFechaCotizacion(LocalDate.parse(root.get("fechaCotizacion").asText()));
             cotizacion.setActivo(true);
-            cotizacion.setFidCliente(cliente);
+            cotizacion.setFidCliente(savedCliente);
             cotizacion.setFidMoneda(moneda);
-            cotizacion.setFidVehiculo(vehiculo);
+            cotizacion.setFidVehiculo(savedVehiculo);
             cotizacion.setFidDistrito(distrito);
             cotizacion.setMontoEstimado(root.get("montoEstimado").asDouble());
 

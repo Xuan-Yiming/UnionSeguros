@@ -7,7 +7,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.swing.text.DateFormatter;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -28,30 +30,43 @@ public class SoatVigenteService {
 
     public String cargaMasivaDeSoatsVigentes(MultipartFile file){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-        try{
-            Scanner scanner = new Scanner(file.getInputStream());
-            if(scanner.hasNextLine()){
-                scanner.nextLine();
-            }
-            List<SoatVigente> lista = new ArrayList<>();
-            while(scanner.hasNextLine()){
+        if(file.isEmpty()){
+            return "El archivo está vacio";
+        }
+
+        try(BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()))){
+            String line;
+            List<SoatVigente> listaSoatsVigente = new ArrayList<>();
+            br.readLine();//sacamos los titulos
+            while((line = br.readLine())!=null){
+                String[] data = line.split(getSeparator(line));
                 SoatVigente soatVigente = new SoatVigente();
-                String linea = scanner.nextLine();
-                StringTokenizer tokenizer = new StringTokenizer(linea,";");
-                soatVigente.setCodigo(tokenizer.nextToken());
-                soatVigente.setPlaca(tokenizer.nextToken().replace("-",""));
-                soatVigente.setFechaInicio(LocalDate.parse(tokenizer.nextToken(),formatter));
-                soatVigente.setFechaFin(LocalDate.parse(tokenizer.nextToken(),formatter));
-                soatVigente.setNombreAseguradora(tokenizer.nextToken());
-                lista.add(soatVigente);
+                soatVigente.setCodigo(data[0]);
+                soatVigente.setPlaca(data[1].replace("-",""));
+                soatVigente.setFechaInicio(LocalDate.parse(data[2],formatter));
+                soatVigente.setFechaFin(LocalDate.parse(data[3],formatter));
+                soatVigente.setNombreAseguradora(data[4]);
+
+                listaSoatsVigente.add(soatVigente);
             }
-            scanner.close();
-            soatVigenteRepository.saveAllAndFlush(lista);
-            return  "se proceso bien la carga masiva";
-        }catch (Exception e){
-            return "Error al procesar el archivo."+ e.getMessage();
+            soatVigenteRepository.saveAllAndFlush(listaSoatsVigente);
+            return "Archivo CSV cargado exitosamente";
+
+
+        }catch (IOException e){
+            return "Error al cargar el archivo csv :" + e.getMessage();
         }
     }
 
 
+    private String getSeparator(String line) {
+        String[] separators = {",", ";", "\t"}; // Posibles separadores: coma, punto y coma, tabulación
+        for (String separator : separators) {
+            if (line.contains(separator)) {
+                return separator;
+            }
+        }
+        // Si no se encuentra un separador conocido, se puede lanzar una excepción o utilizar un separador predeterminado
+        return ",";
+    }
 }
