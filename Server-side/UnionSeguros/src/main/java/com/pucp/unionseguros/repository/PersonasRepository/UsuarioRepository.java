@@ -29,8 +29,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     public Integer inicioSesion(String email,String contrasena);
 
 
-    @Query("SELECT p.id FROM Usuario p WHERE p.email=:correoIngresado AND p.token=:TokenIngresado")
-    public Integer verificarInformacionDeTokquen(String correoIngresado, String TokenIngresado);
+//    @Query("SELECT p.id FROM Usuario p WHERE p.email=:correoIngresado AND p.token=:TokenIngresado")
+//    public Integer verificarInformacionDeTokquen(String correoIngresado, String TokenIngresado);
 
     public Usuario findUsuarioByNumeroDocumento(String numeroDocumentoIngresado);
 
@@ -41,9 +41,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     @Query("SELECT usu FROM Usuario  usu WHERE usu.email=:correoIngresado")
     public Usuario verificarCorreoIngresadoLibre(String correoIngresado);
-
-    @Query("SELECT usu FROM Usuario  usu WHERE usu.email=:correoIngresado AND usu.token=:tokenIngresado")
-    public Usuario verificarTokenIngresado(String correoIngresado, String tokenIngresado);
+//
+//    @Query("SELECT usu FROM Usuario  usu WHERE usu.email=:correoIngresado AND usu.token=:tokenIngresado")
+//    public Usuario verificarTokenIngresado(String correoIngresado, String tokenIngresado);
 
     public Usuario findUsuarioByEmailAndContrasena(String emailIngresado,String contrasenaIngresada);
 }
