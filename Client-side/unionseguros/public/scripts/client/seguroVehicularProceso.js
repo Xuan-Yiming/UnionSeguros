@@ -784,8 +784,17 @@ async function guardar() {
   const direccion = document.querySelector("#txt-direccion").value;
   const numCelular = document.querySelector("#txt-numCelular").value;
 
-  const marca = document.querySelector("#select-marca").value;
-  const modelo = document.querySelector("#select-modelo").value;
+  let marca;
+  let modelo;
+  if(localStorage.getItem("data-vehiculo")===null){
+    marca = document.querySelector("#select-marca").value;
+    modelo = document.querySelector("#select-modelo").value;
+  }else{
+    var data = JSON.parse(localStorage.getItem("data-vehiculo"));
+    marca = data.fidModelo.fidMarcaVehiculo.id;
+    modelo = data.fidModelo.id;
+  }
+
   const anio = document.querySelector("#txt-anio").value;
   const uso = document.querySelector("#select-uso").value;
   const numAsiento = document.querySelector("#txt-asientos").value;
@@ -868,21 +877,12 @@ async function guardar() {
             listaCotizacionXDetalle.push(cotizacionXDetalle);
           }
 
-          for (var i = 0; i < listaCotizacionXDetalle.length; i++) {
-            var cotizacionXDetalle = listaCotizacionXDetalle[i];
-            var fidCotizacion = cotizacionXDetalle.fidCotizacion;
-            var fidDetalleCotizacion = cotizacionXDetalle.fidDetalleCotizacion;
-
-            // Haz algo con fidCotizacion y fidDetalleCotizacion
-            alert(fidCotizacion + " " + fidDetalleCotizacion);
-          }
-
           try {
             let data = {
               "listaInsertada": listaCotizacionXDetalle
             };
             console.log(JSON.stringify(data));
-            fetch(GLOBAL_URL + '/cotizacionXDetalleCotizacion/insertar', {
+            fetch(GLOBAL_URL + "/cotizacionXDetalleCotizacion/insertar", {
               method: 'POST',
               body: JSON.stringify(data),
               headers: {
@@ -901,6 +901,7 @@ async function guardar() {
                 });
           } catch (error) {
             console.error('Error:', error);
+            alert("Ha ocurrido un error de comunicación con el servidor");
           }
         })
         .catch(error => {
