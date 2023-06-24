@@ -5,6 +5,15 @@ var placa = localStorage.getItem("placa");
 var tipoDocumento = localStorage.getItem("tipoDocumento");
 var numeroDocumento = localStorage.getItem("documento");
 
+const inputFechaNacimiento = document.querySelector("#date-picker2");
+
+// La fecha mínima permitida (hace 18 años)
+const fechaMinima = new Date();
+fechaMinima.setFullYear(fechaMinima.getFullYear() - 18);
+
+// No deja poner otras fechas posteriores a esta
+inputFechaNacimiento.max = fechaMinima.toISOString().split("T")[0];
+
 localStorage.setItem("idCliente", null);
 localStorage.setItem("idVehiculo", null);
 var flagMonto = false;
@@ -100,6 +109,7 @@ document.querySelector("#btn-previous").addEventListener("click", function () {
   if(stage===2){
     selectedPlans = [];
     total = 0;
+    updateTotal();
   }
 
   const bar = document.querySelector(".ProgressBar");
@@ -259,9 +269,9 @@ function loadResumen() {
   let nuevaPlaca = placa.substring(0, 3) + "-" + placa.substring(3);
   document.querySelector("#txt-res-nombre").innerText =
     document.querySelector("#txt-nombres").value +
-    document.querySelector("#txt-apdPaterno").value +
+      document.querySelector("#txt-apdPaterno").value +
     " " +
-    document.querySelector("#txt-apdMaterno").value;
+      document.querySelector("#txt-apdMaterno").value;
   document.querySelector("#txt-res-placa").innerText = nuevaPlaca;
   document.querySelector("#txt-res-total").innerText =
     "S/." + localStorage.getItem("total");
@@ -298,8 +308,8 @@ function loadResumen() {
 }
 
 function verificacion() {
-  const apdPaterno = document.querySelector("#txt-apdPaterno").value;
-  const apdMaterno = document.querySelector("#txt-apdMaterno").value;
+  let apdPaterno = document.querySelector("#txt-apdPaterno").value;
+  let apdMaterno = document.querySelector("#txt-apdMaterno").value;
   const nombres = document.querySelector("#txt-nombres").value;
   const marca = document.querySelector("#select-marca").value;
   const modelo = document.querySelector("#select-modelo").value;
@@ -318,89 +328,107 @@ function verificacion() {
 
   switch (stage) {
     case 0:
-      if ( marca == "" || modelo == "" || anio == "" || uso == "" || numAsiento == "" || numSerie == "" || fecha == ""
-                ) {
-                alert("Falta completar campos");
-                return false;
-            }
+      if ( marca == "" || modelo == "" || anio == "" || uso == "" || numAsiento == "" || numSerie == "" || fecha == "") {
+          alert("Falta completar campos");
+          return false;
+      }
 
       if (!/^[0-9]+$/.test(numAsiento)) {
         document.querySelector("#txt-asientos").focus();
         alert("El número de asientos debe ser numérico");
-        return true;
+        return false;
       }
 
       if (numAsiento < 1 || numAsiento > 20) {
         document.querySelector("#txt-asientos").focus();
         alert("El número de asientos debe estar entre 1 y 20");
-        return true;
+        return false;
       }
 
       if (!/^[0-9]+$/.test(anio)) {
         document.querySelector("#txt-anio").focus();
         alert("El año debe ser numérico");
-        return true;
+        return false;
       }
 
       if (anio < 2000 || anio > new Date().getFullYear()) {
         document.querySelector("#txt-anio").focus();
         alert("El año debe estar entre 2000 y " + new Date().getFullYear());
-        return true;
+        return false;
       }
 
       if (numSerie.length != 17) {
         document.querySelector("#txt-serie").focus();
         alert("El número de serie debe tener 17 caracteres");
-        return true;
+        return false;
       }
 
       if (uso === "") {
         document.querySelector("#select-uso").focus();
         alert("Seleccione el uso de su vehículo");
-        return true;
+        return false;
       }
 
       break;
     case 1:
-      if ( nombres == "" || apdMaterno == "" || apdMaterno == "" || fecha2 == "" || numCelular == "" || departamento == "" || provincia == ""
+      const inputFechaNacimiento = document.querySelector(
+          "#date-picker2"
+      );
+      if (new Date(inputFechaNacimiento.value) > fechaMinima) {
+        alert("Debes ser mayor de 18 años.");
+        return false;
+      }
+
+      if (apdPaterno =="" || nombres == "" || fecha2 == "" || numCelular == "" || departamento == "" || provincia == ""
             || distrito=="" || direccion =="" || email==""    ) {
-                alert("Falta completar campos");
-                return false;
-            }
+        alert("Falta completar campos");
+        return false;
+      }
       if (!/^[0-9]+$/.test(numCelular)) {
         document.querySelector("#txt-numCelular").focus();
         alert("El número celular debe ser numérico");
-        return true;
+        return false;
       }
 
       if (numCelular.length !== 9) {
         document.querySelector("#txt-numCelular").focus();
         alert("El número celular debe tener 9 caracteres");
-        return true;
+        return false;
       }
 
-      if (
-        !/^[A-Za-z]+$/.test(apdPaterno) ||
-        !/^[A-Za-z]+$/.test(apdMaterno) ||
-        !/^[A-Za-z ]+$/.test(nombres)
-      ) {
-        if (apdMaterno !== "-") {
-          document.querySelector("#txt-apdPaterno").focus();
-          alert(
+      if(
+          (apdPaterno !== "" && !/^[A-Za-z -]+$/.test(apdPaterno)) ||
+          (apdMaterno !== "" && !/^[A-Za-z -]+$/.test(apdMaterno)) ||
+          !/^[A-Za-z ]+$/.test(nombres)
+      ){
+        document.querySelector("#txt-apdPaterno").focus();
+        alert(
             "Los nombres y apellidos no deben contener caracteres especiales"
-          );
-          return true;
-        }
+        );
+        return false;
+      }
+
+      if(apdMaterno==="" && (tipoDocumento!=="4" && tipoDocumento!=="2" && tipoDocumento!=="3")){
+        alert("Complete su apellido por favor");
+        return false;
+      }else if(apdMaterno==="" && (tipoDocumento==="4" || tipoDocumento==="2" || tipoDocumento==="3")){
+        document.querySelector("#txt-apdMaterno").value = '-';
+      }
+
+      if(tipoDocumento==="3" && numeroDocumento.substring(0, 2) === "20"){
+        document.querySelector("#txt-apdPaterno").value = '-'
+        document.querySelector("#txt-apdMaterno").value = '-'
       }
 
       if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
         alert("El correo electrónico no es válido");
-        return true;
+        return false;
       }
 
       break;
 
     case 2:
+
       break;
 
     case 3:
@@ -419,6 +447,18 @@ async function inicializar() {
   await cargarDistrito();
   document.querySelector(".form-vehiculo ").style.display = "block";
   document.querySelector(".form-plans").style.display = "none";
+
+  if(tipoDocumento==="3" && numeroDocumento.substring(0, 2) === "20"){
+    document.querySelector("#txt-apdPaterno").style.display = "none";
+    document.querySelector("#apPaternoIDText").style.display = "none";
+    document.querySelector("#txt-apdMaterno").style.display = "none";
+    document.querySelector("#apMaternoIDText").style.display = "none";
+
+    document.querySelector("#nombreIDText").innerText = "Nombre completo empresa";
+    document.querySelector("#txt-apdPaterno").value = "-";
+    document.querySelector("#txt-apdMaterno").value = "-";
+  }
+
 }
 
 async function cargarMarcas() {
@@ -827,7 +867,69 @@ async function guardar() {
     }
 
     console.log(JSON.stringify(data));
-    fetch(GLOBAL_URL + "/cotizacion/insertar", {
+    fetch(GLOBAL_URL + '/cotizacion/insertar', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+        .then(response => response.json())
+        .then(data => {
+          localStorage.setItem("idCotizacion", data);
+
+          var listaCotizacionXDetalle = [];
+          for (var i = 0; i < selectedPlans.length; i++) {
+            var plan = selectedPlans[i];
+            var cotizacionXDetalle = {
+              fidCotizacion: localStorage.getItem("idCotizacion"),
+              fidDetalleCotizacion: plan.id
+            };
+            listaCotizacionXDetalle.push(cotizacionXDetalle);
+          }
+
+          try {
+            let data = {
+              "listaInsertada": listaCotizacionXDetalle
+            };
+            console.log(JSON.stringify(data));
+            fetch(GLOBAL_URL + '/cotizacionXDetalleCotizacion/insertar', {
+              method: 'POST',
+              body: JSON.stringify(data),
+              headers: {
+                'Content-Type': 'application/json'
+              },
+            })
+                .then(response => response.json())
+                .then(data => {
+                  // Supuestamente devuelve la lista
+                })
+                .catch(error => {
+
+                  alert("Ha ocurrido un error de comunicación con el servidor");
+                  console.error(error);
+                  localStorage.setItem("error", "1");
+                });
+          } catch (error) {
+            console.error('Error:', error);
+          }
+        })
+        .catch(error => {
+
+          alert("Ha ocurrido un error de comunicación con el servidor");
+          console.error(error);
+          localStorage.setItem("error", "1");
+        });
+  } catch (error) {
+    console.error("Error:", error);
+  }
+
+
+}
+/*---------------------MI PRIMER INTENTO------------------------------*/
+
+/*
+fetch(GLOBAL_URL + "/cotizacion/insertar", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -897,15 +999,11 @@ async function guardar() {
         console.error(error);
         localStorage.setItem("error", "1");
       });
-  } catch (error) {
-    console.error("Error:", error);
-  }
-
-
-}
+ */
 /*---------------------LA FORMA ANIDADA SI NO FUNCIONA LA ANTERIOR------------------------------*/
 
-/*fetch(GLOBAL_URL + '/cotizacion/insertar', {
+/*
+fetch(GLOBAL_URL + '/cotizacion/insertar', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -981,6 +1079,7 @@ async function validacionMonto() {
 
     if (prima > 0) {
       montoEstimado = prima;
+      alert(montoEstimado);
       flagMonto = true;
     } else {
       flagMonto = false;

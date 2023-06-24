@@ -4,6 +4,7 @@ var placa = localStorage.getItem("placa");
 var tipoDocumento = localStorage.getItem("tipoDocumento");
 var numeroDocumento = localStorage.getItem("documento");
 
+
 localStorage.setItem("idCliente", null);
 localStorage.setItem("idVehiculo", null);
 
@@ -258,8 +259,8 @@ function loadTarjeta() {
 }
 
 function verificacion() {
-  const apdPaterno = document.querySelector("#txt-apdPaterno").value;
-  const apdMaterno = document.querySelector("#txt-apdMaterno").value;
+  let apdPaterno = document.querySelector("#txt-apdPaterno").value;
+  let apdMaterno = document.querySelector("#txt-apdMaterno").value;
   const nombres = document.querySelector("#txt-nombres").value;
   const marca = document.querySelector("#select-marca").value;
   const modelo = document.querySelector("#select-modelo").value;
@@ -272,7 +273,7 @@ function verificacion() {
   switch (stage) {
     case 0:
       if (
-        apdPaterno == "" ||
+          apdPaterno =="" ||
         nombres == "" ||
         marca == "" ||
         modelo == "" ||
@@ -316,19 +317,30 @@ function verificacion() {
         return false;
       }
 
-      if (
-        !/^[A-Za-z]+$/.test(apdPaterno) ||
-        !/^[A-Za-z]+$/.test(apdMaterno) ||
-        !/^[A-Za-z ]+$/.test(nombres)
-      ) {
-        if (apdMaterno !== "-") {
-          document.querySelector("#txt-apdPaterno").focus();
-          alert(
+      if(
+          (apdPaterno !== "" && !/^[A-Za-z -]+$/.test(apdPaterno)) ||
+          (apdMaterno !== "" && !/^[A-Za-z -]+$/.test(apdMaterno)) ||
+          !/^[A-Za-z ]+$/.test(nombres)
+      ){
+        document.querySelector("#txt-apdPaterno").focus();
+        alert(
             "Los nombres y apellidos no deben contener caracteres especiales"
-          );
-          return false;
-        }
+        );
+        return false;
       }
+
+      if(apdMaterno==="" && (tipoDocumento!=="4" && tipoDocumento!=="2" && tipoDocumento!=="3")){
+        alert("Complete su apellido por favor");
+        return false;
+      }else if(apdMaterno==="" && (tipoDocumento==="4" || tipoDocumento==="2" || tipoDocumento==="3")){
+        document.querySelector("#txt-apdMaterno").value = '-';
+      }
+
+      if(tipoDocumento==="3" && numeroDocumento.substring(0, 2) === "20"){
+        document.querySelector("#txt-apdPaterno").value = '-'
+        document.querySelector("#txt-apdMaterno").value = '-'
+      }
+
       break;
     case 1:
       //verificar que se haya seleccionado un plan
@@ -583,6 +595,17 @@ async function inicializar() {
   await cargarModelos();
   await cargarPersona();
   await cargarVehiculo();
+
+  if(tipoDocumento==="3" && numeroDocumento.substring(0, 2) === "20"){
+    document.querySelector("#txt-apdPaterno").style.display = "none";
+    document.querySelector("#apPaternoIDText").style.display = "none";
+    document.querySelector("#txt-apdMaterno").style.display = "none";
+    document.querySelector("#apMaternoIDText").style.display = "none";
+
+    document.querySelector("#nombreIDText").innerText = "Nombre completo empresa";
+    document.querySelector("#txt-apdPaterno").value = "-";
+    document.querySelector("#txt-apdMaterno").value = "-";
+  }
 }
 
 async function cargarMarcas() {

@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c533adc8-9480-47e7-ba91-492753cd2c4a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/SOATProceso.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/SOATProceso.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/seguroVehicularProceso.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/seguroVehicularProceso.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/views/client/pages/SOATProceso.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/views/client/pages/SOATProceso.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/views/client/pages/seguroVehicularProceso.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/views/client/pages/seguroVehicularProceso.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
