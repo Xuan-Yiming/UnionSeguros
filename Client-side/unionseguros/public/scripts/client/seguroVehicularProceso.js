@@ -173,15 +173,7 @@ function changeStage() {
       if (localStorage.getItem("error") === "1") {
         return;
       }
-      document.querySelector(".form-vehiculo ").style.display = "none";
-      document.querySelector(".form-personal ").style.display = "none";
-      document.querySelector(".form-plans").style.display = "none";
-      document.querySelector(".form-result").style.display = "block";
-      document.querySelector("#btn-descargar-constancia").style.display =
-        "block";
-      document.querySelector("#btn-previous").style.display = "none";
 
-      loadResumen();
       break;
   }
 }
@@ -270,14 +262,17 @@ function updateLocalStorage() {
 function loadResumen() {
   let placa = localStorage.getItem("placa");
   let nuevaPlaca = placa.substring(0, 3) + "-" + placa.substring(3);
+  const total = parseFloat(localStorage.getItem("total"));
+  const suma = total + montoEstimado;
+
   document.querySelector("#txt-res-nombre").innerText =
-    document.querySelector("#txt-nombres").value +
+    document.querySelector("#txt-nombres").value + " " +
       document.querySelector("#txt-apdPaterno").value +
     " " +
       document.querySelector("#txt-apdMaterno").value;
   document.querySelector("#txt-res-placa").innerText = nuevaPlaca;
   document.querySelector("#txt-res-total").innerText =
-    "S/." + localStorage.getItem("total");
+      "S/." + suma.toFixed(2);
   const datePickerInput = document.querySelector("#date-picker");
   const dateValue = datePickerInput.value; // Assuming the input value is a valid date string
 
@@ -894,6 +889,14 @@ async function guardar() {
                 .then(response => response.json())
                 .then(data => {
                   // Supuestamente devuelve la lista
+                  loadResumen();
+                  document.querySelector(".form-vehiculo ").style.display = "none";
+                  document.querySelector(".form-personal ").style.display = "none";
+                  document.querySelector(".form-plans").style.display = "none";
+                  document.querySelector(".form-result").style.display = "block";
+                  document.querySelector("#btn-descargar-constancia").style.display =
+                      "block";
+                  document.querySelector("#btn-previous").style.display = "none";
                 })
                 .catch(error => {
 
