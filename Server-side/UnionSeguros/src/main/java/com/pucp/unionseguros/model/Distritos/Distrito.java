@@ -23,7 +23,6 @@ public class Distrito {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_distrito", nullable = false)
     private Integer id;
-    //raaaa
 
     @Column(name = "nombre_distrito", length = 30)
     private String nombreDistrito;

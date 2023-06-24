@@ -12,7 +12,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-//raaaaaa
 public class EmailXToken {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +19,7 @@ public class EmailXToken {
     private Integer id;
 
     @Column(name = "email", length = 100)
-    private String marca;
+    private String email;
 
     @Column(name = "token", length = 10)
     private String token;
