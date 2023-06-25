@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78b6ce57-e96d-4dcd-9cdb-1c45ea2c6930" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/client/recuperarContrasena.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/recuperarContrasena.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/recuperarContrasena.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/client/progressBar.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/client/progressBar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/iniciarSesion.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/iniciarSesion.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/recuperarContrasena.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/recuperarContrasena.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminDetalleCliente.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminDetalleCliente.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminDetalleUsuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminDetalleUsuario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +31,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "client-side-omar-V15",
+    "git-widget-placeholder": "client-side-omar-V16",
     "last_opened_file_path": "C:/Users/omar/Documents/GitHub/UnionSeguros/Client-side/unionseguros/public/stylesheets/client",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

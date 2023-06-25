@@ -5,7 +5,9 @@ window.onload = function () {
   fechaMinima.setFullYear(fechaMinima.getFullYear() - 18);
 // No deja poner otras fechas posteriores a esta
   fechaNac.max = fechaMinima.toISOString().split("T")[0];
-
+  if(localStorage.getItem("data-cliente") === null){
+    document.getElementById("txt-documento").maxLength = "8";
+  }
   if (localStorage.getItem("user") == null) {
     window.location.href = "/admin/login";
   }
@@ -70,6 +72,8 @@ window.onload = function () {
                 document.getElementById("txt-documento").maxLength = "9";
               } else if (document.querySelector("#select-documento").value == "3") {
                 document.getElementById("txt-documento").maxLength = "11";
+              }else if (document.querySelector("#select-documento").value == "4") {
+                document.getElementById("txt-documento").maxLength = "16";
               }
             });
       })
@@ -368,3 +372,14 @@ window.onload = function () {
     return true;
   }
 };
+
+function validateNumericInput(input) {
+  // Obtener el valor del campo de texto
+  const value = input.value;
+
+  // Eliminar cualquier caracter no numérico del valor
+  const numericValue = value.replace(/\D/g, '');
+
+  // Actualizar el valor del campo de texto con solo caracteres numéricos
+  input.value = numericValue;
+}
