@@ -74,9 +74,4 @@ public class ListaNegraService {
         // Si no se encuentra un separador conocido, se puede lanzar una excepción o utilizar un separador predeterminado
         return ",";
     }
-    public List<ListaNegra> listarListaNegra(){
-        List<ListaNegra> lista = null ;
-        lista = listaNegraRepository.findAll();
-        return lista;
-    }
 }

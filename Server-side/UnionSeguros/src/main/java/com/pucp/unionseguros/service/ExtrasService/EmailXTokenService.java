@@ -27,32 +27,30 @@ public class EmailXTokenService {
     }
 
     public boolean validarToken(String email,String token){
-        EmailXToken emailXToken = null;
-        emailXToken = emailXTokenRepository.findEmailXTokenByEmailAndTokenAndActivoIsTrue(email,token);
-        boolean success= false;
-
+        EmailXToken emailXToken=emailXTokenRepository.findEmailXTokenByEmailAndTokenAndActivoIsTrue(email,token);
+        boolean valida=false;
         if(emailXToken!=null){
-            success=true;
+            valida=false;
         }
-
-        return success;
+        return  valida;
     }
 
     public boolean resetearToken(String email) {
+        boolean valida=false;
         List<EmailXToken> lista = new ArrayList<>();
         EmailXToken emailXToken =new EmailXToken();
-        boolean succes= false;
-        int i=0;
         lista=emailXTokenRepository.findEmailXTokenByEmail(email);
-        for(i=0;i< lista.size();i++){
+        for(int i=0;i< lista.size();i++){
             emailXToken=lista.get(i);
             emailXToken.setActivo(false);
-            emailXTokenRepository.save(emailXToken);
+            emailXToken=emailXTokenRepository.save(emailXToken);
+            if(emailXToken!=null){
+                valida=true;
+            }
+            else {
+                valida=false;
+            }
         }
-        if(i== lista.size() -1){
-            succes =true;
-        }
-        return  succes;
-
+        return valida;
     }
 }
