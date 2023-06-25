@@ -74,9 +74,11 @@ function crearLaTabla(data) {
       " - " +
       cotizacion.fidCliente.nombre +
       " " +
-      cotizacion.fidCliente.apellidoPaterno + 
-      " " + 
-      cotizacion.fidCliente.apellidoMaterno;
+      cotizacion.fidCliente.apellidoPaterno +
+      " " +
+      cotizacion.fidCliente.apellidoMaterno +
+      " - " +
+      cotizacion.fidCliente.numeroDocumento;;
     tableRow.appendChild(cliente);
 
     const placa = document.createElement("td");

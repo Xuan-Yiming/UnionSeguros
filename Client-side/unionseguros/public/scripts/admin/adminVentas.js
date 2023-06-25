@@ -81,8 +81,46 @@ window.onload = function () {
         });
     }, 500);
   });
-};
+    const fileInput = document.querySelector("#btn-masiva");
 
+    // Add event listener for file selection
+    fileInput.addEventListener("change", handleFileUpload);
+};
+// Handle file upload event
+function handleFileUpload(event) {
+  const fileInput = document.querySelector("#btn-masiva");
+  const file = fileInput.files[0];
+
+  // Create a FormData object
+  const formData = new FormData();
+  formData.append("file", file, file.name);
+
+  // Send the file to the server
+  fetch(GLOBAL_URL + "/SoatVigente/CargaMasivaSoatVigente", {
+    method: "POST",
+    body: formData,
+    redirect: "follow",
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status + " " + response.statusText);
+      } else {
+        try {
+          return response.text();
+        } catch (error) {
+          return null;
+        }
+      }
+    })
+    .then((data) => {
+      alert(data);
+      window.location.reload();
+    })
+    .catch((error) => {
+      alert("Ha ocurrido un error de comunicación con el servidor");
+      console.error("Error:", error);
+    });
+}
 function crearLaTabla(data) {
   const table = document.querySelector("#table-body");
   table.innerHTML = "";
@@ -109,8 +147,15 @@ function crearLaTabla(data) {
       ", " +
       venta.fidSoat.fidPoliza.fidCliente.apellidoPaterno +
       " " +
-      venta.fidSoat.fidPoliza.fidCliente.apellidoMaterno;
+      venta.fidSoat.fidPoliza.fidCliente.apellidoMaterno +
+      " - " +
+      venta.fidSoat.fidPoliza.fidCliente.numeroDocumento;
     tableRow.appendChild(cliente);
+
+    const placa = document.createElement("td");
+    placa.classList.add("td-placa");
+    placa.innerText = venta.fidSoat.fidPoliza.fidVehiculo.placa;
+    tableRow.appendChild(placa);
 
     const fecha = document.createElement("td");
     fecha.classList.add("td-fecha");

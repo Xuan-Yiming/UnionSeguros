@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="78b6ce57-e96d-4dcd-9cdb-1c45ea2c6930" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/SOATProceso.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/SOATProceso.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/SOATProceso.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/SOATProceso.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/src/main/java/com/pucp/unionseguros/controller/ExtrasController/EmailXTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/src/main/java/com/pucp/unionseguros/controller/ExtrasController/EmailXTokenController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +30,8 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;client-side-omar-V7&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/omar/Documents/GitHub/UnionSeguros/Client-side/unionseguros/public/stylesheets/client&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;client-side-omar-v8-copia&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/omar/Documents/GitHub/UnionSeguros&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -66,6 +67,9 @@
       <workItem from="1687585483981" duration="7293000" />
       <workItem from="1687593243424" duration="2744000" />
       <workItem from="1687627070415" duration="1788000" />
+      <workItem from="1687646314303" duration="3111000" />
+      <workItem from="1687649601643" duration="17000" />
+      <workItem from="1687651638704" duration="1196000" />
     </task>
     <servers />
   </component>

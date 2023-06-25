@@ -49,8 +49,26 @@ public class EmailXTokenController {
         catch(Exception ex){ System.out.print(ex.getMessage()); }
 
         return emailXTokenService.generarToken(emailXToken);
-
     }
+
+//    @GetMapping("/validarToken")
+//    public EmailXToken validarToken(@RequestParam(name = "email") String email,
+//                                @RequestParam(name = "token") String token){
+//        EmailXToken emailXToken=new EmailXToken();
+//        emailXToken=null;
+//        emailXToken=emailXTokenService.validarToken(email,token);
+//        if(emailXToken==null){
+//            emailXTokenService.resetearToken(email);
+//        }
+//        return emailXToken;
+//    }
+
+//    @GetMapping("/resetearToken")
+//    public EmailXToken resetearToken(@RequestParam(name = "email") String email){
+//        EmailXToken emailXToken=new EmailXToken();
+//        emailXTokenService.resetearToken(email);
+//        return emailXToken;
+//    }
 
     @GetMapping("/validarToken")
     public boolean validarToken(@RequestParam(name = "email") String email,
@@ -60,11 +78,11 @@ public class EmailXTokenController {
         success=emailXTokenService.validarToken(email,token);
         return success;
     }
-
     @GetMapping("/resetearToken")
     public boolean resetearToken(@RequestParam(name = "email") String email){
         boolean succes = false;
         succes=emailXTokenService.resetearToken(email);
         return succes;
     }
+
 }
