@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface EmailXTokenRepository extends JpaRepository<EmailXToken, Integer> {
 
-    public boolean findEmailXTokenByEmailAndTokenAndActivoIsTrue(String emailIngresado,String tokenIngresado);
+    public EmailXToken findEmailXTokenByEmailAndTokenAndActivoIsTrue(String emailIngresado,String tokenIngresado);
 
     public List<EmailXToken> findEmailXTokenByEmail(String emailIngresado);
 }

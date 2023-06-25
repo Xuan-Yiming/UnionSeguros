@@ -74,6 +74,7 @@ public class EmailXTokenController {
     public boolean validarToken(@RequestParam(name = "email") String email,
                                 @RequestParam(name = "token") String token){
         boolean success = false;
+
         success=emailXTokenService.validarToken(email,token);
         return success;
     }
