@@ -1,6 +1,8 @@
 var cotizaciones;
 var searchTimer;
-
+if (localStorage.getItem("user") == null) {
+  window.location.href = "/admin/login";
+}
 window.onload = function () {
   fetch(GLOBAL_URL + "/cotizacion/listarCotizacionesActivas")
     .then((response) => {

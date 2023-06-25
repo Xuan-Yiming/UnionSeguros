@@ -1,11 +1,10 @@
 var usuarios;
 var searchTimer;
+if (localStorage.getItem("user") == null) {
+  window.location.href = "/admin/login";
+}
 
 window.onload = function () {
-  if (localStorage.getItem("user") == null) {
-    window.location.href = "/admin/login";
-  }
-
     document
       .querySelector("#btn-carga-masiva")
       .addEventListener("click", function () {

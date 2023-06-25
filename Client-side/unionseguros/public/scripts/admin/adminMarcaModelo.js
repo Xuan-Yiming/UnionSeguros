@@ -1,9 +1,10 @@
+if (localStorage.getItem("user") == null) {
+  window.location.href = "/admin/login";
+}
 var marcas;
 var searchTimer;
+
 window.onload = function () {
-  if (localStorage.getItem("user") == null) {
-    window.location.href = "/admin/login";
-  }
 
   document.querySelector("#btn-carga-masiva").addEventListener("click", function () {
     document.querySelector("#btn-masiva").click();

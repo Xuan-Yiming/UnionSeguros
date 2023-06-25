@@ -1,10 +1,10 @@
 var modelos;
 var searchTimer;
-window.onload = function () {
-  if (localStorage.getItem("user") == null) {
-    window.location.href = "/admin/login";
-  }
+if (localStorage.getItem("user") == null) {
+  window.location.href = "/admin/login";
+}
 
+window.onload = function () {
   if (localStorage.getItem("data-marca") == null) {
     window.location.href = "/admin/marcaModelo";
   }

@@ -1,14 +1,12 @@
-
+if (localStorage.getItem("user") === null) {
+    window.location.href = "/admin/login";
+}
 
 function goBack() {
   window.history.back();
 }
 
 window.onload = function () {
-
-    if (localStorage.getItem("user") == null ) {
-        window.location.href = "/admin/login";
-    }
     if (localStorage.getItem("id-usuario") == null) {
         goBack();
     }

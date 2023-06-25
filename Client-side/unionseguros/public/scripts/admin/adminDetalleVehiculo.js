@@ -1,7 +1,8 @@
+if (localStorage.getItem("user") == null) {
+  window.location.href = "/admin/login";
+}
+
 window.onload = function () {
-  if (localStorage.getItem("user") == null) {
-    window.location.href = "/admin/login";
-  }
 
   inicializar();
   if (localStorage.getItem("data-vehiculo") == null) {

@@ -5,13 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78b6ce57-e96d-4dcd-9cdb-1c45ea2c6930" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/headerAdmin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/headerUsuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/headerUsuario.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/usuario.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/verificacion.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminAuditoria.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminAuditoria.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminCliente.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminCliente.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminCotizaciones.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminCotizaciones.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminDetalleCliente.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminDetalleCliente.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminDetalleModelo.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminDetalleModelo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminDetallePlanSOAT.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminDetallePlanSOAT.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminDetalleUsuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminDetalleUsuario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminDetalleVehiculo.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminDetalleVehiculo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminMarcaModelo.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminMarcaModelo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminModelo.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminModelo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminPlanSOAT.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminPlanSOAT.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminSeguroVehicular.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminSeguroVehicular.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminUsuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminUsuario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminVehiculo.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminVehiculo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminVentas.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminVentas.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/headerAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/headerAdmin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/layouts/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/layouts/header.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/auditoria.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/auditoria.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/cliente.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/cliente.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/cotizaciones.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/cotizaciones.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/detalleCliente.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/detalleCliente.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/detallePlanSOAT.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/detallePlanSOAT.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/detalleUsuario.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/detalleUsuario.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/detalleVehiculo.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/detalleVehiculo.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/login.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/marcaModelo.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/marcaModelo.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/modelo.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/modelo.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/planSOAT.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/planSOAT.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/seguroVehicular.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/seguroVehicular.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/layouts/headerUsuario.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/layouts/headerUsuario.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/usuario.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/usuario.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/vehiculo.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/vehiculo.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/ventas.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/ventas.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

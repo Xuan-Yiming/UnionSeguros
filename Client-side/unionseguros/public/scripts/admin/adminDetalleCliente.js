@@ -1,3 +1,7 @@
+if (localStorage.getItem("user") == null) {
+  window.location.href = "/admin/login";
+}
+
 window.onload = function () {
   const  fechaNac = document.querySelector("#dp-fecha-nacimiento");
 // La fecha mínima permitida (hace 18 años)
@@ -8,10 +12,6 @@ window.onload = function () {
   if(localStorage.getItem("data-cliente") === null){
     document.getElementById("txt-documento").maxLength = "8";
   }
-  if (localStorage.getItem("user") == null) {
-    window.location.href = "/admin/login";
-  }
-
   document
       .getElementById("select-documento")
       .addEventListener("change", function () {

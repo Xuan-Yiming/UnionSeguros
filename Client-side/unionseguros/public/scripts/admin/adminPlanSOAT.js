@@ -1,10 +1,9 @@
+if (localStorage.getItem("user") === null) {
+  window.location.href = "/admin/login";
+}
 var planes;
 var searchTimer;
 window.onload = function () {
-  if (localStorage.getItem("user") == null) {
-    window.location.href = "/admin/login";
-  }
-
   fetch(GLOBAL_URL + "/planSOAT/listarActivos")
     .then((response) => {
       if (!response.ok) {
