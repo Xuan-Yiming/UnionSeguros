@@ -49,7 +49,6 @@ public class EmailXTokenController {
         catch(Exception ex){ System.out.print(ex.getMessage()); }
 
         return emailXTokenService.generarToken(emailXToken);
-
     }
 
     @GetMapping("/validarToken")

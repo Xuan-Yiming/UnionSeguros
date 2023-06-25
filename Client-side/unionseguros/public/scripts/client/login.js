@@ -120,10 +120,10 @@ document
               alert("No se pudo enviar el token a tu correo.");
               return;
             } else {
-              alert("Se envio un token a tu correo.");
+              alert("Se envió un token a tu correo.");
             }
           } catch (error) {
-            alert("Ha ocurrido un error al mandar el PIN");
+            alert("Ha ocurrido un error al enviar el PIN");
             console.error(error);
           }
         }
@@ -586,30 +586,39 @@ async function validacionCorreo() {
 async function enviarPIN() {
   return new Promise((resolve, reject) => {
     const email = document.querySelector("#txt-correo").value;
-    var params = new URLSearchParams();
-    params.append("correo", email);
-    let url = new URL(
-      GLOBAL_URL + "/email/generarToken" + "?" + params.toString()
-    );
-    console.log(url);
+    const url = GLOBAL_URL + "/EmailXToken/insertar";
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
+        emailIngresado: email,
+      }),
+    };
 
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(response.status + " " + response.statusText);
-        }
-        return response.text();
-      })
-      .then((data) => {
-        resolve(data);
-      })
-      .catch((error) => {
-        console.error(error);
-        resolve(null);
-      });
+    fetch(url, options)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (data !== null) {
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          reject(error);
+        });
   });
-  //=======================================================================================================
 }
+
+
 
 async function validacionPIN() {
   return new Promise((resolve, reject) => {
