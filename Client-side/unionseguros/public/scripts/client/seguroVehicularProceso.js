@@ -1,3 +1,6 @@
+if (localStorage.getItem("documento") == null) {
+  window.location.href = "/seguroVehicular";
+}
 localStorage.removeItem("data-vehiculo");
 var stage = 0;
 let selectedPlans = [];

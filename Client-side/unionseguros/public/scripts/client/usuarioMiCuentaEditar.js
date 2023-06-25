@@ -1,3 +1,6 @@
+if (localStorage.getItem("userCliente") === null) {
+  window.location.href = "/iniciarSesion";
+}
 window.onload = function () {
   let data = JSON.parse(localStorage.getItem("userCliente"));
   document.querySelector("#txt-nombre").value = data.nombre;

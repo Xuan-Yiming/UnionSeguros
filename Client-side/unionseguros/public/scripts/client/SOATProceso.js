@@ -1,5 +1,7 @@
+if (localStorage.getItem("documento") == null) {
+  window.location.href = "/SOAT";
+}
 var stage = 0;
-
 var placa = localStorage.getItem("placa");
 var tipoDocumento = localStorage.getItem("tipoDocumento");
 var numeroDocumento = localStorage.getItem("documento");
