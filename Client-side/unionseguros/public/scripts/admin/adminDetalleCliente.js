@@ -27,49 +27,61 @@ window.onload = function () {
         }
       });
 
-  fetch(GLOBAL_URL + "/tipoDocumento/listarActivos")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(response.status + " " + response.statusText);
-      } else {
-        try {
-          return response.json();
-        } catch (error) {
-          return null;
-        }
-      }
-    })
-    .then((data) => {
-      document.querySelector("#select-documento").innerHTML = "";
-      data.forEach((tipoDocumento) => {
-        const option = document.createElement("option");
-        option.value = tipoDocumento.id;
-        option.innerText = tipoDocumento.nombre;
-        document.querySelector("#select-documento").appendChild(option);
 
-      });
-        let doc = JSON.parse(localStorage.getItem("data-cliente"));
-        document.querySelector("#select-documento").value =
-          doc.fidTipoDocumento.id;
-    })
-    .then(() => {
-      document
-        .getElementById("select-documento")
-        .addEventListener("change", function () {
-          document.getElementById("txt-documento").disabled = false;
-          if (document.querySelector("#select-documento").value == "1") {
-            document.getElementById("txt-documento").maxLength = "8";
-          } else if (document.querySelector("#select-documento").value == "2") {
-            document.getElementById("txt-documento").maxLength = "9";
-          } else if (document.querySelector("#select-documento").value == "5") {
-            document.getElementById("txt-documento").maxLength = "11";
+
+
+
+  fetch(GLOBAL_URL + "/tipoDocumento/listarActivos")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(response.status + " " + response.statusText);
+        } else {
+          try {
+            return response.json();
+          } catch (error) {
+            return null;
           }
+        }
+      })
+      .then((data) => {
+        document.querySelector("#select-documento").innerHTML = "";
+        data.forEach((tipoDocumento) => {
+          const option = document.createElement("option");
+          option.value = tipoDocumento.id;
+          option.innerText = tipoDocumento.nombre;
+          document.querySelector("#select-documento").appendChild(option);
+
         });
-    })
-    .catch((error) => {
-      alert("Ha ocurrido un error de comunicación con el servidor");
-      console.error(error);
-    });
+        if (localStorage.getItem("data-cliente") !== null){
+          let doc = JSON.parse(localStorage.getItem("data-cliente"));
+          document.querySelector("#select-documento").value =
+              doc.fidTipoDocumento.id;
+        }
+
+      })
+      .then(() => {
+        document
+            .getElementById("select-documento")
+            .addEventListener("change", function () {
+              document.getElementById("txt-documento").disabled = false;
+              if (document.querySelector("#select-documento").value == "1") {
+                document.getElementById("txt-documento").maxLength = "8";
+              } else if (document.querySelector("#select-documento").value == "2") {
+                document.getElementById("txt-documento").maxLength = "9";
+              } else if (document.querySelector("#select-documento").value == "3") {
+                document.getElementById("txt-documento").maxLength = "11";
+              }
+            });
+      })
+      .catch((error) => {
+        alert("Ha ocurrido un error de comunicación con el servidor 1");
+        console.error(error);
+      });
+
+
+
+
+
 
   if (localStorage.getItem("data-cliente") == null) {
     document.querySelector("#titulo").innerHTML = "Nuevo cliente";
@@ -79,9 +91,9 @@ window.onload = function () {
     document.querySelector("#id").innerHTML = data.id;
     document.querySelector("#txt-nombre").value = data.nombre;
     document.querySelector("#txt-apellido-paterno").value =
-      data.apellidoPaterno;
+        data.apellidoPaterno;
     document.querySelector("#txt-apellido-materno").value =
-      data.apellidoMaterno;
+        data.apellidoMaterno;
     document.querySelector("#txt-celular").value = data.telefono;
     document.querySelector("#txt-correo").value = data.email;
     document.querySelector("#txt-contrasena").value = data.contrasena;
@@ -89,7 +101,7 @@ window.onload = function () {
     document.querySelector("#dp-fecha-nacimiento").value = data.fechaNacimiento;
     document.querySelector("#txt-documento").value = data.numeroDocumento;
     document.querySelector("#select-documento").value =
-      data.fidTipoDocumento.id;
+        data.fidTipoDocumento.id;
     document.querySelector("#checkbox-baneado").checked = data.baneado;
   }
 
@@ -108,10 +120,10 @@ window.onload = function () {
         apellidoPaterno: document.querySelector("#txt-apellido-paterno").value,
         apellidoMaterno: document.querySelector("#txt-apellido-materno").value,
         fechaNacimiento: new Date(
-          document.querySelector("#dp-fecha-nacimiento").value
+            document.querySelector("#dp-fecha-nacimiento").value
         )
-          .toISOString()
-          .slice(0, 10),
+            .toISOString()
+            .slice(0, 10),
         telefono: document.querySelector("#txt-celular").value,
         direccion: document.querySelector("#txt-direccion").value,
         numeroDocumento: document.querySelector("#txt-documento").value,
@@ -140,36 +152,36 @@ window.onload = function () {
           "Content-Type": "application/json",
         },
       })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(response.status + " " + response.statusText);
-          } else {
-            try {
-              return response.json();
-            } catch (error) {
-              return null;
-            }
-          }
-        })
-        .then((element) => {
-          if (parseInt(element) > 0) {
-            alert("Se ha guardado correctamente");
-            window.location.href = "/admin/cliente";
-          } else {
-            if (parseInt(element) > 0 == 0) {
-              alert("Número de documento repetido");
-            } else if (parseInt(element) > 0 == -1) {
-              alert("Correo repetido");
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(response.status + " " + response.statusText);
             } else {
-              alert("Ha ocurrido un error");
+              try {
+                return response.json();
+              } catch (error) {
+                return null;
+              }
             }
-            return;
-          }
-        })
-        .catch((error) => {
-          alert("Ha ocurrido un error de comunicación con el servidor");
-          console.error(error);
-        });
+          })
+          .then((element) => {
+            if (parseInt(element) > 0) {
+              alert("Se ha guardado correctamente");
+              window.location.href = "/admin/cliente";
+            } else {
+              if (parseInt(element) > 0 == 0) {
+                alert("Número de documento repetido");
+              } else if (parseInt(element) > 0 == -1) {
+                alert("Correo repetido");
+              } else {
+                alert("Ha ocurrido un error");
+              }
+              return;
+            }
+          })
+          .catch((error) => {
+            alert("Ha ocurrido un error de comunicación con el servidor");
+            console.error(error);
+          });
     } else {
       let data = JSON.parse(localStorage.getItem("data-cliente"));
       const usuario = {
@@ -178,10 +190,10 @@ window.onload = function () {
         apellidoPaterno: document.querySelector("#txt-apellido-paterno").value,
         apellidoMaterno: document.querySelector("#txt-apellido-materno").value,
         fechaNacimiento: new Date(
-          document.querySelector("#dp-fecha-nacimiento").value
+            document.querySelector("#dp-fecha-nacimiento").value
         )
-          .toISOString()
-          .slice(0, 10),
+            .toISOString()
+            .slice(0, 10),
         telefono: document.querySelector("#txt-celular").value,
         direccion: document.querySelector("#txt-direccion").value,
         numeroDocumento: document.querySelector("#txt-documento").value,
@@ -211,29 +223,29 @@ window.onload = function () {
           "Content-Type": "application/json",
         },
       })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(response.status + " " + response.statusText);
-          } else {
-            try {
-              return response.json();
-            } catch (error) {
-              return null;
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(response.status + " " + response.statusText);
+            } else {
+              try {
+                return response.json();
+              } catch (error) {
+                return null;
+              }
             }
-          }
-        })
-        .then((element) => {
-          if (element) {
-            alert("Se ha guardado correctamente");
-            window.location.href = "/admin/cliente";
-          } else {
-            alert("Ha ocurrido un error");
-          }
-        })
-        .catch((error) => {
-          alert("Ha ocurrido un error de comunicación con el servidor");
-          console.error(error);
-        });
+          })
+          .then((element) => {
+            if (element) {
+              alert("Se ha guardado correctamente");
+              window.location.href = "/admin/cliente";
+            } else {
+              alert("Ha ocurrido un error");
+            }
+          })
+          .catch((error) => {
+            alert("Ha ocurrido un error de comunicación con el servidor");
+            console.error(error);
+          });
     }
   });
 
