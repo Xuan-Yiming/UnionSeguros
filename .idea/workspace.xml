@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="78b6ce57-e96d-4dcd-9cdb-1c45ea2c6930" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminCotizaciones.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminCotizaciones.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminVentas.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminVentas.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminCliente.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminCliente.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/admin/adminList.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/admin/adminList.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/cliente.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/cliente.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

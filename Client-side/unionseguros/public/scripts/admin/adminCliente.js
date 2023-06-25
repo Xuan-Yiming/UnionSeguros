@@ -128,11 +128,9 @@ function crearLaTabla(data) {
     const nombres = document.createElement("td");
     nombres.classList.add("td-nombre");
     nombres.innerText =
-      usaurio.nombre +
-      ", " +
       usaurio.apellidoPaterno +
       " " +
-      usaurio.apellidoMaterno;
+      usaurio.apellidoMaterno + ", " + usaurio.nombre;
     tableRow.appendChild(nombres);
 
     const correo = document.createElement("td");
@@ -142,7 +140,7 @@ function crearLaTabla(data) {
 
     const baneado = document.createElement("td");
     baneado.classList.add("td-baneado");
-    baneado.innerText = usaurio.baneado ? "Baneado" : "Regular";
+    baneado.innerText = usaurio.baneado ? "Baneado" : "Habilitado";
     tableRow.appendChild(baneado);
 
     const auditoria = document.createElement("td");

@@ -6,13 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c533adc8-9480-47e7-ba91-492753cd2c4a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/SOAT.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/SOAT.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/SOATProceso.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/SOATProceso.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/seguroVehicular.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/seguroVehicular.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/seguroVehicularProceso.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/seguroVehicularProceso.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/usuario.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/usuarioMiCuenta.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/usuarioMiCuenta.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/usuarioMiCuentaEditar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/client/usuarioMiCuentaEditar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/admin/adminCotizaciones.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/admin/adminCotizaciones.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/admin/adminVentas.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/scripts/admin/adminVentas.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/stylesheets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/stylesheets/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
