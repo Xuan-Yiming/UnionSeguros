@@ -1,17 +1,19 @@
-window.onbeforeunload = function (e) {
-  return "¿Está seguro que desea salir de esta página?";
-};
-
 if (localStorage.getItem("documento") == null) {
   window.location.href = "/seguroVehicular";
 }
 localStorage.removeItem("data-vehiculo");
 var stage = 0;
+window.onbeforeunload = function (e) {
+  if(stage!==3){
+    return "¿Está seguro que desea salir de esta página?";
+  }
+};
 let selectedPlans = [];
 let total = 0;
 var placa = localStorage.getItem("placa");
 var tipoDocumento = localStorage.getItem("tipoDocumento");
 var numeroDocumento = localStorage.getItem("documento");
+
 
 const inputFechaNacimiento = document.querySelector("#date-picker2");
 

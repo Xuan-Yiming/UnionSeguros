@@ -116,9 +116,23 @@ function handleFileUpload(event) {
 function crearLaTabla(data) {
   const table = document.querySelector("#table-body");
   table.innerHTML = "";
+  data.sort((a, b) => {
+    if (a.id > b.id) {
+      return -1;
+    }
+    if (a.id < b.id) {
+      return 1;
+    }
+    return 0;
+  });
   data.forEach((usaurio) => {
     const tableRow = document.createElement("tr");
     tableRow.classList.add("table-row");
+
+    const tipoDoc = document.createElement("td");
+    tipoDoc.classList.add("td-tipodoc");
+    tipoDoc.innerText = usaurio.fidTipoDocumento.nombre;
+    tableRow.appendChild(tipoDoc);
 
     const documento = document.createElement("td");
     documento.classList.add("td-documento");
@@ -127,10 +141,11 @@ function crearLaTabla(data) {
 
     const nombres = document.createElement("td");
     nombres.classList.add("td-nombre");
-    nombres.innerText =
-      usaurio.apellidoPaterno +
-      " " +
-      usaurio.apellidoMaterno + ", " + usaurio.nombre;
+    if(usaurio.numeroDocumento.substring(0, 2) === "20" && usaurio.fidTipoDocumento.nombre==="RUC"){
+      nombres.innerText = usaurio.nombre;
+    }else{
+      nombres.innerText = usaurio.apellidoPaterno + " " + usaurio.apellidoMaterno + ", " + usaurio.nombre;
+    }
     tableRow.appendChild(nombres);
 
     const correo = document.createElement("td");
