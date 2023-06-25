@@ -5,32 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c533adc8-9480-47e7-ba91-492753cd2c4a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/pdfmake/node_modules/iconv-lite/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/pdfmake/node_modules/iconv-lite/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/pdfmake/node_modules/iconv-lite/.idea/iconv-lite.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/pdfmake/node_modules/iconv-lite/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/pdfmake/node_modules/iconv-lite/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/node_modules/pdfmake/node_modules/iconv-lite/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/CorreosController/EmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/CorreosController/EmailController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/PROCESOCOTIZACIONSEGURO/ProcesoCotizacionVehicularController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/PROCESOCOTIZACIONSEGURO/ProcesoCotizacionVehicularController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/PersonasController/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/PersonasController/UsuarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/model/Personas/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/model/Personas/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/PersonasRepository/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/PersonasRepository/UsuarioRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/CotizacionService/CotizacionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/CotizacionService/CotizacionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/ExtrasService/SoatVigenteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/ExtrasService/SoatVigenteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/PersonasService/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/PersonasService/UsuarioService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/CorreosController/EmailController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/CorreosController/EmailController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/PROCESOCOTIZACIONSEGURO/ProcesoCotizacionVehicularController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/PROCESOCOTIZACIONSEGURO/ProcesoCotizacionVehicularController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/PersonasController/UsuarioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/controller/PersonasController/UsuarioController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/model/Personas/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/model/Personas/Usuario.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/PersonasRepository/UsuarioRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/repository/PersonasRepository/UsuarioRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/CotizacionService/CotizacionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/CotizacionService/CotizacionService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/ExtrasService/SoatVigenteService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/ExtrasService/SoatVigenteService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/PersonasService/UsuarioService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pucp/unionseguros/service/PersonasService/UsuarioService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/ExtrasController/EmailXTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/ExtrasController/EmailXTokenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/ExtrasService/EmailXTokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/ExtrasService/EmailXTokenService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,30 +43,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/Decargas/UnionSeguros-sintoken/UnionSeguros/Server-side/UnionSeguros",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "spring.configuration.checksum": "daf1c4774a8ab2aa9d8e207ecff73eae",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Decargas/UnionSeguros-sintoken/UnionSeguros/Server-side/UnionSeguros&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;daf1c4774a8ab2aa9d8e207ecff73eae&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Spring Boot.UnionSegurosApplication">
     <configuration name="All in generated-requests" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http">
       <method v="2" />

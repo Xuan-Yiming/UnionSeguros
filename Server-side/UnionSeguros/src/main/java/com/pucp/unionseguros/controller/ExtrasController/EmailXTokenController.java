@@ -64,7 +64,7 @@ public class EmailXTokenController {
     @GetMapping("/resetearToken")
     public boolean resetearToken(@RequestParam(name = "email") String email){
         EmailXToken emailXToken=new EmailXToken();
-        boolean validar=emailXTokenService.resetearToken(email);
+        boolean validar = emailXTokenService.resetearToken(email);
         return validar;
     }
 }

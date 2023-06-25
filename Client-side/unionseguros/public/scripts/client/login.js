@@ -1,5 +1,6 @@
 var stage = 0;
 var flagClienteExiste = false;
+var flagCorreoValidado = false;
 document.getElementById("txt-documento").maxLength = "8";
 const inputFechaNacimiento = document.querySelector("#dp-fecha-nacimiento");
 
@@ -9,6 +10,10 @@ fechaMinima.setFullYear(fechaMinima.getFullYear() - 18);
 
 // No deja poner otras fechas posteriores a esta
 inputFechaNacimiento.max = fechaMinima.toISOString().split("T")[0];
+
+window.onbeforeunload = function (e) {
+  return "¿Está seguro que desea salir de esta página?";
+};
 
 window.onload = function () {
   fetch(GLOBAL_URL + "/tipoDocumento/listarActivos")
@@ -115,6 +120,8 @@ document
           //aca debe MANDAR PIN
 
           try {
+            const respuestaReseteo = await reseteoToken();
+            alert("Se reseteo? " + respuestaReseteo);
             const respuestaPIN = await enviarPIN();
             if (!respuestaPIN) {
               alert("No se pudo enviar el token a tu correo.");
@@ -133,6 +140,7 @@ document
       }
     }
     if (stage === 2) {
+      flagCorreoValidado = true;
       document.getElementById("btn-advance").textContent = "Finalizar";
 
        try {
@@ -143,6 +151,7 @@ document
            alert("El PIN ingresado es incorrecto.");
            return;
          } else {
+           alert("El PIN ingresado es correcto.");
            //el PIN es correcto
          }
        } catch (error) {
@@ -643,5 +652,29 @@ async function validacionPIN() {
         console.error(error);
         resolve(null);
       });
+  });
+}
+
+async function reseteoToken(){
+  return new Promise((resolve, reject) => {
+    const params = new URLSearchParams();
+    const email = document.querySelector("#txt-correo").value;
+    params.append("email", email);
+    const url = GLOBAL_URL + "/EmailXToken/resetearToken?" + params.toString();
+
+    fetch(url)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          resolve(data);
+        })
+        .catch((error) => {
+          console.error(error);
+          resolve(null);
+        });
   });
 }
