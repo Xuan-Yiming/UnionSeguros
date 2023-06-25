@@ -24,7 +24,7 @@ tr{
 
 
 
-table, td, th{
+table, th, td{
     border: 1px solid;
     border-collapse: collapse;
 }

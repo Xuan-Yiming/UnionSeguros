@@ -206,15 +206,6 @@ h4{
 
 .btn-delete{
   margin: 3px 20px;
-  background-color: rgba(200, 16, 46, 0.8);
-  border: 1px solid #c8102e;
-  padding: 3px;
-  border-radius: 4px;
-  color: #ffffff;
-}
-
-.btn-delete:active{
-  margin: 3px 20px;
   background-color: rgb(253, 199, 199);
   border: 1px solid #c8102e;
   padding: 3px;
@@ -223,14 +214,6 @@ h4{
 }
 
 .button-eliminar{
-  margin: 3px 20px;
-  background-color: rgba(200, 16, 46, 0.8);
-  border: 1px solid #c8102e;
-  padding: 3px;
-  border-radius: 4px;
-  color: #ffffff;
-}
-.button-eliminar:active{
   margin: 3px 20px;
   background-color: rgb(253, 199, 199);
   border: 1px solid #c8102e;
