@@ -69,6 +69,24 @@ public class UsuarioService {
 
     }
 
+    public boolean actualizarContrasenia(String correoIngresado,String contrasenia){
+        boolean success = false;
+        Usuario usuario = null;
+        usuario = usuarioRepository.verificarCorreoIngresadoLibre(correoIngresado);
+
+        usuario.setContrasena(contrasenia);
+
+        if(usuario==null){
+            return success;
+        }
+        else {
+            success=true;
+        }
+        usuario=usuarioRepository.save(usuario);
+
+        return  success;
+    }
+
 //    public boolean verificarTokenIngresado(String correoIngresado, String tokenIngresado){
 //        boolean success= false;
 //        Usuario usuario = null;
