@@ -27,8 +27,15 @@ public class EmailXTokenService {
     }
 
     public boolean validarToken(String email,String token){
+        EmailXToken emailXToken = null;
+        emailXToken = emailXTokenRepository.findEmailXTokenByEmailAndTokenAndActivoIsTrue(email,token);
+        boolean success= false;
 
-        return  emailXTokenRepository.findEmailXTokenByEmailAndTokenAndActivoIsTrue(email,token);
+        if(emailXToken!=null){
+            success=true;
+        }
+        
+        return success;
     }
 
     public void resetearToken(String email) {
