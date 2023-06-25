@@ -35,7 +35,10 @@ h4{
 
 /* buttons */
 
-
+#btn-olvide-contrasena{
+  align-self: center;
+  font-size: 14px;
+}
 
 .button-previous{
   border: none;
@@ -91,7 +94,7 @@ h4{
 
 
 .button-red-transparente{
-  border: 5px;
+  border: 4px;
   border-color: #C8102E;
   border-radius: 5px;
   background-color: rgba(200, 16, 46, 20%);
@@ -99,7 +102,6 @@ h4{
   height: fit-content;
   width: fit-content;
   padding: 10px 20px;
-  margin: 10px;
   cursor: pointer;
 }
 
@@ -229,4 +231,13 @@ h4{
   padding: 3px 6px;
   border-radius: 4px;
   color: #122757;
+}
+
+.btn-edit:active{
+  margin: 3px 20px;
+  background-color: rgba(18, 39, 87, 0.48);
+  border: 1px solid #122757;
+  padding: 3px 6px;
+  border-radius: 4px;
+  color: #ffffff;
 }
