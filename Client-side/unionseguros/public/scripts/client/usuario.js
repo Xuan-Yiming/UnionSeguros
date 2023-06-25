@@ -2,6 +2,9 @@ const usuarioJSON = localStorage.getItem("userCliente");
 const usuario = JSON.parse(usuarioJSON);
 
 window.onload = function(){
+    if (localStorage.getItem("userCliente") === null) {
+        window.location.href = "/iniciarSesion";
+    }
     loadPlans();
 };
 
