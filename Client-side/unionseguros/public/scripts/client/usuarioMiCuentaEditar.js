@@ -103,3 +103,14 @@ window.onload = function () {
     return true;
   }
 };
+
+function validateNumericInput(input) {
+  // Obtener el valor del campo de texto
+  const value = input.value;
+
+  // Eliminar cualquier caracter no numérico del valor
+  const numericValue = value.replace(/\D/g, '');
+
+  // Actualizar el valor del campo de texto con solo caracteres numéricos
+  input.value = numericValue;
+}

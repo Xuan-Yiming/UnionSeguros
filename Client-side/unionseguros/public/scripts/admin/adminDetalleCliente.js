@@ -317,10 +317,6 @@ window.onload = function () {
       alert("Debe ingresar un correo");
       return false;
     }
-    if (apdPaterno === "") {
-      alert("Debe ingresar un apellido paterno");
-      return false;
-    }
     if (nombres === "") {
       alert("Debe ingresar un nombre");
       return false;
@@ -331,18 +327,28 @@ window.onload = function () {
       return false;
     }
 
-    if (
-      !/^[A-Za-z]+$/.test(apdPaterno) ||
-      !/^[A-Za-z]+$/.test(apdMaterno) ||
-      !/^[A-Za-z ]+$/.test(nombres)
-    ) {
-      if (apdMaterno !== "-") {
-        document.querySelector("#txt-apellido-paterno").focus();
-        alert(
+    if(
+        (apdPaterno !== "" && !/^[A-Za-z -]+$/.test(apdPaterno)) ||
+        (apdMaterno !== "" && !/^[A-Za-z -]+$/.test(apdMaterno)) ||
+        !/^[A-Za-z ]+$/.test(nombres)
+    ){
+      document.querySelector("#txt-apellido-paterno").focus();
+      alert(
           "Los nombres y apellidos no deben contener caracteres especiales"
-        );
-        return false;
-      }
+      );
+      return false;
+    }
+
+    if(apdMaterno==="" && (tipoDocumento!=="4" && tipoDocumento!=="2" && tipoDocumento!=="3")){
+      alert("Complete su apellido por favor");
+      return false;
+    }else if(apdMaterno==="" && (tipoDocumento==="4" || tipoDocumento==="2" || tipoDocumento==="3")){
+      document.querySelector("#txt-apellido-materno").value = '-';
+    }
+
+    if(tipoDocumento==="3" && documento.substring(0, 2) === "20"){
+      document.querySelector("#txt-apellido-paterno").value = '-'
+      document.querySelector("#txt-apellido-materno").value = '-'
     }
 
 
