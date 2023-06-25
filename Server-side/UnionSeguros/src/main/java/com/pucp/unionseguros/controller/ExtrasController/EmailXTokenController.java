@@ -1,12 +1,14 @@
 package com.pucp.unionseguros.controller.ExtrasController;
 
 import com.pucp.unionseguros.model.Extras.EmailXToken;
+import com.pucp.unionseguros.model.Vehiculo.Vehiculo;
 import com.pucp.unionseguros.service.CorreosService.EmailService;
 import com.pucp.unionseguros.service.ExtrasService.EmailXTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -48,5 +50,24 @@ public class EmailXTokenController {
 
         return emailXTokenService.generarToken(emailXToken);
 
+    }
+
+    @GetMapping("/validarToken")
+    public EmailXToken validarToken(@RequestParam(name = "email") String email,
+                                @RequestParam(name = "token") String token){
+        EmailXToken emailXToken=new EmailXToken();
+        emailXToken=null;
+        emailXToken=emailXTokenService.validarToken(email,token);
+        if(emailXToken==null){
+            emailXTokenService.resetearToken(email);
+        }
+        return emailXToken;
+    }
+
+    @GetMapping("/resetearToken")
+    public EmailXToken resetearToken(@RequestParam(name = "email") String email){
+        EmailXToken emailXToken=new EmailXToken();
+        emailXTokenService.resetearToken(email);
+        return emailXToken;
     }
 }

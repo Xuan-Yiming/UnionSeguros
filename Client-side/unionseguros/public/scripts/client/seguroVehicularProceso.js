@@ -855,15 +855,15 @@ async function guardar() {
     }
 
     console.log(JSON.stringify(data));
-    fetch(GLOBAL_URL + '/cotizacion/insertar', {
+    fetch(GLOBAL_URL + '/ProcesoSeguroVehicular/insertarInfoProceso1', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json'
       },
     })
-        .then(response => response.json())
-        .then(data => {
+        .then(response => {
+          data = response;
           localStorage.setItem("idCotizacion", data);
 
           var listaCotizacionXDetalle = [];
