@@ -78,11 +78,11 @@ public class EmailXTokenController {
         success=emailXTokenService.validarToken(email,token);
         return success;
     }
+    @GetMapping("/resetearToken")
+    public boolean resetearToken(@RequestParam(name = "email") String email){
+        boolean succes = false;
+        succes=emailXTokenService.resetearToken(email);
+        return succes;
+    }
 
-//    @GetMapping("/resetearToken")
-//    public EmailXToken resetearToken(@RequestParam(name = "email") String email){
-//        EmailXToken emailXToken=new EmailXToken();
-//        emailXTokenService.resetearToken(email);
-//        return emailXToken;
-//    }
 }
