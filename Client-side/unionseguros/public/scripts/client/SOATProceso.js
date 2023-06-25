@@ -1,3 +1,7 @@
+window.onbeforeunload = function (e) {
+  return "¿Está seguro que desea salir de esta página?";
+};
+
 if (localStorage.getItem("documento") == null) {
   window.location.href = "/SOAT";
 }

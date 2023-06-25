@@ -20,6 +20,7 @@ window.onload = function () {
   }
 
   document.querySelector("#regresar").addEventListener("click", function () {
+    alert("No se ha aplicado ningún cambio");
     localStorage.removeItem("data-plan");
     window.location.href = "/admin/Vehiculo";
   });

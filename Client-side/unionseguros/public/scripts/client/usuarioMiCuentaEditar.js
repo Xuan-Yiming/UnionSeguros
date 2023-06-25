@@ -1,3 +1,4 @@
+
 if (localStorage.getItem("userCliente") === null) {
   window.location.href = "/iniciarSesion";
 }

@@ -100,6 +100,7 @@ window.onload = function () {
   }
 
   document.querySelector("#regresar").addEventListener("click", function () {
+    alert("No se ha aplicado ningún cambio");
     localStorage.removeItem("data-usuario");
     window.location.href = "/admin/usuario";
   });

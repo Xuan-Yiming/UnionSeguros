@@ -1,7 +1,6 @@
 if (localStorage.getItem("user") == null) {
   window.location.href = "/admin/login";
 }
-
 window.onload = function () {
   const  fechaNac = document.querySelector("#dp-fecha-nacimiento");
 // La fecha mínima permitida (hace 18 años)
@@ -28,10 +27,6 @@ window.onload = function () {
           document.getElementById("txt-documento").maxLength = "16";
         }
       });
-
-
-
-
 
   fetch(GLOBAL_URL + "/tipoDocumento/listarActivos")
       .then((response) => {
@@ -110,6 +105,7 @@ window.onload = function () {
   }
 
   document.querySelector("#regresar").addEventListener("click", function () {
+    alert("No se ha aplicado ningún cambio");
     localStorage.removeItem("data-usuario");
     window.location.href = "/admin/cliente";
   });

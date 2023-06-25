@@ -1,3 +1,7 @@
+window.onbeforeunload = function (e) {
+  return "¿Está seguro que desea salir de esta página?";
+};
+
 if (localStorage.getItem("documento") == null) {
   window.location.href = "/seguroVehicular";
 }
@@ -41,8 +45,6 @@ window.onload = function () {
     .split("T")[0];
 
   inicializar();
-
-
 };
 
 document
@@ -587,12 +589,24 @@ async function cargarPersona() {
           document.querySelector("#txt-apdMaterno").value = "-";
         }
 
-        if (data.serie != "") {
           document.querySelector("#txt-nombres").disabled = true;
           document.querySelector("#txt-apdPaterno").disabled = true;
           document.querySelector("#txt-apdMaterno").disabled = true;
           document.querySelector("#txt-correo").disabled = true;
-        }
+
+          if(data.direccion!=="" && data.direccion!==null){
+            document.querySelector("#txt-direccion").value = data.direccion;
+            document.querySelector("#txt-direccion").disabled = true;
+          }
+          if(data.telefono!=="" && data.telefono!==null){
+            document.querySelector("#txt-numCelular").value = data.telefono;
+            document.querySelector("#txt-numCelular").disabled = true;
+          }
+          if(data.fechaNacimiento!=="" && data.fechaNacimiento!==null){
+            document.querySelector("#date-picker2").value = data.fechaNacimiento;
+            document.querySelector("#date-picker2").disabled = true;
+          }
+
       }
     })
     .catch((error) => {
