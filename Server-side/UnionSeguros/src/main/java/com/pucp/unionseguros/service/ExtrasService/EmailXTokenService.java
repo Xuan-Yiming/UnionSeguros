@@ -34,18 +34,25 @@ public class EmailXTokenService {
         if(emailXToken!=null){
             success=true;
         }
-        
+
         return success;
     }
 
-    public void resetearToken(String email) {
+    public boolean resetearToken(String email) {
         List<EmailXToken> lista = new ArrayList<>();
         EmailXToken emailXToken =new EmailXToken();
+        boolean succes= false;
+        int i=0;
         lista=emailXTokenRepository.findEmailXTokenByEmail(email);
-        for(int i=0;i< lista.size();i++){
+        for(i=0;i< lista.size();i++){
             emailXToken=lista.get(i);
             emailXToken.setActivo(false);
             emailXTokenRepository.save(emailXToken);
         }
+        if(i== lista.size() -1){
+            succes =true;
+        }
+        return  succes;
+
     }
 }

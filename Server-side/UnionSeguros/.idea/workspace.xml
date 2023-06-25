@@ -7,10 +7,7 @@
     <list default="true" id="6d91e02f-93e7-4720-a6ca-1f4a54924574" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/ExtrasController/EmailXTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/ExtrasController/EmailXTokenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/ExtrasController/ListaNegraController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/controller/ExtrasController/ListaNegraController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/ExtrasRepository/EmailXTokenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/repository/ExtrasRepository/EmailXTokenRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/ExtrasService/EmailXTokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/ExtrasService/EmailXTokenService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/ExtrasService/ListaNegraService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pucp/unionseguros/service/ExtrasService/ListaNegraService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
