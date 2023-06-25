@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="/public/stylesheets/style.css">
     <link rel="stylesheet" href="/public/stylesheets/client/progressBar.css">
-    <link rel="stylesheet" href="/public/stylesheets/client/recuperarContrasena.css">
+    <link rel="stylesheet" href="/public/stylesheets/client/login.css">
     <link rel="stylesheet" href="/public/stylesheets/client/form.css">
 
     <script type="text/javascript" src="../public/scripts/conection.js"></script>
@@ -54,10 +54,33 @@
                     <div class="form-inputs">
                         <div class="form-line">
                             <div class="form-item">
+                                <h3>Nombres</h3>
+                                <input id="txt-nombres" placeholder="Ingrese nombres" oninput="this.value = this.value.toUpperCase()"></input>
+                            </div>
+                        </div>
+                        <div class="form-line">
+                            <div class="form-item">
+                                <h3>Apellido Paterno</h3>
+                                <input id="txt-apdPaterno" placeholder="Ingrese apellido" oninput="this.value = this.value.toUpperCase()"></input>
+                            </div>
+                            <div class="form-item">
+                                <h3>Apellido Materno</h3>
+                                <input id="txt-apdMaterno" placeholder="Ingrese apellido" oninput="this.value = this.value.toUpperCase()"></input>
+                            </div>
+                        </div>
+                        <div class="form-line">
+                            <div class="form-item">
+                                <h3>Fecha Nacimiento</h3>
+                                <input id="dp-fecha-nacimiento" type="date"></input>
+                            </div>
+                        </div>
+                        <div class="form-line">
+                            <div class="form-item">
                                 <h3>Correo electrónico</h3>
                                 <input placeholder="Ingrese correo" id = "txt-correo" oninput="this.value = this.value.toLowerCase()"></input>
                             </div>
                         </div>
+
                     </div>
                 </div>
 

@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78b6ce57-e96d-4dcd-9cdb-1c45ea2c6930" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/client/recuperarContrasena.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/recuperarContrasena.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/routes/client/recuperarContrasena.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/recuperarContrasena.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/recuperarContrasena.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/recuperarContrasena.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/client/progressBar.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/client/progressBar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/iniciarSesion.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/iniciarSesion.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/recuperarContrasena.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/recuperarContrasena.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/src/main/java/com/pucp/unionseguros/controller/PersonasController/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/src/main/java/com/pucp/unionseguros/controller/PersonasController/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/src/main/java/com/pucp/unionseguros/service/PersonasService/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/src/main/java/com/pucp/unionseguros/service/PersonasService/UsuarioService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +35,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "client-side-omar-V15",
-    "last_opened_file_path": "C:/Users/omar/Documents/GitHub/UnionSeguros/Client-side/unionseguros/public/stylesheets/client",
+    "last_opened_file_path": "C:/Users/omar/Documents/GitHub/UnionSeguros/Client-side/unionseguros/public/scripts/client",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -46,10 +46,10 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\stylesheets\client" />
       <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\scripts\client" />
       <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\views\client\pages" />
       <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\routes\client" />
+      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\stylesheets\client" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -77,7 +77,7 @@
       <workItem from="1687646314303" duration="3111000" />
       <workItem from="1687649601643" duration="17000" />
       <workItem from="1687651638704" duration="1196000" />
-      <workItem from="1687656985391" duration="15460000" />
+      <workItem from="1687656985391" duration="4145000" />
     </task>
     <servers />
   </component>
