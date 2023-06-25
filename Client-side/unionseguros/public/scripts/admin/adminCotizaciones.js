@@ -97,7 +97,7 @@ function crearLaTabla(data) {
     const button = document.createElement("td");
     const buttonEliminar = document.createElement("button");
     buttonEliminar.classList.add("button");
-    buttonEliminar.classList.add("button-eliminar");
+    buttonEliminar.classList.add("btn-delete");
     buttonEliminar.innerText = "Eliminar";
     buttonEliminar.setAttribute("data-id", cotizacion.id);
     buttonEliminar.addEventListener("click", function () {

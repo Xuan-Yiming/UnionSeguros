@@ -209,6 +209,7 @@ h4{
   padding: 3px;
   border-radius: 4px;
   color: #ffffff;
+  cursor: pointer;
 }
 
 .btn-delete:active{
@@ -218,24 +219,9 @@ h4{
   padding: 3px;
   border-radius: 4px;
   color: #C8102E;
+
 }
 
-.button-eliminar{
-  margin: 3px 20px;
-  background-color: rgba(200, 16, 46, 0.8);
-  border: 1px solid #c8102e;
-  padding: 3px;
-  border-radius: 4px;
-  color: #ffffff;
-}
-.button-eliminar:active{
-  margin: 3px 20px;
-  background-color: rgb(253, 199, 199);
-  border: 1px solid #c8102e;
-  padding: 3px;
-  border-radius: 4px;
-  color: #C8102E;
-}
 
 .btn-edit{
   margin: 3px 20px;
@@ -244,6 +230,7 @@ h4{
   padding: 3px 6px;
   border-radius: 4px;
   color: #122757;
+  cursor: pointer;
 }
 
 .btn-edit:active{
