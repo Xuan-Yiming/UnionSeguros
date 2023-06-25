@@ -92,7 +92,7 @@ function crearLaTabla(data) {
     const fecha = document.createElement("td");
     fecha.innerText = cotizacion.fechaCotizacion;
     tableRow.appendChild(fecha);
-
+    const button = document.createElement("td");
     const buttonEliminar = document.createElement("button");
     buttonEliminar.classList.add("button");
     buttonEliminar.classList.add("button-eliminar");
@@ -137,8 +137,8 @@ function crearLaTabla(data) {
         });
     });
 
-    tableRow.appendChild(buttonEliminar);
-
+    button.appendChild(buttonEliminar);
+    tableRow.appendChild(button);
     table.appendChild(tableRow);
   });
 }

@@ -129,6 +129,9 @@ function crearLaTabla(data) {
     deleteButton.innerText = "Eliminar";
     deleteButton.setAttribute("data-id", usaurio.id);
     deleteButton.addEventListener("click", () => {
+      if (confirm("¿Está seguro que desea eliminar este usuario?") == false) {
+        return;
+      }
       const dataId = event.target.getAttribute("data-id");
       let data = this.usuarios.find((usuario) => usuario.id == dataId);
       const usuario = {
