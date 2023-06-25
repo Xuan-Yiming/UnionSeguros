@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Marcas y Modelos</title>
+        <link rel="icon" type="image/x-icon" href="../public/resources/icons/page-icon-blue.png">
+
+        <link rel="stylesheet" href="../public/stylesheets/style.css">
+        <link rel="stylesheet" href="../public/stylesheets/admin/adminList.css">
+        <link rel="stylesheet" href="../public/stylesheets/modal.css">
+
+        <script type="text/javascript" src="../public/scripts/admin/adminMarcaModelo.js"></script>
+        <script type="text/javascript" src="../public/scripts/conection.js"></script>
+        <script type="text/javascript" src="../public/scripts/modal.js"></script>
+
+    </head>
+
+    <body class="modal-container">
+        <div class="modal-overlay" id="modalOverlay">
+            <div class="modal-main">
+                <h2>Detalles</h2>
+                <label for="txt-marca">Marca</label>
+                <input type="text" id="txt-marca" placeholder="Ingresar marca"
+                    oninput="this.value = this.value.toUpperCase()">
+
+                <div class="modal-buttons">
+                    <button id="btn-modal-cancelar">Cancelar</button>
+                    <button id="btn-modal-guardar">Guardar</button>
+                </div>
+            </div>
+        </div>
+        <%- include('../layouts/header'); %>
+
+            <main id="tabla-plan-soat">
+                <h2>Marcas</h2>
+                <div id="control-bar">
+                    <div id="control-bar-button">
+                        <button class="button-blue-transparente-blue-border" id="btn-nuevo" onclick="openModal()">
+                            + Agregar marca
+                        </button>
+
+                        <button class="button-blue-transparente-blue-border" id="btn-carga-masiva">
+                            + Carga masiva de marcas
+                        </button>
+
+                        <input class="custom-file-input-label" type="file" id="btn-masiva" accept=".csv" display="none">
+                        </input>
+                    </div>
+                    <div id="control-bar-search">
+                        <img src="../public/resources/icons/Accessibility.png" alt="Buscar">
+                        <input id="txt-buscar" type="text" placeholder="Buscar">
+                    </div>
+                </div>
+                <table id="tableID" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Marca</th>
+                            <th>Herramientas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+
+                    </tbody>
+                </table>
+
+            </main>
+    </body>
+
+</html>
