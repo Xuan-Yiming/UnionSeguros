@@ -51,6 +51,9 @@ app.use('/login', loginRouter);
 var iniciarSesionRouter = require('./routes/client/iniciarSesion');
 app.use('/iniciarSesion', iniciarSesionRouter);
 
+//recuperar contrasena
+var recuperarContrasenaRouter = require('./routes/client/recuperarContrasena');
+app.use('/recuperarContrasena', recuperarContrasenaRouter);
 
 //Admin
 //pagina de administrador

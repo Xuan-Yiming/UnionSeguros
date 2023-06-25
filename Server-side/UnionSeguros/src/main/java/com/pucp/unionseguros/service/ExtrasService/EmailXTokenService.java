@@ -30,7 +30,7 @@ public class EmailXTokenService {
         EmailXToken emailXToken=emailXTokenRepository.findEmailXTokenByEmailAndTokenAndActivoIsTrue(email,token);
         boolean valida=false;
         if(emailXToken!=null){
-            valida=false;
+            valida=true;
         }
         return  valida;
     }

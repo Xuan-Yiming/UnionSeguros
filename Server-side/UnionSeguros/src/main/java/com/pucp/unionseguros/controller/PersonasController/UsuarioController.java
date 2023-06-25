@@ -56,5 +56,9 @@ public class UsuarioController {
 //        return usuarioService.verificarTokenIngresado(correoIngresado,tokenIngresado);
 //    }
 
+    @GetMapping(path = "/actualizarContrasenia")
+    public boolean actualizarContrasenia(@RequestParam(name = "correoIngresado") String correoIngresado,@RequestParam(name = "contrasenia") String contrasenia){
+        return usuarioService.actualizarContrasenia(correoIngresado,contrasenia);
+    }
 
 }
