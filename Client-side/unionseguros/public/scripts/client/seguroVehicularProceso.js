@@ -173,15 +173,7 @@ function changeStage() {
       if (localStorage.getItem("error") === "1") {
         return;
       }
-      document.querySelector(".form-vehiculo ").style.display = "none";
-      document.querySelector(".form-personal ").style.display = "none";
-      document.querySelector(".form-plans").style.display = "none";
-      document.querySelector(".form-result").style.display = "block";
-      document.querySelector("#btn-descargar-constancia").style.display =
-        "block";
-      document.querySelector("#btn-previous").style.display = "none";
 
-      loadResumen();
       break;
   }
 }
@@ -270,14 +262,24 @@ function updateLocalStorage() {
 function loadResumen() {
   let placa = localStorage.getItem("placa");
   let nuevaPlaca = placa.substring(0, 3) + "-" + placa.substring(3);
+  const total = parseFloat(localStorage.getItem("total"));
+  const suma = total + montoEstimado;
+  document.querySelector("#txt-res-total").innerText =
+      "S/." + suma.toFixed(2);
+
+  document.querySelector("#txt-res-total-beneficios").innerText =
+      "S/." + total.toFixed(2);
+
+  document.querySelector("#txt-res-inicial-vehiculo").innerText =
+      "S/." + montoEstimado.toFixed(2);
+
   document.querySelector("#txt-res-nombre").innerText =
-    document.querySelector("#txt-nombres").value +
+    document.querySelector("#txt-nombres").value + " " +
       document.querySelector("#txt-apdPaterno").value +
     " " +
       document.querySelector("#txt-apdMaterno").value;
   document.querySelector("#txt-res-placa").innerText = nuevaPlaca;
-  document.querySelector("#txt-res-total").innerText =
-    "S/." + localStorage.getItem("total");
+
   const datePickerInput = document.querySelector("#date-picker");
   const dateValue = datePickerInput.value; // Assuming the input value is a valid date string
 
@@ -295,13 +297,10 @@ function loadResumen() {
   selectedPlans.forEach(function (plan) {
     const planElement = document.createElement("div");
     const beneficioElement = document.createElement("p");
-    const montoElement = document.createElement("p");
 
-    beneficioElement.textContent = "· " + plan.beneficio + ":";
-    montoElement.textContent = "S/. " + plan.monto;
+    beneficioElement.textContent = plan.beneficio + ": " + "S/. " + plan.monto;
 
     planElement.appendChild(beneficioElement);
-    planElement.appendChild(montoElement);
     listaBeneficios.appendChild(planElement);
   });
 
@@ -856,15 +855,15 @@ async function guardar() {
     }
 
     console.log(JSON.stringify(data));
-    fetch(GLOBAL_URL + '/cotizacion/insertar', {
+    fetch(GLOBAL_URL + '/ProcesoSeguroVehicular/insertarInfoProceso1', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json'
       },
     })
-        .then(response => response.json())
-        .then(data => {
+        .then(response => {
+          data = response;
           localStorage.setItem("idCotizacion", data);
 
           var listaCotizacionXDetalle = [];
@@ -894,6 +893,14 @@ async function guardar() {
                 .then(response => response.json())
                 .then(data => {
                   // Supuestamente devuelve la lista
+                  loadResumen();
+                  document.querySelector(".form-vehiculo ").style.display = "none";
+                  document.querySelector(".form-personal ").style.display = "none";
+                  document.querySelector(".form-plans").style.display = "none";
+                  document.querySelector(".form-result").style.display = "block";
+                  document.querySelector("#btn-descargar-constancia").style.display =
+                      "block";
+                  document.querySelector("#btn-previous").style.display = "none";
                 })
                 .catch(error => {
 
@@ -1111,3 +1118,105 @@ function validateNumericInput(input) {
   // Actualizar el valor del campo de texto con solo caracteres numéricos
   input.value = numericValue;
 }
+
+document.querySelector("#btn-descargar-constancia").addEventListener("click", function () {
+
+  const soatData ={
+    nombre: document.querySelector("#txt-res-nombre").textContent,
+    placa: document.querySelector("#txt-res-placa").textContent,
+    precioInicial: document.querySelector("#txt-res-inicial-vehiculo").textContent,
+    totalBeneficios: document.querySelector("#txt-res-total-beneficios").textContent,
+    totalAcumulado: document.querySelector("#txt-res-total").textContent,
+    periodo: document.querySelector("#txt-res-periodo").textContent,
+  }
+  generarPDF(soatData);
+});
+
+async function generarPDF(soatData) {
+  // Extraigo datos necesarios para el pdf
+
+  const imageURL = 'public/resources/logos/logo-transparent-back.png';
+  const imageDataURL = await getImageDataURL(imageURL);
+
+  // contenido del PDF
+  const content = [
+
+    // Título
+    { text: 'Resumen Compra SOAT', style: 'header' },
+
+    // Logo
+    { image: imageDataURL, width: 140, alignment: 'center',
+      margin: [5, 5] },
+
+    // Separación notable
+    { text: '', margin: [0, 0, 0, 20] },
+    // CONTRATANTE/ASEGURADO
+    { text: 'CONTRATANTE/ASEGURADO', style: 'subheader' },
+    { text: soatData.nombre, style: 'subtitle' },
+
+    // VIGENCIA DE LA PÓLIZA
+    { text: 'VIGENCIA DE LA PÓLIZA', style: 'subheader' },
+    { text: soatData.periodo, style: 'subtitle', margin: [0, 0, 0, 20]},
+
+    // PLAN SEGURO VEHICULAR
+    { text: 'PRECIO TOTAL POR BENEFICIOS', style: 'subheader' },
+    { text: soatData.totalBeneficios, style: 'subtitle' },
+    { text: soatData.total, style: 'subtitle' },
+    // VEHÍCULO ASEGURADO
+    { text: 'PLACA VEHICULAR', style: 'subheader' },
+    { text: soatData.placa, style: 'subtitle'},
+
+  ];
+
+  // Definir los estilos del PDF
+  const styles = {
+    header: {
+      fontSize: 18,
+      bold: true,
+      alignment: 'center',
+      margin: [0, 0, 0, 10],
+    },
+    subheader: {
+      fontSize: 15,
+      bold: true,
+      margin: [0, 10, 0, 5],
+      color: '#122757',
+    },
+    subtitle: {
+      fontSize: 14,
+      bold: true,
+      margin: [0, 0, 0, 3],
+    },
+  };
+
+  // Definir el documento PDF
+  const docDefinition = {
+    content,
+    styles,
+    pageMargins: [80, 40, 80, 40],
+  };
+
+  // Genero el PDF
+  const nombreArchivo = `${soatData.placa}_RESUMEN_COMPRA_SOAT.pdf`;
+  pdfMake.createPdf(docDefinition).download(nombreArchivo);
+}
+
+function getImageDataURL(url) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+      const reader = new FileReader();
+      reader.onloadend = function () {
+        resolve(reader.result);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(xhr.response);
+    };
+    xhr.onerror = reject;
+    xhr.open('GET', url);
+    xhr.responseType = 'blob';
+    xhr.send();
+  });
+}
+
+
