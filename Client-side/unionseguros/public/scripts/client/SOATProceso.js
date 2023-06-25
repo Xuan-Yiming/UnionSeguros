@@ -838,51 +838,28 @@ function validateNumericInput(input) {
 
 
 document.querySelector("#btn-descargar-constancia").addEventListener("click", function () {
-  const soatDataJSON = localStorage.getItem("soatDataCompleta");
-  const soatData = JSON.parse(soatDataJSON);
+
+  const soatData ={
+    nombre: document.querySelector("#txt-res-nombre").textContent,
+    placa: document.querySelector("#txt-res-placa").textContent,
+    nombrePlan: document.querySelector("#txt-res-plan").textContent,
+    total: document.querySelector("#txt-res-total").textContent,
+    periodo: document.querySelector("#txt-res-periodo").textContent,
+  }
   generarPDF(soatData);
 });
 
 async function generarPDF(soatData) {
   // Extraigo datos necesarios para el pdf
-  const {
-    fidPlanSoat: { cobertura, precio, nombrePlan },
-    fidPoliza: {
-      fidMoneda: { abreviatura },
-      fidVehiculo: {
-        fidTipoUso: { nombreTipoUso },
-        fidModelo: {
-          fidMarcaVehiculo: {marca},
-          modelo,
-        },
-        fidPersona: {
-          nombre,
-          apellidoPaterno,
-          apellidoMaterno,
-          numeroDocumento,
-          fidTipoDocumento: {nombre: nombreTipoDocumento},
-          email,
-        },
-        placa,
-        serie,
-      },
-      precioBase,
-      fechaVigenciaDesde,
-      fechaVigenciaFin,
-    },
-  } = soatData;
 
-  let placaFormateada = placa.substring(0, 3) + "-" + placa.substring(3);
   const imageURL = 'public/resources/logos/logo-transparent-back.png';
   const imageDataURL = await getImageDataURL(imageURL);
-  const fechaVigenciaDesdeConvertida = new Date(fechaVigenciaDesde).toLocaleDateString('es-ES');
-  const fechaVigenciaFinConvertida = new Date(fechaVigenciaFin).toLocaleDateString('es-ES');
 
   // contenido del PDF
   const content = [
 
     // Título
-    { text: 'Detalle SOAT', style: 'header' },
+    { text: 'Resumen Compra SOAT', style: 'header' },
 
     // Logo
     { image: imageDataURL, width: 140, alignment: 'center',
@@ -890,44 +867,22 @@ async function generarPDF(soatData) {
 
     // Separación notable
     { text: '', margin: [0, 0, 0, 20] },
+    // CONTRATANTE/ASEGURADO
+    { text: 'CONTRATANTE/ASEGURADO', style: 'subheader' },
+    { text: soatData.nombre, style: 'subtitle' },
 
     // VIGENCIA DE LA PÓLIZA
     { text: 'VIGENCIA DE LA PÓLIZA', style: 'subheader' },
-    { text: 'Desde', style: 'subtitle' },
-    { text: fechaVigenciaDesdeConvertida },
-    { text: 'Hasta', style: 'subtitle' },
-    { text: fechaVigenciaFinConvertida, margin: [0, 0, 0, 20] },
+    { text: soatData.periodo, style: 'subtitle', margin: [0, 0, 0, 20]},
 
     // PLAN SOAT
     { text: 'PLAN SOAT', style: 'subheader' },
-    { text: 'Plan Escogido', style: 'subtitle' },
-    { text: nombrePlan },
-    { text: 'Precio', style: 'subtitle' },
-    { text: `${precio} ${abreviatura}` },
-    { text: 'Cobertura', style: 'subtitle' },
-    { text: `${cobertura} ${abreviatura}`, margin: [0, 0, 0, 20] },
-
+    { text: soatData.nombrePlan, style: 'subtitle' },
+    { text: soatData.total, style: 'subtitle' },
     // VEHÍCULO ASEGURADO
-    { text: 'VEHÍCULO ASEGURADO', style: 'subheader' },
-    { text: 'Marca', style: 'subtitle' },
-    { text: marca },
-    { text: 'Modelo', style: 'subtitle' },
-    { text: modelo },
-    { text: 'Placa', style: 'subtitle' },
-    { text: placaFormateada },
-    { text: 'Serie', style: 'subtitle' },
-    { text: serie },
-    { text: 'Uso', style: 'subtitle' },
-    { text: nombreTipoUso, margin: [0, 0, 0, 20] },
+    { text: 'PLACA VEHICULAR', style: 'subheader' },
+    { text: soatData.placa, style: 'subtitle'},
 
-    // CONTRATANTE/ASEGURADO
-    { text: 'CONTRATANTE/ASEGURADO', style: 'subheader' },
-    { text: 'Nombre', style: 'subtitle' },
-    { text: nombre },
-    { text: 'Apellidos', style: 'subtitle' },
-    { text: `${apellidoPaterno} ${apellidoMaterno}` },
-    { text: 'Documento', style: 'subtitle' },
-    { text: `${nombreTipoDocumento} ${numeroDocumento}` },
   ];
 
   // Definir los estilos del PDF
@@ -959,7 +914,7 @@ async function generarPDF(soatData) {
   };
 
   // Genero el PDF
-  const nombreArchivo = `${placaFormateada}_SOAT.pdf`;
+  const nombreArchivo = `${soatData.placa}_RESUMEN_COMPRA_SOAT.pdf`;
   pdfMake.createPdf(docDefinition).download(nombreArchivo);
 }
 
