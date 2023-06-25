@@ -67,8 +67,7 @@ h4{
 
 .button-red:active {
   font-size: 14px;
-  border: 5px;
-  border-color: #C8102E;
+  border: 1px #C8102E;
   border-radius: 5px;
   background-color:  #F7FBFC;
   color: #C8102E;
@@ -80,8 +79,8 @@ h4{
 }
 
 .button-red-white-back{
-  border: 5px;
-  border-color: #C8102E;
+  font-size: 14px;
+  border: 1px solid #C8102E;
   border-radius: 5px;
   background-color: #fff;
   color: #C8102E;
@@ -94,8 +93,7 @@ h4{
 
 
 .button-red-transparente{
-  border: 4px;
-  border-color: #C8102E;
+  border: 4px solid #C8102E;
   border-radius: 5px;
   background-color: rgba(200, 16, 46, 20%);
   color: #C8102E;
@@ -144,8 +142,7 @@ h4{
 }
 
 .button-blue:active {
-  border: 5px;
-  border-color: #041E42;
+  border: 5px solid #041E42;
   border-radius: 5px;
   background-color:  #F7FBFC;
   color: #041E42;
@@ -170,8 +167,7 @@ h4{
 
 
 .button-blue-transparente{
-  border: 5px;
-  border-color: #041E42;
+  border: 5px solid #041E42;
   border-radius: 5px;
   background-color: rgba(4, 30, 66, 20%);
   color: #041E42;

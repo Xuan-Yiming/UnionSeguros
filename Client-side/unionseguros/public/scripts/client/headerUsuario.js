@@ -7,7 +7,6 @@ cerrarSesionCliente.href = "/login";
 cerrarSesionCliente.addEventListener('click', function(event) {
     event.preventDefault();
 
-    alert('Adiós Cliente');
     localStorage.removeItem("userCliente");
 
     window.location.href = cerrarSesionCliente.href;

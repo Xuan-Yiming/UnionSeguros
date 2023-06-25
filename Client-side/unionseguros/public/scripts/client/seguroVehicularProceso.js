@@ -32,9 +32,6 @@ window.onload = function () {
     window.location.href = "/seguroVehicular";
   }
   const today = new Date();
-  document.querySelector("#date-picker2").value = today
-    .toISOString()
-    .split("T")[0];
 
   document.querySelector("#date-picker").min = today
     .toISOString()
@@ -252,7 +249,7 @@ function updateTotal() {
     total += plan.monto;
   });
 
-  totalElement.innerText = `Total: S/.${total}`;
+  totalElement.innerText = `Precio total acumulado: S/.${montoEstimado+total}`;
 }
 
 function updateLocalStorage() {
@@ -906,7 +903,6 @@ async function guardar() {
                   document.querySelector("#btn-previous").style.display = "none";
                 })
                 .catch(error => {
-
                   alert("Ha ocurrido un error de comunicación con el servidor");
                   console.error(error);
                   localStorage.setItem("error", "1");
@@ -1090,6 +1086,7 @@ async function validacionMonto() {
 
     if (prima > 0) {
       montoEstimado = prima;
+      document.getElementById("total").innerText = `Precio total acumulado: S/.${montoEstimado}`;
       alert(montoEstimado);
       flagMonto = true;
     } else {
