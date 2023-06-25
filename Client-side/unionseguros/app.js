@@ -113,7 +113,8 @@ app.use('/admin/ventas', adminVentasRouter);
 // //pagina de cotizaciones
 var adminCotizacionesRouter = require('./routes/admin/adminCotizaciones');
 app.use('/admin/cotizaciones', adminCotizacionesRouter);
-  
+
+
 
 
 // catch 404 and forward to error handler

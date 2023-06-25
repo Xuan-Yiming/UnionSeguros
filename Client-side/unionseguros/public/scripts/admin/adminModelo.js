@@ -1,5 +1,8 @@
 var modelos;
 var searchTimer;
+function getSource() {
+  return modelos;
+}
 window.onload = function () {
   if (localStorage.getItem("user") == null) {
     window.location.href = "/admin/login";
@@ -37,7 +40,7 @@ window.onload = function () {
     })
     .then((data) => {
       this.modelos = data;
-      crearLaTabla(data);
+      pagination(data);
     })
     .catch((error) => {
       alert("Ha ocurrido un error de comunicación con el servidor");
@@ -70,7 +73,7 @@ window.onload = function () {
         })
         .then((data) => {
           this.beneficios = data;
-          crearLaTabla(data);
+          pagination(data);
         })
         .catch((error) => {
           alert("Ha ocurrido un error de comunicación con el servidor");
@@ -245,7 +248,9 @@ function crearLaTabla(data) {
           "¿Está seguro que desea eliminar el Modelo con ID: " + dataId + "?"
         )
       ) {
-        let url = new URL(GLOBAL_URL + "/modelo/eliminar?" + "idIngresado=" + dataId);
+        let url = new URL(
+          GLOBAL_URL + "/modelo/eliminar?" + "idIngresado=" + dataId
+        );
         console.log(url);
         fetch(url, {
           method: "PUT",

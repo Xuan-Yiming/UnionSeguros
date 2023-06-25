@@ -1,6 +1,10 @@
 var cotizaciones;
 var searchTimer;
 
+function getSource() {
+  return cotizaciones;
+}
+
 window.onload = function () {
   fetch(GLOBAL_URL + "/cotizacion/listarCotizacionesActivas")
     .then((response) => {
@@ -16,7 +20,7 @@ window.onload = function () {
     })
     .then((data) => {
       this.cotizaciones = data;
-      crearLaTabla(data);
+      pagination(data);
     })
     .catch((error) => {
       alert("Ha ocurrido un error de comunicación con el servidor");
@@ -51,7 +55,7 @@ window.onload = function () {
         })
         .then((data) => {
           this.cotizaciones = data;
-          crearLaTabla(data);
+          pagination(data);
         })
         .catch((error) => {
           alert("Ha ocurrido un error de comunicación con el servidor");
@@ -78,7 +82,7 @@ function crearLaTabla(data) {
       " " +
       cotizacion.fidCliente.apellidoMaterno +
       " - " +
-      cotizacion.fidCliente.numeroDocumento;;
+      cotizacion.fidCliente.numeroDocumento;
     tableRow.appendChild(cliente);
 
     const placa = document.createElement("td");
@@ -86,7 +90,7 @@ function crearLaTabla(data) {
     tableRow.appendChild(placa);
 
     const monto = document.createElement("td");
-    monto.innerText = cotizacion.montoEstimado;;
+    monto.innerText = cotizacion.montoEstimado;
     tableRow.appendChild(monto);
 
     const fecha = document.createElement("td");

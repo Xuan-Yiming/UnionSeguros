@@ -1,5 +1,10 @@
 var planes;
 var searchTimer;
+
+function getSource() {
+  return planes;
+}
+
 window.onload = function () {
   if (localStorage.getItem("user") == null) {
     window.location.href = "/admin/login";
@@ -19,7 +24,7 @@ window.onload = function () {
     })
     .then((data) => {
       this.planes = data;
-      crearLaTabla(data);
+      pagination(data);
     })
     .catch((error) => {
       alert("Ha ocurrido un error de comunicación con el servidor");
@@ -52,7 +57,7 @@ window.onload = function () {
         })
         .then((data) => {
           this.planes = data;
-          crearLaTabla(data);
+          pagination(data);
         })
         .catch((error) => {
           alert("Ha ocurrido un error de comunicación con el servidor");
