@@ -135,20 +135,20 @@ document
     if (stage === 2) {
       document.getElementById("btn-advance").textContent = "Finalizar";
 
-      // try {
-      //   const flagPIN = await validacionPIN(); //devuelve TRUE si no se ha encontrado ningun correo
-      //   alert(flagPIN);
-      //   if (!flagPIN) {
-      //     //el PIN no es correcto
-      //     alert("El PIN ingresado es incorrecto.");
-      //     return;
-      //   } else {
-      //     //el PIN es correcto
-      //   }
-      // } catch (error) {
-      //   alert("Ha ocurrido un error al verificar el PIN");
-      //   console.error(error);
-      // }
+       try {
+         const flagPIN = await validacionPIN();
+         alert(flagPIN);
+         if (!flagPIN) {
+           //el PIN no es correcto
+           alert("El PIN ingresado es incorrecto.");
+           return;
+         } else {
+           //el PIN es correcto
+         }
+       } catch (error) {
+         alert("Ha ocurrido un error al verificar el PIN");
+         console.error(error);
+       }
     }
 
     if (stage === 3) {
@@ -622,13 +622,12 @@ async function enviarPIN() {
 
 async function validacionPIN() {
   return new Promise((resolve, reject) => {
-    return true;
     const params = new URLSearchParams();
     const email = document.querySelector("#txt-correo").value;
     const token_ingresado = document.querySelector("#txt-PIN").value;
-    params.append("correoIngresado", email);
-    params.append("tokenIngresado", token_ingresado);
-    const url = GLOBAL_URL + "/email/verificarToken?" + params.toString();
+    params.append("email", email);
+    params.append("token", token_ingresado);
+    const url = GLOBAL_URL + "/EmailXToken/validarToken?" + params.toString();
 
     fetch(url)
       .then((response) => {
