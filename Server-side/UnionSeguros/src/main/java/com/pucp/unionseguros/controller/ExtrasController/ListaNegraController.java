@@ -5,6 +5,7 @@ import com.pucp.unionseguros.service.ExtrasService.ListaNegraService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,8 +27,11 @@ public class ListaNegraController {
     public String cargaMasiva(@RequestParam ("file")MultipartFile file){
         return listaNegraService.cargaMasivaDeListaNegra(file);
     }
-    @GetMapping("/listarListaNegra")
-    public List<ListaNegra> listarListaNegra(){
-        return  listaNegraService.listarListaNegra();
+
+    @GetMapping(params = "busqueda",path ="/buscarListaNegraParametros")
+    public List<ListaNegra> buscarListaNegra(@RequestParam(name = "busqueda") String busqueda){
+        return listaNegraService.buscarListaNegraParametro(busqueda);
     }
+
+
 }
