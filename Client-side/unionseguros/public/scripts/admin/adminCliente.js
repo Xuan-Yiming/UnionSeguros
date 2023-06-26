@@ -4,6 +4,10 @@ if (localStorage.getItem("user") == null) {
   window.location.href = "/admin/login";
 }
 
+function getSource() {
+  return usuarios;
+}
+
 window.onload = function () {
     document
       .querySelector("#btn-carga-masiva")
@@ -25,7 +29,7 @@ window.onload = function () {
     })
     .then((data) => {
       this.usuarios = data;
-      crearLaTabla(data);
+      pagination();
     })
     .catch((error) => {
       alert("Ha ocurrido un error de comunicación con el servidor");
@@ -58,7 +62,7 @@ window.onload = function () {
         })
         .then((data) => {
           this.usuarios = data;
-          crearLaTabla(data);
+          pagination(data);
         })
         .catch((error) => {
           alert("Ha ocurrido un error de comunicación con el servidor");
@@ -75,6 +79,8 @@ window.onload = function () {
 
   // Add event listener for file selection
   fileInput.addEventListener("change", handleFileUpload);
+
+  
 };
 
 // Handle file upload event

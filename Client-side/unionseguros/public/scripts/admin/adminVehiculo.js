@@ -3,6 +3,12 @@ if (localStorage.getItem("user") == null) {
 }
 var vehiculos;
 var searchTimer;
+
+function getSource() {
+  return vehiculos;
+}
+
+
 window.onload = function () {
   fetch(GLOBAL_URL + "/vehiculo/buscarVehiculoParametros?busqueda=")
     .then((response) => {
@@ -18,7 +24,7 @@ window.onload = function () {
     })
     .then((data) => {
       this.vehiculos = data;
-      crearLaTabla(data);
+      pagination(data);
     })
     .catch((error) => {
       alert("Ha ocurrido un error de comunicación con el servidor");
@@ -51,7 +57,7 @@ window.onload = function () {
         })
         .then((data) => {
           this.vehiculos = data;
-          crearLaTabla(data);
+          pagination(data);
         })
         .catch((error) => {
           alert("Ha ocurrido un error de comunicación con el servidor");
@@ -131,7 +137,9 @@ function crearLaTabla(data) {
       var params = new URLSearchParams();
       params.append("eliminar", dataId);
 
-      var url = new URL(GLOBAL_URL + "/vehiculo/eliminar2"+ "?" + params.toString());
+      var url = new URL(
+        GLOBAL_URL + "/vehiculo/eliminar2" + "?" + params.toString()
+      );
       console.log(url);
       fetch(url, {
         method: "PUT",
@@ -152,8 +160,8 @@ function crearLaTabla(data) {
           }
         })
         .then((element) => {
-            alert("Se ha guardado correctamente");
-            window.location.href = "/admin/vehiculo";
+          alert("Se ha guardado correctamente");
+          window.location.href = "/admin/vehiculo";
         })
         .catch((error) => {
           alert("Ha ocurrido un error de comunicación con el servidor");

@@ -4,6 +4,11 @@ if (localStorage.getItem("user") == null) {
 
 var beneficios;
 var searchTimer;
+
+function getSource() {
+  return beneficios;
+}
+
 window.onload = function () {
 
   fetch(GLOBAL_URL + "/detalleCotizacion/listarTodosActivos")
@@ -20,51 +25,49 @@ window.onload = function () {
     })
     .then((data) => {
       this.beneficios = data;
-      crearLaTabla(data);
+      pagination(data);
     })
     .catch((error) => {
       alert("Ha ocurrido un error de comunicación con el servidor");
       console.error(error);
     });
 
-    document.querySelector("#txt-buscar").addEventListener("input", function () {
-      clearTimeout(searchTimer);
-      searchTimer = setTimeout(function () {
-        const query = document.querySelector("#txt-buscar").value.toLowerCase();
+  document.querySelector("#txt-buscar").addEventListener("input", function () {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(function () {
+      const query = document.querySelector("#txt-buscar").value.toLowerCase();
 
-        let params = new URLSearchParams();
-        params.append("busqueda", query);
+      let params = new URLSearchParams();
+      params.append("busqueda", query);
 
-        let url = new URL(
-          GLOBAL_URL +
-            "/detalleCotizacion/buscarPorParametros?" +
-            params.toString()
-        );
+      let url = new URL(
+        GLOBAL_URL +
+          "/detalleCotizacion/buscarPorParametros?" +
+          params.toString()
+      );
 
-        fetch(url)
-                  .then((response) => {
-    if (!response.ok) {
-      throw new Error(response.status + " " + response.statusText);
-    } else {
-      try {
-          return response.json();
-        } catch (error) {
-          return null;
-        }
-
-    }
-  })
-          .then((data) => {
-            this.beneficios = data;
-            crearLaTabla(data);
-          })
-          .catch((error) => {
-  
-                        alert("Ha ocurrido un error de comunicación con el servidor");
-  console.error(error);
-          });
-      }, 500);
-    });
+      fetch(url)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.status + " " + response.statusText);
+          } else {
+            try {
+              return response.json();
+            } catch (error) {
+              return null;
+            }
+          }
+        })
+        .then((data) => {
+          this.beneficios = data;
+          pagination(data);
+        })
+        .catch((error) => {
+          alert("Ha ocurrido un error de comunicación con el servidor");
+          console.error(error);
+        });
+    }, 500);
+  });
 
   document.querySelector("#btn-nuevo").addEventListener("click", function () {
     localStorage.removeItem("data-beneficio");
@@ -97,10 +100,10 @@ window.onload = function () {
                 throw new Error(response.status + " " + response.statusText);
               } else {
                 try {
-          return response.json();
-        } catch (error) {
-          return null;
-        }
+                  return response.json();
+                } catch (error) {
+                  return null;
+                }
               }
             })
             .then((element) => {
@@ -130,10 +133,10 @@ window.onload = function () {
                 throw new Error(response.status + " " + response.statusText);
               } else {
                 try {
-          return response.json();
-        } catch (error) {
-          return null;
-        }
+                  return response.json();
+                } catch (error) {
+                  return null;
+                }
               }
             })
             .then((element) => {
@@ -236,10 +239,10 @@ function crearLaTabla(data) {
               throw new Error(response.status + " " + response.statusText);
             } else {
               try {
-          return response.json();
-        } catch (error) {
-          return null;
-        }
+                return response.json();
+              } catch (error) {
+                return null;
+              }
             }
           })
           .then((element) => {
@@ -264,14 +267,12 @@ function crearLaTabla(data) {
   });
 }
 
-
-
 function validateNumericInput(input) {
   // Obtener el valor del campo de texto
   const value = input.value;
 
   // Eliminar cualquier caracter no numérico del valor
-  const numericValue = value.replace(/\D/g, '');
+  const numericValue = value.replace(/\D/g, "");
 
   // Actualizar el valor del campo de texto con solo caracteres numéricos
   input.value = numericValue;

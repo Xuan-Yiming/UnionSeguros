@@ -6,6 +6,16 @@ function goBack() {
   window.history.back();
 }
 
+window.onbeforeunload = confirmExit;
+function confirmExit() {
+  if (confirm("confirm exit is being called") == true) {
+    //do something
+  } else {
+    return false;
+  }
+
+}
+
 window.onload = function () {
     if (localStorage.getItem("id-usuario") == null) {
         goBack();

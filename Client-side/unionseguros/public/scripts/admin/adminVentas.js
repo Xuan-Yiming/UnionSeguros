@@ -4,6 +4,10 @@ if (localStorage.getItem("user") == null) {
 var ventas;
 var searchTimer;
 
+function getSource() {
+  return ventas;
+}
+
 window.onload = function () {
   fetch(GLOBAL_URL + "/BoletaDeVenta/listarTodasActivas")
     .then((response) => {
@@ -27,7 +31,7 @@ window.onload = function () {
     })
     .then((data) => {
       this.ventas = data;
-      crearLaTabla(data);
+      pagination(data);
     })
     .catch((error) => {
       alert("Ha ocurrido un error de comunicación con el servidor");
@@ -51,21 +55,21 @@ window.onload = function () {
       fetch(url)
         .then((response) => {
           if (!response.ok) {
-             if (response.status < 500 && response.status >= 400) {
-               throw new Error(
-                 "Error del cliente: " +
-                   response.status +
-                   " " +
-                   response.statusText
-               );
-             } else {
-               throw new Error(
-                 "Error del servidor: " +
-                   response.status +
-                   " " +
-                   response.statusText
-               );
-             }
+            if (response.status < 500 && response.status >= 400) {
+              throw new Error(
+                "Error del cliente: " +
+                  response.status +
+                  " " +
+                  response.statusText
+              );
+            } else {
+              throw new Error(
+                "Error del servidor: " +
+                  response.status +
+                  " " +
+                  response.statusText
+              );
+            }
           } else {
             try {
               return response.json();
@@ -76,7 +80,7 @@ window.onload = function () {
         })
         .then((data) => {
           this.ventas = data;
-          crearLaTabla(data);
+          pagination(data);
         })
         .catch((error) => {
           alert(error);
@@ -84,10 +88,10 @@ window.onload = function () {
         });
     }, 500);
   });
-    const fileInput = document.querySelector("#btn-masiva");
+  const fileInput = document.querySelector("#btn-masiva");
 
-    // Add event listener for file selection
-    fileInput.addEventListener("change", handleFileUpload);
+  // Add event listener for file selection
+  fileInput.addEventListener("change", handleFileUpload);
 };
 // Handle file upload event
 function handleFileUpload(event) {
@@ -234,9 +238,7 @@ function crearLaTabla(data) {
             }
           }
         })
-        .then((data) => {
-          
-        })
+        .then((data) => {})
         .catch((error) => {
           alert(error);
           console.error(error);

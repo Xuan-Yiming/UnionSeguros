@@ -3,6 +3,11 @@ if (localStorage.getItem("user") == null) {
 }
 var usuarios;
 var searchTimer;
+
+function getSource() {
+  return usuarios;
+}
+
 window.onload = function () {
   fetch(GLOBAL_URL + "/administrador/listarTodosActivos")
     .then((response) => {
@@ -18,7 +23,7 @@ window.onload = function () {
     })
     .then((data) => {
       this.usuarios = data;
-      crearLaTabla(data);
+      pagination(data);
     })
     .catch((error) => {
       alert("Ha ocurrido un error de comunicación con el servidor");
@@ -53,7 +58,7 @@ window.onload = function () {
         })
         .then((data) => {
           this.usuarios = data;
-          crearLaTabla(data);
+          pagination(data);
         })
         .catch((error) => {
           alert("Ha ocurrido un error de comunicación con el servidor");

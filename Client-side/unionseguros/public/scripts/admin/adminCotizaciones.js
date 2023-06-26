@@ -1,8 +1,14 @@
 var cotizaciones;
 var searchTimer;
+
 if (localStorage.getItem("user") == null) {
   window.location.href = "/admin/login";
 }
+
+function getSource() {
+  return cotizaciones;
+}
+
 window.onload = function () {
   fetch(GLOBAL_URL + "/cotizacion/listarCotizacionesActivas")
     .then((response) => {
@@ -18,7 +24,7 @@ window.onload = function () {
     })
     .then((data) => {
       this.cotizaciones = data;
-      crearLaTabla(data);
+      pagination(data);
     })
     .catch((error) => {
       alert("Ha ocurrido un error de comunicación con el servidor");
@@ -53,7 +59,7 @@ window.onload = function () {
         })
         .then((data) => {
           this.cotizaciones = data;
-          crearLaTabla(data);
+          pagination(data);
         })
         .catch((error) => {
           alert("Ha ocurrido un error de comunicación con el servidor");
@@ -91,6 +97,7 @@ function crearLaTabla(data) {
     tableRow.appendChild(documento);
 
     const cliente = document.createElement("td");
+
     if(cotizacion.fidCliente.numeroDocumento.substring(0, 2) === "20" && cotizacion.fidCliente.fidTipoDocumento.nombre==="RUC"){
       cliente.innerText = cotizacion.fidCliente.nombre;
     }else{
@@ -99,6 +106,7 @@ function crearLaTabla(data) {
           cotizacion.fidCliente.apellidoMaterno + ", " +
           cotizacion.fidCliente.nombre;
     }
+
     tableRow.appendChild(cliente);
 
     const placa = document.createElement("td");
@@ -106,7 +114,9 @@ function crearLaTabla(data) {
     tableRow.appendChild(placa);
 
     const monto = document.createElement("td");
+
     monto.innerText = cotizacion.montoEstimado.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' });
+
     tableRow.appendChild(monto);
 
     const fecha = document.createElement("td");

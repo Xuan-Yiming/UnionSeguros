@@ -3,6 +3,11 @@ if (localStorage.getItem("user") === null) {
 }
 var planes;
 var searchTimer;
+
+function getSource() {
+  return planes;
+}
+
 window.onload = function () {
   fetch(GLOBAL_URL + "/planSOAT/listarActivos")
     .then((response) => {
@@ -18,7 +23,7 @@ window.onload = function () {
     })
     .then((data) => {
       this.planes = data;
-      crearLaTabla(data);
+      pagination(data);
     })
     .catch((error) => {
       alert("Ha ocurrido un error de comunicación con el servidor");
@@ -51,7 +56,7 @@ window.onload = function () {
         })
         .then((data) => {
           this.planes = data;
-          crearLaTabla(data);
+          pagination(data);
         })
         .catch((error) => {
           alert("Ha ocurrido un error de comunicación con el servidor");

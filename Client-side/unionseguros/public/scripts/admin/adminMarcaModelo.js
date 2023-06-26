@@ -4,11 +4,17 @@ if (localStorage.getItem("user") == null) {
 var marcas;
 var searchTimer;
 
+function getSource() {
+  return marcas;
+}
+
 window.onload = function () {
 
-  document.querySelector("#btn-carga-masiva").addEventListener("click", function () {
-    document.querySelector("#btn-masiva").click();
-  });
+  document
+    .querySelector("#btn-carga-masiva")
+    .addEventListener("click", function () {
+      document.querySelector("#btn-masiva").click();
+    });
 
   fetch(GLOBAL_URL + "/marcaVehiculo/listarTodasActivas")
     .then((response) => {
@@ -24,7 +30,7 @@ window.onload = function () {
     })
     .then((data) => {
       this.marcas = data;
-      crearLaTabla(data);
+      pagination(data);
     })
     .catch((error) => {
       alert("Ha ocurrido un error de comunicación con el servidor");
@@ -57,7 +63,7 @@ window.onload = function () {
         })
         .then((data) => {
           this.beneficios = data;
-          crearLaTabla(data);
+          pagination(data);
         })
         .catch((error) => {
           alert("Ha ocurrido un error de comunicación con el servidor");
@@ -75,7 +81,7 @@ window.onload = function () {
 
   // Add event listener for file selection
   fileInput.addEventListener("change", handleFileUpload);
-  
+
   document
     .querySelector("#btn-modal-guardar")
     .addEventListener("click", function () {
@@ -207,7 +213,7 @@ function handleFileUpload(event) {
       alert("Ha ocurrido un error de comunicación con el servidor");
       console.error("Error:", error);
     });
-};
+}
 function crearLaTabla(data) {
   const table = document.querySelector("#table-body");
   table.innerHTML = "";
