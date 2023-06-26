@@ -1,0 +1,19 @@
+.form-contrasena {
+    display:none;
+}
+
+.form-validacion {
+    display:none;
+}
+
+
+.form-result-content{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    margin-bottom: 30px;
+}
+
+.form-container{
+    background: linear-gradient(3deg, rgba(220,240,255,1) 0%, rgba(255,255,255,1) 50%, rgba(220,240,255,1) 100%);
+}

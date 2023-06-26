@@ -1,7 +1,17 @@
+if (localStorage.getItem("user") == null) {
+  window.location.href = "/admin/login";
+}
+
 window.onload = function () {
-  document.getElementById("txt-documento").maxLength = "8";
-  if (localStorage.getItem("user") == null) {
-    window.location.href = "/admin/login";
+  const  fechaNac = document.querySelector("#dp-fecha-nacimiento");
+// La fecha mínima permitida (hace 18 años)
+  const fechaMinima = new Date();
+  fechaMinima.setFullYear(fechaMinima.getFullYear() - 18);
+// No deja poner otras fechas posteriores a esta
+  fechaNac.max = fechaMinima.toISOString().split("T")[0];
+
+  if(localStorage.getItem("data-usuario") === null){
+    document.getElementById("txt-documento").maxLength = "8";
   }
 
   document
@@ -20,13 +30,6 @@ window.onload = function () {
           document.getElementById("txt-documento").maxLength = "16";
         }
       });
-
-
-
-
-
-
-
 
   fetch(GLOBAL_URL + "/tipoDocumento/listarActivos")
     .then((response) => {
@@ -48,9 +51,11 @@ window.onload = function () {
         option.innerText = tipoDocumento.nombre;
         document.querySelector("#select-documento").appendChild(option);
       });
-              let doc = JSON.parse(localStorage.getItem("data-cliente"));
-              document.querySelector("#select-documento").value =
-                doc.fidTipoDocumento.id;
+      if (localStorage.getItem("data-usuario") !== null){
+        let doc = JSON.parse(localStorage.getItem("data-usuario"));
+        document.querySelector("#select-documento").value =
+            doc.fidTipoDocumento.id;
+      }
     })
     .then(() => {
       document
@@ -61,8 +66,10 @@ window.onload = function () {
             document.getElementById("txt-documento").maxLength = "8";
           } else if (document.querySelector("#select-documento").value == "2") {
             document.getElementById("txt-documento").maxLength = "9";
-          } else if (document.querySelector("#select-documento").value == "5") {
+          } else if (document.querySelector("#select-documento").value == "3") {
             document.getElementById("txt-documento").maxLength = "11";
+          }else if (document.querySelector("#select-documento").value == "4") {
+            document.getElementById("txt-documento").maxLength = "16";
           }
         });
     })
@@ -93,6 +100,7 @@ window.onload = function () {
   }
 
   document.querySelector("#regresar").addEventListener("click", function () {
+    alert("No se ha aplicado ningún cambio");
     localStorage.removeItem("data-usuario");
     window.location.href = "/admin/usuario";
   });
@@ -236,7 +244,7 @@ window.onload = function () {
   });
 
   function verificarCampos() {
-    
+
     var documento = document.querySelector("#txt-documento").value;
     var tipoDocumento = document.querySelector("#select-documento").value;
     var apdPaterno = document.querySelector("#txt-apellido-paterno").value;
@@ -294,17 +302,8 @@ window.onload = function () {
       }
     }
 
-    var inputFechaNacimiento = document.querySelector("#dp-fecha-nacimiento");
-    let today = new Date();
-
-    // Subtract 18 years from today's date
-    let fechaMinima = new Date(
-      today.getFullYear() - 18,
-      today.getMonth(),
-      today.getDate()
-    );
-
-    if(new Date(inputFechaNacimiento.value) < fechaMinima){
+    var  inputFechaNacimiento = document.querySelector("#dp-fecha-nacimiento");
+    if(new Date(inputFechaNacimiento.value) > fechaMinima){
       alert("El cliente debe ser mayor de 18 años.");
       return false;
     }
@@ -320,37 +319,44 @@ window.onload = function () {
       }
     }
 
-    if (email == "") {
+    if (email === "") {
       alert("Debe ingresar un correo");
       return false;
     }
-    if (apdPaterno == "") {
-      alert("Debe ingresar un apellido paterno");
-      return false;
-    }
-    if (nombres == "") {
+    if (nombres === "") {
       alert("Debe ingresar un nombre");
       return false;
     }
 
-    if (contrasena == "") {
+    if (contrasena === "") {
       alert("Debe ingresar una contraseña");
       return false;
     }
 
-    if (
-      !/^[A-Za-z]+$/.test(apdPaterno) ||
-      !/^[A-Za-z]+$/.test(apdMaterno) ||
-      !/^[A-Za-z ]+$/.test(nombres)
-    ) {
-      if (apdMaterno !== "-") {
-        document.querySelector("#txt-apellido-paterno").focus();
-        alert(
+    if(
+        (apdPaterno !== "" && !/^[A-Za-z -]+$/.test(apdPaterno)) ||
+        (apdMaterno !== "" && !/^[A-Za-z -]+$/.test(apdMaterno)) ||
+        !/^[A-Za-z ]+$/.test(nombres)
+    ){
+      document.querySelector("#txt-apellido-paterno").focus();
+      alert(
           "Los nombres y apellidos no deben contener caracteres especiales"
-        );
-        return false;
-      }
+      );
+      return false;
     }
+
+    if(apdMaterno==="" && (tipoDocumento!=="4" && tipoDocumento!=="2" && tipoDocumento!=="3")){
+      alert("Complete su apellido por favor");
+      return false;
+    }else if(apdMaterno==="" && (tipoDocumento==="4" || tipoDocumento==="2" || tipoDocumento==="3")){
+      document.querySelector("#txt-apellido-materno").value = '-';
+    }
+
+    if(tipoDocumento==="3" && documento.substring(0, 2) === "20"){
+      document.querySelector("#txt-apellido-paterno").value = '-'
+      document.querySelector("#txt-apellido-materno").value = '-'
+    }
+
 
 
     return true;

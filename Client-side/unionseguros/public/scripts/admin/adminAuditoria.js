@@ -1,14 +1,22 @@
-
+if (localStorage.getItem("user") === null) {
+    window.location.href = "/admin/login";
+}
 
 function goBack() {
   window.history.back();
 }
 
-window.onload = function () {
+window.onbeforeunload = confirmExit;
+function confirmExit() {
+  if (confirm("confirm exit is being called") == true) {
+    //do something
+  } else {
+    return false;
+  }
 
-    if (localStorage.getItem("user") == null ) {
-        window.location.href = "/admin/login";
-    }
+}
+
+window.onload = function () {
     if (localStorage.getItem("id-usuario") == null) {
         goBack();
     }

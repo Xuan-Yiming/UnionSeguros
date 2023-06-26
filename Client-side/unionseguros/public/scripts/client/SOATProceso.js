@@ -1,5 +1,12 @@
+if (localStorage.getItem("documento") == null) {
+  window.location.href = "/SOAT";
+}
 var stage = 0;
-
+window.onbeforeunload = function (e) {
+  if(stage!==3){
+    return "¿Está seguro que desea salir de esta página?";
+  }
+};
 var placa = localStorage.getItem("placa");
 var tipoDocumento = localStorage.getItem("tipoDocumento");
 var numeroDocumento = localStorage.getItem("documento");

@@ -38,12 +38,6 @@
                             <button class="button-blue-transparente-blue-border" id="btn-nuevo" onclick="openModal()">
                                 + Agregar marca
                             </button>
-                            
-                            <button class="button-blue-transparente-blue-border" id="btn-carga-masiva">
-                                + Carga masiva de marcas
-                            </button>
-                            
-                            <input class="custom-file-input-label" type="file" id="btn-masiva" accept=".csv" display="none">
                         </input>
                         </div>
                         <div id="control-bar-search">
@@ -51,6 +45,7 @@
                             <input id="txt-buscar" type="text" placeholder="Buscar">
                         </div>
                     </div>
+                    <%- include('../layouts/pagination'); %>
                     <table id="tableID" class="display" style="width:100%">
                         <thead>
                             <tr>
@@ -65,6 +60,7 @@
                     </table>
 
                     </main>
+        <script type="text/javascript" src="../public/scripts/admin/headerAdmin.js"></script>
     </body>
 
 </html>

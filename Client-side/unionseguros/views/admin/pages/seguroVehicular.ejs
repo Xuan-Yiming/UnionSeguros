@@ -31,7 +31,7 @@
 
         </div>
     </div>
-    <%- include('../layouts/header'); %>
+        <%- include('../layouts/header'); %>
 
         <main id="tabla-plan-soat">
             <h2>Beneficios de Seguro Vehicular</h2>
@@ -46,11 +46,12 @@
                     <input id="txt-buscar" type="text" placeholder="Buscar">
                 </div>
             </div>
+            <%- include('../layouts/pagination'); %>
             <table id="tableID" class="display" style="width:100%">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Descipcion</th>
+                        <th>Descripción</th>
                         <th>Precio</th>
                         <th>Herramientas</th>
                     </tr>
@@ -61,6 +62,7 @@
             </table>
 
         </main>
+    <script type="text/javascript" src="../public/scripts/admin/headerAdmin.js"></script>
 </body>
 
 </html>

@@ -21,10 +21,12 @@ tr{
     margin-right: 5px;
 }
 
+td{
+    font-size: 14px;
+}
 
 
-
-table, th, td{
+table, td, th{
     border: 1px solid;
     border-collapse: collapse;
 }
@@ -33,7 +35,7 @@ th{
     background-color: #041E42;
     color: #fff;
     font-weight:normal;
-    font-size: 18px;
+    font-size: 19px;
 }
 
 table{
@@ -87,8 +89,48 @@ select{
     margin: 15px;
 }
 
-
-
 .custom-file-input-label{
     display: none;
-} 
+}
+
+
+/*--------------------------------------------------*/
+.td-tipodoc{
+    width: 90px;
+    text-align:   left;
+    padding-left:   18px;
+    box-sizing:  border-box;
+}
+
+.td-documento{
+    text-align:   left;
+    padding-left:   25px;
+    box-sizing:  border-box;
+    width: 150px;
+}
+
+.td-nombre{
+    text-align:   left;
+    padding-left:  30px;
+    box-sizing:  border-box;
+}
+
+.td-correo{
+    text-align:   left;
+    padding-left:   25px;
+    box-sizing:  border-box;
+}
+
+.td-soat{
+    text-align:   left;
+    padding-left:   25px;
+    box-sizing:  border-box;
+    width: 160px;
+}
+
+.td-monto{
+    text-align:   right;
+    padding-right:   30px;
+    box-sizing:  border-box;
+    width: 140px;
+}
