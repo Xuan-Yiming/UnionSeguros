@@ -1,3 +1,6 @@
+if (localStorage.getItem("user") == null) {
+  window.location.href = "/admin/login";
+}
 var vehiculos;
 var searchTimer;
 
@@ -127,6 +130,9 @@ function crearLaTabla(data) {
     deleteButton.innerText = "Eliminar";
     deleteButton.setAttribute("data-id", vehiculo.id);
     deleteButton.addEventListener("click", () => {
+      if (confirm("¿Está seguro que desea eliminar este usuario?") === false) {
+        return;
+      }
       const dataId = event.target.getAttribute("data-id");
       var params = new URLSearchParams();
       params.append("eliminar", dataId);

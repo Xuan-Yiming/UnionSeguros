@@ -1,61 +1,61 @@
 <!DOCTYPE html>
 <html lang="es">
 
-    <head>
-        <meta charset="UTF-8">
-        <title>Clientes</title>
-        <link rel="icon" type="image/x-icon" href="../public/resources/icons/page-icon-blue.png">
 
-        <link rel="stylesheet" href="../public/stylesheets/style.css">
-        <link rel="stylesheet" href="../public/stylesheets/admin/adminList.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+    <link rel="icon" type="image/x-icon" href="../public/resources/icons/page-icon-blue.png">
 
-        <script type="text/javascript" src="../public/scripts/admin/adminCliente.js"></script>
-        <script type="text/javascript" src="../public/scripts/conection.js"></script>
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+    <link rel="stylesheet" href="../public/stylesheets/admin/adminList.css">
 
-    </head>
+    <script type="text/javascript" src="../public/scripts/admin/adminCliente.js"></script>
+    <script type="text/javascript" src="../public/scripts/conection.js"></script>
 
-    <body class="container">
-        <%- include('../layouts/header'); %>
+</head>
 
-            <main id="tabla-plan-soat">
-                <h2>Cliente</h2>
-                <div id="control-bar">
-                    <div id="control-bar-button">
-                        <button class="button-blue-transparente-blue-border" id="btn-nuevo">
-                            + Agregar nuevo
-                        </button>
+<body class="container">
+    <%- include('../layouts/header'); %>
 
-                        <button class="button-blue-transparente-blue-border" id="btn-carga-masiva">
-                            + Carga masiva de lista negra
-                        </button>
+    <main id="tabla-plan-soat">
+        <h2>Cliente</h2>
+        <div id="control-bar">
+            <div id="control-bar-button">
+                <button class="button-blue-transparente-blue-border" id="btn-nuevo">
+                    + Agregar nuevo
+                </button>
 
-                        <input class="custom-file-input-label" type="file" id="btn-masiva" accept=".csv" display="none">
-                    </div>
-                    <div id="control-bar-search">
-                        <img src="../public/resources/icons/Accessibility.png" alt="Buscar">
-                        <input id="txt-buscar" type="text" placeholder="Buscar">
-                    </div>
+                <button class="button-blue-transparente-blue-border" id="btn-carga-masiva">
+                    + Carga masiva de lista negra
+                </button>
 
-                </div>
-                <%- include('../layouts/pagination'); %>
-                    <table id="tableID" class="display" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>Número Doc</th>
-                                <th>Nombre Completo</th>
-                                <th>Correo</th>
-                                <th>Estado </th>
-                                <th>Auditoria</th>
-                                <th>Herramientas</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table-body">
-
-                        </tbody>
-                    </table>
-
-            </main>
-
-    </body>
+                <input class="custom-file-input-label" type="file" id="btn-masiva" accept=".csv" display="none">
+            </div>
+            <div id="control-bar-search">
+                <img src="../public/resources/icons/Accessibility.png" alt="Buscar">
+                <input id="txt-buscar" type="text" placeholder="Buscar">
+            </div>
+        </div>
+        <table id="tableID" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Tipo Doc</th>
+                    <th>Número Doc</th>
+                    <th>Nombre Completo</th>
+                    <th>Correo Electrónico</th>
+                    <th>Estado </th>
+                    <th>Auditoría</th>
+                    <th>Herramientas</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                
+            </tbody>
+        </table>
+    
+    </main>
+    <script type="text/javascript" src="../public/scripts/admin/headerAdmin.js"></script>
+</body>
 
 </html>

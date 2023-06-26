@@ -1,3 +1,7 @@
+if (localStorage.getItem("user") == null) {
+  window.location.href = "/admin/login";
+}
+
 var beneficios;
 var searchTimer;
 
@@ -6,9 +10,6 @@ function getSource() {
 }
 
 window.onload = function () {
-  if (localStorage.getItem("user") == null) {
-    window.location.href = "/admin/login";
-  }
 
   fetch(GLOBAL_URL + "/detalleCotizacion/listarTodosActivos")
     .then((response) => {
@@ -196,7 +197,7 @@ function crearLaTabla(data) {
 
     const monto = document.createElement("td");
     monto.classList.add("td-monto");
-    monto.innerText = beneficio.monto;
+    monto.innerText = beneficio.monto.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' });;
     tableRow.appendChild(monto);
 
     //add edit button

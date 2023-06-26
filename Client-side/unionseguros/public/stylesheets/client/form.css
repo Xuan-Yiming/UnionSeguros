@@ -112,6 +112,14 @@ input[type="radio"]:checked:before {
     margin: 10px;
 }
 
+#btn-descargar-constancia{
+    float: left;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    margin: 10px;
+}
+
 
 .form-item input{
     width: 100%;

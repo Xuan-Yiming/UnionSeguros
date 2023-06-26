@@ -1,13 +1,16 @@
 var modelos;
 var searchTimer;
+
+if (localStorage.getItem("user") == null) {
+  window.location.href = "/admin/login";
+}
+
 function getSource() {
   return modelos;
 }
-window.onload = function () {
-  if (localStorage.getItem("user") == null) {
-    window.location.href = "/admin/login";
-  }
 
+
+window.onload = function () {
   if (localStorage.getItem("data-marca") == null) {
     window.location.href = "/admin/marcaModelo";
   }

@@ -1,12 +1,14 @@
+if (localStorage.getItem("user") == null) {
+  window.location.href = "/admin/login";
+}
 var marcas;
 var searchTimer;
+
 function getSource() {
   return marcas;
 }
+
 window.onload = function () {
-  if (localStorage.getItem("user") == null) {
-    window.location.href = "/admin/login";
-  }
 
   document
     .querySelector("#btn-carga-masiva")

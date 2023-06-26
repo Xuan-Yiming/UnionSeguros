@@ -5,19 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78b6ce57-e96d-4dcd-9cdb-1c45ea2c6930" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/recuperarContrasena.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/routes/client/recuperarContrasena.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/recuperarContrasena.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminCotizaciones.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminCotizaciones.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminPlanSOAT.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminPlanSOAT.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminSeguroVehicular.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminSeguroVehicular.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminUsuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminUsuario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminVentas.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminVentas.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/auditoria.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/auditoria.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/cliente.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/cliente.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/usuario.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/usuario.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/src/main/java/com/pucp/unionseguros/controller/PersonasController/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/src/main/java/com/pucp/unionseguros/controller/PersonasController/UsuarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/src/main/java/com/pucp/unionseguros/service/PersonasService/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/src/main/java/com/pucp/unionseguros/service/PersonasService/UsuarioService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -34,8 +43,8 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "client-side-omar-V15",
-    "last_opened_file_path": "C:/Users/omar/Documents/GitHub/UnionSeguros/Client-side/unionseguros/public/scripts/client",
+    "git-widget-placeholder": "client-side-omar-V16",
+    "last_opened_file_path": "C:/Users/omar/Documents/GitHub/UnionSeguros/Client-side/unionseguros/public/scripts/admin",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -46,10 +55,17 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\scripts\admin" />
+      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\stylesheets\client" />
       <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\scripts\client" />
       <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\views\client\pages" />
       <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\routes\client" />
-      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\stylesheets\client" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\scripts\headerD" />
+      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\scripts\headerAdmin" />
+      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\scripts" />
+      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\scripts\client" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -77,7 +93,7 @@
       <workItem from="1687646314303" duration="3111000" />
       <workItem from="1687649601643" duration="17000" />
       <workItem from="1687651638704" duration="1196000" />
-      <workItem from="1687656985391" duration="4145000" />
+      <workItem from="1687656985391" duration="15460000" />
     </task>
     <servers />
   </component>

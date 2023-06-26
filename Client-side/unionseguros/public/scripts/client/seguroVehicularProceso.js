@@ -1,10 +1,19 @@
+if (localStorage.getItem("documento") == null) {
+  window.location.href = "/seguroVehicular";
+}
 localStorage.removeItem("data-vehiculo");
 var stage = 0;
+window.onbeforeunload = function (e) {
+  if(stage!==3){
+    return "¿Está seguro que desea salir de esta página?";
+  }
+};
 let selectedPlans = [];
 let total = 0;
 var placa = localStorage.getItem("placa");
 var tipoDocumento = localStorage.getItem("tipoDocumento");
 var numeroDocumento = localStorage.getItem("documento");
+
 
 const inputFechaNacimiento = document.querySelector("#date-picker2");
 
@@ -29,9 +38,6 @@ window.onload = function () {
     window.location.href = "/seguroVehicular";
   }
   const today = new Date();
-  document.querySelector("#date-picker2").value = today
-    .toISOString()
-    .split("T")[0];
 
   document.querySelector("#date-picker").min = today
     .toISOString()
@@ -41,8 +47,6 @@ window.onload = function () {
     .split("T")[0];
 
   inicializar();
-
-
 };
 
 document
@@ -249,7 +253,7 @@ function updateTotal() {
     total += plan.monto;
   });
 
-  totalElement.innerText = `Total: S/.${total}`;
+  totalElement.innerText = `Precio total acumulado: S/.${montoEstimado+total}`;
 }
 
 function updateLocalStorage() {
@@ -587,12 +591,24 @@ async function cargarPersona() {
           document.querySelector("#txt-apdMaterno").value = "-";
         }
 
-        if (data.serie != "") {
           document.querySelector("#txt-nombres").disabled = true;
           document.querySelector("#txt-apdPaterno").disabled = true;
           document.querySelector("#txt-apdMaterno").disabled = true;
           document.querySelector("#txt-correo").disabled = true;
-        }
+
+          if(data.direccion!=="" && data.direccion!==null){
+            document.querySelector("#txt-direccion").value = data.direccion;
+            document.querySelector("#txt-direccion").disabled = true;
+          }
+          if(data.telefono!=="" && data.telefono!==null){
+            document.querySelector("#txt-numCelular").value = data.telefono;
+            document.querySelector("#txt-numCelular").disabled = true;
+          }
+          if(data.fechaNacimiento!=="" && data.fechaNacimiento!==null){
+            document.querySelector("#date-picker2").value = data.fechaNacimiento;
+            document.querySelector("#date-picker2").disabled = true;
+          }
+
       }
     })
     .catch((error) => {
@@ -903,7 +919,6 @@ async function guardar() {
                   document.querySelector("#btn-previous").style.display = "none";
                 })
                 .catch(error => {
-
                   alert("Ha ocurrido un error de comunicación con el servidor");
                   console.error(error);
                   localStorage.setItem("error", "1");
@@ -1087,6 +1102,7 @@ async function validacionMonto() {
 
     if (prima > 0) {
       montoEstimado = prima;
+      document.getElementById("total").innerText = `Precio total acumulado: S/.${montoEstimado}`;
       alert(montoEstimado);
       flagMonto = true;
     } else {

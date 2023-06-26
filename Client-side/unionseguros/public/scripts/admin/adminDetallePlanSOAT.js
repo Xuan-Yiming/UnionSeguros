@@ -1,8 +1,8 @@
-window.onload = function () {
-  if (localStorage.getItem("user") == null) {
-    window.location.href = "/admin/login";
-  }
+if (localStorage.getItem("user") === null) {
+  window.location.href = "/admin/login";
+}
 
+window.onload = function () {
   if (localStorage.getItem("data-plan") == null) {
     document.querySelector("#titulo").innerHTML = "Nuevo Plan SOAT";
   } else {
@@ -16,6 +16,7 @@ window.onload = function () {
   }
 
   document.querySelector("#regresar").addEventListener("click", function () {
+    alert("No se ha aplicado ningún cambio");
     localStorage.removeItem("data-plan");
     window.location.href = "/admin/PlanSOAT";
   });

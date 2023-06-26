@@ -1,7 +1,8 @@
+if (localStorage.getItem("user") == null) {
+  window.location.href = "/admin/login";
+}
+
 window.onload = function () {
-  if (localStorage.getItem("user") == null) {
-    window.location.href = "/admin/login";
-  }
 
   inicializar();
   if (localStorage.getItem("data-vehiculo") == null) {
@@ -19,6 +20,7 @@ window.onload = function () {
   }
 
   document.querySelector("#regresar").addEventListener("click", function () {
+    alert("No se ha aplicado ningún cambio");
     localStorage.removeItem("data-plan");
     window.location.href = "/admin/Vehiculo";
   });

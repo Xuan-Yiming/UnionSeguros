@@ -1,3 +1,4 @@
+localStorage.removeItem("documento");
 document.getElementById("txt-documento").maxLength = "8";
 window.onload = function () {
   document

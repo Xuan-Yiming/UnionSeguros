@@ -12,7 +12,9 @@ fechaMinima.setFullYear(fechaMinima.getFullYear() - 18);
 inputFechaNacimiento.max = fechaMinima.toISOString().split("T")[0];
 
 window.onbeforeunload = function (e) {
-  return "¿Está seguro que desea salir de esta página?";
+  if(stage===1){
+    return "¿Está seguro que desea salir de esta página?";
+  }
 };
 
 window.onload = function () {

@@ -1,3 +1,6 @@
+if (localStorage.getItem("user") === null) {
+  window.location.href = "/admin/login";
+}
 var planes;
 var searchTimer;
 
@@ -6,10 +9,6 @@ function getSource() {
 }
 
 window.onload = function () {
-  if (localStorage.getItem("user") == null) {
-    window.location.href = "/admin/login";
-  }
-
   fetch(GLOBAL_URL + "/planSOAT/listarActivos")
     .then((response) => {
       if (!response.ok) {
@@ -91,12 +90,12 @@ function crearLaTabla(data) {
 
     const precio = document.createElement("td");
     precio.classList.add("td-precio");
-    precio.innerText = plan.precio;
+    precio.innerText = plan.precio.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' });;
     tableRow.appendChild(precio);
 
     const cobertura = document.createElement("td");
     cobertura.classList.add("td-cobertura");
-    cobertura.innerText = plan.cobertura;
+    cobertura.innerText = plan.cobertura.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' });;
     tableRow.appendChild(cobertura);
 
     //add edit button

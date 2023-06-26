@@ -18,7 +18,7 @@
         <%- include('../layouts/header'); %>
 
             <main id="tabla-plan-soat">
-                <h2>Ventas</h2>
+                <h2>Ventas SOAT</h2>
                 <div id="control-bar">
                     <div id="control-bar-button">
                         <button class="button-blue-transparente-blue-border" id="btn-carga-masiva">
@@ -36,10 +36,12 @@
                 <table id="tableID" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>SOAT</th>
-                            <th>Monto</th>
+                            <th>Tipo Doc</th>
+                            <th>Documento</th>
                             <th>Cliente</th>
                             <th>Placa</th>
+                            <th>Plan SOAT</th>
+                            <th>Monto</th>
                             <th>Fecha</th>
                             <th>Herramientas</th>
                         </tr>
@@ -50,6 +52,7 @@
                 </table>
 
             </main>
+        <script type="text/javascript" src="../public/scripts/admin/headerAdmin.js"></script>
     </body>
 
 </html>
