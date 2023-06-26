@@ -9,6 +9,11 @@ function getSource() {
 }
 
 window.onload = function () {
+  document
+    .querySelector("#btn-carga-masiva")
+    .addEventListener("click", function () {
+      document.querySelector("#btn-masiva").click();
+    });
   fetch(GLOBAL_URL + "/BoletaDeVenta/listarTodasActivas")
     .then((response) => {
       if (!response.ok) {
@@ -146,7 +151,8 @@ function crearLaTabla(data) {
 
     const tipoDoc = document.createElement("td");
     tipoDoc.classList.add("td-tipodoc");
-    tipoDoc.innerText = venta.fidSoat.fidPoliza.fidCliente.fidTipoDocumento.nombre;
+    tipoDoc.innerText =
+      venta.fidSoat.fidPoliza.fidCliente.fidTipoDocumento.nombre;
     tableRow.appendChild(tipoDoc);
 
     const documento = document.createElement("td");
@@ -156,13 +162,19 @@ function crearLaTabla(data) {
 
     const cliente = document.createElement("td");
     cliente.classList.add("td-nombre");
-    if(venta.fidSoat.fidPoliza.fidCliente.numeroDocumento.substring(0, 2) === "20" && venta.fidSoat.fidPoliza.fidCliente.fidTipoDocumento.nombre==="RUC"){
+    if (
+      venta.fidSoat.fidPoliza.fidCliente.numeroDocumento.substring(0, 2) ===
+        "20" &&
+      venta.fidSoat.fidPoliza.fidCliente.fidTipoDocumento.nombre === "RUC"
+    ) {
       cliente.innerText = venta.fidSoat.fidPoliza.fidCliente.nombre;
-    }else{
+    } else {
       cliente.innerText =
-          venta.fidSoat.fidPoliza.fidCliente.apellidoPaterno + " " +
-          venta.fidSoat.fidPoliza.fidCliente.apellidoMaterno + ", " +
-          venta.fidSoat.fidPoliza.fidCliente.nombre;
+        venta.fidSoat.fidPoliza.fidCliente.apellidoPaterno +
+        " " +
+        venta.fidSoat.fidPoliza.fidCliente.apellidoMaterno +
+        ", " +
+        venta.fidSoat.fidPoliza.fidCliente.nombre;
     }
     tableRow.appendChild(cliente);
 
@@ -178,7 +190,10 @@ function crearLaTabla(data) {
 
     const monto = document.createElement("td");
     monto.classList.add("td-monto");
-    monto.innerText = venta.fidSoat.fidPlanSoat.precio.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' });;
+    monto.innerText = venta.fidSoat.fidPlanSoat.precio.toLocaleString("es-PE", {
+      style: "currency",
+      currency: "PEN",
+    });
     tableRow.appendChild(monto);
 
     const fecha = document.createElement("td");

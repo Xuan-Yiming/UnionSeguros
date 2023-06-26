@@ -73,9 +73,28 @@ window.onload = function () {
     }, 500);
   });
 
-  document.querySelector("#btn-nuevo").addEventListener("click", function () {
-    localStorage.removeItem("data-cliente");
-    window.location.href = "/admin/detalleCliente";
+  document.querySelector("#btn-reporte").addEventListener("click", function () {
+    //download the file
+    fetch(GLOBAL_URL + "/reportesPDF/generar")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(response.status + " " + response.statusText);
+        } else {
+          try {
+            return response.blob();
+          } catch (error) {
+            return null;
+          }
+        }
+      })
+      .then((data) => {
+        const downloadUrl = window.URL.createObjectURL(data);
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.download = "ReporteListaNegra.pdf";
+        link.click();
+        window.URL.revokeObjectURL(downloadUrl);
+      });
   });
   const fileInput = document.querySelector("#btn-masiva");
 
@@ -149,13 +168,12 @@ function crearLaTabla(data) {
     const nombres = document.createElement("td");
     nombres.classList.add("td-nombre");
     nombres.innerText = usaurio.nombreApellidos;
-      tableRow.appendChild(nombres);
-      
-      const motivo = document.createElement("td");
-      motivo.classList.add("td-motivo");
-      motivo.innerText = usaurio.motivo;
-      tableRow.appendChild(motivo);
-      
+    tableRow.appendChild(nombres);
+
+    const motivo = document.createElement("td");
+    motivo.classList.add("td-motivo");
+    motivo.innerText = usaurio.motivo;
+    tableRow.appendChild(motivo);
 
     table.appendChild(tableRow);
   });
