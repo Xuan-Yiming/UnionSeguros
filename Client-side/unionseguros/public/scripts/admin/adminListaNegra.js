@@ -9,6 +9,11 @@ function getSource() {
 }
 
 window.onload = function () {
+  document
+    .querySelector("#btn-carga-masiva")
+    .addEventListener("click", function () {
+      document.querySelector("#btn-masiva").click();
+    });
 
   fetch(GLOBAL_URL + "/cliente/listarClientesActivos?busqueda=")
     .then((response) => {
@@ -70,8 +75,47 @@ window.onload = function () {
     localStorage.removeItem("data-cliente");
     window.location.href = "/admin/detalleCliente";
   });
+  const fileInput = document.querySelector("#btn-masiva");
 
+  // Add event listener for file selection
+  fileInput.addEventListener("change", handleFileUpload);
 };
+
+// Handle file upload event
+function handleFileUpload(event) {
+  const fileInput = document.querySelector("#btn-masiva");
+  const file = fileInput.files[0];
+
+  // Create a FormData object
+  const formData = new FormData();
+  formData.append("file", file, file.name);
+
+  // Send the file to the server
+  fetch(GLOBAL_URL + "/listaNegra/cargaMasivaListaNegra", {
+    method: "POST",
+    body: formData,
+    redirect: "follow",
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status + " " + response.statusText);
+      } else {
+        try {
+          return response.text();
+        } catch (error) {
+          return null;
+        }
+      }
+    })
+    .then((data) => {
+      alert(data);
+      window.location.reload();
+    })
+    .catch((error) => {
+      alert("Ha ocurrido un error de comunicación con el servidor");
+      console.error("Error:", error);
+    });
+}
 
 function crearLaTabla(data) {
   const table = document.querySelector("#table-body");
@@ -92,8 +136,8 @@ function crearLaTabla(data) {
     const tipoDoc = document.createElement("td");
     tipoDoc.classList.add("td-tipodoc");
     tipoDoc.innerText = usaurio.fidTipoDocumento.nombre;
+    tipoDoc.style.width = "90px";
     tableRow.appendChild(tipoDoc);
-
 
     const documento = document.createElement("td");
     documento.classList.add("td-documento");
@@ -102,54 +146,22 @@ function crearLaTabla(data) {
 
     const nombres = document.createElement("td");
     nombres.classList.add("td-nombre");
-    if(usaurio.numeroDocumento.substring(0, 2) === "20" && usaurio.fidTipoDocumento.nombre==="RUC"){
+    if (
+      usaurio.numeroDocumento.substring(0, 2) === "20" &&
+      usaurio.fidTipoDocumento.nombre === "RUC"
+    ) {
       nombres.innerText = usaurio.nombre;
-    }else{
-      nombres.innerText = usaurio.apellidoPaterno + " " + usaurio.apellidoMaterno + ", " + usaurio.nombre;
+    } else {
+      nombres.innerText =
+        usaurio.apellidoPaterno +
+        " " +
+        usaurio.apellidoMaterno +
+        ", " +
+        usaurio.nombre;
     }
     tableRow.appendChild(nombres);
 
-    const correo = document.createElement("td");
-    correo.classList.add("td-correo");
-    correo.innerText = usaurio.email;
-    tableRow.appendChild(correo);
-
-    const baneado = document.createElement("td");
-    baneado.classList.add("td-baneado");
-    baneado.innerText = usaurio.baneado ? "Baneado" : "Habilitado";
-    tableRow.appendChild(baneado);
-
-    const auditoria = document.createElement("td");
-    const buttonAuditoria = document.createElement("button");
-    buttonAuditoria.classList.add("btn-edit");
-    buttonAuditoria.innerText = "Auditoria";
-    buttonAuditoria.setAttribute("data-id", usaurio.id);
-    buttonAuditoria.addEventListener("click", () => {
-      const dataId = event.target.getAttribute("data-id");
-      localStorage.setItem("id-usuario", JSON.stringify(dataId));
-      window.location.href = "/admin/auditoria";
-    });
-    auditoria.style.width = "130px";
-    auditoria.appendChild(buttonAuditoria);
-    tableRow.appendChild(auditoria);
-
-    //add edit button
     const button = document.createElement("td");
-    button.style.width = "230px";
-    const editButton = document.createElement("button");
-    editButton.classList.add("btn-edit");
-    editButton.innerText = "Editar";
-    editButton.setAttribute("data-id", usaurio.id);
-    editButton.addEventListener("click", () => {
-      const dataId = event.target.getAttribute("data-id");
-      localStorage.setItem(
-        "data-cliente",
-        JSON.stringify(this.usuarios.find((usuario) => usuario.id == dataId))
-      );
-      window.location.href = "/admin/detalleCliente";
-    });
-    button.appendChild(editButton);
-
     //add delete button
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("btn-delete");

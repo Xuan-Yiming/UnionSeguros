@@ -9,6 +9,11 @@ function getSource() {
 }
 
 window.onload = function () {
+  document
+    .querySelector("#btn-carga-masiva")
+    .addEventListener("click", function () {
+      document.querySelector("#btn-masiva").click();
+    });
 
   fetch(GLOBAL_URL + "/marcaVehiculo/listarTodasActivas")
     .then((response) => {
