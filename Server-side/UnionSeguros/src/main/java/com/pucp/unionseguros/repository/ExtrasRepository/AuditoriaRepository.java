@@ -18,4 +18,6 @@ public interface AuditoriaRepository extends JpaRepository<Auditoria,Integer> {
             "AND a.fidUsuario.id = p.id " +
             "ORDER BY a.tiempo ASC")
     public List<Auditoria> findAuditoriaParametro(String busqueda);
+
+    public List<Auditoria> findAuditoriasById(Integer idIngresado);
 }

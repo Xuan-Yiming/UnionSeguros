@@ -94,22 +94,32 @@ public class ReportesPDFService extends AbstractPdfView {
         for (ListaNegra lista: listadoListaNegra){
             celda = new PdfPCell(new Phrase(String.valueOf(n[0]),fuenteDataCeldas));
             celda.setPadding(5);
+            celda.setHorizontalAlignment(Element.ALIGN_CENTER);
+            celda.setVerticalAlignment(Element.ALIGN_CENTER);
             tablaClientes.addCell(celda);
 
             celda = new PdfPCell(new Phrase(lista.getTipoDocumento(),fuenteDataCeldas));
             celda.setPadding(5);
+            celda.setHorizontalAlignment(Element.ALIGN_CENTER);
+            celda.setVerticalAlignment(Element.ALIGN_CENTER);
             tablaClientes.addCell(celda);
 
             celda = new PdfPCell(new Phrase(lista.getNumeroDocumento(),fuenteDataCeldas));
             celda.setPadding(5);
+            celda.setHorizontalAlignment(Element.ALIGN_CENTER);
+            celda.setVerticalAlignment(Element.ALIGN_CENTER);
             tablaClientes.addCell(celda);
 
             celda = new PdfPCell(new Phrase(lista.getNombreApellidos(),fuenteDataCeldas));
             celda.setPadding(5);
+            celda.setHorizontalAlignment(Element.ALIGN_CENTER);
+            celda.setVerticalAlignment(Element.ALIGN_CENTER);
             tablaClientes.addCell(celda);
 
             celda = new PdfPCell(new Phrase(lista.getMotivo(),fuenteDataCeldas));
             celda.setPadding(5);
+            celda.setHorizontalAlignment(Element.ALIGN_CENTER);
+            celda.setVerticalAlignment(Element.ALIGN_CENTER);
             tablaClientes.addCell(celda);
             n[0]++;
         }

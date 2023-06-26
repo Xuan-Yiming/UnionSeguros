@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -26,4 +27,10 @@ public interface BoletaDeVentaRepository extends JpaRepository<BoletaDeVenta, In
             "AND po.fidCliente.id = c.id AND c.id = per.id " +
             "ORDER BY b.fechaEmision ASC")
     public List<BoletaDeVenta> findPagos(String busqueda);
+
+
+    @Query("SELECT b FROM BoletaDeVenta b WHERE b.fechaEmision>= ?1 AND b.fechaEmision<= ?2 AND b.activo =true")
+    public List<BoletaDeVenta> listarBoletasDeVentaActivasDentroDeUnRangoDeFechas(LocalDate fechaUno, LocalDate fechaDos);
+
+    public BoletaDeVenta findBoletaDeVentasByFidSoat_FidPoliza_FidVehiculo_PlacaAndActivoIsTrue(String placa);
 }
