@@ -1,6 +1,7 @@
 package com.pucp.unionseguros.repository.ExtrasRepository;
 
 import com.pucp.unionseguros.model.Extras.Auditoria;
+import com.pucp.unionseguros.model.Personas.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -19,5 +20,5 @@ public interface AuditoriaRepository extends JpaRepository<Auditoria,Integer> {
             "ORDER BY a.tiempo ASC")
     public List<Auditoria> findAuditoriaParametro(String busqueda);
 
-    public List<Auditoria> findAuditoriasById(Integer idIngresado);
+    public List<Auditoria> findAuditoriasByFidUsuario(Usuario usuarioIngresado);
 }
