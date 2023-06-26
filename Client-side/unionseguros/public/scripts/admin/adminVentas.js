@@ -127,9 +127,46 @@ function handleFileUpload(event) {
 function crearLaTabla(data) {
   const table = document.querySelector("#table-body");
   table.innerHTML = "";
+  data.sort((a, b) => {
+    if (a.id > b.id) {
+      return -1;
+    }
+    if (a.id < b.id) {
+      return 1;
+    }
+    return 0;
+  });
   data.forEach((venta) => {
     const tableRow = document.createElement("tr");
     tableRow.classList.add("table-row");
+
+    const tipoDoc = document.createElement("td");
+    tipoDoc.classList.add("td-tipodoc");
+    tipoDoc.innerText = venta.fidSoat.fidPoliza.fidCliente.fidTipoDocumento.nombre;
+    tipoDoc.style.width = "90px";
+    tableRow.appendChild(tipoDoc);
+
+    const documento = document.createElement("td");
+    documento.classList.add("td-documento");
+    documento.innerText = venta.fidSoat.fidPoliza.fidCliente.numeroDocumento;
+    tableRow.appendChild(documento);
+
+    const cliente = document.createElement("td");
+    cliente.classList.add("td-cliente");
+    if(venta.fidSoat.fidPoliza.fidCliente.numeroDocumento.substring(0, 2) === "20" && venta.fidSoat.fidPoliza.fidCliente.fidTipoDocumento.nombre==="RUC"){
+      cliente.innerText = venta.fidSoat.fidPoliza.fidCliente.nombre;
+    }else{
+      cliente.innerText =
+          venta.fidSoat.fidPoliza.fidCliente.apellidoPaterno + " " +
+          venta.fidSoat.fidPoliza.fidCliente.apellidoMaterno + ", " +
+          venta.fidSoat.fidPoliza.fidCliente.nombre;
+    }
+    tableRow.appendChild(cliente);
+
+    const placa = document.createElement("td");
+    placa.classList.add("td-placa");
+    placa.innerText = venta.fidSoat.fidPoliza.fidVehiculo.placa;
+    tableRow.appendChild(placa);
 
     const plan = document.createElement("td");
     plan.classList.add("td-soat");
@@ -138,33 +175,16 @@ function crearLaTabla(data) {
 
     const monto = document.createElement("td");
     monto.classList.add("td-monto");
-    monto.innerText = venta.fidSoat.fidPlanSoat.precio;
+    monto.innerText = "S/."+venta.fidSoat.fidPlanSoat.precio;
     tableRow.appendChild(monto);
-
-    const cliente = document.createElement("td");
-    cliente.classList.add("td-cliente");
-    cliente.innerText =
-      venta.fidSoat.fidPoliza.fidCliente.id +
-      " - " +
-      venta.fidSoat.fidPoliza.fidCliente.nombre +
-      ", " +
-      venta.fidSoat.fidPoliza.fidCliente.apellidoPaterno +
-      " " +
-      venta.fidSoat.fidPoliza.fidCliente.apellidoMaterno +
-      " - " +
-      venta.fidSoat.fidPoliza.fidCliente.numeroDocumento;
-    tableRow.appendChild(cliente);
-
-    const placa = document.createElement("td");
-    placa.classList.add("td-placa");
-    placa.innerText = venta.fidSoat.fidPoliza.fidVehiculo.placa;
-    tableRow.appendChild(placa);
 
     const fecha = document.createElement("td");
     fecha.classList.add("td-fecha");
-    fecha.innerText = venta.fechaEmision;
+    fecha.innerText = formateaFecha(venta.fechaEmision);
+    //fecha.innerText = venta.fechaEmision;
     tableRow.appendChild(fecha);
     const button = document.createElement("td");
+    button.style.width = "230px";
     const buttonEliminar = document.createElement("button");
     buttonEliminar.classList.add("button");
     buttonEliminar.classList.add("btn-delete");
@@ -228,4 +248,22 @@ function crearLaTabla(data) {
 
     table.appendChild(tableRow);
   });
+}
+
+function formateaFecha(fechaFormatoOriginal) {
+  var partes = fechaFormatoOriginal.split("-");
+  var dia = partes[2];
+  var mes = partes[1];
+  var anio = partes[0];
+
+  // Agregar ceros a la izquierda si es necesario
+  if (dia.length < 2) {
+    dia = "0" + dia;
+  }
+  if (mes.length < 2) {
+    mes = "0" + mes;
+  }
+
+  var fechaFormateada = dia + "-" + mes + "-" + anio;
+  return fechaFormateada;
 }

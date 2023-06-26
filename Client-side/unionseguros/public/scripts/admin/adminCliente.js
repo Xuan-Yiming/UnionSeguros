@@ -132,6 +132,7 @@ function crearLaTabla(data) {
     const tipoDoc = document.createElement("td");
     tipoDoc.classList.add("td-tipodoc");
     tipoDoc.innerText = usaurio.fidTipoDocumento.nombre;
+    tipoDoc.style.width = "90px";
     tableRow.appendChild(tipoDoc);
 
     const documento = document.createElement("td");
@@ -168,11 +169,13 @@ function crearLaTabla(data) {
       localStorage.setItem("id-usuario", JSON.stringify(dataId));
       window.location.href = "/admin/auditoria";
     });
+    auditoria.style.width = "130px";
     auditoria.appendChild(buttonAuditoria);
     tableRow.appendChild(auditoria);
 
     //add edit button
     const button = document.createElement("td");
+    button.style.width = "230px";
     const editButton = document.createElement("button");
     editButton.classList.add("btn-edit");
     editButton.innerText = "Editar";

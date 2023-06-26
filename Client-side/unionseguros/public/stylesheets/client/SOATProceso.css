@@ -98,6 +98,10 @@
   margin-bottom: 10px;
 }
 
+.form-result h1{
+  text-align: center;
+}
+
 #btn-descargar-constancia {
   display: none;
 }
