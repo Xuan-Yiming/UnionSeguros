@@ -35,7 +35,10 @@ h4{
 
 /* buttons */
 
-
+#btn-olvide-contrasena{
+  align-self: center;
+  font-size: 14px;
+}
 
 .button-previous{
   border: none;
@@ -64,8 +67,7 @@ h4{
 
 .button-red:active {
   font-size: 14px;
-  border: 5px;
-  border-color: #C8102E;
+  border: 1px #C8102E;
   border-radius: 5px;
   background-color:  #F7FBFC;
   color: #C8102E;
@@ -77,8 +79,8 @@ h4{
 }
 
 .button-red-white-back{
-  border: 5px;
-  border-color: #C8102E;
+  font-size: 14px;
+  border: 1px solid #C8102E;
   border-radius: 5px;
   background-color: #fff;
   color: #C8102E;
@@ -91,15 +93,13 @@ h4{
 
 
 .button-red-transparente{
-  border: 5px;
-  border-color: #C8102E;
+  border: 4px solid #C8102E;
   border-radius: 5px;
   background-color: rgba(200, 16, 46, 20%);
   color: #C8102E;
   height: fit-content;
   width: fit-content;
   padding: 10px 20px;
-  margin: 10px;
   cursor: pointer;
 }
 
@@ -142,8 +142,7 @@ h4{
 }
 
 .button-blue:active {
-  border: 5px;
-  border-color: #041E42;
+  border: 5px solid #041E42;
   border-radius: 5px;
   background-color:  #F7FBFC;
   color: #041E42;
@@ -168,8 +167,7 @@ h4{
 
 
 .button-blue-transparente{
-  border: 5px;
-  border-color: #041E42;
+  border: 5px solid #041E42;
   border-radius: 5px;
   background-color: rgba(4, 30, 66, 20%);
   color: #041E42;
@@ -206,27 +204,43 @@ h4{
 
 .btn-delete{
   margin: 3px 20px;
-  background-color: rgb(253, 199, 199);
+  background-color: rgba(200, 16, 46, 0.8);
   border: 1px solid #c8102e;
   padding: 3px;
   border-radius: 4px;
-  color: #C8102E;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 14px;
 }
 
-.button-eliminar{
+.btn-delete:active{
   margin: 3px 20px;
   background-color: rgb(253, 199, 199);
   border: 1px solid #c8102e;
   padding: 3px;
   border-radius: 4px;
   color: #C8102E;
+  font-size: 14px;
 }
 
+
 .btn-edit{
+  font-size: 14px;
   margin: 3px 20px;
   background-color: rgb(243, 244, 252);
   border: 1px solid #122757;
   padding: 3px 6px;
   border-radius: 4px;
   color: #122757;
+  cursor: pointer;
+}
+
+.btn-edit:active{
+  font-size: 14px;
+  margin: 3px 20px;
+  background-color: rgba(18, 39, 87, 0.48);
+  border: 1px solid #122757;
+  padding: 3px 6px;
+  border-radius: 4px;
+  color: #ffffff;
 }

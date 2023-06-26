@@ -1,13 +1,14 @@
+if (localStorage.getItem("user") == null) {
+  window.location.href = "/admin/login";
+}
 var marcas;
 var searchTimer;
-window.onload = function () {
-  if (localStorage.getItem("user") == null) {
-    window.location.href = "/admin/login";
-  }
 
-  document.querySelector("#btn-carga-masiva").addEventListener("click", function () {
-    document.querySelector("#btn-masiva").click();
-  });
+function getSource() {
+  return marcas;
+}
+
+window.onload = function () {
 
   fetch(GLOBAL_URL + "/marcaVehiculo/listarTodasActivas")
     .then((response) => {
@@ -23,7 +24,7 @@ window.onload = function () {
     })
     .then((data) => {
       this.marcas = data;
-      crearLaTabla(data);
+      pagination(data);
     })
     .catch((error) => {
       alert("Ha ocurrido un error de comunicación con el servidor");
@@ -56,7 +57,7 @@ window.onload = function () {
         })
         .then((data) => {
           this.beneficios = data;
-          crearLaTabla(data);
+          pagination(data);
         })
         .catch((error) => {
           alert("Ha ocurrido un error de comunicación con el servidor");
@@ -74,7 +75,7 @@ window.onload = function () {
 
   // Add event listener for file selection
   fileInput.addEventListener("change", handleFileUpload);
-  
+
   document
     .querySelector("#btn-modal-guardar")
     .addEventListener("click", function () {
@@ -206,7 +207,7 @@ function handleFileUpload(event) {
       alert("Ha ocurrido un error de comunicación con el servidor");
       console.error("Error:", error);
     });
-};
+}
 function crearLaTabla(data) {
   const table = document.querySelector("#table-body");
   table.innerHTML = "";
@@ -240,48 +241,6 @@ function crearLaTabla(data) {
     });
     button.appendChild(editButton);
 
-    //add delete button
-    // const deleteButton = document.createElement("button");
-    // deleteButton.classList.add("btn-delete");
-    // deleteButton.innerText = "Eliminar";
-    // deleteButton.setAttribute("data-id", marca.id);
-    // deleteButton.addEventListener("click", () => {
-    //   const dataId = event.target.getAttribute("data-id");
-    //   if (
-    //     confirm(
-    //       "¿Está seguro que desea eliminar la marca con ID: " + dataId + "?"
-    //     )
-    //   ) {
-    //     fetch(GLOBAL_URL + "/marcaVehiculo/eliminar?idIngresado=" + dataId, {
-    //       method: "PUT",
-    //     })
-    //       .then((response) => {
-    //         if (!response.ok) {
-    //           throw new Error(response.status + " " + response.statusText);
-    //         } else {
-    //           try {
-    //             return response.json();
-    //           } catch (error) {
-    //             return null;
-    //           }
-    //         }
-    //       })
-    //       .then((element) => {
-    //         if (element) {
-    //           alert("Se ha eliminado correctamente");
-    //           location.reload();
-    //         } else {
-    //           alert("No se ha podido eliminar");
-    //           return;
-    //         }
-    //       })
-    //       .catch((error) => {
-    //         alert("Ha ocurrido un error de comunicación con el servidor");
-    //         console.error(error);
-    //       });
-    //   }
-    // });
-    // button.appendChild(deleteButton);
     tableRow.appendChild(button);
 
     const modelButton = document.createElement("button");

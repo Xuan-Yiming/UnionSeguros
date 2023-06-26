@@ -1,16 +1,14 @@
 var usuarios;
 var searchTimer;
+if (localStorage.getItem("user") == null) {
+  window.location.href = "/admin/login";
+}
+
+function getSource() {
+  return usuarios;
+}
 
 window.onload = function () {
-  if (localStorage.getItem("user") == null) {
-    window.location.href = "/admin/login";
-  }
-
-    document
-      .querySelector("#btn-carga-masiva")
-      .addEventListener("click", function () {
-        document.querySelector("#btn-masiva").click();
-      });
 
   fetch(GLOBAL_URL + "/cliente/listarClientesActivos?busqueda=")
     .then((response) => {
@@ -26,7 +24,7 @@ window.onload = function () {
     })
     .then((data) => {
       this.usuarios = data;
-      crearLaTabla(data);
+      pagination();
     })
     .catch((error) => {
       alert("Ha ocurrido un error de comunicación con el servidor");
@@ -59,7 +57,7 @@ window.onload = function () {
         })
         .then((data) => {
           this.usuarios = data;
-          crearLaTabla(data);
+          pagination(data);
         })
         .catch((error) => {
           alert("Ha ocurrido un error de comunicación con el servidor");
@@ -72,54 +70,30 @@ window.onload = function () {
     localStorage.removeItem("data-cliente");
     window.location.href = "/admin/detalleCliente";
   });
-  const fileInput = document.querySelector("#btn-masiva");
 
-  // Add event listener for file selection
-  fileInput.addEventListener("change", handleFileUpload);
 };
-
-// Handle file upload event
-function handleFileUpload(event) {
-  const fileInput = document.querySelector("#btn-masiva");
-  const file = fileInput.files[0];
-
-  // Create a FormData object
-  const formData = new FormData();
-  formData.append("file", file, file.name);
-
-  // Send the file to the server
-  fetch(GLOBAL_URL + "/listaNegra/cargaMasivaListaNegra", {
-    method: "POST",
-    body: formData,
-    redirect: "follow",
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(response.status + " " + response.statusText);
-      } else {
-        try {
-          return response.text();
-        } catch (error) {
-          return null;
-        }
-      }
-    })
-    .then((data) => {
-      alert(data);
-      window.location.reload();
-    })
-    .catch((error) => {
-      alert("Ha ocurrido un error de comunicación con el servidor");
-      console.error("Error:", error);
-    });
-}
 
 function crearLaTabla(data) {
   const table = document.querySelector("#table-body");
   table.innerHTML = "";
+  data.sort((a, b) => {
+    if (a.id > b.id) {
+      return -1;
+    }
+    if (a.id < b.id) {
+      return 1;
+    }
+    return 0;
+  });
   data.forEach((usaurio) => {
     const tableRow = document.createElement("tr");
     tableRow.classList.add("table-row");
+
+    const tipoDoc = document.createElement("td");
+    tipoDoc.classList.add("td-tipodoc");
+    tipoDoc.innerText = usaurio.fidTipoDocumento.nombre;
+    tableRow.appendChild(tipoDoc);
+
 
     const documento = document.createElement("td");
     documento.classList.add("td-documento");
@@ -128,12 +102,11 @@ function crearLaTabla(data) {
 
     const nombres = document.createElement("td");
     nombres.classList.add("td-nombre");
-    nombres.innerText =
-      usaurio.nombre +
-      ", " +
-      usaurio.apellidoPaterno +
-      " " +
-      usaurio.apellidoMaterno;
+    if(usaurio.numeroDocumento.substring(0, 2) === "20" && usaurio.fidTipoDocumento.nombre==="RUC"){
+      nombres.innerText = usaurio.nombre;
+    }else{
+      nombres.innerText = usaurio.apellidoPaterno + " " + usaurio.apellidoMaterno + ", " + usaurio.nombre;
+    }
     tableRow.appendChild(nombres);
 
     const correo = document.createElement("td");
@@ -143,7 +116,7 @@ function crearLaTabla(data) {
 
     const baneado = document.createElement("td");
     baneado.classList.add("td-baneado");
-    baneado.innerText = usaurio.baneado ? "Baneado" : "Regular";
+    baneado.innerText = usaurio.baneado ? "Baneado" : "Habilitado";
     tableRow.appendChild(baneado);
 
     const auditoria = document.createElement("td");
@@ -156,11 +129,13 @@ function crearLaTabla(data) {
       localStorage.setItem("id-usuario", JSON.stringify(dataId));
       window.location.href = "/admin/auditoria";
     });
+    auditoria.style.width = "130px";
     auditoria.appendChild(buttonAuditoria);
     tableRow.appendChild(auditoria);
 
     //add edit button
     const button = document.createElement("td");
+    button.style.width = "230px";
     const editButton = document.createElement("button");
     editButton.classList.add("btn-edit");
     editButton.innerText = "Editar";
@@ -181,6 +156,10 @@ function crearLaTabla(data) {
     deleteButton.innerText = "Eliminar";
     deleteButton.setAttribute("data-id", usaurio.id);
     deleteButton.addEventListener("click", () => {
+      if (confirm("¿Está seguro que desea eliminar este cliente?") === false) {
+        return;
+      }
+
       const dataId = event.target.getAttribute("data-id");
       let data = this.usuarios.find((usuario) => usuario.id == dataId);
       const usuario = {

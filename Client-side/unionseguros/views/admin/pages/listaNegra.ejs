@@ -3,13 +3,13 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>Ventas</title>
+        <title>Clientes</title>
         <link rel="icon" type="image/x-icon" href="../public/resources/icons/page-icon-blue.png">
 
         <link rel="stylesheet" href="../public/stylesheets/style.css">
         <link rel="stylesheet" href="../public/stylesheets/admin/adminList.css">
 
-        <script type="text/javascript" src="../public/scripts/admin/adminVentas.js"></script>
+        <script type="text/javascript" src="../public/scripts/admin/adminListaNegra.js"></script>
         <script type="text/javascript" src="../public/scripts/conection.js"></script>
 
     </head>
@@ -18,41 +18,44 @@
         <%- include('../layouts/header'); %>
 
             <main id="tabla-plan-soat">
-                <h2>Ventas SOAT</h2>
+                <h2>Lista Negra</h2>
                 <div id="control-bar">
                     <div id="control-bar-button">
+                        
                         <button class="button-blue-transparente-blue-border" id="btn-carga-masiva">
-                            + Carga masiva de SOAT vigentes
+                            + Carga masiva de lista negra
                         </button>
 
                         <input class="custom-file-input-label" type="file" id="btn-masiva" accept=".csv" display="none">
+
+                        <button class="button-blue-transparente-blue-border" id="btn-reporte">
+                            Reporte de lista negra
+                        </button>
+
                     </div>
                     <div id="control-bar-search">
                         <img src="../public/resources/icons/Accessibility.png" alt="Buscar">
                         <input id="txt-buscar" type="text" placeholder="Buscar">
                     </div>
+
                 </div>
                 <%- include('../layouts/pagination'); %>
-                <table id="tableID" class="display" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Tipo Doc</th>
-                            <th>Documento</th>
-                            <th>Cliente</th>
-                            <th>Placa</th>
-                            <th>Plan SOAT</th>
-                            <th>Monto</th>
-                            <th>Fecha</th>
-                            <th>Herramientas</th>
-                        </tr>
-                    </thead>
-                    <tbody id="table-body">
+                    <table id="tableID" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Tipo Doc</th>
+                                <th>Número Doc</th>
+                                <th>Nombre Completo</th>
+                                <th>Motivo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
 
             </main>
-        <script type="text/javascript" src="../public/scripts/admin/headerAdmin.js"></script>
+
     </body>
 
 </html>

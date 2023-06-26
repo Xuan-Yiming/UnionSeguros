@@ -6,4 +6,8 @@ router.get('/', function (req, res, next) {
     res.render('admin/pages/marcaModelo');
 });
 
+router.get('/general', function (req, res, next) {
+    res.render('admin/pages/marcaModeloGenral');
+});
+
 module.exports = router;

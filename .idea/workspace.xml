@@ -5,15 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78b6ce57-e96d-4dcd-9cdb-1c45ea2c6930" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/src/main/java/com/pucp/unionseguros/controller/ExtrasController/EmailXTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/src/main/java/com/pucp/unionseguros/controller/ExtrasController/EmailXTokenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/recuperarContrasena.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/recuperarContrasena.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/usuarioMiCuenta.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/usuarioMiCuenta.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -30,8 +35,8 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;client-side-omar-v8-copia&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/omar/Documents/GitHub/UnionSeguros&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;client-side-omar-V16&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/omar/Documents/GitHub/UnionSeguros/Client-side/unionseguros/public/scripts/admin&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -42,7 +47,17 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\scripts\admin" />
       <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\stylesheets\client" />
+      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\scripts\client" />
+      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\views\client\pages" />
+      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\routes\client" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\scripts\headerD" />
+      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\scripts\headerAdmin" />
+      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\scripts" />
+      <recent name="C:\Users\omar\Documents\GitHub\UnionSeguros\Client-side\unionseguros\public\scripts\client" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -70,6 +85,7 @@
       <workItem from="1687646314303" duration="3111000" />
       <workItem from="1687649601643" duration="17000" />
       <workItem from="1687651638704" duration="1196000" />
+      <workItem from="1687656985391" duration="15460000" />
     </task>
     <servers />
   </component>

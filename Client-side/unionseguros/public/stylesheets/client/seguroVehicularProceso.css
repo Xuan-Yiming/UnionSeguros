@@ -98,8 +98,11 @@
     flex-direction: column;
     margin: 10px;
     margin-bottom: 30px;
-  
   }
+
+.form-result h1{
+  text-align: center;
+}
 
 .form-result p{
   font-size: 18px;
@@ -108,9 +111,6 @@
   
   #btn-descargar-constancia {
     display: none;
-    position: absolute;
-    bottom: 0;
-    left: 0;
   }
 
   h1{

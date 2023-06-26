@@ -1,10 +1,14 @@
+if (localStorage.getItem("user") === null) {
+  window.location.href = "/admin/login";
+}
 var planes;
 var searchTimer;
-window.onload = function () {
-  if (localStorage.getItem("user") == null) {
-    window.location.href = "/admin/login";
-  }
 
+function getSource() {
+  return planes;
+}
+
+window.onload = function () {
   fetch(GLOBAL_URL + "/planSOAT/listarActivos")
     .then((response) => {
       if (!response.ok) {
@@ -19,7 +23,7 @@ window.onload = function () {
     })
     .then((data) => {
       this.planes = data;
-      crearLaTabla(data);
+      pagination(data);
     })
     .catch((error) => {
       alert("Ha ocurrido un error de comunicación con el servidor");
@@ -52,7 +56,7 @@ window.onload = function () {
         })
         .then((data) => {
           this.planes = data;
-          crearLaTabla(data);
+          pagination(data);
         })
         .catch((error) => {
           alert("Ha ocurrido un error de comunicación con el servidor");
@@ -85,17 +89,18 @@ function crearLaTabla(data) {
     tableRow.appendChild(nombrePlan);
 
     const precio = document.createElement("td");
-    precio.classList.add("td-precio");
-    precio.innerText = plan.precio;
+    precio.classList.add("td-monto");
+    precio.innerText = plan.precio.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' });;
     tableRow.appendChild(precio);
 
     const cobertura = document.createElement("td");
-    cobertura.classList.add("td-cobertura");
-    cobertura.innerText = plan.cobertura;
+    cobertura.classList.add("td-monto");
+    cobertura.innerText = plan.cobertura.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' });;
     tableRow.appendChild(cobertura);
 
     //add edit button
     const button = document.createElement("td");
+    button.style.width = "520px";
     const editButton = document.createElement("button");
     editButton.classList.add("btn-edit");
     editButton.innerText = "Editar";
