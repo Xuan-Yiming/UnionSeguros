@@ -194,7 +194,7 @@ function crearLaTabla(data) {
 
     const monto = document.createElement("td");
     monto.classList.add("td-monto");
-    monto.innerText = beneficio.monto;
+    monto.innerText = beneficio.monto.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' });;
     tableRow.appendChild(monto);
 
     //add edit button

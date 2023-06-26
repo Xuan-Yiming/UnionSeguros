@@ -75,6 +75,12 @@ function crearLaTabla(data) {
     const tableRow = document.createElement("tr");
     tableRow.classList.add("table-row");
 
+    const tipoDoc = document.createElement("td");
+    tipoDoc.classList.add("td-tipodoc");
+    tipoDoc.innerText = usaurio.fidTipoDocumento.nombre;
+    tipoDoc.style.width = "90px";
+    tableRow.appendChild(tipoDoc);
+
     const documento = document.createElement("td");
     documento.classList.add("td-documento");
     documento.innerText = usaurio.numeroDocumento;
@@ -82,12 +88,11 @@ function crearLaTabla(data) {
 
     const nombres = document.createElement("td");
     nombres.classList.add("td-nombre");
-    nombres.innerText =
-      usaurio.nombre +
-      ", " +
-      usaurio.apellidoPaterno +
-      " " +
-      usaurio.apellidoMaterno;
+    if(usaurio.numeroDocumento.substring(0, 2) === "20" && usaurio.fidTipoDocumento.nombre==="RUC"){
+      nombres.innerText = usaurio.nombre;
+    }else{
+      nombres.innerText = usaurio.apellidoPaterno + " " + usaurio.apellidoMaterno + ", " + usaurio.nombre;
+    }
     tableRow.appendChild(nombres);
 
     const correo = document.createElement("td");
@@ -105,10 +110,12 @@ function crearLaTabla(data) {
       localStorage.setItem("id-usuario", JSON.stringify(dataId));
       window.location.href = "/admin/auditoria";
     });
+    auditoria.style.width = "130px";
     auditoria.appendChild(buttonAuditoria);
     tableRow.appendChild(auditoria);
     //add edit button
     const button = document.createElement("td");
+    button.style.width = "230px";
     const editButton = document.createElement("button");
     editButton.classList.add("btn-edit");
     editButton.innerText = "Editar";

@@ -175,7 +175,7 @@ function crearLaTabla(data) {
 
     const monto = document.createElement("td");
     monto.classList.add("td-monto");
-    monto.innerText = "S/."+venta.fidSoat.fidPlanSoat.precio;
+    monto.innerText = venta.fidSoat.fidPlanSoat.precio.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' });;
     tableRow.appendChild(monto);
 
     const fecha = document.createElement("td");

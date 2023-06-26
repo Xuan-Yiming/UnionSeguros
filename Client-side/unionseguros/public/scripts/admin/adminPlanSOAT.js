@@ -85,12 +85,12 @@ function crearLaTabla(data) {
 
     const precio = document.createElement("td");
     precio.classList.add("td-precio");
-    precio.innerText = plan.precio;
+    precio.innerText = plan.precio.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' });;
     tableRow.appendChild(precio);
 
     const cobertura = document.createElement("td");
     cobertura.classList.add("td-cobertura");
-    cobertura.innerText = plan.cobertura;
+    cobertura.innerText = plan.cobertura.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' });;
     tableRow.appendChild(cobertura);
 
     //add edit button

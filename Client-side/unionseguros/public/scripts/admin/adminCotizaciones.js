@@ -106,7 +106,7 @@ function crearLaTabla(data) {
     tableRow.appendChild(placa);
 
     const monto = document.createElement("td");
-    monto.innerText = "S/."+cotizacion.montoEstimado.toFixed(2);
+    monto.innerText = cotizacion.montoEstimado.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' });
     tableRow.appendChild(monto);
 
     const fecha = document.createElement("td");
