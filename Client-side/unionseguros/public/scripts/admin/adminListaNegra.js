@@ -15,7 +15,7 @@ window.onload = function () {
       document.querySelector("#btn-masiva").click();
     });
 
-  fetch(GLOBAL_URL + "/cliente/listarClientesActivos?busqueda=")
+  fetch(GLOBAL_URL + "/listaNegra/buscarListaNegraParametros?busqueda=")
     .then((response) => {
       if (!response.ok) {
         throw new Error(response.status + " " + response.statusText);
@@ -45,7 +45,9 @@ window.onload = function () {
       params.append("busqueda", query);
 
       let url = new URL(
-        GLOBAL_URL + "/cliente/listarClientesActivos?" + params.toString()
+        GLOBAL_URL +
+          "/listaNegra/buscarListaNegraParametros?" +
+          params.toString()
       );
 
       fetch(url)
@@ -135,7 +137,7 @@ function crearLaTabla(data) {
 
     const tipoDoc = document.createElement("td");
     tipoDoc.classList.add("td-tipodoc");
-    tipoDoc.innerText = usaurio.fidTipoDocumento.nombre;
+    tipoDoc.innerText = usaurio.tipoDocumento;
     tipoDoc.style.width = "90px";
     tableRow.appendChild(tipoDoc);
 
@@ -146,95 +148,14 @@ function crearLaTabla(data) {
 
     const nombres = document.createElement("td");
     nombres.classList.add("td-nombre");
-    if (
-      usaurio.numeroDocumento.substring(0, 2) === "20" &&
-      usaurio.fidTipoDocumento.nombre === "RUC"
-    ) {
-      nombres.innerText = usaurio.nombre;
-    } else {
-      nombres.innerText =
-        usaurio.apellidoPaterno +
-        " " +
-        usaurio.apellidoMaterno +
-        ", " +
-        usaurio.nombre;
-    }
-    tableRow.appendChild(nombres);
-
-    const button = document.createElement("td");
-    //add delete button
-    const deleteButton = document.createElement("button");
-    deleteButton.classList.add("btn-delete");
-    deleteButton.innerText = "Eliminar";
-    deleteButton.setAttribute("data-id", usaurio.id);
-    deleteButton.addEventListener("click", () => {
-      if (confirm("¿Está seguro que desea eliminar este cliente?") === false) {
-        return;
-      }
-
-      const dataId = event.target.getAttribute("data-id");
-      let data = this.usuarios.find((usuario) => usuario.id == dataId);
-      const usuario = {
-        id: data.id,
-        nombre: data.nombre,
-        apellidoPaterno: data.apellidoPaterno,
-        apellidoMaterno: data.apellidoMaterno,
-        fechaNacimiento: data.fechaNacimiento,
-        telefono: data.telefono,
-        direccion: data.direccion,
-        numeroDocumento: data.numeroDocumento,
-        activoPersona: false,
-        fidTipoDocumento: {
-          id: data.fidTipoDocumento.id,
-        },
-        email: data.email,
-        contrasena: data.contrasena,
-        fechaCreacion: data.fechaCreacion,
-        activoUsuario: false,
-        activo: false,
-        baneado: data.baneado,
-        fidRoles: {
-          idRole: 1,
-          fidPermisos: {
-            id: 1,
-          },
-        },
-      };
-      console.log(JSON.stringify(usuario));
-
-      fetch(GLOBAL_URL + "/cliente/modificar", {
-        method: "PUT",
-        body: JSON.stringify(usuario),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(response.status + " " + response.statusText);
-          } else {
-            try {
-              return response.json();
-            } catch (error) {
-              return null;
-            }
-          }
-        })
-        .then((element) => {
-          if (element) {
-            alert("Se ha guardado correctamente");
-            window.location.href = "/admin/cliente";
-          } else {
-            alert("Ha ocurrido un error");
-          }
-        })
-        .catch((error) => {
-          alert("Ha ocurrido un error de comunicación con el servidor");
-          console.error(error);
-        });
-    });
-    button.appendChild(deleteButton);
-    tableRow.appendChild(button);
+    nombres.innerText = usaurio.nombreApellidos;
+      tableRow.appendChild(nombres);
+      
+      const motivo = document.createElement("td");
+      motivo.classList.add("td-motivo");
+      motivo.innerText = usaurio.motivo;
+      tableRow.appendChild(motivo);
+      
 
     table.appendChild(tableRow);
   });

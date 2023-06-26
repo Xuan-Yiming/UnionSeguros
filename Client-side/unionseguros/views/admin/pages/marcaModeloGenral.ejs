@@ -36,10 +36,6 @@
                 <h2>Marcas</h2>
                 <div id="control-bar">
                     <div id="control-bar-button">
-                        <button class="button-blue-transparente-blue-border" id="btn-nuevo" onclick="openModal()">
-                            + Agregar marca
-                        </button>
-
                         <button class="button-blue-transparente-blue-border" id="btn-carga-masiva">
                             + Carga masiva de marcas
                         </button>
@@ -52,13 +48,14 @@
                         <input id="txt-buscar" type="text" placeholder="Buscar">
                     </div>
                 </div>
+                <%- include('../layouts/pagination'); %>
                 <table id="tableID" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>Codigo Marca</th>
                             <th>Marca</th>
+                            <th>Codigo Modelo</th>
                             <th>Modelo</th>
-                            <th>Herramientas</th>
                         </tr>
                     </thead>
                     <tbody id="table-body">
