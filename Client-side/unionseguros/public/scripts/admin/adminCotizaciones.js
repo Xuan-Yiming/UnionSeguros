@@ -88,7 +88,6 @@ function crearLaTabla(data) {
     const tipoDoc = document.createElement("td");
     tipoDoc.classList.add("td-tipodoc");
     tipoDoc.innerText = cotizacion.fidCliente.fidTipoDocumento.nombre;
-    tipoDoc.style.width = "90px";
     tableRow.appendChild(tipoDoc);
 
     const documento = document.createElement("td");
@@ -97,7 +96,7 @@ function crearLaTabla(data) {
     tableRow.appendChild(documento);
 
     const cliente = document.createElement("td");
-
+    cliente.classList.add("td-nombre");
     if(cotizacion.fidCliente.numeroDocumento.substring(0, 2) === "20" && cotizacion.fidCliente.fidTipoDocumento.nombre==="RUC"){
       cliente.innerText = cotizacion.fidCliente.nombre;
     }else{
@@ -110,11 +109,12 @@ function crearLaTabla(data) {
     tableRow.appendChild(cliente);
 
     const placa = document.createElement("td");
+    placa.classList.add("td-placa");
     placa.innerText = cotizacion.fidVehiculo.placa;
     tableRow.appendChild(placa);
 
     const monto = document.createElement("td");
-
+    monto.classList.add("td-monto");
     monto.innerText = cotizacion.montoEstimado.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' });
 
     tableRow.appendChild(monto);

@@ -147,7 +147,6 @@ function crearLaTabla(data) {
     const tipoDoc = document.createElement("td");
     tipoDoc.classList.add("td-tipodoc");
     tipoDoc.innerText = venta.fidSoat.fidPoliza.fidCliente.fidTipoDocumento.nombre;
-    tipoDoc.style.width = "90px";
     tableRow.appendChild(tipoDoc);
 
     const documento = document.createElement("td");
@@ -156,7 +155,7 @@ function crearLaTabla(data) {
     tableRow.appendChild(documento);
 
     const cliente = document.createElement("td");
-    cliente.classList.add("td-cliente");
+    cliente.classList.add("td-nombre");
     if(venta.fidSoat.fidPoliza.fidCliente.numeroDocumento.substring(0, 2) === "20" && venta.fidSoat.fidPoliza.fidCliente.fidTipoDocumento.nombre==="RUC"){
       cliente.innerText = venta.fidSoat.fidPoliza.fidCliente.nombre;
     }else{
