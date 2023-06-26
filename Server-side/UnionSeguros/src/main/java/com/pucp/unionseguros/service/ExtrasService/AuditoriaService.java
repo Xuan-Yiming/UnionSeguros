@@ -31,4 +31,10 @@ public class AuditoriaService {
         lista = auditoriaRepository.findAuditoriaParametro(busqueda);
         return  lista;
     }
+
+    public List<Auditoria> listarAuditoriasPorID(Integer id){
+        List<Auditoria> list = null;
+        list = auditoriaRepository.findAuditoriasById(id);
+        return list;
+    }
 }

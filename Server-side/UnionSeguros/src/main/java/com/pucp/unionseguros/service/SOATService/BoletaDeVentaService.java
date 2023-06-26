@@ -9,6 +9,7 @@ import com.pucp.unionseguros.repository.SOATRepository.SOATRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,4 +63,15 @@ public class BoletaDeVentaService {
 //        foundBoleta.setMonto(boletaDeVenta.getMonto());
 //        foundBoleta.set
 //    }
+
+    public List<BoletaDeVenta> listarBoletaDeVentasDentroDeRango(LocalDate fechaUno, LocalDate fechaDos){
+        List<BoletaDeVenta> lista = null;
+        lista = boletaDeVentaRepository.listarBoletasDeVentaActivasDentroDeUnRangoDeFechas(fechaUno,fechaDos);
+        return lista;
+    }
+    public BoletaDeVenta buscarVehiculoParametro(String busqueda){
+        BoletaDeVenta boletaDeVenta = new BoletaDeVenta();
+        boletaDeVenta = boletaDeVentaRepository.findBoletaDeVentasByFidSoat_FidPoliza_FidVehiculo_PlacaAndActivoIsTrue(busqueda);
+        return  boletaDeVenta;
+    }
 }
