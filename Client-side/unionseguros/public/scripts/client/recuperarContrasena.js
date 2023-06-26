@@ -55,11 +55,13 @@ document
             return;
           } else {
             alert("Ta contrasena fue cambiada satisfactoriamente.");
+            window.location.href = "/iniciarSesion";
             //el correo existe en la BD
           }
         } catch (error) {
           alert("Ha ocurrido un error al verificar el correo.");
           console.error(error);
+          window.location.href = "/iniciarSesion";
         }
       }
 
