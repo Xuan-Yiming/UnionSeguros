@@ -8,22 +8,45 @@
 
         <link rel="stylesheet" href="../public/stylesheets/style.css">
         <link rel="stylesheet" href="../public/stylesheets/admin/adminList.css">
+        <link rel="stylesheet" href="../public/stylesheets/modal.css">
+
 
         <script type="text/javascript" src="../public/scripts/admin/adminVentas.js"></script>
         <script type="text/javascript" src="../public/scripts/conection.js"></script>
+        <script type="text/javascript" src="../public/scripts/modal.js"></script>
+
 
     </head>
 
     <body class="container">
         <%- include('../layouts/header'); %>
-
+        <div class="modal-overlay" id="modalOverlay">
+            <div class="modal-main">
+                <h2>Reporte de Ventas</h2>
+                <label for="txt-fehca-inicio">Fecha Inicio</label>
+                <input type="date" id="txt-fecha-inicio" placeholder="Ingresar fecha inicio">
+                <label for="txt-fehca-fin">Fecha Fin</label>
+                <input type="date" id="txt-fecha-fin" placeholder="Ingresar fecha fin">
+                
+                <div class="modal-buttons">
+                    <button id="btn-modal-cancelar">Cancelar</button>
+                    <button id="btn-modal-guardar">Descargar</button>
+                </div>
+            </div>
+        </div>
             <main id="tabla-plan-soat">
                 <h2>Ventas SOAT</h2>
                 <div id="control-bar">
                     <div id="control-bar-button">
+                        
                         <button class="button-blue-transparente-blue-border" id="btn-carga-masiva">
                             + Carga masiva de SOAT vigentes
                         </button>
+
+                        <button class="button-blue-transparente-blue-border" id="btn-nuevo">
+                            Reporte de ventas
+                        </button>
+
 
                         <input class="custom-file-input-label" type="file" id="btn-masiva" accept=".csv" display="none">
                     </div>

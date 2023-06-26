@@ -1,51 +1,42 @@
 if (localStorage.getItem("user") === null) {
-    window.location.href = "/admin/login";
+  window.location.href = "/admin/login";
 }
 
 function goBack() {
   window.history.back();
 }
 
-window.onbeforeunload = confirmExit;
-function confirmExit() {
-  if (confirm("confirm exit is being called") == true) {
-    //do something
-  } else {
-    return false;
-  }
-
-}
-
 window.onload = function () {
-    if (localStorage.getItem("id-usuario") == null) {
-        goBack();
-    }
-
-    return;
-    fetch(
-      GLOBAL_URL +
-        "/auditoria/listarAuditorias?id=" +
-        localStorage.getItem("id-usuario")
-    )
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(response.status + " " + response.statusText);
-        } else {
-          try {
-            return response.text();
-          } catch (error) {
-            return null;
-          }
+  if (localStorage.getItem("id-usuario") == null) {
+    goBack();
+  }
+  let url = new URL(
+    GLOBAL_URL +
+      "/auditoria/buscarAuditoriasPorID?idIngresado=" +
+      localStorage.getItem("id-usuario")
+  );
+  console.log(url);
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status + " " + response.statusText);
+      } else {
+        try {
+          return response.json();
+        } catch (error) {
+          return null;
         }
-      })
-      .then((data) => {
-        document.querySelector(".text-container").innerHTML = data;
-      })
-      .catch((error) => {
-        alert("Ha ocurrido un error de comunicación con el servidor");
-        console.error(error);
+      }
+    })
+    .then((data) => {
+      document.querySelector(".text-container").innerHTML = "";
+      data.forEach((element) => {
+        document.querySelector(".text-container").innerHTML +=
+          element.tiempo + " -- " + element.accion;
       });
-
-
-
-}
+    })
+    .catch((error) => {
+      alert("Ha ocurrido un error de comunicación con el servidor");
+      console.error(error);
+    });
+};
