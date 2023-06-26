@@ -138,8 +138,8 @@ function crearLaTabla(data) {
     const tipoDoc = document.createElement("td");
     tipoDoc.classList.add("td-tipodoc");
     tipoDoc.innerText = usaurio.fidTipoDocumento.nombre;
-    tipoDoc.style.width = "90px";
     tableRow.appendChild(tipoDoc);
+
 
     const documento = document.createElement("td");
     documento.classList.add("td-documento");

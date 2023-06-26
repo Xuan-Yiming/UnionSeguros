@@ -89,17 +89,18 @@ function crearLaTabla(data) {
     tableRow.appendChild(nombrePlan);
 
     const precio = document.createElement("td");
-    precio.classList.add("td-precio");
+    precio.classList.add("td-monto");
     precio.innerText = plan.precio.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' });;
     tableRow.appendChild(precio);
 
     const cobertura = document.createElement("td");
-    cobertura.classList.add("td-cobertura");
+    cobertura.classList.add("td-monto");
     cobertura.innerText = plan.cobertura.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' });;
     tableRow.appendChild(cobertura);
 
     //add edit button
     const button = document.createElement("td");
+    button.style.width = "520px";
     const editButton = document.createElement("button");
     editButton.classList.add("btn-edit");
     editButton.innerText = "Editar";

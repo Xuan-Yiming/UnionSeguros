@@ -191,7 +191,7 @@ function crearLaTabla(data) {
     tableRow.appendChild(ID);
 
     const descripcionBenficio = document.createElement("td");
-    descripcionBenficio.classList.add("td-beneficio");
+    descripcionBenficio.classList.add("td-nombre");
     descripcionBenficio.innerText = beneficio.beneficio;
     tableRow.appendChild(descripcionBenficio);
 
