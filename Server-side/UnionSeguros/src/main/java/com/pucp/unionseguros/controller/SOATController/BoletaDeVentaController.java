@@ -7,11 +7,13 @@ Descripcion:        Archivo controller de la clase Boleta de Venta
 package com.pucp.unionseguros.controller.SOATController;
 
 import com.pucp.unionseguros.model.SOAT.BoletaDeVenta;
+import com.pucp.unionseguros.model.Vehiculo.Vehiculo;
 import com.pucp.unionseguros.service.SOATService.BoletaDeVentaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -48,4 +50,20 @@ public class BoletaDeVentaController {
         return boletaDeVentaService.eliminarBoleta(idBoletaIngresada);
     }
 
+    @GetMapping("/listarVentasEnIntervalo")
+    public List<BoletaDeVenta> listarBoletasEnIntervalo(@RequestParam(name = "fechaUno")LocalDate fechaUno,
+                                                        @RequestParam(name = "fechaDos")LocalDate fechaDos){
+        return boletaDeVentaService.listarBoletaDeVentasDentroDeRango(fechaUno,fechaDos);
+    }
+
+    @GetMapping(params = "placaIngresada",path = "/buscarVehiculoPorPlaca")
+    public Vehiculo obtenerVehiculoPorPlaca(@RequestParam(name = "placaIngresada") String placaIngresada){
+        BoletaDeVenta boleta=boletaDeVentaService.buscarVehiculoParametro(placaIngresada);
+        Vehiculo vehiculo=null;
+        if(boleta==null){
+            return  vehiculo;
+        }
+        vehiculo=boleta.getFidSoat().getFidPoliza().getFidVehiculo();
+        return vehiculo;
+    }
 }
