@@ -52,7 +52,7 @@ public class ReportesPDFService extends AbstractPdfView {
 
 
         PdfPTable tablaClientes = new PdfPTable(5);
-        tablaClientes.setWidths(new float[]{1f,1f,1f,1f,1f});
+        tablaClientes.setWidths(new float[]{0.5f,1f,1f,2.5f,1.5f});
 
         celda = new PdfPCell(new Phrase("N#",fuenteTituloColumnas));
         celda.setBackgroundColor(Color.DARK_GRAY);
