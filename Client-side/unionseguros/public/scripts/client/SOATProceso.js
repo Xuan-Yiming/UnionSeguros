@@ -829,13 +829,25 @@ function validateNumericInput(input) {
 
 
 document.querySelector("#btn-descargar-constancia").addEventListener("click", function () {
-
+  let marca;
+  let modelo;
+  if(localStorage.getItem("data-vehiculo")===null){
+    marca = document.querySelector("#select-marca option:checked").innerText;
+    modelo = document.querySelector("#select-modelo option:checked").innerText;
+  }else{
+    var data = JSON.parse(localStorage.getItem("data-vehiculo"));
+    marca = data.fidModelo.fidMarcaVehiculo.nombre;
+    modelo = data.fidModelo.nombre;
+  }
   const soatData ={
     nombre: document.querySelector("#txt-res-nombre").textContent,
     placa: document.querySelector("#txt-res-placa").textContent,
     nombrePlan: document.querySelector("#txt-res-plan").textContent,
     total: document.querySelector("#txt-res-total").textContent,
     periodo: document.querySelector("#txt-res-periodo").textContent,
+    poliza: document.querySelector("#txt-serie").value+"8S",
+    marca: marca,
+    modelo: modelo,
   }
   generarPDF(soatData);
 });
@@ -863,6 +875,8 @@ async function generarPDF(soatData) {
     { text: soatData.nombre, style: 'subtitle' },
 
     // VIGENCIA DE LA PÓLIZA
+    { text: 'NUMERO DE POLIZA', style: 'subheader' },
+    { text: soatData.poliza, style: 'subtitle'},
     { text: 'VIGENCIA DE LA PÓLIZA', style: 'subheader' },
     { text: soatData.periodo, style: 'subtitle', margin: [0, 0, 0, 20]},
 
@@ -871,8 +885,13 @@ async function generarPDF(soatData) {
     { text: soatData.nombrePlan, style: 'subtitle' },
     { text: soatData.total, style: 'subtitle' },
     // VEHÍCULO ASEGURADO
+    { text: 'MARCA', style: 'subheader' },
+    { text: soatData.marca, style: 'subtitle'},
+    { text: 'MODELO', style: 'subheader' },
+    { text: soatData.modelo, style: 'subtitle'},
     { text: 'PLACA VEHICULAR', style: 'subheader' },
     { text: soatData.placa, style: 'subtitle'},
+    
 
   ];
 
