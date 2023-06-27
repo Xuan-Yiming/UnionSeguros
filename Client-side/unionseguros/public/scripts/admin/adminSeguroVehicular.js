@@ -24,6 +24,10 @@ window.onload = function () {
       }
     })
     .then((data) => {
+            registrarAuditoria(
+              JSON.parse(localStorage.getItem("user")).id,
+              "consultar cotizacion"
+            );
       this.beneficios = data;
       pagination(data);
     })
@@ -107,6 +111,10 @@ window.onload = function () {
               }
             })
             .then((element) => {
+                    registrarAuditoria(
+                      JSON.parse(localStorage.getItem("user")).id,
+                      "Modificar beneficio"
+                    );
               if (element) {
                 alert("Se ha actualizado correctamente");
                 location.reload();

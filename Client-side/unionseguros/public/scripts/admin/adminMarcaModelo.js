@@ -24,6 +24,10 @@ window.onload = function () {
     })
     .then((data) => {
       this.marcas = data;
+      registrarAuditoria(
+        JSON.parse(localStorage.getItem("user")).id,
+        "consultar marcas"
+      );
       pagination(data);
     })
     .catch((error) => {
@@ -56,6 +60,10 @@ window.onload = function () {
           }
         })
         .then((data) => {
+          registrarAuditoria(
+            JSON.parse(localStorage.getItem("user")).id,
+            "buscar marcas"
+          );
           this.beneficios = data;
           pagination(data);
         })
@@ -107,6 +115,10 @@ window.onload = function () {
               }
             })
             .then((element) => {
+              registrarAuditoria(
+                JSON.parse(localStorage.getItem("user")).id,
+                "Editar marca"
+              );
               if (element) {
                 alert("Se ha actualizado correctamente");
                 location.reload();
@@ -140,6 +152,10 @@ window.onload = function () {
               }
             })
             .then((element) => {
+              registrarAuditoria(
+                JSON.parse(localStorage.getItem("user")).id,
+                "crear marca"
+              );
               if (element) {
                 alert("Se ha insertado correctamente");
                 location.reload();
@@ -199,6 +215,10 @@ function handleFileUpload(event) {
       }
     })
     .then((data) => {
+      registrarAuditoria(
+        JSON.parse(localStorage.getItem("user")).id,
+        "Carga masiva de marcas"
+      );
       alert(data);
       window.location.reload();
     })

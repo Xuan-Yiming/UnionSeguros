@@ -9,7 +9,6 @@ function getSource() {
 }
 
 window.onload = function () {
-
   fetch(GLOBAL_URL + "/cliente/listarClientesActivos?busqueda=")
     .then((response) => {
       if (!response.ok) {
@@ -24,6 +23,10 @@ window.onload = function () {
     })
     .then((data) => {
       this.usuarios = data;
+      registrarAuditoria(
+        JSON.parse(localStorage.getItem("user")).id,
+        "listar clientes"
+      );
       pagination();
     })
     .catch((error) => {
@@ -57,6 +60,10 @@ window.onload = function () {
         })
         .then((data) => {
           this.usuarios = data;
+          registrarAuditoria(
+            JSON.parse(localStorage.getItem("user")).id,
+            "buscar clientes + " + query
+          );
           pagination(data);
         })
         .catch((error) => {
@@ -87,6 +94,10 @@ window.onload = function () {
         }
       })
       .then((data) => {
+        registrarAuditoria(
+          JSON.parse(localStorage.getItem("user")).id,
+          "generar reporte de clientes"
+        );
         const downloadUrl = window.URL.createObjectURL(data);
         const link = document.createElement("a");
         link.href = downloadUrl;
@@ -118,7 +129,6 @@ function crearLaTabla(data) {
     tipoDoc.innerText = usaurio.fidTipoDocumento.nombre;
     tableRow.appendChild(tipoDoc);
 
-
     const documento = document.createElement("td");
     documento.classList.add("td-documento");
     documento.innerText = usaurio.numeroDocumento;
@@ -126,10 +136,18 @@ function crearLaTabla(data) {
 
     const nombres = document.createElement("td");
     nombres.classList.add("td-nombre");
-    if(usaurio.numeroDocumento.substring(0, 2) === "20" && usaurio.fidTipoDocumento.nombre==="RUC"){
+    if (
+      usaurio.numeroDocumento.substring(0, 2) === "20" &&
+      usaurio.fidTipoDocumento.nombre === "RUC"
+    ) {
       nombres.innerText = usaurio.nombre;
-    }else{
-      nombres.innerText = usaurio.apellidoPaterno + " " + usaurio.apellidoMaterno + ", " + usaurio.nombre;
+    } else {
+      nombres.innerText =
+        usaurio.apellidoPaterno +
+        " " +
+        usaurio.apellidoMaterno +
+        ", " +
+        usaurio.nombre;
     }
     tableRow.appendChild(nombres);
 
@@ -252,7 +270,4 @@ function crearLaTabla(data) {
   });
 }
 
-function reporte() {
-
-
-}
+function reporte() {}

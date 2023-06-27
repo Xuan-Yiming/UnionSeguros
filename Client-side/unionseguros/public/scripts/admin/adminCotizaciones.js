@@ -24,6 +24,10 @@ window.onload = function () {
     })
     .then((data) => {
       this.cotizaciones = data;
+      registrarAuditoria(
+        JSON.parse(localStorage.getItem("user")).id,
+        "listar cotizaciones"
+      );
       pagination(data);
     })
     .catch((error) => {
@@ -59,6 +63,10 @@ window.onload = function () {
         })
         .then((data) => {
           this.cotizaciones = data;
+          registrarAuditoria(
+            JSON.parse(localStorage.getItem("user")).id,
+            "buscar cotizaciones +" + query
+          );
           pagination(data);
         })
         .catch((error) => {
@@ -97,13 +105,18 @@ function crearLaTabla(data) {
 
     const cliente = document.createElement("td");
     cliente.classList.add("td-nombre");
-    if(cotizacion.fidCliente.numeroDocumento.substring(0, 2) === "20" && cotizacion.fidCliente.fidTipoDocumento.nombre==="RUC"){
+    if (
+      cotizacion.fidCliente.numeroDocumento.substring(0, 2) === "20" &&
+      cotizacion.fidCliente.fidTipoDocumento.nombre === "RUC"
+    ) {
       cliente.innerText = cotizacion.fidCliente.nombre;
-    }else{
+    } else {
       cliente.innerText =
-          cotizacion.fidCliente.apellidoPaterno + " " +
-          cotizacion.fidCliente.apellidoMaterno + ", " +
-          cotizacion.fidCliente.nombre;
+        cotizacion.fidCliente.apellidoPaterno +
+        " " +
+        cotizacion.fidCliente.apellidoMaterno +
+        ", " +
+        cotizacion.fidCliente.nombre;
     }
 
     tableRow.appendChild(cliente);
@@ -115,7 +128,10 @@ function crearLaTabla(data) {
 
     const monto = document.createElement("td");
     monto.classList.add("td-monto");
-    monto.innerText = cotizacion.montoEstimado.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' });
+    monto.innerText = cotizacion.montoEstimado.toLocaleString("es-PE", {
+      style: "currency",
+      currency: "PEN",
+    });
 
     tableRow.appendChild(monto);
 
@@ -160,6 +176,10 @@ function crearLaTabla(data) {
         })
         .then((data) => {
           alert("Cotizacion eliminada exitosamente");
+          registrarAuditoria(
+            JSON.parse(localStorage.getItem("user")).id,
+            "eliminar cotizacion + " + dataId
+          );
           window.location.reload();
         })
         .catch((error) => {

@@ -159,6 +159,10 @@ window.onload = function () {
           }
         })
         .then((element) => {
+          registrarAuditoria(
+            JSON.parse(localStorage.getItem("user")).id,
+            "crear usuario"
+          );
           if (parseInt(element) > 0) {
             alert("Se ha guardado correctamente");
             window.location.href = "/admin/usuario";
@@ -229,6 +233,10 @@ window.onload = function () {
           }
         })
         .then((element) => {
+          registrarAuditoria(
+            JSON.parse(localStorage.getItem("user")).id,
+            "modificar usuario"
+          );
           if (element) {
             alert("Se ha guardado correctamente");
             window.location.href = "/admin/usuario";

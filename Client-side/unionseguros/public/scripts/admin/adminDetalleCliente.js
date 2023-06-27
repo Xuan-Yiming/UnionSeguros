@@ -163,7 +163,11 @@ window.onload = function () {
               }
             }
           })
-          .then((element) => {
+        .then((element) => {
+            registrarAuditoria(
+              JSON.parse(localStorage.getItem("user")).id,
+              "crear cliente"
+            );
             if (parseInt(element) > 0) {
               alert("Se ha guardado correctamente");
               window.location.href = "/admin/cliente";
@@ -234,7 +238,11 @@ window.onload = function () {
               }
             }
           })
-          .then((element) => {
+        .then((element) => {
+            registrarAuditoria(
+              JSON.parse(localStorage.getItem("user")).id,
+              "modificar cliente"
+            );
             if (element) {
               alert("Se ha guardado correctamente");
               window.location.href = "/admin/cliente";

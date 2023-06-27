@@ -35,6 +35,10 @@ window.onload = function () {
       }
     })
     .then((data) => {
+      registrarAuditoria(
+        JSON.parse(localStorage.getItem("user")).id,
+        "consultar ventas"
+      );
       this.ventas = data;
       pagination(data);
     })
@@ -84,6 +88,10 @@ window.onload = function () {
           }
         })
         .then((data) => {
+          registrarAuditoria(
+            JSON.parse(localStorage.getItem("user")).id,
+            "consultar ventas"
+          );
           this.ventas = data;
           pagination(data);
         })
@@ -111,7 +119,9 @@ window.onload = function () {
           "fechaDos",
           document.querySelector("#txt-fecha-fin").value
         );
-        let url = new URL(GLOBAL_URL + "/reportesPDF/generarReporteVentas?" + params.toString());
+        let url = new URL(
+          GLOBAL_URL + "/reportesPDF/generarReporteVentas?" + params.toString()
+        );
         console.log(url);
         fetch(url)
           .then((response) => {
@@ -126,6 +136,10 @@ window.onload = function () {
             }
           })
           .then((data) => {
+            registrarAuditoria(
+              JSON.parse(localStorage.getItem("user")).id,
+              "Gnerar reporte de ventas"
+            );
             const downloadUrl = window.URL.createObjectURL(data);
             const link = document.createElement("a");
             link.href = downloadUrl;
@@ -303,7 +317,12 @@ function crearLaTabla(data) {
             }
           }
         })
-        .then((data) => {})
+        .then((data) => {
+                          registrarAuditoria(
+                            JSON.parse(localStorage.getItem("user")).id,
+                            "eliminar ventas"
+                          );
+        })
         .catch((error) => {
           alert(error);
           console.error(error);

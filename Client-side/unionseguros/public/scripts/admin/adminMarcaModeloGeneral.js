@@ -28,6 +28,10 @@ window.onload = function () {
       }
     })
     .then((data) => {
+            registrarAuditoria(
+              JSON.parse(localStorage.getItem("user")).id,
+              "consultar modelos"
+            );
       this.marcas = data;
       pagination(data);
     })
@@ -60,6 +64,10 @@ window.onload = function () {
           }
         })
         .then((data) => {
+                registrarAuditoria(
+                  JSON.parse(localStorage.getItem("user")).id,
+                  "buscar modelos"
+                );
           this.marcas = data;
           pagination(data);
         })

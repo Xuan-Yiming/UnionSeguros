@@ -63,6 +63,10 @@ window.onload = function () {
           }
         })
         .then((data) => {
+          registrarAuditoria(
+            JSON.parse(localStorage.getItem("user")).id,
+            "concultar lista negra"
+          );
           this.usuarios = data;
           pagination(data);
         })
@@ -88,6 +92,10 @@ window.onload = function () {
         }
       })
       .then((data) => {
+        registrarAuditoria(
+          JSON.parse(localStorage.getItem("user")).id,
+          "generar reporte de lista negra"
+        );
         const downloadUrl = window.URL.createObjectURL(data);
         const link = document.createElement("a");
         link.href = downloadUrl;
@@ -129,6 +137,10 @@ function handleFileUpload(event) {
       }
     })
     .then((data) => {
+      registrarAuditoria(
+        JSON.parse(localStorage.getItem("user")).id,
+        "carga masiva de lista negra"
+      );
       alert(data);
       window.location.reload();
     })

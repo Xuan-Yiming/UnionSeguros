@@ -55,6 +55,10 @@ window.onload = function () {
           }
         })
         .then((data) => {
+                registrarAuditoria(
+                  JSON.parse(localStorage.getItem("user")).id,
+                  "Buscar planes SOAT"
+                );
           this.planes = data;
           pagination(data);
         })
@@ -156,6 +160,10 @@ function crearLaTabla(data) {
             }
           })
           .then((element) => {
+                  registrarAuditoria(
+                    JSON.parse(localStorage.getItem("user")).id,
+                    "Modificar plan SOAT"
+                  );
             if (element) {
               alert("Se ha eliminado correctamente");
               location.reload();

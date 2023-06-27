@@ -23,6 +23,10 @@ window.onload = function () {
       }
     })
     .then((data) => {
+            registrarAuditoria(
+              JSON.parse(localStorage.getItem("user")).id,
+              "consultar vehiculos"
+            );
       this.vehiculos = data;
       pagination(data);
     })
@@ -160,6 +164,10 @@ function crearLaTabla(data) {
           }
         })
         .then((element) => {
+                registrarAuditoria(
+                  JSON.parse(localStorage.getItem("user")).id,
+                  "Eliminar vehiculo"
+                );
           alert("Se ha guardado correctamente");
           window.location.href = "/admin/vehiculo";
         })

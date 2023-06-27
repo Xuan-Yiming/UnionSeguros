@@ -42,6 +42,10 @@ window.onload = function () {
       }
     })
     .then((data) => {
+            registrarAuditoria(
+              JSON.parse(localStorage.getItem("user")).id,
+              "listar marcas"
+            );
       this.modelos = data;
       pagination(data);
     })
