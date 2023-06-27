@@ -20,10 +20,10 @@ public class Auditoria {
     @Column(name = "id_auditoria", nullable = false)
     private Integer id;
 
-    @Column(name = "tiempo", length = 500)
+    @Column(name = "tiempo")
     private LocalDateTime tiempo;
 
-    @Column(name = "accion", length = 500)
+    @Column(name = "accion", length = 1000)
     private String accion;
 
     @ManyToOne
