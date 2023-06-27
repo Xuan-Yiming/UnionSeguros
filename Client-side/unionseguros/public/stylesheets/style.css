@@ -65,6 +65,19 @@ h4{
   cursor: pointer;
 }
 
+.button-red:hover{
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(200, 16, 46, 0.83);
+  color: white;
+  height: fit-content;
+  width: fit-content;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+}
+
 .button-red:active {
   font-size: 14px;
   border: 1px #C8102E;
@@ -106,6 +119,19 @@ h4{
 .button-red-transparente-red-border{
   font-size: 14px;
   background-color: white;
+  color: #C8102E;
+  border: 1px solid #C8102E;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 10px;
+  width: fit-content;
+  height: fit-content;
+  cursor: pointer;
+}
+
+.button-red-transparente-red-border:hover{
+  font-size: 14px;
+  background-color: rgba(200, 16, 46, 0.08);
   color: #C8102E;
   border: 1px solid #C8102E;
   padding: 10px 20px;
@@ -190,6 +216,18 @@ h4{
   cursor: pointer;
 }
 
+.button-blue-transparente-blue-border:hover{
+  font-size: 16px;
+  background-color: rgba(18, 39, 87, 0.16);
+  color: #041E42;
+  border: 1px solid #041E42;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
 .button-blue-transparente-blue-border:active {
   font-size: 16px;
   background-color: #041E42;
@@ -213,6 +251,17 @@ h4{
   font-size: 14px;
 }
 
+.btn-delete:hover{
+  margin: 3px 20px;
+  background-color: rgba(200, 16, 46, 0.63);
+  border: 1px solid #c8102e;
+  padding: 3px;
+  border-radius: 4px;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
 .btn-delete:active{
   margin: 3px 20px;
   background-color: rgb(253, 199, 199);
@@ -228,6 +277,18 @@ h4{
   font-size: 14px;
   margin: 3px 20px;
   background-color: rgb(243, 244, 252);
+  border: 1px solid #122757;
+  padding: 3px 6px;
+  border-radius: 4px;
+  color: #122757;
+  cursor: pointer;
+}
+
+
+.btn-edit:hover{
+  font-size: 14px;
+  margin: 3px 20px;
+  background-color: rgba(18, 39, 87, 0.15);
   border: 1px solid #122757;
   padding: 3px 6px;
   border-radius: 4px;

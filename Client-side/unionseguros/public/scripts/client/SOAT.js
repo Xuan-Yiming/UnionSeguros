@@ -139,7 +139,7 @@ async function comprobarPlaca(placa) {
   return new Promise((resolve, reject) => {
     const params = new URLSearchParams();
     params.append("placaIngresada", placa);
-    const url = GLOBAL_URL + "/vehiculo/buscarVehiculoPorPlaca?" + params.toString();
+    const url = GLOBAL_URL + "/BoletaDeVenta/buscarVehiculoPorPlaca?" + params.toString();
 
     fetch(url)
         .then((response) => {

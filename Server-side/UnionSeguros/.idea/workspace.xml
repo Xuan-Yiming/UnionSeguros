@@ -5,6 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c533adc8-9480-47e7-ba91-492753cd2c4a" name="Changes" comment="">
+
+      <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/public/stylesheets/admin/pagination.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/public/stylesheets/admin/pagination.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Client-side/unionseguros/views/admin/layouts/pagination.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Client-side/unionseguros/views/admin/layouts/pagination.ejs" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,8 +120,9 @@
       <workItem from="1687628495722" duration="6864000" />
       <workItem from="1687639653597" duration="10514000" />
       <workItem from="1687718479410" duration="454000" />
-      <workItem from="1687733993151" duration="18503000" />
-      <workItem from="1687831175478" duration="5549000" />
+      <workItem from="1687733993151" duration="17803000" />
+      <workItem from="1687835703934" duration="2047000" />
+
     </task>
     <servers />
   </component>

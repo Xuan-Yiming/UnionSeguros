@@ -13,7 +13,7 @@ document
       if (stage === 0) {
         try {
           const respuestaReseteo = await reseteoToken();
-          alert("Se reseteo? " + respuestaReseteo);
+          alert("Se ha enviado un token de verificación a tu correo");
           const respuestaPIN = await enviarPIN();
           if (!respuestaPIN) {
             alert("No se pudo enviar el token a tu correo.");
@@ -30,7 +30,6 @@ document
         document.getElementById("btn-advance").textContent = "Finalizar";
         try {
           const flagPIN = await validacionPIN();
-          alert(flagPIN);
           if (!flagPIN) {
             //el PIN no es correcto
             alert("El PIN ingresado es incorrecto.");
@@ -48,13 +47,12 @@ document
       if (stage === 2) {
         try {
           const flagCambioContrasena = await modificarContrasena();
-          alert(flagCambioContrasena);
           if (!flagCambioContrasena) {
             //el correo no existe en la BD
             alert("Usted no tiene una cuenta vinculada a Union Seguros.");
             return;
           } else {
-            alert("Ta contrasena fue cambiada satisfactoriamente.");
+            alert("Tu contraseña fue cambiada satisfactoriamente.");
             window.location.href = "/iniciarSesion";
             //el correo existe en la BD
           }

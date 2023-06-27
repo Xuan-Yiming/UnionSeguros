@@ -33,7 +33,7 @@
         <%- include('../layouts/header'); %>
 
             <main id="tabla-plan-soat">
-                <h2>Marcas</h2>
+                <h2>Marcas y Modelos</h2>
                 <div id="control-bar">
                     <div id="control-bar-button">
                         <button class="button-blue-transparente-blue-border" id="btn-carga-masiva">
@@ -48,7 +48,7 @@
                         <input id="txt-buscar" type="text" placeholder="Buscar">
                     </div>
                 </div>
-                <%- include('../layouts/pagination'); %>
+
                 <table id="tableID" class="display" style="width:100%">
                     <thead>
                         <tr>
@@ -62,7 +62,7 @@
 
                     </tbody>
                 </table>
-
+                <%- include('../layouts/pagination'); %>
             </main>
     </body>
 

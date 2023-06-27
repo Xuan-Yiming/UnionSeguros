@@ -1,10 +1,15 @@
-<div id="control-bar">
-    <!-- buttons for magination -->
-    <button class="button-blue-transparente-blue-border" id="btn-first"> << </button>
-    <button class="button-blue-transparente-blue-border" id="btn-previous"> < </button>
-    <p id="p-pagination"> 1 de 1 </p>
-    <button class="button-blue-transparente-blue-border" id="btn-next"> > </button>
-    <button class="button-blue-transparente-blue-border" id="btn-last"> >> </button>
+<div id="container">
+    <div id="control-bar">
+        <div class="pagination-container">
+            <!-- buttons for pagination -->
+            <button id="btn-first" class="pagination-button"> << </button>
+            <button id="btn-previous" class="pagination-button"> < </button>
+            <p id="p-pagination" class="pagination-text">1 de 1</p>
+            <button id="btn-next" class="pagination-button"> > </button>
+            <button id="btn-last" class="pagination-button"> >> </button>
+        </div>
+    </div>
 </div>
+
 <link rel="stylesheet" href="../public/stylesheets/admin/pagination.css">
 <script type="text/javascript" src="../public/scripts/admin/pagination.js"></script>
