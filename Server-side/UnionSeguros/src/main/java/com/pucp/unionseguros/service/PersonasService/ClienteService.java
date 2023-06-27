@@ -81,6 +81,11 @@ public class ClienteService {
         return  lista;
     }
 
+    public List<Cliente> findClientesActivos(){
+        List<Cliente> lista = new ArrayList<>();
+        lista = clienteRepository.findClientesByActivoIsTrue();
+        return  lista;
+    }
 
 
 }

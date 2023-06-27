@@ -22,7 +22,7 @@ public class ReportesVentasPDFService extends AbstractPdfView {
                                     HttpServletRequest request, HttpServletResponse response) throws Exception {
         DateTimeFormatter formatoFinal = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         List<BoletaDeVenta> listaBoletasVentas = (List<BoletaDeVenta>) model.get("boletas");
-        document.setPageSize(PageSize.A4.rotate());
+        document.setPageSize(PageSize.A3.rotate());
         //document.setMargins(-20,-20,30,40);
         document.open();
 
@@ -45,7 +45,7 @@ public class ReportesVentasPDFService extends AbstractPdfView {
 
 
         PdfPTable tablaClientes = new PdfPTable(7);
-        tablaClientes.setWidths(new float[]{1f,1.5f,1f,1f,1f,1f,1f});
+        tablaClientes.setWidths(new float[]{2f,1.5f,1f,1f,1.2f,1.2f,1.2f});
 
 
         celda = new PdfPCell(new Phrase("NOMBRE",fuenteTituloColumnas));
