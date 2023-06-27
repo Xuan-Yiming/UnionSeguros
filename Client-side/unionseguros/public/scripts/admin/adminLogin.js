@@ -35,6 +35,10 @@ window.onload = function () {
             return;
           }
           localStorage.setItem("user", JSON.stringify(data));
+          registrarAuditoria(
+            JSON.parse(localStorage.getItem("user")).id,
+            "lgoin"
+          );
           window.location.href = "/admin/ventas";
         })
         .catch((error) => {

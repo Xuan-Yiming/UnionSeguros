@@ -22,6 +22,10 @@ window.onload = function () {
       }
     })
     .then((data) => {
+            registrarAuditoria(
+              JSON.parse(localStorage.getItem("user")).id,
+              "Consultar administradores"
+            );
       this.usuarios = data;
       pagination(data);
     })
@@ -192,6 +196,10 @@ function crearLaTabla(data) {
           }
         })
         .then((element) => {
+                registrarAuditoria(
+                  JSON.parse(localStorage.getItem("user")).id,
+                  "Eliminar usuario"
+                );
           if (element) {
             alert("Se ha guardado correctamente");
             window.location.href = "/admin/usuario";

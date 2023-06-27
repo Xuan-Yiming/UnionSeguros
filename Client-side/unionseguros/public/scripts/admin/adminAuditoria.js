@@ -29,10 +29,13 @@ window.onload = function () {
       }
     })
     .then((data) => {
+      registrarAuditoria(
+        JSON.parse(localStorage.getItem("user")).id,
+        "Ver auditoria"
+      );
       document.querySelector(".text-container").innerHTML = "";
       data.forEach((element) => {
-        document.querySelector(".text-container").innerHTML +=
-          element.tiempo + " -- " + element.accion;
+        document.querySelector(".text-container").innerHTML += element.tiempo + " -- " + element.accion + "<br>";
       });
     })
     .catch((error) => {

@@ -51,6 +51,10 @@ window.onload = function () {
           }
         })
         .then((element) => {
+          registrarAuditoria(
+            JSON.parse(localStorage.getItem("user")).id,
+            "crear plan soat"
+          );
           if (element) {
             alert("Se ha guardado correctamente");
             window.location.href = "/admin/PlanSOAT";
@@ -91,6 +95,10 @@ window.onload = function () {
           }
         })
         .then((element) => {
+          registrarAuditoria(
+            JSON.parse(localStorage.getItem("user")).id,
+            "modificar plan soat"
+          );
           if (element) {
             alert("Se ha guardado correctamente");
             window.location.href = "/admin/PlanSOAT";

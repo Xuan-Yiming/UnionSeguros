@@ -1,12 +1,12 @@
 function registrarAuditoria(userID, accion) {
   var data = {
-    fid_usuario: {
-      id : userID,
-    } ,
+    fidUsuario: {
+      id: userID,
+    },
     accion: accion,
-    tiempo: new Date(),
+    tiempo: new Date().toISOString().slice(0, 19),
   };
-
+  console.log(JSON.stringify(data));
   fetch(GLOBAL_URL + "/auditoria/insertar", {
     method: "POST",
     body: JSON.stringify(data),

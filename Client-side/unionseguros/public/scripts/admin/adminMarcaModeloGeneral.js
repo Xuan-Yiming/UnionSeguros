@@ -15,7 +15,7 @@ window.onload = function () {
       document.querySelector("#btn-masiva").click();
     });
 
-  fetch(GLOBAL_URL + "/modelo/buscarModelosPorParametros?busqueda=")
+  fetch(GLOBAL_URL + "/calculoPrima/listarCalculoPrima")
     .then((response) => {
       if (!response.ok) {
         throw new Error(response.status + " " + response.statusText);
@@ -28,6 +28,10 @@ window.onload = function () {
       }
     })
     .then((data) => {
+      registrarAuditoria(
+        JSON.parse(localStorage.getItem("user")).id,
+        "consultar modelos"
+      );
       this.marcas = data;
       pagination(data);
     })
@@ -60,6 +64,10 @@ window.onload = function () {
           }
         })
         .then((data) => {
+                registrarAuditoria(
+                  JSON.parse(localStorage.getItem("user")).id,
+                  "buscar modelos"
+                );
           this.marcas = data;
           pagination(data);
         })
@@ -122,24 +130,28 @@ function crearLaTabla(data) {
     tableRow.classList.add("table-row");
 
     const ID = document.createElement("td");
-    ID.innerText = marca.fidMarcaVehiculo.id;
-    ID.classList.add("td-id-marcamodelo");
+    ID.innerText = marca.marca;
     tableRow.appendChild(ID);
 
     const nombre = document.createElement("td");
-    nombre.classList.add("td-marcamodelo-marca");
-    nombre.innerText = marca.fidMarcaVehiculo.marca;
+    nombre.innerText = marca.modelo;
       tableRow.appendChild(nombre);
       
     const IDModelo = document.createElement("td");
-    IDModelo.classList.add("td-id-marcamodelo");
-      IDModelo.innerText = marca.id;
+      IDModelo.innerText = marca.valor_1;
       tableRow.appendChild(IDModelo);
       
       const modelo = document.createElement("td");
-    modelo.classList.add("td-marcamodelo-modelo");
-      modelo.innerText = marca.modelo;
-        tableRow.appendChild(modelo);
+      modelo.innerText = marca.valor_2;
+    tableRow.appendChild(modelo);
+    
+    const IDMarca = document.createElement("td");
+    IDMarca.innerText = marca.valor_3;
+    tableRow.appendChild(IDMarca);
+
+    const marcaa = document.createElement("td");
+    marcaa.innerText = marca.indiceSiniestralidad;
+    tableRow.appendChild(marcaa);
 
     table.appendChild(tableRow);
   });
