@@ -71,6 +71,30 @@ window.onload = function () {
     window.location.href = "/admin/detalleCliente";
   });
 
+  document.querySelector("#btn-reporte").addEventListener("click", function () {
+    let url = new URL(GLOBAL_URL + "/reportesEXCEL/EXCELClientes");
+    console.log(url);
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(response.status + " " + response.statusText);
+        } else {
+          try {
+            return response.blob();
+          } catch (error) {
+            return null;
+          }
+        }
+      })
+      .then((data) => {
+        const downloadUrl = window.URL.createObjectURL(data);
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.download = "ReporteDeClientes.xlsx";
+        link.click();
+        window.URL.revokeObjectURL(downloadUrl);
+      });
+  });
 };
 
 function crearLaTabla(data) {
@@ -226,4 +250,9 @@ function crearLaTabla(data) {
 
     table.appendChild(tableRow);
   });
+}
+
+function reporte() {
+
+
 }
