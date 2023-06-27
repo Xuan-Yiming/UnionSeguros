@@ -90,7 +90,7 @@ function crearLaTabla(data) {
     tableRow.appendChild(marca);
 
     const modelo = document.createElement("td");
-    modelo.classList.add("td-modelo");
+    modelo.classList.add("td-nombre");
     modelo.innerText = vehiculo.fidModelo.modelo;
     tableRow.appendChild(modelo);
 
@@ -100,7 +100,7 @@ function crearLaTabla(data) {
     tableRow.appendChild(serie);
 
     const dueno = document.createElement("td");
-    dueno.classList.add("td-dueno");
+    dueno.classList.add("td-nombre");
     dueno.innerText =
       vehiculo.fidPersona.nombre +
       " " +

@@ -6,9 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="78b6ce57-e96d-4dcd-9cdb-1c45ea2c6930" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/seguroVehicularProceso.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/seguroVehicularProceso.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/seguroVehicularProceso.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/client/pages/seguroVehicularProceso.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminMarcaModeloGeneral.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminMarcaModeloGeneral.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminVehiculo.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/admin/adminVehiculo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/admin/adminList.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/admin/adminList.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/admin/pagination.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/admin/pagination.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/layouts/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/layouts/header.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/cliente.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/cliente.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/cotizaciones.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/cotizaciones.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/listaNegra.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/listaNegra.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/marcaModelo.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/marcaModelo.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/marcaModeloGenral.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/marcaModeloGenral.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/modelo.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/modelo.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/planSOAT.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/planSOAT.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/seguroVehicular.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/seguroVehicular.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/usuario.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/usuario.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/vehiculo.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/vehiculo.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/ventas.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/pages/ventas.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +51,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "client-side-omar-V17",
+    "git-widget-placeholder": "client-side-omar-V18",
     "last_opened_file_path": "C:/Users/omar/Documents/GitHub/UnionSeguros/Client-side/unionseguros/public/scripts/admin",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -88,6 +102,7 @@
       <workItem from="1687649601643" duration="17000" />
       <workItem from="1687651638704" duration="1196000" />
       <workItem from="1687656985391" duration="15460000" />
+      <workItem from="1687836353831" duration="5223000" />
     </task>
     <servers />
   </component>
