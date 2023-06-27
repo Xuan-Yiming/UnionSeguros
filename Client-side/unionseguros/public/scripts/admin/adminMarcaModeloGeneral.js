@@ -123,17 +123,21 @@ function crearLaTabla(data) {
 
     const ID = document.createElement("td");
     ID.innerText = marca.fidMarcaVehiculo.id;
+    ID.classList.add("td-id-marcamodelo");
     tableRow.appendChild(ID);
 
     const nombre = document.createElement("td");
+    nombre.classList.add("td-marcamodelo-marca");
     nombre.innerText = marca.fidMarcaVehiculo.marca;
       tableRow.appendChild(nombre);
       
     const IDModelo = document.createElement("td");
+    IDModelo.classList.add("td-id-marcamodelo");
       IDModelo.innerText = marca.id;
       tableRow.appendChild(IDModelo);
       
       const modelo = document.createElement("td");
+    modelo.classList.add("td-marcamodelo-modelo");
       modelo.innerText = marca.modelo;
         tableRow.appendChild(modelo);
 

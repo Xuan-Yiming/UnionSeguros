@@ -134,3 +134,17 @@ select{
     box-sizing:  border-box;
     width: 140px;
 }
+
+.td-id-marcamodelo{
+    width: 180px;
+}
+
+.td-marcamodelo-marca{
+    width: 400px;
+}
+
+.td-marcamodelo-modelo{
+    text-align:   left;
+    padding-left:   30px;
+
+}
