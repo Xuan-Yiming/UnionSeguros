@@ -1,0 +1,30 @@
+#container {
+    display: flex;
+    justify-content: center;
+}
+#control-bar {
+    display: flex;
+}
+
+.pagination-button {
+    padding: 5px 10px;
+    background-color: #122757;
+    border: none;
+    color: #f3f4fc;
+    font-size: 16px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.pagination-text {
+    font-size: 16px;
+    margin: 0;
+    display: inline-block;
+}
+
+.pagination-container {
+    display: flex;
+    gap: 10px; /* Espacio entre los elementos del paginador */
+    align-items: center;
+}

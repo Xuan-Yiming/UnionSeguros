@@ -6,13 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="78b6ce57-e96d-4dcd-9cdb-1c45ea2c6930" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/SOAT.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/SOAT.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/SOATProceso.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/SOATProceso.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/recuperarContrasena.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/recuperarContrasena.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/seguroVehicularProceso.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/client/seguroVehicularProceso.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/conection.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/scripts/conection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/admin/pagination.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/public/stylesheets/admin/pagination.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/layouts/pagination.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Client-side/unionseguros/views/admin/layouts/pagination.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Server-side/UnionSeguros/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -93,7 +88,7 @@
       <workItem from="1687649601643" duration="17000" />
       <workItem from="1687651638704" duration="1196000" />
       <workItem from="1687656985391" duration="15460000" />
-      <workItem from="1687836353831" duration="2548000" />
+      <workItem from="1687836353831" duration="3090000" />
     </task>
     <servers />
   </component>
