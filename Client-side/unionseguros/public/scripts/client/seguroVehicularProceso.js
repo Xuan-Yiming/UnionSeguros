@@ -937,8 +937,6 @@ async function guardar() {
   } catch (error) {
     console.error("Error:", error);
   }
-
-
 }
 
 async function validacionMonto() {
@@ -972,7 +970,6 @@ async function validacionMonto() {
     if (prima > 0) {
       montoEstimado = prima;
       document.getElementById("total").innerText = `Precio total acumulado: S/.${montoEstimado}`;
-      alert(montoEstimado);
       flagMonto = true;
     } else {
       flagMonto = false;

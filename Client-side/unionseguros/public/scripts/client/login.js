@@ -123,7 +123,7 @@ document
 
           try {
             const respuestaReseteo = await reseteoToken();
-            alert("Se reseteo? " + respuestaReseteo);
+            alert("Espere un momento, estamos enviando un token de verificación a su correo");
             const respuestaPIN = await enviarPIN();
             if (!respuestaPIN) {
               alert("No se pudo enviar el token a tu correo.");
@@ -147,13 +147,11 @@ document
 
        try {
          const flagPIN = await validacionPIN();
-         alert(flagPIN);
          if (!flagPIN) {
            //el PIN no es correcto
            alert("El PIN ingresado es incorrecto.");
            return;
          } else {
-           alert("El PIN ingresado es correcto.");
            //el PIN es correcto
          }
        } catch (error) {
@@ -410,14 +408,15 @@ function changeStage() {
 }
 
 function verificacion() {
-  const apdPaterno = document.querySelector("#txt-apdPaterno").value;
-  const apdMaterno = document.querySelector("#txt-apdMaterno").value;
-  const nombres = document.querySelector("#txt-nombres").value;
+  var apdPaterno = document.querySelector("#txt-apdPaterno").value;
+  var apdMaterno = document.querySelector("#txt-apdMaterno").value;
+  var nombres = document.querySelector("#txt-nombres").value;
+  var documento = document.querySelector("#txt-documento").value;
+  var tipoDocumento = document.querySelector("#select-documento").value;
 
   switch (stage) {
     case 0:
-      var documento = document.querySelector("#txt-documento").value;
-      var tipoDocumento = document.querySelector("#select-documento").value;
+
 
       if (tipoDocumento === "0") {
         alert("Por favor ingrese el documento correcto.");
@@ -466,25 +465,39 @@ function verificacion() {
       const email = document.querySelector("#txt-correo").value;
       if (
         email === "" ||
-        apdPaterno === "" ||
         nombres === "" ||
         inputFechaNacimiento.value === ""
       ) {
         alert("Falta completar campos");
         return true;
       }
-      if (
-        !/^[A-Za-z]+$/.test(apdPaterno) ||
-        !/^[A-Za-z]+$/.test(apdMaterno) ||
-        !/^[A-Za-z ]+$/.test(nombres)
-      ) {
-        if (apdMaterno !== "-") {
-          document.querySelector("#txt-apdPaterno").focus();
-          alert(
+      if(
+          (apdPaterno !== "" && !/^[A-Za-z -]+$/.test(apdPaterno)) ||
+          (apdMaterno !== "" && !/^[A-Za-z -]+$/.test(apdMaterno)) ||
+          !/^[A-Za-z ]+$/.test(nombres)
+      ){
+        document.querySelector("#txt-apellido-paterno").focus();
+        alert(
             "Los nombres y apellidos no deben contener caracteres especiales"
-          );
-          return true;
-        }
+        );
+        return true;
+      }
+
+      if(apdPaterno==="" && !(tipoDocumento==="3" && documento.substring(0, 2) === "20")){
+        alert("Complete su apellido por favor");
+        return true
+      }
+
+      if(apdMaterno==="" && (tipoDocumento!=="4" && tipoDocumento!=="2" && tipoDocumento!=="3")){
+        alert("Complete su apellido por favor");
+        return true;
+      }else if(apdMaterno==="" && (tipoDocumento==="4" || tipoDocumento==="2" || tipoDocumento==="3")){
+        document.querySelector("#txt-apellido-materno").value = '-';
+      }
+
+      if(tipoDocumento==="3" && documento.substring(0, 2) === "20"){
+        document.querySelector("#txt-apellido-paterno").value = '-'
+        document.querySelector("#txt-apellido-materno").value = '-'
       }
 
       if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
