@@ -74,7 +74,6 @@ window.onload = function () {
   const fileInput = document.querySelector("#btn-masiva");
 
   // Add event listener for file selection
-  fileInput.addEventListener("change", handleFileUpload);
 
   document
     .querySelector("#btn-modal-guardar")

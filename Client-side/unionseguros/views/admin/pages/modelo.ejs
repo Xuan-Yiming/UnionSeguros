@@ -21,9 +21,10 @@
             <div class="modal-main">
                 <h2>Detalles</h2>
                 <label for="txt-modelo">Modelo</label>
-                <input type="text" id="txt-modelo" placeholder="Ingresar modelo" oninput="this.value = this.value.toUpperCase()">
+                <input type="text" id="txt-modelo" placeholder="Ingresar modelo"
+                    oninput="this.value = this.value.toUpperCase()">
                 <div class="modal-buttons">
-                    <button id="btn-modal-cancelar" >Cancelar</button>
+                    <button id="btn-modal-cancelar">Cancelar</button>
                     <button id="btn-modal-guardar">Guardar</button>
                 </div>
             </div>
@@ -48,23 +49,23 @@
                     </div>
                 </div>
                 <%- include('../layouts/pagination'); %>
-                <table id="tableID" class="display" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Modelo</th>
-                            <th>Tipo Vehiculo</th>
-                            <!-- <th>Valor</th> -->
-                            <th>Herramientas</th>
-                        </tr>
-                    </thead>
-                    <tbody id="table-body">
+                    <table id="tableID" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Modelo</th>
+                                <th>Tipo Vehiculo</th>
+                                <!-- <th>Valor</th> -->
+                                <th>Herramientas</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
 
             </main>
-        <script type="text/javascript" src="../public/scripts/admin/headerAdmin.js"></script>
+            <script type="text/javascript" src="../public/scripts/admin/headerAdmin.js"></script>
     </body>
 
 </html>
