@@ -736,8 +736,12 @@ async function cargarPersona() {
     })
     .then((data) => {
       if (data != null) {
+        if (data.id == -1) {
+          alert("Por favor comunica con soporte para continuar con la compra");
+          window.location.href = "/";
+        }
         localStorage.setItem("idCliente", data.id);
-
+        
         document.querySelector("#txt-apdPaterno").value = data.apellidoPaterno;
         document.querySelector("#txt-apdMaterno").value = data.apellidoMaterno;
         document.querySelector("#txt-nombres").value = data.nombre;

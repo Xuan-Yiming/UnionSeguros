@@ -66,6 +66,10 @@ window.onload = function () {
           }
         })
         .then((element) => {
+          registrarAuditoria(
+            JSON.parse(localStorage.getItem("user")).id,
+            "crear vehiculo"
+          );
           if (element) {
             alert("Se ha guardado correctamente");
             window.location.href = "/admin/vehiculo";
@@ -116,6 +120,10 @@ window.onload = function () {
           }
         })
         .then((element) => {
+          registrarAuditoria(
+            JSON.parse(localStorage.getItem("user")).id,
+            "modificar vehiculo"
+          );
           if (element) {
             alert("Se ha guardado correctamente");
             window.location.href = "/admin/vehiculo";
