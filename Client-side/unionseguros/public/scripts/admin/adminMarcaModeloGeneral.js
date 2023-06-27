@@ -89,7 +89,7 @@ function handleFileUpload(event) {
   formData.append("file", file, file.name);
 
   // Send the file to the server
-  fetch(GLOBAL_URL + "/marcaVehiculo/insertarMasivo", {
+  fetch(GLOBAL_URL + "/calculoPrima/CargaMasivaCalculoPrima", {
     method: "POST",
     body: formData,
   })

@@ -139,7 +139,7 @@ window.onload = function () {
     var uso = document.querySelector("#select-uso").value;
     var numSerie = document.querySelector("#txt-serie").value;
     var placa = document.querySelector("#txt-placa").value;
-    var dueño = document.querySelector("#txt-dueno").value;
+    var duenio = document.querySelector("#txt-dueno").value;
 
     if (placa === "" || placa.length !== 6 || !/^[A-Za-z0-9]+$/.test(placa)) {
       document.querySelector("#txt-placa").focus();
@@ -147,10 +147,14 @@ window.onload = function () {
       return true;
     }
 
-    if (placa == "") {
-      alert("Debe ingresar la placa");
+    if (duenio == "") {
+      alert("Debe ingresar el dueño");
       return false;
     }
+      if (placa == "") {
+        alert("Debe ingresar la placa");
+        return false;
+      }
 
     if (numAsiento == "") {
       alert("Debe ingresar el número de asientos");
@@ -325,4 +329,16 @@ async function cargarModelos() {
           console.error(error);
         });
     });
+}
+
+
+function validateNumericInput(input) {
+  // Obtener el valor del campo de texto
+  const value = input.value;
+
+  // Eliminar cualquier caracter no numérico del valor
+  const numericValue = value.replace(/\D/g, "");
+
+  // Actualizar el valor del campo de texto con solo caracteres numéricos
+  input.value = numericValue;
 }

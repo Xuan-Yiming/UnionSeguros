@@ -223,14 +223,14 @@ function loadPlans() {
           const planBenefit = event.target.getAttribute("beneficio-plan");
 
           if (event.target.checked) {
-            // Agregar el plan a la lista de seleccionados
+            // agrega el plan a la lista de seleccionados
             selectedPlans.push({
               id: planId,
               monto: planPrice,
               beneficio: planBenefit,
             });
           } else {
-            // Remover el plan de la lista de seleccionados
+            // remueve el plan de la lista de seleccionados
             selectedPlans = selectedPlans.filter((plan) => plan.id !== planId);
           }
           updateTotal();
@@ -940,137 +940,6 @@ async function guardar() {
 
 
 }
-/*---------------------MI PRIMER INTENTO------------------------------*/
-
-/*
-fetch(GLOBAL_URL + "/cotizacion/insertar", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(response.status + " " + response.statusText);
-        } else {
-          try {
-            return response.json();
-          } catch (error) {
-            return null;
-          }
-        }
-      })
-      .then((data) => {
-        localStorage.setItem("idCotizacion", data);
-          var listaCotizacionXDetalle = [];
-          for (var i = 0; i < selectedPlans.length; i++) {
-            var plan = selectedPlans[i];
-            var cotizacionXDetalle = {
-              fidCotizacion: localStorage.getItem("idCotizacion"),
-              fidDetalleCotizacion: plan.id,
-            };
-            listaCotizacionXDetalle.push(cotizacionXDetalle);
-          }
-
-          try {
-            let data = {
-              listaInsertada: listaCotizacionXDetalle,
-            };
-            console.log(JSON.stringify(data));
-            fetch(GLOBAL_URL + "/cotizacionXDetalleCotizacion/insertar", {
-              method: "POST",
-              body: JSON.stringify(data),
-              headers: {
-                "Content-Type": "application/json",
-              },
-            })
-              .then((response) => {
-                if (!response.ok) {
-                  throw new Error(response.status + " " + response.statusText);
-                } else {
-                  try {
-                    return response.json();
-                  } catch (error) {
-                    return null;
-                  }
-                }
-              })
-              .then((data) => {
-                //supuestamente devuelve la lista
-              })
-              .catch((error) => {
-                alert("Ha ocurrido un error de comunicación con el servidor");
-                console.error(error);
-                localStorage.setItem("error", "1");
-              });
-          } catch (error) {
-            console.error("Error:", error);
-          }
-      })
-      .catch((error) => {
-        alert("Ha ocurrido un error de comunicación con el servidor");
-        console.error(error);
-        localStorage.setItem("error", "1");
-      });
- */
-/*---------------------LA FORMA ANIDADA SI NO FUNCIONA LA ANTERIOR------------------------------*/
-
-/*
-fetch(GLOBAL_URL + '/cotizacion/insertar', {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: {
-        'Content-Type': 'application/json'
-    },
-})
-    .then(response => response.json())
-    .then(data => {
-        localStorage.setItem("idCotizacion", data);
-
-        var listaCotizacionXDetalle = [];
-        for (var i = 0; i < selectedPlans.length; i++) {
-            var plan = selectedPlans[i];
-            var cotizacionXDetalle = {
-                fidCotizacion: localStorage.getItem("idCotizacion"),
-                fidDetalleCotizacion: plan.id
-            };
-            listaCotizacionXDetalle.push(cotizacionXDetalle);
-        }
-
-        try {
-            let data = {
-                "listaInsertada": listaCotizacionXDetalle
-            };
-            console.log(JSON.stringify(data));
-            fetch(GLOBAL_URL + '/cotizacionXDetalleCotizacion/insertar', {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            })
-                .then(response => response.json())
-                .then(data => {
-                    // Supuestamente devuelve la lista
-                })
-                .catch(error => {
-              
-                                alert("Ha ocurrido un error de comunicación con el servidor");
-            console.error(error);
-                    localStorage.setItem("error", "1");
-                });
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    })
-    .catch(error => {
-  
-                    alert("Ha ocurrido un error de comunicación con el servidor");
-            console.error(error);
-        localStorage.setItem("error", "1");
-    });
-*/
 
 async function validacionMonto() {
   let marca;
@@ -1137,10 +1006,12 @@ function validateNumericInput(input) {
 
 document.querySelector("#btn-descargar-constancia").addEventListener("click", function () {
 
+
   const soatData ={
     nombre: document.querySelector("#txt-res-nombre").textContent,
     placa: document.querySelector("#txt-res-placa").textContent,
     precioInicial: document.querySelector("#txt-res-inicial-vehiculo").textContent,
+    beneficios: selectedPlans,
     totalBeneficios: document.querySelector("#txt-res-total-beneficios").textContent,
     totalAcumulado: document.querySelector("#txt-res-total").textContent,
     periodo: document.querySelector("#txt-res-periodo").textContent,
@@ -1158,7 +1029,7 @@ async function generarPDF(soatData) {
   const content = [
 
     // Título
-    { text: 'Resumen Compra SOAT', style: 'header' },
+    { text: 'Resumen Compra Seguro Vehicular', style: 'header' },
 
     // Logo
     { image: imageDataURL, width: 140, alignment: 'center',
@@ -1170,17 +1041,30 @@ async function generarPDF(soatData) {
     { text: 'CONTRATANTE/ASEGURADO', style: 'subheader' },
     { text: soatData.nombre, style: 'subtitle' },
 
+    // VEHÍCULO ASEGURADO
+    { text: 'PLACA VEHICULAR', style: 'subheader' },
+    { text: soatData.placa, style: 'subtitle'},
+
     // VIGENCIA DE LA PÓLIZA
     { text: 'VIGENCIA DE LA PÓLIZA', style: 'subheader' },
     { text: soatData.periodo, style: 'subtitle', margin: [0, 0, 0, 20]},
 
-    // PLAN SEGURO VEHICULAR
+    // BENEFICIOS ESCOGIDOS
+    { text: 'BENEFICIOS ESCOGIDOS', style: 'subheader' },
+
+    ...soatData.beneficios.map(plan => [
+      { text: "+"+plan.beneficio, style: 'subtitle' },
+      { text: plan.monto.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' }), style: 'subtitle' }
+    ]).flat(),
+
+    // PRECIO TOTAL POR BENEFICIO
     { text: 'PRECIO TOTAL POR BENEFICIOS', style: 'subheader' },
     { text: soatData.totalBeneficios, style: 'subtitle' },
-    { text: soatData.total, style: 'subtitle' },
-    // VEHÍCULO ASEGURADO
-    { text: 'PLACA VEHICULAR', style: 'subheader' },
-    { text: soatData.placa, style: 'subtitle'},
+
+    // PAGO TOTAL ACUMULADO
+    { text: 'PAGO TOTAL ACUMULADO', style: 'subheader' },
+    { text: soatData.totalAcumulado, style: 'subtitle' },
+
 
   ];
 
@@ -1213,7 +1097,7 @@ async function generarPDF(soatData) {
   };
 
   // Genero el PDF
-  const nombreArchivo = `${soatData.placa}_RESUMEN_COMPRA_SOAT.pdf`;
+  const nombreArchivo = `${soatData.placa}_RESUMEN_COMPRA_SV.pdf`;
   pdfMake.createPdf(docDefinition).download(nombreArchivo);
 }
 

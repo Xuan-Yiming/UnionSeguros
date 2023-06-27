@@ -112,7 +112,7 @@ function crearLaTabla(data) {
     buttonAuditoria.setAttribute("data-id", usaurio.id);
     buttonAuditoria.addEventListener("click", () => {
       const dataId = event.target.getAttribute("data-id");
-      localStorage.setItem("id-usuario", JSON.stringify(dataId));
+      localStorage.setItem("id-usuario", dataId);
       window.location.href = "/admin/auditoria";
     });
     auditoria.style.width = "130px";

@@ -1,10 +1,12 @@
 function registrarAuditoria(userID, accion) {
   var data = {
-    idUsuario: userID,
+    fid_usuario: {
+      id : userID,
+    } ,
     accion: accion,
-    hora: new Date(),
+    tiempo: new Date(),
   };
-    return;
+
   fetch(GLOBAL_URL + "/auditoria/insertar", {
     method: "POST",
     body: JSON.stringify(data),
@@ -15,12 +17,6 @@ function registrarAuditoria(userID, accion) {
     .then((response) => {
       if (!response.ok) {
         throw new Error(response.status + " " + response.statusText);
-      } else {
-        try {
-          return response.json();
-        } catch (error) {
-          return null;
-        }
       }
     })
     .catch((error) => {

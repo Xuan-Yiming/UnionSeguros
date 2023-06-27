@@ -92,11 +92,64 @@ window.onload = function () {
           console.error(error);
         });
     }, 500);
+
+  
   });
   const fileInput = document.querySelector("#btn-masiva");
 
   // Add event listener for file selection
   fileInput.addEventListener("change", handleFileUpload);
+
+      document
+        .querySelector("#btn-nuevo")
+        .addEventListener("click", function () {
+          openModal(function () { });
+        });
+      document
+        .querySelector("#btn-modal-guardar")
+        .addEventListener("click", function () {
+          closeModal(function () {
+            //download the file
+            var params = new URLSearchParams();
+            params.append(
+              "fechaUno",
+              document.querySelector("#txt-fecha-inicio").value
+            );
+            params.append(
+              "fechaDos",
+              document.querySelector("txt-fecha-fin").value
+            );
+
+            fetch(GLOBAL_URL + "/reportesPDF/generarReporteVentas")
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error(response.status + " " + response.statusText);
+                } else {
+                  try {
+                    return response.blob();
+                  } catch (error) {
+                    return null;
+                  }
+                }
+              })
+              .then((data) => {
+                const downloadUrl = window.URL.createObjectURL(data);
+                const link = document.createElement("a");
+                link.href = downloadUrl;
+                link.download = "ReporteListaNegra.pdf";
+                link.click();
+                window.URL.revokeObjectURL(downloadUrl);
+              });
+          });
+        });
+
+      document
+        .querySelector("#btn-modal-cancelar")
+        .addEventListener("click", function () {
+          closeModal(function () {
+            return true;
+          });
+        });
 };
 // Handle file upload event
 function handleFileUpload(event) {
@@ -283,3 +336,5 @@ function formateaFecha(fechaFormatoOriginal) {
   var fechaFormateada = dia + "-" + mes + "-" + anio;
   return fechaFormateada;
 }
+
+
