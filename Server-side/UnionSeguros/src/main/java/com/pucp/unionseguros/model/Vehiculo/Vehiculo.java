@@ -43,10 +43,10 @@ public class Vehiculo {
     @Column(name = "numero_asientos")
     private Integer numeroAsientos;
 
-    @Column(name = "placa", length = 15)
+    @Column(name = "placa", length = 30)
     private String placa;
 
-    @Column(name = "serie", length = 15)
+    @Column(name = "serie", length = 30)
     private String serie;
 
     @Column(name = "activo")
