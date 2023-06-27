@@ -4,7 +4,7 @@ if (localStorage.getItem("documento") == null) {
 localStorage.removeItem("data-vehiculo");
 var stage = 0;
 window.onbeforeunload = function (e) {
-  if(stage!==3){
+  if (stage !== 3) {
     return "¿Está seguro que desea salir de esta página?";
   }
 };
@@ -13,7 +13,6 @@ let total = 0;
 var placa = localStorage.getItem("placa");
 var tipoDocumento = localStorage.getItem("tipoDocumento");
 var numeroDocumento = localStorage.getItem("documento");
-
 
 const inputFechaNacimiento = document.querySelector("#date-picker2");
 
@@ -113,7 +112,7 @@ document.querySelector("#btn-previous").addEventListener("click", function () {
     }
   }
 
-  if(stage===2){
+  if (stage === 2) {
     selectedPlans = [];
     total = 0;
     updateTotal();
@@ -253,7 +252,9 @@ function updateTotal() {
     total += plan.monto;
   });
 
-  totalElement.innerText = `Precio total acumulado: S/.${montoEstimado+total}`;
+  totalElement.innerText = `Precio total acumulado: S/.${
+    montoEstimado + total
+  }`;
 }
 
 function updateLocalStorage() {
@@ -268,20 +269,20 @@ function loadResumen() {
   let nuevaPlaca = placa.substring(0, 3) + "-" + placa.substring(3);
   const total = parseFloat(localStorage.getItem("total"));
   const suma = total + montoEstimado;
-  document.querySelector("#txt-res-total").innerText =
-      "S/." + suma.toFixed(2);
+  document.querySelector("#txt-res-total").innerText = "S/." + suma.toFixed(2);
 
   document.querySelector("#txt-res-total-beneficios").innerText =
-      "S/." + total.toFixed(2);
+    "S/." + total.toFixed(2);
 
   document.querySelector("#txt-res-inicial-vehiculo").innerText =
-      "S/." + montoEstimado.toFixed(2);
+    "S/." + montoEstimado.toFixed(2);
 
   document.querySelector("#txt-res-nombre").innerText =
-    document.querySelector("#txt-nombres").value + " " +
-      document.querySelector("#txt-apdPaterno").value +
+    document.querySelector("#txt-nombres").value +
     " " +
-      document.querySelector("#txt-apdMaterno").value;
+    document.querySelector("#txt-apdPaterno").value +
+    " " +
+    document.querySelector("#txt-apdMaterno").value;
   document.querySelector("#txt-res-placa").innerText = nuevaPlaca;
 
   const datePickerInput = document.querySelector("#date-picker");
@@ -319,13 +320,13 @@ function verificacion() {
   const nombres = document.querySelector("#txt-nombres").value;
   let marca;
   let modelo;
-  if(localStorage.getItem("data-vehiculo")===null){
-     marca = document.querySelector("#select-marca").value;
-     modelo = document.querySelector("#select-modelo").value;
-  }else{
+  if (localStorage.getItem("data-vehiculo") === null) {
+    marca = document.querySelector("#select-marca").value;
+    modelo = document.querySelector("#select-modelo").value;
+  } else {
     var data = JSON.parse(localStorage.getItem("data-vehiculo"));
-     marca = data.fidModelo.fidMarcaVehiculo.id;
-     modelo = data.fidModelo.id;
+    marca = data.fidModelo.fidMarcaVehiculo.id;
+    modelo = data.fidModelo.id;
   }
 
   const anio = document.querySelector("#txt-anio").value;
@@ -343,9 +344,17 @@ function verificacion() {
 
   switch (stage) {
     case 0:
-      if ( marca == "" || modelo == "" || anio == "" || uso == "" || numAsiento == "" || numSerie == "" || fecha == "") {
-          alert("Falta completar campos");
-          return false;
+      if (
+        marca == "" ||
+        modelo == "" ||
+        anio == "" ||
+        uso == "" ||
+        numAsiento == "" ||
+        numSerie == "" ||
+        fecha == ""
+      ) {
+        alert("Falta completar campos");
+        return false;
       }
 
       if (!/^[0-9]+$/.test(numAsiento)) {
@@ -386,16 +395,23 @@ function verificacion() {
 
       break;
     case 1:
-      const inputFechaNacimiento = document.querySelector(
-          "#date-picker2"
-      );
+      const inputFechaNacimiento = document.querySelector("#date-picker2");
       if (new Date(inputFechaNacimiento.value) > fechaMinima) {
         alert("Debes ser mayor de 18 años.");
         return false;
       }
 
-      if (apdPaterno =="" || nombres == "" || fecha2 == "" || numCelular == "" || departamento == "" || provincia == ""
-            || distrito=="" || direccion =="" || email==""    ) {
+      if (
+        apdPaterno == "" ||
+        nombres == "" ||
+        fecha2 == "" ||
+        numCelular == "" ||
+        departamento == "" ||
+        provincia == "" ||
+        distrito == "" ||
+        direccion == "" ||
+        email == ""
+      ) {
         alert("Falta completar campos");
         return false;
       }
@@ -411,28 +427,38 @@ function verificacion() {
         return false;
       }
 
-      if(
-          (apdPaterno !== "" && !/^[A-Za-z -]+$/.test(apdPaterno)) ||
-          (apdMaterno !== "" && !/^[A-Za-z -]+$/.test(apdMaterno)) ||
-          !/^[A-Za-z ]+$/.test(nombres)
-      ){
+      if (
+        (apdPaterno !== "" && !/^[A-Za-z -]+$/.test(apdPaterno)) ||
+        (apdMaterno !== "" && !/^[A-Za-z -]+$/.test(apdMaterno)) ||
+        !/^[A-Za-z ]+$/.test(nombres)
+      ) {
         document.querySelector("#txt-apdPaterno").focus();
         alert(
-            "Los nombres y apellidos no deben contener caracteres especiales"
+          "Los nombres y apellidos no deben contener caracteres especiales"
         );
         return false;
       }
 
-      if(apdMaterno==="" && (tipoDocumento!=="4" && tipoDocumento!=="2" && tipoDocumento!=="3")){
+      if (
+        apdMaterno === "" &&
+        tipoDocumento !== "4" &&
+        tipoDocumento !== "2" &&
+        tipoDocumento !== "3"
+      ) {
         alert("Complete su apellido por favor");
         return false;
-      }else if(apdMaterno==="" && (tipoDocumento==="4" || tipoDocumento==="2" || tipoDocumento==="3")){
-        document.querySelector("#txt-apdMaterno").value = '-';
+      } else if (
+        apdMaterno === "" &&
+        (tipoDocumento === "4" ||
+          tipoDocumento === "2" ||
+          tipoDocumento === "3")
+      ) {
+        document.querySelector("#txt-apdMaterno").value = "-";
       }
 
-      if(tipoDocumento==="3" && numeroDocumento.substring(0, 2) === "20"){
-        document.querySelector("#txt-apdPaterno").value = '-'
-        document.querySelector("#txt-apdMaterno").value = '-'
+      if (tipoDocumento === "3" && numeroDocumento.substring(0, 2) === "20") {
+        document.querySelector("#txt-apdPaterno").value = "-";
+        document.querySelector("#txt-apdMaterno").value = "-";
       }
 
       if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
@@ -443,7 +469,6 @@ function verificacion() {
       break;
 
     case 2:
-
       break;
 
     case 3:
@@ -459,12 +484,10 @@ async function inicializar() {
   await cargarPersona();
   await cargarVehiculo();
 
-
-  if(localStorage.getItem("data-vehiculo")===null){
+  if (localStorage.getItem("data-vehiculo") === null) {
     await cargarMarcas();
     await cargarModelos();
-  }else{
-
+  } else {
     var data = JSON.parse(localStorage.getItem("data-vehiculo"));
 
     var selectMarca = document.querySelector("#select-marca");
@@ -481,18 +504,17 @@ async function inicializar() {
   await cargarProvincia();
   await cargarDistrito();
 
-
-  if(tipoDocumento==="3" && numeroDocumento.substring(0, 2) === "20"){
+  if (tipoDocumento === "3" && numeroDocumento.substring(0, 2) === "20") {
     document.querySelector("#txt-apdPaterno").style.display = "none";
     document.querySelector("#apPaternoIDText").style.display = "none";
     document.querySelector("#txt-apdMaterno").style.display = "none";
     document.querySelector("#apMaternoIDText").style.display = "none";
 
-    document.querySelector("#nombreIDText").innerText = "Nombre completo empresa";
+    document.querySelector("#nombreIDText").innerText =
+      "Nombre completo empresa";
     document.querySelector("#txt-apdPaterno").value = "-";
     document.querySelector("#txt-apdMaterno").value = "-";
   }
-
 }
 
 async function cargarMarcas() {
@@ -580,6 +602,10 @@ async function cargarPersona() {
     })
     .then((data) => {
       if (data != null) {
+        if (data.id == -1) {
+          alert("Por favor comunica con soporte para continuar con la compra");
+          window.location.href = "/";
+        }
         localStorage.setItem("idCliente", data.id);
 
         document.querySelector("#txt-apdPaterno").value = data.apellidoPaterno;
@@ -591,24 +617,23 @@ async function cargarPersona() {
           document.querySelector("#txt-apdMaterno").value = "-";
         }
 
-          document.querySelector("#txt-nombres").disabled = true;
-          document.querySelector("#txt-apdPaterno").disabled = true;
-          document.querySelector("#txt-apdMaterno").disabled = true;
-          document.querySelector("#txt-correo").disabled = true;
+        document.querySelector("#txt-nombres").disabled = true;
+        document.querySelector("#txt-apdPaterno").disabled = true;
+        document.querySelector("#txt-apdMaterno").disabled = true;
+        document.querySelector("#txt-correo").disabled = true;
 
-          if(data.direccion!=="" && data.direccion!==null){
-            document.querySelector("#txt-direccion").value = data.direccion;
-            document.querySelector("#txt-direccion").disabled = true;
-          }
-          if(data.telefono!=="" && data.telefono!==null){
-            document.querySelector("#txt-numCelular").value = data.telefono;
-            document.querySelector("#txt-numCelular").disabled = true;
-          }
-          if(data.fechaNacimiento!=="" && data.fechaNacimiento!==null){
-            document.querySelector("#date-picker2").value = data.fechaNacimiento;
-            document.querySelector("#date-picker2").disabled = true;
-          }
-
+        if (data.direccion !== "" && data.direccion !== null) {
+          document.querySelector("#txt-direccion").value = data.direccion;
+          document.querySelector("#txt-direccion").disabled = true;
+        }
+        if (data.telefono !== "" && data.telefono !== null) {
+          document.querySelector("#txt-numCelular").value = data.telefono;
+          document.querySelector("#txt-numCelular").disabled = true;
+        }
+        if (data.fechaNacimiento !== "" && data.fechaNacimiento !== null) {
+          document.querySelector("#date-picker2").value = data.fechaNacimiento;
+          document.querySelector("#date-picker2").disabled = true;
+        }
       }
     })
     .catch((error) => {
@@ -623,7 +648,8 @@ async function cargarPersona() {
 async function cargarVehiculo() {
   const params = new URLSearchParams();
   params.append("placaIngresada", localStorage.getItem("placa"));
-  const url = GLOBAL_URL + "/vehiculo/buscarVehiculoPorPlaca?" + params.toString();
+  const url =
+    GLOBAL_URL + "/vehiculo/buscarVehiculoPorPlaca?" + params.toString();
   console.log(url);
 
   try {
@@ -644,7 +670,8 @@ async function cargarVehiculo() {
       }
       // anio
       if (data.anhoFabricacion != "") {
-        document.querySelector("#txt-anio").value = data.anhoFabricacion.toString();
+        document.querySelector("#txt-anio").value =
+          data.anhoFabricacion.toString();
         document.querySelector("#txt-anio").disabled = true;
       }
       //serie
@@ -666,7 +693,6 @@ async function cargarVehiculo() {
     console.error(error);
   }
 }
-
 
 async function cargarDepartamento() {
   fetch(GLOBAL_URL + "/Departamento/listarDepartamentos")
@@ -801,10 +827,10 @@ async function guardar() {
 
   let marca;
   let modelo;
-  if(localStorage.getItem("data-vehiculo")===null){
+  if (localStorage.getItem("data-vehiculo") === null) {
     marca = document.querySelector("#select-marca").value;
     modelo = document.querySelector("#select-modelo").value;
-  }else{
+  } else {
     var data = JSON.parse(localStorage.getItem("data-vehiculo"));
     marca = data.fidModelo.fidMarcaVehiculo.id;
     modelo = data.fidModelo.id;
@@ -871,69 +897,69 @@ async function guardar() {
     }
 
     console.log(JSON.stringify(data));
-    fetch(GLOBAL_URL + '/ProcesoSeguroVehicular/insertarInfoProceso1', {
-      method: 'POST',
+    fetch(GLOBAL_URL + "/ProcesoSeguroVehicular/insertarInfoProceso1", {
+      method: "POST",
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
     })
-        .then(response => {
-          data = response;
-          localStorage.setItem("idCotizacion", data);
+      .then((response) => {
+        data = response;
+        localStorage.setItem("idCotizacion", data);
 
-          var listaCotizacionXDetalle = [];
-          for (var i = 0; i < selectedPlans.length; i++) {
-            var plan = selectedPlans[i];
-            var cotizacionXDetalle = {
-              fidCotizacion: {
-                id: localStorage.getItem("idCotizacion"),
-              },
-              fidDetalleCotizacion: {
-                id: plan.id,
-              },
-            };
-            listaCotizacionXDetalle.push(cotizacionXDetalle);
-          }
+        var listaCotizacionXDetalle = [];
+        for (var i = 0; i < selectedPlans.length; i++) {
+          var plan = selectedPlans[i];
+          var cotizacionXDetalle = {
+            fidCotizacion: {
+              id: localStorage.getItem("idCotizacion"),
+            },
+            fidDetalleCotizacion: {
+              id: plan.id,
+            },
+          };
+          listaCotizacionXDetalle.push(cotizacionXDetalle);
+        }
 
-          try {
-            let data = listaCotizacionXDetalle;
-            console.log(JSON.stringify(data));
-            fetch(GLOBAL_URL + "/cotizacionXDetalleCotizacion/insertar", {
-              method: 'POST',
-              body: JSON.stringify(data),
-              headers: {
-                'Content-Type': 'application/json'
-              },
+        try {
+          let data = listaCotizacionXDetalle;
+          console.log(JSON.stringify(data));
+          fetch(GLOBAL_URL + "/cotizacionXDetalleCotizacion/insertar", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              // Supuestamente devuelve la lista
+              loadResumen();
+              document.querySelector(".form-vehiculo ").style.display = "none";
+              document.querySelector(".form-personal ").style.display = "none";
+              document.querySelector(".form-plans").style.display = "none";
+              document.querySelector(".form-result").style.display = "block";
+              document.querySelector(
+                "#btn-descargar-constancia"
+              ).style.display = "block";
+              document.querySelector("#btn-previous").style.display = "none";
             })
-                .then(response => response.json())
-                .then(data => {
-                  // Supuestamente devuelve la lista
-                  loadResumen();
-                  document.querySelector(".form-vehiculo ").style.display = "none";
-                  document.querySelector(".form-personal ").style.display = "none";
-                  document.querySelector(".form-plans").style.display = "none";
-                  document.querySelector(".form-result").style.display = "block";
-                  document.querySelector("#btn-descargar-constancia").style.display =
-                      "block";
-                  document.querySelector("#btn-previous").style.display = "none";
-                })
-                .catch(error => {
-                  alert("Ha ocurrido un error de comunicación con el servidor");
-                  console.error(error);
-                  localStorage.setItem("error", "1");
-                });
-          } catch (error) {
-            console.error('Error:', error);
-            alert("Ha ocurrido un error de comunicación con el servidor");
-          }
-        })
-        .catch(error => {
-
+            .catch((error) => {
+              alert("Ha ocurrido un error de comunicación con el servidor");
+              console.error(error);
+              localStorage.setItem("error", "1");
+            });
+        } catch (error) {
+          console.error("Error:", error);
           alert("Ha ocurrido un error de comunicación con el servidor");
-          console.error(error);
-          localStorage.setItem("error", "1");
-        });
+        }
+      })
+      .catch((error) => {
+        alert("Ha ocurrido un error de comunicación con el servidor");
+        console.error(error);
+        localStorage.setItem("error", "1");
+      });
   } catch (error) {
     console.error("Error:", error);
   }
@@ -942,10 +968,10 @@ async function guardar() {
 async function validacionMonto() {
   let marca;
   let modelo;
-  if(localStorage.getItem("data-vehiculo")===null){
+  if (localStorage.getItem("data-vehiculo") === null) {
     marca = document.querySelector("#select-marca").value;
     modelo = document.querySelector("#select-modelo").value;
-  }else{
+  } else {
     var data = JSON.parse(localStorage.getItem("data-vehiculo"));
     marca = data.fidModelo.fidMarcaVehiculo.id;
     modelo = data.fidModelo.id;
@@ -960,16 +986,16 @@ async function validacionMonto() {
     params.append("anhoIngresado", anhoFabricacion);
 
     let url = new URL(
-      GLOBAL_URL +
-        "/calculoPrima/ObtenerCalculoPrima?" +
-        params.toString()
+      GLOBAL_URL + "/calculoPrima/ObtenerCalculoPrima?" + params.toString()
     );
     const response = await fetch(url);
     const prima = await response.json();
 
     if (prima > 0) {
       montoEstimado = prima;
-      document.getElementById("total").innerText = `Precio total acumulado: S/.${montoEstimado}`;
+      document.getElementById(
+        "total"
+      ).innerText = `Precio total acumulado: S/.${montoEstimado}`;
       flagMonto = true;
     } else {
       flagMonto = false;
@@ -995,74 +1021,80 @@ function validateNumericInput(input) {
   const value = input.value;
 
   // Eliminar cualquier caracter no numérico del valor
-  const numericValue = value.replace(/\D/g, '');
+  const numericValue = value.replace(/\D/g, "");
 
   // Actualizar el valor del campo de texto con solo caracteres numéricos
   input.value = numericValue;
 }
 
-document.querySelector("#btn-descargar-constancia").addEventListener("click", function () {
-
-
-  const soatData ={
-    nombre: document.querySelector("#txt-res-nombre").textContent,
-    placa: document.querySelector("#txt-res-placa").textContent,
-    precioInicial: document.querySelector("#txt-res-inicial-vehiculo").textContent,
-    beneficios: selectedPlans,
-    totalBeneficios: document.querySelector("#txt-res-total-beneficios").textContent,
-    totalAcumulado: document.querySelector("#txt-res-total").textContent,
-    periodo: document.querySelector("#txt-res-periodo").textContent,
-  }
-  generarPDF(soatData);
-});
+document
+  .querySelector("#btn-descargar-constancia")
+  .addEventListener("click", function () {
+    const soatData = {
+      nombre: document.querySelector("#txt-res-nombre").textContent,
+      placa: document.querySelector("#txt-res-placa").textContent,
+      precioInicial: document.querySelector("#txt-res-inicial-vehiculo")
+        .textContent,
+      beneficios: selectedPlans,
+      totalBeneficios: document.querySelector("#txt-res-total-beneficios")
+        .textContent,
+      totalAcumulado: document.querySelector("#txt-res-total").textContent,
+      periodo: document.querySelector("#txt-res-periodo").textContent,
+    };
+    generarPDF(soatData);
+  });
 
 async function generarPDF(soatData) {
   // Extraigo datos necesarios para el pdf
 
-  const imageURL = 'public/resources/logos/logo-transparent-back.png';
+  const imageURL = "public/resources/logos/logo-transparent-back.png";
   const imageDataURL = await getImageDataURL(imageURL);
 
   // contenido del PDF
   const content = [
-
     // Título
-    { text: 'Resumen Compra Seguro Vehicular', style: 'header' },
+    { text: "Resumen Compra Seguro Vehicular", style: "header" },
 
     // Logo
-    { image: imageDataURL, width: 140, alignment: 'center',
-      margin: [5, 5] },
+    { image: imageDataURL, width: 140, alignment: "center", margin: [5, 5] },
 
     // Separación notable
-    { text: '', margin: [0, 0, 0, 20] },
+    { text: "", margin: [0, 0, 0, 20] },
     // CONTRATANTE/ASEGURADO
-    { text: 'CONTRATANTE/ASEGURADO', style: 'subheader' },
-    { text: soatData.nombre, style: 'subtitle' },
+    { text: "CONTRATANTE/ASEGURADO", style: "subheader" },
+    { text: soatData.nombre, style: "subtitle" },
 
     // VEHÍCULO ASEGURADO
-    { text: 'PLACA VEHICULAR', style: 'subheader' },
-    { text: soatData.placa, style: 'subtitle'},
+    { text: "PLACA VEHICULAR", style: "subheader" },
+    { text: soatData.placa, style: "subtitle" },
 
     // VIGENCIA DE LA PÓLIZA
-    { text: 'VIGENCIA DE LA PÓLIZA', style: 'subheader' },
-    { text: soatData.periodo, style: 'subtitle', margin: [0, 0, 0, 20]},
+    { text: "VIGENCIA DE LA PÓLIZA", style: "subheader" },
+    { text: soatData.periodo, style: "subtitle", margin: [0, 0, 0, 20] },
 
     // BENEFICIOS ESCOGIDOS
-    { text: 'BENEFICIOS ESCOGIDOS', style: 'subheader' },
+    { text: "BENEFICIOS ESCOGIDOS", style: "subheader" },
 
-    ...soatData.beneficios.map(plan => [
-      { text: "+"+plan.beneficio, style: 'subtitle' },
-      { text: plan.monto.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' }), style: 'subtitle' }
-    ]).flat(),
+    ...soatData.beneficios
+      .map((plan) => [
+        { text: "+" + plan.beneficio, style: "subtitle" },
+        {
+          text: plan.monto.toLocaleString("es-PE", {
+            style: "currency",
+            currency: "PEN",
+          }),
+          style: "subtitle",
+        },
+      ])
+      .flat(),
 
     // PRECIO TOTAL POR BENEFICIO
-    { text: 'PRECIO TOTAL POR BENEFICIOS', style: 'subheader' },
-    { text: soatData.totalBeneficios, style: 'subtitle' },
+    { text: "PRECIO TOTAL POR BENEFICIOS", style: "subheader" },
+    { text: soatData.totalBeneficios, style: "subtitle" },
 
     // PAGO TOTAL ACUMULADO
-    { text: 'PAGO TOTAL ACUMULADO', style: 'subheader' },
-    { text: soatData.totalAcumulado, style: 'subtitle' },
-
-
+    { text: "PAGO TOTAL ACUMULADO", style: "subheader" },
+    { text: soatData.totalAcumulado, style: "subtitle" },
   ];
 
   // Definir los estilos del PDF
@@ -1070,14 +1102,14 @@ async function generarPDF(soatData) {
     header: {
       fontSize: 18,
       bold: true,
-      alignment: 'center',
+      alignment: "center",
       margin: [0, 0, 0, 10],
     },
     subheader: {
       fontSize: 15,
       bold: true,
       margin: [0, 10, 0, 5],
-      color: '#122757',
+      color: "#122757",
     },
     subtitle: {
       fontSize: 14,
@@ -1110,10 +1142,8 @@ function getImageDataURL(url) {
       reader.readAsDataURL(xhr.response);
     };
     xhr.onerror = reject;
-    xhr.open('GET', url);
-    xhr.responseType = 'blob';
+    xhr.open("GET", url);
+    xhr.responseType = "blob";
     xhr.send();
   });
 }
-
-
