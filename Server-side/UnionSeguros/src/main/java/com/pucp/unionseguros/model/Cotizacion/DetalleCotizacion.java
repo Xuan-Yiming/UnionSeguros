@@ -29,7 +29,7 @@ public class DetalleCotizacion {
     @Column(name = "beneficio", length = 30)
     private String beneficio;
 
-    @Column(name = "monto", precision = 10)
+    @Column(name = "monto", precision = 10, scale = 2)
     private BigDecimal monto;
 
     @Column(name = "activo")

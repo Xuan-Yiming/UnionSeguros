@@ -23,6 +23,8 @@ public class ListaNegraService {
     }
 
     public  String cargaMasivaDeListaNegra(MultipartFile file){
+        List<ListaNegra> lista = listaNegraRepository.findAll();
+        int encontrado;
         if(file.isEmpty()){
             return "El archivo está vacio";
         }
@@ -53,8 +55,12 @@ public class ListaNegraService {
                     listanegra.setTipoDocumento("");
                     listanegra.setNumeroDocumento("");
                 }
+                encontrado = buscarRepetidos(listanegra,lista);
+                if(encontrado==0){
+                    ListalistaNegra.add(listanegra);
+                }
 
-                ListalistaNegra.add(listanegra);
+
             }
 
 
@@ -73,6 +79,22 @@ public class ListaNegraService {
         }
         // Si no se encuentra un separador conocido, se puede lanzar una excepción o utilizar un separador predeterminado
         return ",";
+    }
+
+    public int buscarRepetidos(ListaNegra abuscar, List<ListaNegra> lista){
+        if(lista.size()==0) return 0;
+        for (ListaNegra cal: lista) {
+            if(cal.getNumeroDocumento().equals(abuscar.getNumeroDocumento()) &&
+               cal.getTipoDocumento().equals(abuscar.getTipoDocumento()) &&
+               cal.getNombreApellidos().equals(abuscar.getNombreApellidos()) &&
+               cal.getMotivo().equals(abuscar.getMotivo())){
+                return 1;
+            }
+
+        }
+
+
+        return  0;
     }
 
     public List<ListaNegra> listarTodasListaNegras(){

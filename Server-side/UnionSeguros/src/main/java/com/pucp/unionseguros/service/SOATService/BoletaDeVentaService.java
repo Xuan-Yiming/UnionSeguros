@@ -1,8 +1,10 @@
 package com.pucp.unionseguros.service.SOATService;
 
+import com.pucp.unionseguros.model.Extras.SoatVigente;
 import com.pucp.unionseguros.model.SOAT.BoletaDeVenta;
 import com.pucp.unionseguros.model.SOAT.Poliza;
 import com.pucp.unionseguros.model.SOAT.SOAT;
+import com.pucp.unionseguros.repository.ExtrasRepository.SoatVigenteRepository;
 import com.pucp.unionseguros.repository.SOATRepository.BoletaDeVentaRepository;
 import com.pucp.unionseguros.repository.SOATRepository.PolizaRepository;
 import com.pucp.unionseguros.repository.SOATRepository.SOATRepository;
@@ -17,11 +19,14 @@ import java.util.List;
 public class BoletaDeVentaService {
     private final BoletaDeVentaRepository boletaDeVentaRepository;
     private final SOATRepository soatRepository;
+
+    private final SoatVigenteRepository soatVigenteRepository;
     private final PolizaRepository polizaRepository;
     @Autowired
-    public BoletaDeVentaService(BoletaDeVentaRepository boletaDeVentaRepository, SOATRepository soatRepository, PolizaRepository polizaRepository) {
+    public BoletaDeVentaService(BoletaDeVentaRepository boletaDeVentaRepository, SOATRepository soatRepository, SoatVigenteRepository soatVigenteRepository, PolizaRepository polizaRepository) {
         this.boletaDeVentaRepository = boletaDeVentaRepository;
         this.soatRepository = soatRepository;
+        this.soatVigenteRepository = soatVigenteRepository;
         this.polizaRepository = polizaRepository;
     }
 
@@ -71,7 +76,20 @@ public class BoletaDeVentaService {
     }
     public BoletaDeVenta buscarVehiculoParametro(String busqueda){
         BoletaDeVenta boletaDeVenta = new BoletaDeVenta();
+        SoatVigente soatVigente= new SoatVigente();
         boletaDeVenta = boletaDeVentaRepository.findBoletaDeVentasByFidSoat_FidPoliza_FidVehiculo_PlacaAndActivoIsTrue(busqueda);
+        if(boletaDeVenta==null){
+            soatVigente=soatVigenteRepository.findSoatVigenteByPlaca(busqueda);
+            if(soatVigente == null) {
+                return boletaDeVenta;
+            }
+            else {
+                BoletaDeVenta boletaDeVenta1=new BoletaDeVenta();
+                boletaDeVenta1.setId(0);
+                return boletaDeVenta1;
+            }
+
+        }
         return  boletaDeVenta;
     }
 }

@@ -25,10 +25,10 @@ public class PlanSOAT {
     @Column(name = "id_plan_soat", nullable = false)
     private Integer id;
 
-    @Column(name = "cobertura", precision = 30)
+    @Column(name = "cobertura", precision = 10, scale = 2)
     private double cobertura;
 
-    @Column(name = "precio", precision = 10)
+    @Column(name = "precio", precision = 10, scale = 2)
     private double precio;
 
     @Column(name = "nombre_plan")

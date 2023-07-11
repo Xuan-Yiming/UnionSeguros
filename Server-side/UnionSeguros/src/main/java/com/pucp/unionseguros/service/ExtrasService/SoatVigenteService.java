@@ -1,5 +1,6 @@
 package com.pucp.unionseguros.service.ExtrasService;
 
+import com.pucp.unionseguros.model.Extras.CalculoPrima;
 import com.pucp.unionseguros.model.Extras.SoatVigente;
 import com.pucp.unionseguros.repository.ExtrasRepository.SoatVigenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,8 @@ public class SoatVigenteService {
     }
 
     public String cargaMasivaDeSoatsVigentes(MultipartFile file){
+        List<SoatVigente> lista = soatVigenteRepository.findAll();
+        int encontrado;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
         if(file.isEmpty()){
             return "El archivo está vacio";
@@ -47,7 +50,12 @@ public class SoatVigenteService {
                 soatVigente.setFechaFin(LocalDate.parse(data[3],formatter));
                 soatVigente.setNombreAseguradora(data[4]);
 
-                listaSoatsVigente.add(soatVigente);
+                encontrado = buscarRepetidos(soatVigente,lista);
+                if(encontrado ==0){
+                    listaSoatsVigente.add(soatVigente);
+                }
+
+
             }
             soatVigenteRepository.saveAllAndFlush(listaSoatsVigente);
             return "Archivo CSV cargado exitosamente";
@@ -68,5 +76,20 @@ public class SoatVigenteService {
         }
         // Si no se encuentra un separador conocido, se puede lanzar una excepción o utilizar un separador predeterminado
         return ",";
+    }
+
+    private  int buscarRepetidos(SoatVigente abuscar, List<SoatVigente> lista){
+        if(lista.size()==0) return 0;
+        for (SoatVigente cal: lista) {
+            if(cal.getCodigo().equals(abuscar.getCodigo()) &&
+                    cal.getPlaca().equals(abuscar.getPlaca()) &&
+                    cal.getFechaFin().equals(abuscar.getFechaFin()) &&
+                    cal.getFechaInicio().equals(abuscar.getFechaInicio()) &&
+                    cal.getNombreAseguradora().equals(abuscar.getNombreAseguradora())){
+                return 1;
+            }
+
+        }
+        return 0;
     }
 }

@@ -21,7 +21,7 @@ public class EmailXToken {
     @Column(name = "email", length = 100)
     private String email;
 
-    @Column(name = "token", length = 8)
+    @Column(name = "token", length = 10)
     private String token;
 
     @Column(name = "activo")

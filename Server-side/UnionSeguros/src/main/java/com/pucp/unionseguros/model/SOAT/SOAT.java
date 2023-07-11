@@ -42,7 +42,7 @@ public class SOAT {
     @Column(name = "fecha_de_emision")
     private LocalDate fechaDeEmision;
 
-    @Column(name = "monto_prima", precision = 10)
+    @Column(name = "monto_prima", precision = 10, scale = 2)
     private double montoPrima;
 
     @Column(name = "activo")

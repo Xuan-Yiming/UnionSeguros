@@ -1,9 +1,10 @@
 package com.pucp.unionseguros.service.PersonasService;
 
+import com.pucp.unionseguros.model.Extras.ListaNegra;
 import com.pucp.unionseguros.model.Personas.Cliente;
 import com.pucp.unionseguros.model.Personas.Roles;
-import com.pucp.unionseguros.model.Personas.TipoDocumento;
 import com.pucp.unionseguros.model.Personas.Usuario;
+import com.pucp.unionseguros.repository.ExtrasRepository.ListaNegraRepository;
 import com.pucp.unionseguros.repository.PersonasRepository.ClienteRepository;
 import com.pucp.unionseguros.repository.PersonasRepository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,14 @@ public class ClienteService {
     final private  ClienteRepository clienteRepository;
     private final UsuarioRepository usuarioRepository;
 
+    private final ListaNegraRepository listaNegraRepository;
+
     @Autowired
     public ClienteService(ClienteRepository clienteRepository,
-                          UsuarioRepository usuarioRepository) {
+                          UsuarioRepository usuarioRepository, ListaNegraRepository listaNegraRepository) {
         this.clienteRepository = clienteRepository;
         this.usuarioRepository = usuarioRepository;
+        this.listaNegraRepository = listaNegraRepository;
     }
 
     public List<Cliente> listarClientes(){
@@ -54,6 +58,16 @@ public class ClienteService {
     public Cliente buscarClientePorDocumento(String numeroDocumentoIngresado){
         Cliente cliente = null;
         cliente = clienteRepository.findClienteByNumeroDocumentoAndActivoIsTrue(numeroDocumentoIngresado);
+        if(cliente==null){
+            ListaNegra listaNegra =null;
+            listaNegra = listaNegraRepository.encontrarClienteListaNegra(numeroDocumentoIngresado);
+            if(listaNegra!=null){
+                Cliente cliente1 = new Cliente();
+                cliente1.setId(-1);
+                return cliente1;
+            }
+        }
+
         return cliente;
     }
     public Cliente updateCliente(Cliente cliente){

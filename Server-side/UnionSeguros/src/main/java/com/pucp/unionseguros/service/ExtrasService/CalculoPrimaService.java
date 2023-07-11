@@ -18,6 +18,8 @@ import java.io.InputStreamReader;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Component
 @Transactional
@@ -46,6 +48,8 @@ public class CalculoPrimaService {
     }
 
     public  String cargaMasivaParaCalculoPrima(MultipartFile file){
+        List<CalculoPrima> originles = calculoPrimaRepository.findAll();
+        int encontrado;
         if(file.isEmpty()){
             return "El archivo está vacio";
         }
@@ -69,9 +73,13 @@ public class CalculoPrimaService {
                 prima.setValor_3(Double.parseDouble(data[5].replace(" ","")));
                 prima.setIndiceSiniestralidad(Double.parseDouble(data[6]));
 
-                ListaParacalculoPrima.add(prima);
+                encontrado = buscaRepetidos(prima,originles);
+                if(encontrado==0){
+                    ListaParacalculoPrima.add(prima);
+                }
 
             }
+
             calculoPrimaRepository.saveAllAndFlush(ListaParacalculoPrima);
 
             marcaVehiculoRepository.cargaMarca();
@@ -82,6 +90,17 @@ public class CalculoPrimaService {
         } catch (IOException e) {
             return "Error al cargar el archivo csv: "+ e.getMessage();
         }
+    }
+
+    public  int buscaRepetidos(CalculoPrima abuscar, List<CalculoPrima> lista){
+        if(lista.size()==0) return 0;
+        for (CalculoPrima cal: lista) {
+            if(cal.getMarca().equals(abuscar.getMarca()) && cal.getModelo().equals(abuscar.getModelo())){
+                return 1;
+            }
+
+        }
+        return 0;
     }
     public int buscarMarcaSiExiste(List<MarcaVehiculo> lista, MarcaVehiculo marca){
         int encontrado = 0;

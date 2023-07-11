@@ -17,4 +17,9 @@ public interface ListaNegraRepository extends JpaRepository<ListaNegra, Integer>
             "WHERE CONCAT(a.numeroDocumento,a.nombreApellidos,a.numeroDocumento) " +
             "LIKE CONCAT('%',?1,'%') ")
     List<ListaNegra> findListaNegraParametro(String busqueda);
+
+    @Query("SELECT a FROM ListaNegra a " +
+            "WHERE CONCAT(a.numeroDocumento,a.nombreApellidos,a.numeroDocumento) " +
+            "LIKE CONCAT('%',?1,'%') ")
+    ListaNegra encontrarClienteListaNegra(String busqueda);
 }

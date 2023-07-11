@@ -63,6 +63,11 @@ public class BoletaDeVentaController {
         if(boleta==null){
             return  vehiculo;
         }
+        if(boleta.getId()==0){
+            Vehiculo vehiculo1=new Vehiculo();
+            vehiculo1.setId(1);
+            return  vehiculo1;
+        }
         vehiculo=boleta.getFidSoat().getFidPoliza().getFidVehiculo();
         return vehiculo;
     }
