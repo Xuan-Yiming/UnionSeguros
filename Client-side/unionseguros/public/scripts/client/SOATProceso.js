@@ -14,6 +14,7 @@ var numeroDocumento = localStorage.getItem("documento");
 
 localStorage.setItem("idCliente", null);
 localStorage.setItem("idVehiculo", null);
+localStorage.setItem("data-vehiculo", null);
 
 window.onload = function () {
   if (
